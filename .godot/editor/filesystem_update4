@@ -1,0 +1,16 @@
+res://levels/level_5.tscn
+res://fonts/micro_font.tres
+res://fonts/classic_font.tres
+res://tilesets/tilesetsquare.tres
+res://tilesets/tileset_decor_stone.tres
+res://fonts/cambriamath.tres
+res://ui/player_ui.tscn
+res://levels/start/titlescreen.tscn
+res://objects/enemies/bosses/0/boss_0.tscn
+res://levels/level_b1.tscn
+res://objects/player.tscn
+res://objects/enemies/enemy_1.tscn
+res://objects/enemies/enemy_3_bullet.tscn
+res://levels/level_4.tscn
+res://objects/enemies/bosses/0/bullets/mul0/mul0_bullet.tscn
+res://objects/enemies/bosses/0/boss_0.gd

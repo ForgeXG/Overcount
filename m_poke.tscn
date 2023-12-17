@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=3 uid="uid://br0geiwh6jlal"]
+
+[ext_resource type="Script" path="res://melee_poke.gd" id="1_qyfhm"]
+[ext_resource type="Texture2D" uid="uid://d1exuyenn7dmn" path="res://sprites/weapons/melee/animations/meleepoke/MeleePoke.png" id="2_h6w25"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5qby"]
+size = Vector2(12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uskr3"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(48, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5xgw"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(84, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bg4op"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(60, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b8blp"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(24, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gjrev"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(96, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_epshe"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(72, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u2ooc"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(0, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jw5vd"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(12, 0, 12, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8wlwp"]
+atlas = ExtResource("2_h6w25")
+region = Rect2(36, 0, 12, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_a4ya7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uskr3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5xgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bg4op")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b8blp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gjrev")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_epshe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u2ooc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jw5vd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8wlwp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 18.0
+}]
+
+[node name="MPoke" type="Area2D"]
+script = ExtResource("1_qyfhm")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_x5qby")
+one_way_collision_margin = 0.0
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(2, 0)
+sprite_frames = SubResource("SpriteFrames_a4ya7")
+autoplay = "default"
+frame_progress = 0.029042
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

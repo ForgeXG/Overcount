@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3uoy70x3kq5v"]
+
+[ext_resource type="Script" path="res://objects/blocks/onoff/escape/onoffescapewall.gd" id="1_ifaoy"]
+[ext_resource type="Texture2D" uid="uid://ect5xwlnwyoh" path="res://objects/blocks/onoff/escape/4.png" id="2_ytq26"]
+[ext_resource type="Texture2D" uid="uid://ch1ee56a33ytf" path="res://objects/blocks/onoff/escape/5.png" id="3_5v445"]
+[ext_resource type="Texture2D" uid="uid://s2r8d1rr7180" path="res://objects/blocks/onoff/escape/6.png" id="4_goslq"]
+[ext_resource type="Texture2D" uid="uid://blmsxmwtolh1n" path="res://objects/blocks/onoff/escape/7.png" id="5_jfoa8"]
+[ext_resource type="Texture2D" uid="uid://d3k7ksmxpcl3e" path="res://objects/blocks/onoff/escape/0.png" id="6_jp8h8"]
+[ext_resource type="Texture2D" uid="uid://clttyqeeuswlx" path="res://objects/blocks/onoff/escape/1.png" id="7_gu32r"]
+[ext_resource type="Texture2D" uid="uid://cti7bqegqg8hu" path="res://objects/blocks/onoff/escape/2.png" id="8_5vohs"]
+[ext_resource type="Texture2D" uid="uid://nb1echw3xm2c" path="res://objects/blocks/onoff/escape/3.png" id="9_w5t22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_om8l2"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0t64r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ytq26")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_5v445")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_goslq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jfoa8")
+}],
+"loop": true,
+"name": &"off",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_jp8h8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_gu32r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5vohs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_w5t22")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="EscapeWall" type="AnimatableBody2D" groups=["EscapeWall"]]
+editor_description = "Switches collision when escape sequence is activated."
+texture_filter = 1
+script = ExtResource("1_ifaoy")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_om8l2")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0t64r")
+animation = &"off"
+autoplay = "off"

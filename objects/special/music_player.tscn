@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7s2oug01cmj"]
+
+[ext_resource type="AudioStream" uid="uid://csminhas53jxi" path="res://audio/music/auroradawn.mp3" id="1_w3d54"]
+[ext_resource type="Script" path="res://objects/special/music_player.gd" id="2_xgxb2"]
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D"]
+editor_description = "The object that plays music in levels."
+stream = ExtResource("1_w3d54")
+max_distance = 1e+06
+panning_strength = 0.0
+script = ExtResource("2_xgxb2")

@@ -1,0 +1,6 @@
+SystemFont
+SpriteFrames
+FontFile
+TileSet
+PackedScene
+Image

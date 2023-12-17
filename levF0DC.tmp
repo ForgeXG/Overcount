@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cr74r2vnuyosb"]
+
+[ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://player.tscn" id="1_l4pvn"]
+[ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://camera.tscn" id="3_70g55"]
+[ext_resource type="Script" path="res://camera_manage.gd" id="3_80bar"]
+[ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tileset/square_tilemap.tscn" id="3_wcr0o"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("1_l4pvn")]
+position = Vector2(8, -24)
+
+[node name="Camera2D" parent="CharacterBody2D" instance=ExtResource("3_70g55")]
+position = Vector2(0, -16)
+position_smoothing_speed = 8.0
+script = ExtResource("3_80bar")
+
+[node name="SquareTileMap" parent="." instance=ExtResource("3_wcr0o")]
+position = Vector2(0, -16)
+layer_0/tile_data = PackedInt32Array(65532, 1, 0, 65533, 65537, 0, 65534, 65537, 0, 65535, 65537, 0, 0, 65537, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0, 196604, 1, 2, 196605, 65537, 2, 196606, 65537, 2, 196607, 65537, 2, 131072, 65537, 2, 131073, 65537, 2, 131074, 65537, 2, 131075, 65537, 2, 131068, 1, 1, 131069, 65537, 1, 131070, 65537, 1, 65539, 65537, 1, 131071, 65537, 1, 65536, 65537, 1, 65537, 65537, 1, 65538, 65537, 1, 4, 131073, 0, 65540, 131073, 1, 131076, 131073, 2, -131067, 1, 0, -131066, 65537, 0, -131065, 65537, 0, -131064, 65537, 0, -131063, 131073, 0, -65527, 131073, 1, 9, 131073, 1, 65545, 131073, 1, 131081, 131073, 2, 131077, 1, 2, 131078, 65537, 2, 131079, 65537, 2, 131080, 65537, 2, -65531, 1, 1, 5, 1, 1, 65541, 1, 1, -65528, 65537, 1, -65529, 65537, 1, 6, 65537, 1, 7, 65537, 1, 65543, 65537, 1, 65544, 65537, 1, 8, 65537, 1, -65530, 65537, 1, 65542, 65537, 1)

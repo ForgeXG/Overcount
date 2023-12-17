@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://clptxpfxi1kdu"]
+
+[ext_resource type="Texture2D" uid="uid://dm20x6ltc1yvp" path="res://sprites/wall/s_overlay_square.png" id="1_k3na5"]
+[ext_resource type="Texture2D" uid="uid://csbag433e6axn" path="res://sprites/wall/s_wall_square.png" id="2_6owrs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bqi6w"]
+size = Vector2(16, 16)
+
+[node name="Wall" type="StaticBody2D"]
+editor_description = "A static wall which mainly defines the level layout."
+texture_repeat = 3
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bqi6w")
+
+[node name="Filling" type="NinePatchRect" parent="."]
+modulate = Color(0.505882, 0.505882, 0.505882, 1)
+texture_filter = 1
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("1_k3na5")
+region_rect = Rect2(0, 0, 16, 16)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Frame" type="NinePatchRect" parent="."]
+texture_filter = 1
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset = Vector2(8, 8)
+texture = ExtResource("2_6owrs")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cc5swu182t65o"]
+
+[ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="1_hd25n"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_hd25n")
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)

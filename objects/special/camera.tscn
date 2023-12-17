@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6cugcod64erq"]
+
+[ext_resource type="Script" path="res://objects/special/camera.gd" id="1_140cw"]
+[ext_resource type="Texture2D" uid="uid://bs24xq3gyrbtq" path="res://sprites/s_camera.png" id="2_nkxgu"]
+
+[node name="Camera" type="Camera2D"]
+modulate = Color(1, 1, 1, 0.54902)
+ignore_rotation = false
+zoom = Vector2(4, 4)
+limit_bottom = 96
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+script = ExtResource("1_140cw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+texture_filter = 1
+texture = ExtResource("2_nkxgu")

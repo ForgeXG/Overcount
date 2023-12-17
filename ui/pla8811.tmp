@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://1faqvg8n13h4"]
+
+[ext_resource type="Script" path="res://ui/player_ui.gd" id="1_117or"]
+[ext_resource type="Texture2D" uid="uid://byogppelk74mx" path="res://ui/ui_sprites/heart.png" id="2_54rg6"]
+[ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="3_66kkv"]
+
+[node name="PlayerUI" type="CanvasLayer"]
+script = ExtResource("1_117or")
+
+[node name="ImageHealth" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 112.0
+offset_bottom = 112.0
+texture = ExtResource("2_54rg6")
+stretch_mode = 6
+
+[node name="TextHealth" type="RichTextLabel" parent="."]
+offset_left = 40.0
+offset_top = 32.0
+offset_right = 192.0
+offset_bottom = 80.0
+theme_override_fonts/normal_font = ExtResource("3_66kkv")
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+fit_content = true

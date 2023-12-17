@@ -1,0 +1,7 @@
+[gd_resource type="SystemFont" format=3 uid="uid://dhq1c382rybwt"]
+
+[resource]
+font_names = PackedStringArray("Micro")
+subpixel_positioning = 0
+msdf_pixel_range = 32
+oversampling = 4.0

@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds048i8xh347l"]
+
+[ext_resource type="Script" path="res://pickup.gd" id="1_k1shf"]
+[ext_resource type="Texture2D" uid="uid://c1yl1mg4rgdyw" path="res://objects/pickups/gems/gem_octagon/GemOctagon.png" id="2_aa0nt"]
+[ext_resource type="Script" path="res://objects/pickups/gems/uniform_spin.gd" id="3_mq588"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7012j"]
+size = Vector2(8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lkjg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aa0nt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="GemOctagon" type="Area2D"]
+texture_filter = 1
+scale = Vector2(3, 3)
+script = ExtResource("1_k1shf")
+value = 100
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7012j")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_0lkjg")
+autoplay = "default"
+frame_progress = 0.970202
+script = ExtResource("3_mq588")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,77 @@
+[gd_scene load_steps=16 format=3 uid="uid://da7eifk5mhssy"]
+
+[ext_resource type="Script" path="res://objects/foreground/accelerator/accelerator.gd" id="1_bj7xw"]
+[ext_resource type="Texture2D" uid="uid://dqykdjmy0jqcw" path="res://objects/foreground/accelerator/0.png" id="2_w73fo"]
+[ext_resource type="Texture2D" uid="uid://bmli4knd46vxg" path="res://objects/foreground/accelerator/1.png" id="3_a6pnf"]
+[ext_resource type="Texture2D" uid="uid://cf4s1oq0xge5f" path="res://objects/foreground/accelerator/2.png" id="4_a6y81"]
+[ext_resource type="Texture2D" uid="uid://di0baxcfur3mn" path="res://objects/foreground/accelerator/3.png" id="5_1a7ew"]
+[ext_resource type="Texture2D" uid="uid://olfsq4bsmvbg" path="res://objects/foreground/accelerator/4.png" id="6_oi4ei"]
+[ext_resource type="Texture2D" uid="uid://cpntsov4x45b6" path="res://objects/foreground/accelerator/5.png" id="7_65kr2"]
+[ext_resource type="Texture2D" uid="uid://belf11i7wv878" path="res://objects/foreground/accelerator/6.png" id="8_t7hkh"]
+[ext_resource type="Texture2D" uid="uid://6ur3xc63jgwx" path="res://objects/foreground/accelerator/7.png" id="9_mps34"]
+[ext_resource type="Texture2D" uid="uid://bqkmis3na63o5" path="res://objects/foreground/accelerator/8.png" id="10_upy3r"]
+[ext_resource type="Texture2D" uid="uid://turrt7hl3m2w" path="res://objects/foreground/accelerator/9.png" id="11_8gi7j"]
+[ext_resource type="Texture2D" uid="uid://bq6papd28qrhd" path="res://objects/foreground/accelerator/10.png" id="12_rmqlb"]
+[ext_resource type="Texture2D" uid="uid://cfase4rgw70lb" path="res://objects/foreground/accelerator/11.png" id="13_42g8i"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkyra"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hj5a2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_w73fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a6pnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_a6y81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1a7ew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_oi4ei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_65kr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_t7hkh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mps34")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_upy3r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8gi7j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_rmqlb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_42g8i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="Accelerator" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_bj7xw")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_jkyra")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hj5a2")
+autoplay = "default"
+frame = 11
+frame_progress = 0.0529113
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

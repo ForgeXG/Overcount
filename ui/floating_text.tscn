@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy3b6e5xsbff4"]
+
+[ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="1_uvc3f"]
+[ext_resource type="Script" path="res://ui/floating_text.gd" id="2_rm2nh"]
+
+[node name="FloatingText" type="RichTextLabel"]
+texture_filter = 1
+offset_right = 71.0
+offset_bottom = 18.0
+theme_override_fonts/normal_font = ExtResource("1_uvc3f")
+theme_override_font_sizes/normal_font_size = 18
+text = "Text"
+fit_content = true
+script = ExtResource("2_rm2nh")

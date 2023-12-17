@@ -1,0 +1,77 @@
+[gd_scene load_steps=16 format=3 uid="uid://tpffhm7nfx8i"]
+
+[ext_resource type="Script" path="res://objects/blocks/teleport.gd" id="1_gfpfm"]
+[ext_resource type="Texture2D" uid="uid://b5wdx5isnssgy" path="res://sprites/specials/teleport/teleport_f0.png" id="2_8vhw6"]
+[ext_resource type="Texture2D" uid="uid://bcbjn52jnp63m" path="res://sprites/specials/teleport/teleport_f1.png" id="3_w0qs7"]
+[ext_resource type="Texture2D" uid="uid://bdw1rpxat3wyp" path="res://sprites/specials/teleport/teleport_f2.png" id="4_syvpq"]
+[ext_resource type="Texture2D" uid="uid://dlvd1wbmq2oiu" path="res://sprites/specials/teleport/teleport_f3.png" id="5_et5sr"]
+[ext_resource type="Texture2D" uid="uid://nsmgsxa3je7u" path="res://sprites/specials/teleport/teleport_f4.png" id="6_5be4i"]
+[ext_resource type="Texture2D" uid="uid://c5covbam0b0gl" path="res://sprites/specials/teleport/teleport_f5.png" id="7_1y1ek"]
+[ext_resource type="Texture2D" uid="uid://b01y03cruswtl" path="res://sprites/specials/teleport/teleport_f6.png" id="8_tki61"]
+[ext_resource type="Texture2D" uid="uid://bbg0keaicds2n" path="res://sprites/specials/teleport/teleport_f7.png" id="9_x0eg7"]
+[ext_resource type="Texture2D" uid="uid://cx04qnm4lxwg2" path="res://sprites/specials/teleport/teleport_f8.png" id="10_2qe1t"]
+[ext_resource type="Texture2D" uid="uid://ch3o4ga1mhl77" path="res://sprites/specials/teleport/teleport_f9.png" id="11_8sn4a"]
+[ext_resource type="Texture2D" uid="uid://dy0n8u7lr81xw" path="res://sprites/specials/teleport/teleport_f10.png" id="12_dbmh8"]
+[ext_resource type="Texture2D" uid="uid://dqibs8lum8q14" path="res://sprites/specials/teleport/teleport_f11.png" id="13_w8tjc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75ynx"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xjpjb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8vhw6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_w0qs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_syvpq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_et5sr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_5be4i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1y1ek")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tki61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_x0eg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2qe1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_8sn4a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_dbmh8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_w8tjc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="Teleport" type="Area2D"]
+script = ExtResource("1_gfpfm")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_75ynx")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_xjpjb")
+autoplay = "default"
+frame = 9
+frame_progress = 0.120218
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

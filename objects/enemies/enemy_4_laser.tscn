@@ -1,0 +1,98 @@
+[gd_scene load_steps=20 format=3 uid="uid://ck7jgtlh7hmh8"]
+
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_cfrcx"]
+[ext_resource type="Texture2D" uid="uid://b41sdu8gmr53b" path="res://sprites/enemies/4/laser/0.png" id="1_i8snq"]
+[ext_resource type="Texture2D" uid="uid://c4mpd6ejadqgu" path="res://sprites/enemies/4/laser/1.png" id="2_kntq5"]
+[ext_resource type="Texture2D" uid="uid://calpyq352laqs" path="res://sprites/enemies/4/laser/2.png" id="3_8q553"]
+[ext_resource type="Texture2D" uid="uid://bvy8pk348e54k" path="res://sprites/enemies/4/laser/3.png" id="4_gtmmx"]
+[ext_resource type="Texture2D" uid="uid://cgdahbpmltohy" path="res://sprites/enemies/4/laser/4.png" id="5_wle81"]
+[ext_resource type="Texture2D" uid="uid://ckpynnvd1y6bv" path="res://sprites/enemies/4/laser/5.png" id="6_uomyd"]
+[ext_resource type="Texture2D" uid="uid://de6krhyjpt7fy" path="res://sprites/enemies/4/laser/6.png" id="7_8dw21"]
+[ext_resource type="Texture2D" uid="uid://36o4en6aiy78" path="res://sprites/enemies/4/laser/7.png" id="8_ksqwt"]
+[ext_resource type="Texture2D" uid="uid://uw6a7kgfekf8" path="res://sprites/enemies/4/laser/8.png" id="9_5fupu"]
+[ext_resource type="Texture2D" uid="uid://5yuluenj1lbl" path="res://sprites/enemies/4/laser/9.png" id="10_1l37h"]
+[ext_resource type="Texture2D" uid="uid://d0jqywmxkptw" path="res://sprites/enemies/4/laser/10.png" id="11_r1pco"]
+[ext_resource type="Texture2D" uid="uid://bue8s7k2huy66" path="res://sprites/enemies/4/laser/11.png" id="12_13mgw"]
+[ext_resource type="Texture2D" uid="uid://huqr1qcjodym" path="res://sprites/enemies/4/laser/12.png" id="13_ykkgr"]
+[ext_resource type="Texture2D" uid="uid://cg06wus7fpyiw" path="res://sprites/enemies/4/laser/13.png" id="14_ydtee"]
+[ext_resource type="Texture2D" uid="uid://btk58gqapmu4k" path="res://sprites/enemies/4/laser/14.png" id="15_4nih4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hnuii"]
+rough = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5afxo"]
+size = Vector2(14, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4iul2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_i8snq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_kntq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8q553")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gtmmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_wle81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_uomyd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8dw21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ksqwt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_5fupu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1l37h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_r1pco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_13mgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ykkgr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ydtee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_4nih4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy4_Laser" type="RigidBody2D"]
+texture_filter = 1
+collision_layer = 0
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_hnuii")
+gravity_scale = 0.0
+continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_cfrcx")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5afxo")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_4iul2")
+autoplay = "default"
+frame_progress = 0.0607729
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

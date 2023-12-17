@@ -1,0 +1,93 @@
+[gd_scene load_steps=20 format=3 uid="uid://csquo4odua4w2"]
+
+[ext_resource type="Script" path="res://objects/level_portal.gd" id="1_0vtfc"]
+[ext_resource type="Texture2D" uid="uid://cfwqid6sd7xhj" path="res://sprites/specials/levelportal/0.png" id="2_7wx2i"]
+[ext_resource type="Texture2D" uid="uid://bp10u51fg387v" path="res://sprites/specials/levelportal/1.png" id="3_beldj"]
+[ext_resource type="Texture2D" uid="uid://j3r6nhu3823g" path="res://sprites/specials/levelportal/2.png" id="4_knlfr"]
+[ext_resource type="Texture2D" uid="uid://dlqphkxojoxmd" path="res://sprites/specials/levelportal/3.png" id="5_uci2x"]
+[ext_resource type="Texture2D" uid="uid://c7kdr5h3kqeg0" path="res://sprites/specials/levelportal/4.png" id="6_m26m3"]
+[ext_resource type="Texture2D" uid="uid://s5mqtwyjb730" path="res://sprites/specials/levelportal/5.png" id="7_sxe0g"]
+[ext_resource type="Texture2D" uid="uid://dl52gw7s85d51" path="res://sprites/specials/levelportal/6.png" id="8_2fcg7"]
+[ext_resource type="Texture2D" uid="uid://cqvsdu8g8t863" path="res://sprites/specials/levelportal/7.png" id="9_6wvbo"]
+[ext_resource type="Texture2D" uid="uid://l0fjhkf1uo2" path="res://sprites/specials/levelportal/8.png" id="10_qj5bg"]
+[ext_resource type="Texture2D" uid="uid://bv3s7roliiy3q" path="res://sprites/specials/levelportal/9.png" id="11_tu5a2"]
+[ext_resource type="Texture2D" uid="uid://bbqcadjftei50" path="res://sprites/specials/levelportal/10.png" id="12_o5r4x"]
+[ext_resource type="Texture2D" uid="uid://5yu42slcroam" path="res://sprites/specials/levelportal/11.png" id="13_c8xus"]
+[ext_resource type="Texture2D" uid="uid://cpdof2hys5u5f" path="res://sprites/specials/levelportal/12.png" id="14_ujp01"]
+[ext_resource type="Texture2D" uid="uid://dtpwcbrfnrckh" path="res://sprites/specials/levelportal/13.png" id="15_5jy8v"]
+[ext_resource type="Texture2D" uid="uid://d135c5jhjohn5" path="res://sprites/specials/levelportal/14.png" id="16_0pkcx"]
+[ext_resource type="Texture2D" uid="uid://dsakogquo4cx5" path="res://sprites/specials/levelportal/15.png" id="17_o4j2r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_egoxf"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_02g7k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7wx2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_beldj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_knlfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_uci2x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_m26m3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_sxe0g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2fcg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_6wvbo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qj5bg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tu5a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_o5r4x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_c8xus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_ujp01")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_5jy8v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_0pkcx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_o4j2r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="LevelPortal" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_0vtfc")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_egoxf")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_02g7k")
+autoplay = "default"
+frame = 14
+frame_progress = 0.606921
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

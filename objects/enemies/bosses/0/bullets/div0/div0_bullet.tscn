@@ -1,0 +1,111 @@
+[gd_scene load_steps=19 format=3 uid="uid://cyxbbgrgijkp2"]
+
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_weopg"]
+[ext_resource type="Texture2D" uid="uid://cs2qbtrmgq4iv" path="res://objects/enemies/bosses/0/bullets/div0/0.png" id="2_7ls8e"]
+[ext_resource type="Texture2D" uid="uid://o5py3hii1iwq" path="res://objects/enemies/bosses/0/bullets/div0/1.png" id="3_ykm2c"]
+[ext_resource type="Texture2D" uid="uid://dubssk6jn3ula" path="res://objects/enemies/bosses/0/bullets/div0/2.png" id="4_dmerq"]
+[ext_resource type="Texture2D" uid="uid://ve63rii8o4ik" path="res://objects/enemies/bosses/0/bullets/div0/3.png" id="5_287nq"]
+[ext_resource type="Texture2D" uid="uid://cc6x3t77qvi1i" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/12.png" id="6_40yke"]
+[ext_resource type="Texture2D" uid="uid://or4yqjrrrjd8" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/13.png" id="7_nstkq"]
+[ext_resource type="Texture2D" uid="uid://bgwybhqe2ngmn" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/14.png" id="8_viqxm"]
+[ext_resource type="Texture2D" uid="uid://b6oskk3boudtp" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/15.png" id="9_22clg"]
+[ext_resource type="Texture2D" uid="uid://cvpyoc5r3p0fj" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/16.png" id="10_ovsfi"]
+[ext_resource type="Texture2D" uid="uid://dqq4p40k34ivs" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/17.png" id="11_74c4s"]
+[ext_resource type="Texture2D" uid="uid://bfrfnd21nr2s6" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/18.png" id="12_6wfd6"]
+[ext_resource type="Texture2D" uid="uid://bglccvgamfonq" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/19.png" id="13_0wjqo"]
+[ext_resource type="Texture2D" uid="uid://bhcq3ncnrrhrp" path="res://objects/enemies/bosses/0/bullets/div0/blackhole/20.png" id="14_vvltv"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_m2c5n"]
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fsrr1"]
+radius = 15.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dnwy6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7ls8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ykm2c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dmerq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_287nq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l84y3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_40yke")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nstkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_viqxm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_22clg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ovsfi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_74c4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6wfd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0wjqo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_vvltv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="div0_bullet" type="RigidBody2D"]
+texture_filter = 1
+physics_material_override = SubResource("PhysicsMaterial_m2c5n")
+gravity_scale = 0.0
+continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_weopg")
+dmg = 10
+sticky = false
+blackhole = true
+blackhole_radius = 96
+fading = false
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_fsrr1")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_dnwy6")
+autoplay = "default"
+frame = 1
+frame_progress = 0.958549
+
+[node name="BlackHole" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_l84y3")
+autoplay = "default"
+frame = 7
+frame_progress = 0.714934
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="draw" from="." to="." method="_on_draw"]

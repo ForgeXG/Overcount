@@ -1,0 +1,78 @@
+[gd_scene load_steps=16 format=3 uid="uid://dakoio0l4dr1d"]
+
+[ext_resource type="Script" path="res://pickup.gd" id="1_vaqmd"]
+[ext_resource type="Texture2D" uid="uid://cr1i8m1symwmv" path="res://objects/pickups/gems/gem_square/0.png" id="2_k0nga"]
+[ext_resource type="Texture2D" uid="uid://pmgm082mg1go" path="res://objects/pickups/gems/gem_square/1.png" id="3_6wy47"]
+[ext_resource type="Texture2D" uid="uid://by7xiprynjk7a" path="res://objects/pickups/gems/gem_square/2.png" id="4_wthko"]
+[ext_resource type="Texture2D" uid="uid://d055lujf7mjd4" path="res://objects/pickups/gems/gem_square/3.png" id="5_c0qnt"]
+[ext_resource type="Texture2D" uid="uid://6gkerpxmwovv" path="res://objects/pickups/gems/gem_square/4.png" id="6_glpkm"]
+[ext_resource type="Texture2D" uid="uid://qpc6ge4owduk" path="res://objects/pickups/gems/gem_square/5.png" id="7_bdlsy"]
+[ext_resource type="Texture2D" uid="uid://bolt3tg7okndc" path="res://objects/pickups/gems/gem_square/6.png" id="8_h8o6w"]
+[ext_resource type="Texture2D" uid="uid://c0m67j5wimnsr" path="res://objects/pickups/gems/gem_square/7.png" id="9_pgieh"]
+[ext_resource type="Texture2D" uid="uid://bcic7srkmqmyj" path="res://objects/pickups/gems/gem_square/8.png" id="10_u28hq"]
+[ext_resource type="Texture2D" uid="uid://bb5sj6e3cy56w" path="res://objects/pickups/gems/gem_square/9.png" id="11_x2m7a"]
+[ext_resource type="Texture2D" uid="uid://d0ctmbk4hompl" path="res://objects/pickups/gems/gem_square/10.png" id="12_baasw"]
+[ext_resource type="Texture2D" uid="uid://cyiujha1bpr56" path="res://objects/pickups/gems/gem_square/11.png" id="13_rlbku"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7012j"]
+size = Vector2(12, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0lkjg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_k0nga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6wy47")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wthko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_c0qnt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_glpkm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_bdlsy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h8o6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_pgieh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u28hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_x2m7a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_baasw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rlbku")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="GemSquare" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_vaqmd")
+value = 10
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7012j")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_0lkjg")
+autoplay = "default"
+frame = 1
+frame_progress = 0.970202
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

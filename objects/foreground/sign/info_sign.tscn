@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://c7bky116yv7qp"]
+
+[ext_resource type="Script" path="res://objects/foreground/sign/info_sign.gd" id="1_3lpdm"]
+[ext_resource type="Texture2D" uid="uid://da0m82lbe3kgk" path="res://objects/foreground/sign/0.png" id="1_ki44j"]
+[ext_resource type="Texture2D" uid="uid://cw640bv10ayb3" path="res://objects/foreground/sign/1.png" id="2_j85m2"]
+[ext_resource type="Texture2D" uid="uid://biyh6padfrqbn" path="res://objects/foreground/sign/2.png" id="3_wo0ar"]
+[ext_resource type="Texture2D" uid="uid://ll2kqdttwt6v" path="res://objects/foreground/sign/3.png" id="4_fb4nc"]
+[ext_resource type="Texture2D" uid="uid://dl2tngyurkj" path="res://objects/foreground/sign/4.png" id="5_16n40"]
+[ext_resource type="Texture2D" uid="uid://cj8ysy32usctc" path="res://objects/foreground/sign/5.png" id="6_0djq3"]
+[ext_resource type="Texture2D" uid="uid://bemob8qgbgih6" path="res://ui/ui_sprites/s_textbox_c.png" id="7_sjs4d"]
+[ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="9_djrwb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fek87"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63a3a"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ki44j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_j85m2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wo0ar")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_fb4nc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_16n40")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_0djq3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="InfoSign" type="Area2D"]
+texture_filter = 1
+position = Vector2(0, -2)
+script = ExtResource("1_3lpdm")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fek87")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_63a3a")
+autoplay = "default"
+frame = 2
+frame_progress = 0.610361
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="InfoRect" type="NinePatchRect" parent="UI"]
+self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
+layout_mode = 0
+offset_left = -72.0
+offset_top = -72.0
+offset_right = 72.0
+offset_bottom = -6.0
+texture = ExtResource("7_sjs4d")
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="InfoText" type="RichTextLabel" parent="UI/InfoRect"]
+layout_mode = 0
+offset_right = 144.0
+offset_bottom = 66.0
+theme_override_fonts/normal_font = ExtResource("9_djrwb")
+theme_override_font_sizes/normal_font_size = 10
+bbcode_enabled = true
+text = "Text"
+visible_characters_behavior = 1
+
+[connection signal="mouse_shape_entered" from="." to="." method="_on_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="." to="." method="_on_mouse_shape_exited"]

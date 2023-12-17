@@ -1,0 +1,153 @@
+[gd_scene load_steps=16 format=3 uid="uid://db4yguj5tbhmu"]
+
+[ext_resource type="Script" path="res://objects/locks/equation_lock.gd" id="1_tomo8"]
+[ext_resource type="Texture2D" uid="uid://dswuqr0lhnuo" path="res://objects/locks/additionlock/0.png" id="2_60a6b"]
+[ext_resource type="Texture2D" uid="uid://022oexk5kifl" path="res://objects/locks/additionlock/1.png" id="3_wxy4s"]
+[ext_resource type="Texture2D" uid="uid://wqk2qq15ixg1" path="res://objects/locks/additionlock/2.png" id="4_l0b1k"]
+[ext_resource type="Texture2D" uid="uid://d0f5rru1dlvhr" path="res://objects/locks/additionlock/3.png" id="5_23vv7"]
+[ext_resource type="Texture2D" uid="uid://burjnwwjag7mh" path="res://objects/locks/additionlock/4.png" id="6_srihu"]
+[ext_resource type="Texture2D" uid="uid://u0gshw0alohx" path="res://objects/locks/additionlock/5.png" id="7_nrs3y"]
+[ext_resource type="Texture2D" uid="uid://bin8smgl031a1" path="res://objects/locks/additionlock/6.png" id="8_nudh4"]
+[ext_resource type="Texture2D" uid="uid://bhjogqtievak6" path="res://objects/locks/additionlock/7.png" id="9_mi18t"]
+[ext_resource type="Texture2D" uid="uid://8nq4ersv3qcc" path="res://objects/locks/additionlock/8.png" id="10_7nv13"]
+[ext_resource type="Texture2D" uid="uid://bemob8qgbgih6" path="res://ui/ui_sprites/s_textbox_c.png" id="12_coyx7"]
+[ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="12_ilc23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwkic"]
+size = Vector2(10, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvijh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_60a6b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wxy4s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l0b1k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_23vv7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_srihu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nrs3y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_nudh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mi18t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_7nv13")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qprop"]
+
+[node name="EquationLock" type="CharacterBody2D"]
+texture_filter = 1
+script = ExtResource("1_tomo8")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qwkic")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yvijh")
+autoplay = "default"
+frame_progress = 0.415061
+
+[node name="UI" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0.823529)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(2, 2)
+
+[node name="ProblemRect" type="NinePatchRect" parent="UI"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -19.0
+offset_right = 28.0
+offset_bottom = 7.0
+texture = ExtResource("12_coyx7")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+metadata/_edit_group_ = true
+
+[node name="Problem" type="RichTextLabel" parent="UI/ProblemRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 53.0
+offset_bottom = 23.0
+theme_override_fonts/normal_font = ExtResource("12_ilc23")
+theme_override_font_sizes/normal_font_size = 10
+text = "Addition"
+
+[node name="CaptionRect" type="NinePatchRect" parent="UI"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = -45.0
+offset_right = 28.0
+offset_bottom = -19.0
+texture = ExtResource("12_coyx7")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+metadata/_edit_group_ = true
+
+[node name="Caption" type="RichTextLabel" parent="UI/CaptionRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 3.0
+offset_right = 53.0
+offset_bottom = 23.0
+theme_override_fonts/normal_font = ExtResource("12_ilc23")
+theme_override_font_sizes/normal_font_size = 6
+text = "Prove you are human. W to deselect."
+
+[node name="AnswerRect" type="NinePatchRect" parent="UI"]
+layout_mode = 0
+offset_left = -28.0
+offset_top = 8.0
+offset_right = 28.0
+offset_bottom = 38.0
+texture = ExtResource("12_coyx7")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+metadata/_edit_group_ = true
+
+[node name="Answer" type="TextEdit" parent="UI/AnswerRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 53.0
+offset_bottom = 51.0
+theme_override_fonts/font = ExtResource("12_ilc23")
+theme_override_font_sizes/font_size = 10
+theme_override_styles/normal = SubResource("StyleBoxEmpty_qprop")
+placeholder_text = "Type Here"
+deselect_on_focus_loss_enabled = false
+wrap_mode = 1
+scroll_past_end_of_file = true
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4kjpywkhbbki"]
+
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_5v73k"]
+[ext_resource type="Texture2D" uid="uid://ffjm3bw37f1n" path="res://sprites/enemies/3/bullet/Enemy3_Bullet.png" id="2_4b7h1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4520l"]
+rough = true
+bounce = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i07xq"]
+radius = 4.0
+
+[node name="Enemy3_Bullet" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_4520l")
+gravity_scale = 0.0
+continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_5v73k")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i07xq")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_4b7h1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

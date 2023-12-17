@@ -1,0 +1,104 @@
+[gd_scene load_steps=7 format=3 uid="uid://cosaa4w7svupx"]
+
+[ext_resource type="Script" path="res://levels/start/titlescreen.gd" id="1_ci33f"]
+[ext_resource type="Texture2D" uid="uid://bkaeh6xl8sgsx" path="res://ui/ui_sprites/titlescreen/NerdEmoji.png" id="1_tpeja"]
+[ext_resource type="Texture2D" uid="uid://de52x8d67sv6f" path="res://ui/ui_sprites/titlescreen/MafPaper.png" id="2_o2cbe"]
+[ext_resource type="Texture2D" uid="uid://dh1krarw4kbg7" path="res://ui/ui_sprites/titlescreen/Pencil.png" id="3_2gsj4"]
+[ext_resource type="Texture2D" uid="uid://drflb64p6haof" path="res://ui/ui_sprites/titlescreen/ForbiddenSign.png" id="4_trto5"]
+[ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="5_ayh5e"]
+
+[node name="titlescreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ci33f")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Disclaimer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NerdEmoji" type="TextureRect" parent="Disclaimer"]
+layout_mode = 0
+offset_left = 152.0
+offset_top = 128.0
+offset_right = 664.0
+offset_bottom = 640.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_tpeja")
+expand_mode = 1
+
+[node name="MafPaper" type="TextureRect" parent="Disclaimer"]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 128.0
+offset_right = 1248.0
+offset_bottom = 640.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o2cbe")
+expand_mode = 1
+
+[node name="Pencil" type="TextureRect" parent="Disclaimer"]
+layout_mode = 0
+offset_left = 848.0
+offset_top = 128.0
+offset_right = 1360.0
+offset_bottom = 640.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_2gsj4")
+expand_mode = 1
+
+[node name="ForbiddenSign" type="TextureRect" parent="Disclaimer"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 0
+offset_left = 768.0
+offset_top = 128.0
+offset_right = 1280.0
+offset_bottom = 640.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_trto5")
+expand_mode = 1
+
+[node name="ForbiddenSign2" type="TextureRect" parent="Disclaimer"]
+modulate = Color(1, 1, 1, 0.784314)
+layout_mode = 0
+offset_left = 152.0
+offset_top = 128.0
+offset_right = 664.0
+offset_bottom = 640.0
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_trto5")
+expand_mode = 1
+
+[node name="FloatingText" parent="Disclaimer" instance=ExtResource("5_ayh5e")]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 384.0
+offset_right = 400.0
+offset_bottom = 471.0
+theme_override_font_sizes/normal_font_size = 24
+text = "Well ackshually, I can just use a calculator to do math in this game!"
+
+[node name="FloatingText2" parent="Disclaimer" instance=ExtResource("5_ayh5e")]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 384.0
+offset_right = 1008.0
+offset_bottom = 448.0
+theme_override_font_sizes/normal_font_size = 24
+text = "Only use your head to calculate. Or else..."
