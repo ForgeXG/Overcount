@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://6p5jhiva5qp6"]
+
+[ext_resource type="Shader" uid="uid://w0tobdkysblh" path="res://shaders/sh_trihex_1.tres" id="1_7qxc1"]
+
+[resource]
+shader = ExtResource("1_7qxc1")

@@ -1,0 +1,45 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctuhi13q2thad"]
+
+[ext_resource type="Texture2D" uid="uid://bsk7806gvqq0i" path="res://objects/foreground/booster/0.png" id="1_4n56y"]
+[ext_resource type="Script" path="res://objects/foreground/booster/booster.gd" id="1_feqsd"]
+[ext_resource type="Texture2D" uid="uid://n73cl8lvbhgr" path="res://objects/foreground/booster/1.png" id="2_et02y"]
+[ext_resource type="Texture2D" uid="uid://cyppxhfqdj6xq" path="res://objects/foreground/booster/2.png" id="3_3kxk0"]
+[ext_resource type="Texture2D" uid="uid://cf80jca4oo1lv" path="res://objects/foreground/booster/3.png" id="4_uh51c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjffx"]
+size = Vector2(10, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7l43t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4n56y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_et02y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3kxk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_uh51c")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="Booster" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_feqsd")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mjffx")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7l43t")
+autoplay = "default"
+frame_progress = 0.537391
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="draw" from="." to="." method="_draw"]

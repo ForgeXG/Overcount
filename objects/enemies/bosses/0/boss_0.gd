@@ -95,7 +95,7 @@ func _process(_delta):
 			rotation += 0.05
 			modulate.a = 0.4
 	
-	if d_timer == 0 and rotation == 180:
+	if d_timer == 0:
 		player.score += score
 		get_tree().call_group("EscapeWall", "switch")
 		get_parent().get_node("LevelPortal").active = true

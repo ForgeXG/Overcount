@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cmqmkwa468ava"]
+
+[ext_resource type="Shader" uid="uid://35i3abuavrtp" path="res://shaders/sh_quadrille_o2.tres" id="1_ot2py"]
+
+[resource]
+shader = ExtResource("1_ot2py")

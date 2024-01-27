@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ck7jgtlh7hmh8"]
+[gd_scene load_steps=21 format=3 uid="uid://ck7jgtlh7hmh8"]
 
 [ext_resource type="Script" path="res://enemy_bullet.gd" id="1_cfrcx"]
 [ext_resource type="Texture2D" uid="uid://b41sdu8gmr53b" path="res://sprites/enemies/4/laser/0.png" id="1_i8snq"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://huqr1qcjodym" path="res://sprites/enemies/4/laser/12.png" id="13_ykkgr"]
 [ext_resource type="Texture2D" uid="uid://cg06wus7fpyiw" path="res://sprites/enemies/4/laser/13.png" id="14_ydtee"]
 [ext_resource type="Texture2D" uid="uid://btk58gqapmu4k" path="res://sprites/enemies/4/laser/14.png" id="15_4nih4"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="17_ebben"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hnuii"]
 rough = true
@@ -94,5 +95,20 @@ shape = SubResource("RectangleShape2D_5afxo")
 sprite_frames = SubResource("SpriteFrames_4iul2")
 autoplay = "default"
 frame_progress = 0.0607729
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 40
+lifetime = 3.0
+texture = ExtResource("17_ebben")
+emission_shape = 3
+emission_rect_extents = Vector2(6, 2)
+direction = Vector2(-1, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 4.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+color = Color(0.757813, 0.832031, 0.996094, 1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

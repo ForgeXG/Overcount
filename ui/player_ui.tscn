@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://1faqvg8n13h4"]
+[gd_scene load_steps=52 format=3 uid="uid://1faqvg8n13h4"]
 
 [ext_resource type="Script" path="res://ui/player_ui.gd" id="1_117or"]
 [ext_resource type="Texture2D" uid="uid://byogppelk74mx" path="res://ui/ui_sprites/heart.png" id="2_54rg6"]
@@ -48,6 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://qt00mxw4jb3x" path="res://ui/ui_sprites/timer/7.png" id="30_vh17b"]
 [ext_resource type="Texture2D" uid="uid://bpd3flg5rr5cm" path="res://ui/ui_sprites/timer/8.png" id="31_hvq3s"]
 [ext_resource type="Texture2D" uid="uid://cpc5lg3x8buw4" path="res://ui/ui_sprites/timer/9.png" id="32_jlhji"]
+[ext_resource type="PackedScene" uid="uid://d12gyrw4crrg2" path="res://ui/button/button.tscn" id="49_h61e7"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_s2mio"]
 frames = 22
@@ -374,3 +375,39 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(192, 192)
 texture = SubResource("AnimatedTexture_1rvmd")
+
+[node name="TextFPS" type="RichTextLabel" parent="."]
+texture_filter = 1
+offset_left = 40.0
+offset_top = 448.0
+offset_right = 320.0
+offset_bottom = 496.0
+theme_override_fonts/normal_font = ExtResource("3_66kkv")
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+fit_content = true
+
+[node name="Button" parent="." instance=ExtResource("49_h61e7")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -296.0
+offset_top = 24.0
+offset_right = -27.0
+offset_bottom = 78.0
+grow_horizontal = 0
+text = "Main menu"
+
+[node name="Pause" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = -20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2

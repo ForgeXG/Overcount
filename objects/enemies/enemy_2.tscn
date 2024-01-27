@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d0xg5252r0ibu"]
+[gd_scene load_steps=23 format=3 uid="uid://d0xg5252r0ibu"]
 
 [ext_resource type="Script" path="res://objects/enemies/enemy_2.gd" id="1_bb24o"]
 [ext_resource type="Texture2D" uid="uid://ko6osianr0y2" path="res://sprites/enemies/2/idle/d2537a6c-21ba-46bf-a5de-444eb3cfda35.png" id="2_1y4ov"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://b1k2i8maj2m2o" path="res://sprites/enemies/2/slide/2e8be315-6680-49b7-a377-e51cb3c244ed.png" id="17_x1612"]
 [ext_resource type="Texture2D" uid="uid://bhrvqp0v1wmup" path="res://sprites/enemies/2/slide/ef32a91c-cb18-432e-9ed7-987ba69c0df4.png" id="18_6lbpk"]
 [ext_resource type="Texture2D" uid="uid://cgro02egklnid" path="res://sprites/enemies/2/slide/d2537a6c-21ba-46bf-a5de-444eb3cfda35.png" id="19_uptv6"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="20_hqipx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2iuv4"]
 size = Vector2(11, 14)
@@ -105,3 +106,12 @@ animation = &"slide"
 autoplay = "idle"
 frame = 7
 frame_progress = 0.316973
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(-4, -3)
+amount = 24
+texture = ExtResource("20_hqipx")
+emission_shape = 3
+emission_rect_extents = Vector2(2, 2)
+gravity = Vector2(0, 2)
+color = Color(0.25, 0.796875, 0.324219, 1)

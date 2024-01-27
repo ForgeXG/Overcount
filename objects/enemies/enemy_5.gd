@@ -103,7 +103,7 @@ func _physics_process(delta):
 		velocity.x /= 2
 		keep_vel_x /= 2
 	
-	if cooldown > max_cooldown / 3:
+	if cooldown > max_cooldown / 3.0:
 		velocity.x = keep_vel_x
 	
 	# if hp > 0:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://byqiemkeuab0g"]
+[gd_scene load_steps=49 format=3 uid="uid://byqiemkeuab0g"]
 
 [ext_resource type="Script" path="res://objects/enemies/bosses/0/boss_0.gd" id="1_2lfse"]
 [ext_resource type="Texture2D" uid="uid://b5tkeydptvm2k" path="res://objects/enemies/bosses/0/animations/div0/0.png" id="1_4yvv3"]
@@ -44,6 +44,7 @@
 [ext_resource type="Texture2D" uid="uid://ctb4h347aexdb" path="res://objects/enemies/bosses/0/animations/mul0/15.png" id="41_43usq"]
 [ext_resource type="Texture2D" uid="uid://bagsrjf0mlv6g" path="res://objects/enemies/bosses/0/animations/mul0/16.png" id="42_wid2h"]
 [ext_resource type="Texture2D" uid="uid://bbfyjb68lbbq0" path="res://objects/enemies/bosses/0/animations/mul0/17.png" id="43_1sivm"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="45_yu8p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8k5ge"]
 size = Vector2(10, 16)
@@ -195,6 +196,10 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Curve" id="Curve_hcxt2"]
+_data = [Vector2(0, 0.6), 0.0, 0.0, 0, 0, Vector2(0.496212, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Boss0_" type="CharacterBody2D" groups=["Enemies"]]
 texture_filter = 1
 collision_mask = 2
@@ -207,5 +212,23 @@ shape = SubResource("RectangleShape2D_8k5ge")
 sprite_frames = SubResource("SpriteFrames_eggx1")
 animation = &"idle"
 autoplay = "idle"
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 50
+lifetime = 3.0
+speed_scale = 1.5
+texture = ExtResource("45_yu8p4")
+emission_shape = 3
+emission_rect_extents = Vector2(2, 2)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+linear_accel_min = 2.0
+linear_accel_max = 2.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_hcxt2")
+color = Color(0.392157, 0.25098, 0.843137, 0.784314)
 
 [connection signal="draw" from="." to="." method="_draw"]

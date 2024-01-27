@@ -55,6 +55,7 @@ animations = [{
 
 [node name="EquationLock" type="CharacterBody2D"]
 texture_filter = 1
+motion_mode = 1
 script = ExtResource("1_tomo8")
 
 [node name="Coll" type="CollisionShape2D" parent="."]

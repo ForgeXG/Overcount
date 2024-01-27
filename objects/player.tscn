@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://ei231eyk1t13"]
+[gd_scene load_steps=49 format=3 uid="uid://ei231eyk1t13"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_t6f3a"]
 [ext_resource type="Texture2D" uid="uid://b80bnfxvbnmor" path="res://sprites/player/walk/s_player_walk_f0.png" id="2_2mhk2"]
@@ -215,6 +215,17 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfw1n"]
+particle_flag_disable_z = true
+direction = Vector3(0, 1, 0)
+spread = 30.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(0.223529, 0.223529, 0.223529, 1)
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 script = ExtResource("1_t6f3a")
@@ -240,3 +251,7 @@ frame = 3
 frame_progress = 0.773992
 
 [node name="PlayerUI" parent="." instance=ExtResource("17_nhemk")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+visible = false
+process_material = SubResource("ParticleProcessMaterial_yfw1n")

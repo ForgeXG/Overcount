@@ -140,7 +140,6 @@ func _physics_process(delta):
 	if s_frames > 0:
 		key_left = false
 		key_right = false
-		key_jump = false
 		key_accelerate = false
 	
 	h_sign = int(key_right) - int(key_left)
@@ -151,7 +150,7 @@ func _physics_process(delta):
 				mach += 0.01
 		elif !is_on_wall() and mach < 0.6:
 			mach += 0.01
-	else:
+	elif s_frames == 0:
 		mach = clamp(mach, 0, 2)
 		mach -= 0.2
 	mach = clamp(mach, 0, 3)
@@ -206,12 +205,13 @@ func attack():
 		energy -= energy_use
 		cooldown = cooldown_use
 		if weapon_type == "Melee":
-			var poke = preload("res://m_poke.tscn").instantiate()
+			var poke : Node = preload("res://m_poke.tscn").instantiate()
 			add_child(poke)
-			poke.modulate = get_node(weapon_filename).modulate
+			if get_node(weapon_filename) != null:
+				poke.modulate = get_node(weapon_filename).modulate
 			poke.dmg = randf_range(mindmg, maxdmg)
 			poke.position += weapon_tip
-			poke.rotation = get_child(-2).rotation
+			poke.rotation = fire_angle
 			poke.scale.x = 3
 			poke.scale.y = 1
 		elif weapon_type == "Sling":
@@ -220,7 +220,8 @@ func attack():
 				get_tree().current_scene.add_child(bullet)
 				bullet.position = position
 				bullet.position += Vector2(2, 0).rotated(fire_angle)
-				bullet.modulate = get_node(weapon_filename).modulate
+				# bullet.modulate = get_node(weapon_filename).modulate
+				bullet.modulate = modulate
 				bullet.dmg = randf_range(mindmg, maxdmg)
 				bullet.apply_central_impulse(Vector2(fire_speed * cos(fire_angle), fire_speed * sin(fire_angle)))
 				bullet.d_timer = 120

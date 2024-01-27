@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cbajamsefdwvn"]
+
+[ext_resource type="Shader" uid="uid://06q72nremy20" path="res://shaders/sh_quadrille_d1.tres" id="1_kdork"]
+
+[resource]
+shader = ExtResource("1_kdork")

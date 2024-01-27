@@ -1,0 +1,129 @@
+[gd_scene load_steps=26 format=3 uid="uid://0en2auns3oj"]
+
+[ext_resource type="Script" path="res://objects/enemies/enemy_6.gd" id="1_irqay"]
+[ext_resource type="Texture2D" uid="uid://btp2foi3od466" path="res://sprites/enemies/6/eat/0.png" id="2_pjfn1"]
+[ext_resource type="Texture2D" uid="uid://cq2ju0pilnvfv" path="res://sprites/enemies/6/eat/1.png" id="3_3qabf"]
+[ext_resource type="Texture2D" uid="uid://donaevh4x7b8r" path="res://sprites/enemies/6/eat/2.png" id="4_iglqi"]
+[ext_resource type="Texture2D" uid="uid://cgbj0swx4qh4w" path="res://sprites/enemies/6/eat/3.png" id="5_r5tlv"]
+[ext_resource type="Texture2D" uid="uid://dv0vvuxcwcnse" path="res://sprites/enemies/6/eat/4.png" id="6_i1vl5"]
+[ext_resource type="Texture2D" uid="uid://7g05t0uabnd0" path="res://sprites/enemies/6/eat/5.png" id="7_s3hdl"]
+[ext_resource type="Texture2D" uid="uid://kutiqtgg21wk" path="res://sprites/enemies/6/eat/6.png" id="8_t4rfk"]
+[ext_resource type="Texture2D" uid="uid://yjarddom3dui" path="res://sprites/enemies/6/eat/7.png" id="9_88srr"]
+[ext_resource type="Texture2D" uid="uid://bhy4bl2i1fmoy" path="res://sprites/enemies/6/eat/8.png" id="10_injb6"]
+[ext_resource type="Texture2D" uid="uid://d0yoyhtt3x6po" path="res://sprites/enemies/6/eat/9.png" id="11_2voiq"]
+[ext_resource type="Texture2D" uid="uid://44vskvs81fmg" path="res://sprites/enemies/6/eat/10.png" id="12_e8sih"]
+[ext_resource type="Texture2D" uid="uid://evafea1xs4r1" path="res://sprites/enemies/6/eat/11.png" id="13_75jn1"]
+[ext_resource type="Texture2D" uid="uid://cq32ylig8w42s" path="res://sprites/enemies/6/eat/12.png" id="14_rdhb7"]
+[ext_resource type="Texture2D" uid="uid://iqsg27atrmxx" path="res://sprites/enemies/6/eat/13.png" id="15_mvvj4"]
+[ext_resource type="Texture2D" uid="uid://clsa8dys10k7m" path="res://sprites/enemies/6/eat/14.png" id="16_04tpd"]
+[ext_resource type="Texture2D" uid="uid://dv4j4tarmfegm" path="res://sprites/enemies/6/idle/0.png" id="17_8406n"]
+[ext_resource type="Texture2D" uid="uid://dk7b6wqatj2dv" path="res://sprites/enemies/6/idle/1.png" id="18_vyq0c"]
+[ext_resource type="Texture2D" uid="uid://bwppplfwd3hgf" path="res://sprites/enemies/6/idle/2.png" id="19_3pteg"]
+[ext_resource type="Texture2D" uid="uid://ey8nrt73deaa" path="res://sprites/enemies/6/idle/3.png" id="20_upw6s"]
+[ext_resource type="Texture2D" uid="uid://dmhf5k051hun" path="res://sprites/enemies/6/idle/4.png" id="21_8quak"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="22_drn03"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45psn"]
+size = Vector2(10, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vn8r5"]
+animations = [{
+"frames": [{
+"duration": 4.0,
+"texture": ExtResource("2_pjfn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3qabf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_iglqi")
+}, {
+"duration": 0.5,
+"texture": ExtResource("5_r5tlv")
+}, {
+"duration": 1.1,
+"texture": ExtResource("6_i1vl5")
+}, {
+"duration": 1.2,
+"texture": ExtResource("7_s3hdl")
+}, {
+"duration": 1.3,
+"texture": ExtResource("8_t4rfk")
+}, {
+"duration": 1.5,
+"texture": ExtResource("9_88srr")
+}, {
+"duration": 1.3,
+"texture": ExtResource("10_injb6")
+}, {
+"duration": 1.2,
+"texture": ExtResource("11_2voiq")
+}, {
+"duration": 1.1,
+"texture": ExtResource("12_e8sih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_75jn1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rdhb7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_mvvj4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_04tpd")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_8406n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_vyq0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3pteg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_upw6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8quak")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Curve" id="Curve_eby6m"]
+_data = [Vector2(0, 0.5), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Enemy6_" type="CharacterBody2D" groups=["Enemies"]]
+texture_filter = 1
+collision_layer = 5
+script = ExtResource("1_irqay")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_45psn")
+
+[node name="Animations" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
+sprite_frames = SubResource("SpriteFrames_vn8r5")
+animation = &"charge"
+autoplay = "idle"
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+position = Vector2(0, 3)
+amount = 30
+texture = ExtResource("22_drn03")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 4.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_eby6m")
+color = Color(0, 0, 0, 1)

@@ -63,7 +63,7 @@ offset_bottom = 40.0
 self_modulate = Color(0.313726, 0.313726, 0.313726, 1)
 layout_mode = 0
 offset_left = -72.0
-offset_top = -72.0
+offset_top = -118.0
 offset_right = 72.0
 offset_bottom = -6.0
 texture = ExtResource("7_sjs4d")
@@ -77,7 +77,7 @@ axis_stretch_vertical = 1
 [node name="InfoText" type="RichTextLabel" parent="UI/InfoRect"]
 layout_mode = 0
 offset_right = 144.0
-offset_bottom = 66.0
+offset_bottom = 111.0
 theme_override_fonts/normal_font = ExtResource("9_djrwb")
 theme_override_font_sizes/normal_font_size = 10
 bbcode_enabled = true

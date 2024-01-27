@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://dfxhh4xvtrdc"]
+[gd_scene load_steps=38 format=3 uid="uid://dfxhh4xvtrdc"]
 
 [ext_resource type="Script" path="res://objects/enemies/enemy_5.gd" id="1_b3v3u"]
 [ext_resource type="Texture2D" uid="uid://ckmipmcvhhna2" path="res://sprites/enemies/5/charge/0.png" id="2_5txht"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://ojpw7dy1etij" path="res://sprites/enemies/5/idle/5.png" id="31_fskh6"]
 [ext_resource type="Texture2D" uid="uid://c6uenter842p6" path="res://sprites/enemies/5/idle/6.png" id="32_ti8va"]
 [ext_resource type="Texture2D" uid="uid://b4j8pwtchv2oj" path="res://sprites/enemies/5/idle/7.png" id="33_65vic"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="34_ltbw4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45psn"]
 size = Vector2(10, 16)
@@ -146,6 +147,10 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="Curve" id="Curve_xp4dy"]
+_data = [Vector2(0, 0.6), 0.0, 0.0, 0, 0, Vector2(0.496212, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [node name="Enemy5_" type="CharacterBody2D" groups=["Enemies"]]
 texture_filter = 1
 collision_layer = 5
@@ -156,7 +161,24 @@ shape = SubResource("RectangleShape2D_45psn")
 
 [node name="Animations" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
 sprite_frames = SubResource("SpriteFrames_vn8r5")
-animation = &"charge"
+animation = &"idle"
 autoplay = "idle"
-frame = 15
-frame_progress = 0.399997
+frame = 6
+frame_progress = 0.99044
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 30
+lifetime = 3.0
+texture = ExtResource("34_ltbw4")
+emission_shape = 3
+emission_rect_extents = Vector2(2, 2)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+linear_accel_min = 1.0
+linear_accel_max = 1.0
+scale_amount_min = 2.0
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_xp4dy")
+color = Color(0.761719, 0.761719, 0, 1)

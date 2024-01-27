@@ -5,6 +5,7 @@ func _process(_delta):
 	$TextCooldown.text = str(get_parent().cooldown)
 	$TextEnergy.text = str(get_parent().energy)
 	$TextScore.text = str(get_parent().score)
+	$TextFPS.text = 'FPS: ' + str(floori(Engine.get_frames_per_second()))
 
 	var scale_factor = sin(Time.get_ticks_usec()/100000)/50
 	$ImageHealth.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor)

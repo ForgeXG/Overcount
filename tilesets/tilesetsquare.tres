@@ -1,8 +1,11 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://ciaqcc656ddbs"]
+[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://ciaqcc656ddbs"]
 
 [ext_resource type="Texture2D" uid="uid://bnqth7ajgn54r" path="res://tilesets/TilesetTriangle.png" id="1_w3240"]
 [ext_resource type="Texture2D" uid="uid://ddn4hfolr3hq3" path="res://tilesets/TilesetSquare.png" id="2_ek7uu"]
 [ext_resource type="Texture2D" uid="uid://bldokicewwxql" path="res://tilesets/DecorTileset1.png" id="2_jrvhu"]
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_ck84a"]
+tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 2, 1, 65536, 0, 65537, 65536, 1, 131073, 65536, 1, 196609, 65536, 2, 2, 65536, 0, 65538, 65536, 1, 131074, 65536, 1, 196610, 65536, 2, 3, 131072, 0, 65539, 131072, 1, 131075, 131072, 1, 196611, 131072, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0tkl"]
 texture = ExtResource("1_w3240")
@@ -187,3 +190,4 @@ physics_layer_0/collision_layer = 3
 sources/1 = SubResource("TileSetAtlasSource_0duen")
 sources/2 = SubResource("TileSetAtlasSource_4ct75")
 sources/0 = SubResource("TileSetAtlasSource_d0tkl")
+pattern_0 = SubResource("TileMapPattern_ck84a")

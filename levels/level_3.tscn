@@ -1,10 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://ch05q0bt5lcxo"]
+[gd_scene load_steps=25 format=3 uid="uid://ch05q0bt5lcxo"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_wr5yv"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_8281v"]
 [ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="3_af6ra"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_r66ia"]
 [ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="4_hqqyk"]
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="4_kwrlk"]
 [ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="4_n8sw8"]
 [ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="5_nr0pn"]
 [ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="7_66ey7"]
@@ -51,6 +52,7 @@ visible = false
 [node name="NinePatchRect" type="NinePatchRect" parent="Player/ParallaxBackground"]
 modulate = Color(0.109804, 0, 0.364706, 1)
 texture_filter = 1
+material = ExtResource("4_kwrlk")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

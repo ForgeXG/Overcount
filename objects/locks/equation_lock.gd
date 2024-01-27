@@ -7,7 +7,7 @@ extends CharacterBody2D
 @export var b : int = 1
 @export var a_range : int = 10
 @export var b_range : int = 10
-var answer : int = 0
+var answer : float = 0
 var input = 0
 
 var active = false
@@ -39,7 +39,7 @@ func _ready():
 		answer = a * b
 		$UI/ProblemRect/Problem.text = str(a) + " x " + str(b)
 	elif mode == "div":
-		answer = a / b
+		answer = float(a) / float(b)
 		$UI/ProblemRect/Problem.text = str(a) + " / " + str(b)
 	elif mode == "divi":
 		answer = floori(a / b)
@@ -58,13 +58,15 @@ func _process(_delta):
 		$UI.visible = active
 		if active:
 			input = $UI/AnswerRect/Answer.text
-			if int(input) == answer and input != "":
+			if is_equal_approx(answer, float(input)) and input != "":
 				d_timer = 60
 				$UI.visible = false
 				modulate.a = 0.5
 				$Coll.set_deferred("disabled", true)
 				velocity.x = randi_range(100, 300)
 				velocity.y = randi_range(-500, -100)
+			elif a == 9 and b == 10 and is_equal_approx(answer, 19) and input == "21":
+				get_tree().change_scene_to_file("res://levels/level_broken.tscn")
 
 		if Input.is_action_just_pressed("key_w"):
 			active = false

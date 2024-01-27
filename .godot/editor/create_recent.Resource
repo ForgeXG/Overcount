@@ -1,3 +1,5 @@
+VisualShader
+ShaderMaterial
 SystemFont
 SpriteFrames
 FontFile

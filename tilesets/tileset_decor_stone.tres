@@ -1,6 +1,7 @@
-[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dwmqnt588kipj"]
+[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://dwmqnt588kipj"]
 
 [ext_resource type="Texture2D" uid="uid://bldokicewwxql" path="res://tilesets/DecorTileset1.png" id="1_mcemy"]
+[ext_resource type="Texture2D" uid="uid://bw66yie6mtyy6" path="res://tilesets/OrientalTileset.png" id="2_jvclj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_axrpg"]
 texture = ExtResource("1_mcemy")
@@ -21,5 +22,25 @@ texture = ExtResource("1_mcemy")
 2:3/0 = 0
 3:3/0 = 0
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_r7jca"]
+texture = ExtResource("2_jvclj")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
 [resource]
 sources/0 = SubResource("TileSetAtlasSource_axrpg")
+sources/1 = SubResource("TileSetAtlasSource_r7jca")

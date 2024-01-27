@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://cqif707cm6yj4"]
+[gd_scene load_steps=21 format=3 uid="uid://cqif707cm6yj4"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_tf7am"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_3th7o"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_653c7"]
 [ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="4_2pkal"]
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o.tres" id="4_s4rov"]
 [ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="5_3rkx8"]
 [ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="7_f1dr4"]
 [ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_86vww"]
@@ -47,6 +48,7 @@ visible = false
 [node name="NinePatchRect" type="NinePatchRect" parent="Player/ParallaxBackground"]
 modulate = Color(0.89, 0.89, 0.3026, 1)
 texture_filter = 1
+material = ExtResource("4_s4rov")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

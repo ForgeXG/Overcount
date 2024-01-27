@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dmpnpwhsestha"]
+
+[ext_resource type="Shader" uid="uid://1h6xo0fnpcno" path="res://shaders/shade/contrast.tres" id="1_wix73"]
+
+[resource]
+shader = ExtResource("1_wix73")
