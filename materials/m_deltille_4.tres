@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://djy6t2wt43x0u"]
+
+[ext_resource type="Shader" uid="uid://cnw880vfwwur5" path="res://shaders/sh_deltille_4.tres" id="1_iqeal"]
+
+[resource]
+shader = ExtResource("1_iqeal")

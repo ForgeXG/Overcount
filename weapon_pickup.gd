@@ -49,3 +49,4 @@ func _on_body_entered(body):
 			owned.maxdmg = maxdmg
 			owned.fire_speed = fire_speed
 			owned.get_node("PlayerUI").get_node("TextCooldown").maxval = cooldown_use
+			print("PICKED UP " + str(weapon_name).capitalize())

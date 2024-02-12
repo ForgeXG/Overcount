@@ -17,6 +17,10 @@ config/features=PackedStringArray("4.1", "Mobile")
 boot_splash/image="res://ui/icons/OvercountLogo.png"
 config/icon="res://ui/icons/OvercountLogo.png"
 
+[autoload]
+
+G="*res://scripts/globaldata.gd"
+
 [display]
 
 window/size/viewport_width=1920

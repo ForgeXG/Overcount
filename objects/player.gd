@@ -87,9 +87,9 @@ func _process(_delta):
 			hp -= 0.1
 		if dmg_effect <= 0.05:
 			dmg_effect = 0
-	if heal_effect > 0:
+	if heal_effect > 0 and hp < maxhp:
 		heal_effect -= 0.1
-		hp -= 0.1
+		hp += 0.1
 	if i_frames > 0:
 		i_frames -= 1
 	if s_frames > 0:
@@ -229,7 +229,7 @@ func attack():
 
 func _on_draw():
 	if weapon_type == "Sling":
-		if weapon_name == "ParabolicSling": 
+		if weapon_name == "ParabolicSling":
 			if mouse_pos.x >= position.x:
 				for i in range(0, 256, 1):
 					draw_line(Vector2(i, p_traj(i)), Vector2(i + 1, p_traj(i + 1)), Color(0, 0, 1, 0.6), 2)
@@ -239,3 +239,16 @@ func _on_draw():
 
 func p_traj(a):
 	return (tan(fire_angle) * a) + ((gravity * (a * a)) / (2 * (fire_speed * fire_speed) * cos(fire_angle) * cos(fire_angle)))
+
+# Player Methods
+func damage(a : float, is_instant : bool = false):
+	if !is_instant:
+		dmg_effect += a
+	else:
+		hp -= a
+
+func heal(a : float, is_instant : bool = false):
+	if !is_instant:
+		heal_effect += a
+	else:
+		hp += a

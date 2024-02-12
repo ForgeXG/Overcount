@@ -6,6 +6,7 @@ extends RigidBody2D
 @export var blackhole_radius : int = 0
 @export var maxd_timer : float = -1
 @export var fading : bool = true
+
 var d_timer : float = -1
 var player
 var player_dist = 0

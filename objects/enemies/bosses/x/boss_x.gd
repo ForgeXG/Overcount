@@ -116,7 +116,7 @@ func _process(_delta):
 	
 	if d_timer == 0:
 		player.score += score
-		get_tree().call_group("EscapeWall", "switch")
+		get_tree().call_group("EscapeWall", "switch", 0)
 		get_parent().get_node("LevelPortal").active = true
 		queue_free()
 	
@@ -197,6 +197,7 @@ func attack(id : int):
 	match id:
 		1:
 			if cooldown == 0:
+				h_sign = sign(player.position.x - position.x)
 				walk_spd_m = 3 * maxhp / (hp + 10)
 				if float(d_timer) / maxd_timer <= 0.5:
 					velocity.y -= 500
@@ -318,9 +319,23 @@ func attack(id : int):
 					bullet.scale.y *= 1.2
 			cooldown = 0
 		7:
-			# Don't do anything
-			cooldown = 0
-			pass
+			# Fires a spiral of bullets
+			if attack_bias - 0.05 <= float(cooldown) / max_cooldown and float(cooldown) / max_cooldown <= attack_bias:
+				atk_angle = acos(sign(player.position.x - position.x))
+			var bullet = preload("res://objects/enemies/enemy_3_bullet.tscn").instantiate()
+			add_sibling(bullet)
+			
+			bullet.apply_central_impulse(
+			Vector2(fire_impulse*cos(atk_angle + cooldown * PI / 25)*1.1,
+				fire_impulse*sin(atk_angle + cooldown * PI / 25 * sign(position.x - player.position.x))*1.1))
+				
+			bullet.position = position
+			bullet.dmg = 1
+			bullet.d_timer = fire_lifetime * 0.6
+			bullet.maxd_timer = fire_lifetime * 0.6
+			if float(hp) / maxhp <= 0.5:
+				bullet.apply_central_impulse(Vector2(fire_impulse * 0.4, 0).rotated(atk_angle))
+				bullet.scale.x *= 1.2
 		8:
 			# Fires a sine wave of bullets
 			if attack_bias - 0.05 <= float(cooldown) / max_cooldown and float(cooldown) / max_cooldown <= attack_bias:
@@ -366,13 +381,13 @@ func attack(id : int):
 		elif m_pos == clamp(m_pos, phase_loops[1].x, phase_loops[1].y):
 			atk_id = [1, 1, 1, 2, 3].pick_random()
 		elif m_pos == clamp(m_pos, phase_loops[2].x, phase_loops[2].y):
-			atk_id = [1, 1, 2, 2, 6, 6].pick_random()
+			atk_id = [1, 1, 2, 2, 6, 6, 7].pick_random()
 		elif m_pos == clamp(m_pos, phase_loops[3].x, phase_loops[3].y):
 			atk_id = [1, 4, 4, 5, 5, 7].pick_random()
 		elif m_pos == clamp(m_pos, phase_loops[4].x, phase_loops[4].y):
-			atk_id = [1, 2, 6, 7, 8, 8, 9, 9].pick_random()
+			atk_id = [1, 2, 6, 7, 7, 8, 8, 9, 9].pick_random()
 		elif m_pos == clamp(m_pos, phase_loops[5].x, phase_loops[5].y):
-			atk_id = [1, 2, 3, 6, 7, 7, 8, 9].pick_random()
+			atk_id = [1, 2, 3, 6, 7, 8, 9].pick_random()
 		else:
 			atk_id = [1, 2, 3].pick_random()
 			cooldown *= 0.75
@@ -391,7 +406,7 @@ func attack(id : int):
 			6:
 				attack_str = "x^2+y^2=r^2"
 			7:
-				attack_str = "---"
+				attack_str = "(x, y)=(t*cos(t), t*sin(t))"
 			8:
 				attack_str = "y=sin(x)"
 			9:
@@ -406,4 +421,5 @@ func _draw():
 		var notch_coords = Vector2(cos(i * PI / 180), sin(i * PI / 180))
 		if float(d_timer) / maxd_timer > float(i + 90) / 360:
 			draw_line(notch_coords * 21, notch_coords * 27, Color(0, 0, 0, 1), 2)
-	draw_string(draw_font, Vector2(-8, -16), attack_str, HORIZONTAL_ALIGNMENT_FILL, -1, 12, Color.WHITE)
+	draw_string(draw_font, Vector2(-8, -16), attack_str, HORIZONTAL_ALIGNMENT_FILL, -1, 12, 
+	Color(1 - float(cooldown) / max_cooldown, 1 - float(cooldown) / max_cooldown, 1 - float(cooldown) / max_cooldown, 1))

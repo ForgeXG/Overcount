@@ -1,7 +1,9 @@
 extends CanvasLayer
 
 func _process(_delta):
-	$TextHealth.text = str(float(ceili(get_parent().hp*100))/100)
+	$TextHealth.text = "%.1f" % get_parent().hp
+	if get_parent().heal_effect > 0:
+		$TextHealth.text = "%.1f" % get_parent().hp + "+" + "%.1f" % get_parent().heal_effect
 	$TextCooldown.text = str(get_parent().cooldown)
 	$TextEnergy.text = str(get_parent().energy)
 	$TextScore.text = str(get_parent().score)

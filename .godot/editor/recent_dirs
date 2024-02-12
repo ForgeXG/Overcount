@@ -1,10 +1,13 @@
+res://materials/shade
+res://objects/blocks/onoff/switch
+res://scripts
+res://shaders/shade
+res://shaders
+res://materials
+res://shaders/trig
 C:/OvercountBuilds/Demo1
 res://ui/icons
-res://materials/shade
-res://materials
-res://shaders
 res://levels/start
-res://shaders/shade
 res://ui/button
 res://levels
 res://ui/ui_sprites/danger
@@ -17,6 +20,3 @@ res://objects/foreground/accelerator
 res://objects/enemies
 res://objects/foreground/sign
 res://objects/blocks/onoff/escape
-res://
-res://sprites/weapons/melee/animations/meleepoke
-res://objects/blocks

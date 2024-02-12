@@ -1,7 +1,11 @@
-GraphEdit
+Timer
+AnimatedSprite2D
+CollisionShape2D
 CharacterBody2D
-Control
 ColorRect
+Area2D
+GraphEdit
+Control
 Node2D
 NinePatchRect
 Button
@@ -13,16 +17,12 @@ AspectRatioContainer
 CPUParticles2D
 GPUParticles2D
 Node
-AnimatedSprite2D
-CollisionShape2D
-Area2D
 PointLight2D
 ParallaxLayer
 Sprite2D
 RigidBody2D
 RichTextLabel
 AnimatableBody2D
-Timer
 ParallaxBackground
 WorldEnvironment
 TextEdit
@@ -30,4 +30,3 @@ StaticBody2D
 DirectionalLight2D
 CanvasGroup
 AudioStreamPlayer2D
-TileMap

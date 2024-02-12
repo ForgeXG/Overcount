@@ -1,6 +1,7 @@
 extends AnimatableBody2D
 
 @export var on : bool = false
+@export var s_group : int = 0
 
 func _ready():
 	modulate = get_parent().get_node("SquareTileMap").modulate
@@ -15,5 +16,6 @@ func _process(_delta):
 		$Coll.set_deferred("disabled", true)
 		modulate.a = 0.2
 
-func switch():
-	on = !on
+func switch(switch_group):
+	if switch_group == s_group:
+		on = !on

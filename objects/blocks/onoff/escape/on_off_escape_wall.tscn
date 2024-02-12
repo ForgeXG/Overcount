@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://b3uoy70x3kq5v"]
 
 [ext_resource type="Script" path="res://objects/blocks/onoff/escape/onoffescapewall.gd" id="1_ifaoy"]
-[ext_resource type="Texture2D" uid="uid://ect5xwlnwyoh" path="res://objects/blocks/onoff/escape/4.png" id="2_ytq26"]
-[ext_resource type="Texture2D" uid="uid://ch1ee56a33ytf" path="res://objects/blocks/onoff/escape/5.png" id="3_5v445"]
-[ext_resource type="Texture2D" uid="uid://s2r8d1rr7180" path="res://objects/blocks/onoff/escape/6.png" id="4_goslq"]
-[ext_resource type="Texture2D" uid="uid://blmsxmwtolh1n" path="res://objects/blocks/onoff/escape/7.png" id="5_jfoa8"]
-[ext_resource type="Texture2D" uid="uid://d3k7ksmxpcl3e" path="res://objects/blocks/onoff/escape/0.png" id="6_jp8h8"]
-[ext_resource type="Texture2D" uid="uid://clttyqeeuswlx" path="res://objects/blocks/onoff/escape/1.png" id="7_gu32r"]
-[ext_resource type="Texture2D" uid="uid://cti7bqegqg8hu" path="res://objects/blocks/onoff/escape/2.png" id="8_5vohs"]
-[ext_resource type="Texture2D" uid="uid://nb1echw3xm2c" path="res://objects/blocks/onoff/escape/3.png" id="9_w5t22"]
+[ext_resource type="Texture2D" uid="uid://ect5xwlnwyoh" path="res://objects/blocks/onoff/4.png" id="2_l3fie"]
+[ext_resource type="Texture2D" uid="uid://ch1ee56a33ytf" path="res://objects/blocks/onoff/5.png" id="3_iki5b"]
+[ext_resource type="Texture2D" uid="uid://s2r8d1rr7180" path="res://objects/blocks/onoff/6.png" id="4_vdudk"]
+[ext_resource type="Texture2D" uid="uid://blmsxmwtolh1n" path="res://objects/blocks/onoff/7.png" id="5_68ljp"]
+[ext_resource type="Texture2D" uid="uid://d3k7ksmxpcl3e" path="res://objects/blocks/onoff/0.png" id="6_oy42f"]
+[ext_resource type="Texture2D" uid="uid://clttyqeeuswlx" path="res://objects/blocks/onoff/1.png" id="7_73gwf"]
+[ext_resource type="Texture2D" uid="uid://cti7bqegqg8hu" path="res://objects/blocks/onoff/2.png" id="8_bvkv1"]
+[ext_resource type="Texture2D" uid="uid://nb1echw3xm2c" path="res://objects/blocks/onoff/3.png" id="9_b5si3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_om8l2"]
 size = Vector2(16, 16)
@@ -17,16 +17,16 @@ size = Vector2(16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ytq26")
+"texture": ExtResource("2_l3fie")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_5v445")
+"texture": ExtResource("3_iki5b")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_goslq")
+"texture": ExtResource("4_vdudk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_jfoa8")
+"texture": ExtResource("5_68ljp")
 }],
 "loop": true,
 "name": &"off",
@@ -34,23 +34,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_jp8h8")
+"texture": ExtResource("6_oy42f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_gu32r")
+"texture": ExtResource("7_73gwf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_5vohs")
+"texture": ExtResource("8_bvkv1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_w5t22")
+"texture": ExtResource("9_b5si3")
 }],
 "loop": true,
 "name": &"on",
 "speed": 5.0
 }]
 
-[node name="EscapeWall" type="AnimatableBody2D" groups=["EscapeWall"]]
+[node name="OnOffWall" type="AnimatableBody2D" groups=["OnOff"]]
 editor_description = "Switches collision when escape sequence is activated."
 texture_filter = 1
 script = ExtResource("1_ifaoy")

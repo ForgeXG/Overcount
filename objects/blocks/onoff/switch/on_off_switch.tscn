@@ -1,0 +1,71 @@
+[gd_scene load_steps=12 format=3 uid="uid://ln4hp87b4vad"]
+
+[ext_resource type="Texture2D" uid="uid://c5sm4lem4po38" path="res://objects/blocks/onoff/switch/off/4.png" id="1_4ow1j"]
+[ext_resource type="Script" path="res://objects/blocks/onoff/switch/on_off_switch.gd" id="1_vxav0"]
+[ext_resource type="Texture2D" uid="uid://dyhdjleggquvr" path="res://objects/blocks/onoff/switch/off/5.png" id="2_c3gnj"]
+[ext_resource type="Texture2D" uid="uid://60oil5d4bkaj" path="res://objects/blocks/onoff/switch/off/6.png" id="3_nd3aq"]
+[ext_resource type="Texture2D" uid="uid://366wgcro8ldn" path="res://objects/blocks/onoff/switch/off/7.png" id="4_v4uti"]
+[ext_resource type="Texture2D" uid="uid://py4pjxdtn2m5" path="res://objects/blocks/onoff/switch/on/0.png" id="5_vmld7"]
+[ext_resource type="Texture2D" uid="uid://crm076q4nl3yj" path="res://objects/blocks/onoff/switch/on/1.png" id="6_fne5h"]
+[ext_resource type="Texture2D" uid="uid://dsq1tmxyvoolk" path="res://objects/blocks/onoff/switch/on/2.png" id="7_xx0oq"]
+[ext_resource type="Texture2D" uid="uid://cathdxatep3g0" path="res://objects/blocks/onoff/switch/on/3.png" id="8_q1l1m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u21uh"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h8b7n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4ow1j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_c3gnj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_nd3aq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_v4uti")
+}],
+"loop": true,
+"name": &"off",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vmld7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fne5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xx0oq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_q1l1m")
+}],
+"loop": true,
+"name": &"on",
+"speed": 4.0
+}]
+
+[node name="OnOffSwitch" type="CharacterBody2D" groups=["OnOff"]]
+motion_mode = 1
+wall_min_slide_angle = 1.5708
+script = ExtResource("1_vxav0")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_u21uh")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h8b7n")
+animation = &"off"
+autoplay = "off"
+frame_progress = 0.559488
+
+[node name="SwitchTimer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="SwitchTimer" to="." method="_on_timeout"]

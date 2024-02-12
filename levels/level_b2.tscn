@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cyy3fr6nlm8yd"]
+[gd_scene load_steps=18 format=3 uid="uid://cyy3fr6nlm8yd"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_qj53d"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_2sobk"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://b3uoy70x3kq5v" path="res://objects/blocks/onoff/escape/on_off_escape_wall.tscn" id="14_lopva"]
 [ext_resource type="PackedScene" uid="uid://ba7uk34q48n6n" path="res://objects/hazards/spike.tscn" id="15_5phxs"]
 [ext_resource type="PackedScene" uid="uid://eencg6vbl6y0" path="res://objects/enemies/bosses/x/boss_x.tscn" id="15_p80xr"]
+[ext_resource type="PackedScene" uid="uid://ctuhi13q2thad" path="res://objects/foreground/booster/booster.tscn" id="16_2qepe"]
 
 [sub_resource type="Environment" id="Environment_j5hvl"]
 background_mode = 3
@@ -130,3 +131,13 @@ fire_speed = 500
 position = Vector2(528, -128)
 music_player = NodePath("../MusicPlayer")
 phase_loops = Array[Vector2]([Vector2(0.2, 14.7), Vector2(22.1, 36.2), Vector2(36.7, 50.2), Vector2(51.1, 80.1), Vector2(87.5, 101.9), Vector2(138.5, 167.4), Vector2(167.5, 196.5)])
+
+[node name="Booster" parent="." instance=ExtResource("16_2qepe")]
+position = Vector2(168, -136)
+rotation = -1.5708
+velocity_add = 800
+
+[node name="Booster2" parent="." instance=ExtResource("16_2qepe")]
+position = Vector2(584, -136)
+rotation = -1.5708
+velocity_add = 800

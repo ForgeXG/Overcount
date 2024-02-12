@@ -255,3 +255,5 @@ frame_progress = 0.773992
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false
 process_material = SubResource("ParticleProcessMaterial_yfw1n")
+
+[connection signal="draw" from="." to="." method="_on_draw"]
