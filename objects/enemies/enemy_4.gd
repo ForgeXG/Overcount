@@ -45,7 +45,7 @@ func _process(_delta):
 	if dmg_effect > 0:
 		dmg_effect -= 0.1
 		hp -= 0.1
-		if hp <= 0:
+		if hp - dmg_effect <= 0:
 			$Coll.set_deferred("disabled", true)
 			velocity.x = randi_range(-400, 400) * (player.mach + 1)
 			velocity.y = randi_range(-50, 50) * (player.mach + 1)
@@ -134,6 +134,11 @@ func _physics_process(delta):
 
 
 func _draw():
+	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
+	draw_arc(Vector2(0, 0), 8,
+	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
+	 50, draw_color, 4, false)
+	
 	draw_circle(Vector2(0, 0), max_radius, Color(0, 0, 0.9, 0.1))
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
 		draw_line(Vector2(0, 0), player.position - position, Color(0.3, 0.3, 1, 0.5), 2*cooldown/max_cooldown, false)

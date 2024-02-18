@@ -44,8 +44,9 @@ default_input_values = [0, 0.0, 1, 10.0]
 operator = 3
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_41xtb"]
-size = Vector2(672.429, 464.317)
-expression = "res = sin(0.785 * a * (sin(x) + x)) * sin(0.785 * a * (sin(y) + y));"
+size = Vector2(744.532, 583.615)
+expression = "res = sin(0.785 * a * (sinh(x) + x)) *
+sin(0.785 * a * (sinh(y) + y));"
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_mdygm"]
 constant = 15.0
@@ -142,7 +143,8 @@ void fragment() {
 // Expression:21
 	n_out21p0 = 0.0;
 	{
-		n_out21p0 = sin(0.785 * n_out22p0 * (sin(n_out13p0) + n_out13p0)) * sin(0.785 * n_out22p0 * (sin(n_out13p1) + n_out13p1));
+		n_out21p0 = sin(0.785 * n_out22p0 * (sinh(n_out13p0) + n_out13p0)) *
+		sin(0.785 * n_out22p0 * (sinh(n_out13p1) + n_out13p1));
 	}
 
 
@@ -206,10 +208,11 @@ nodes/fragment/20/node = SubResource("VisualShaderNodeFloatOp_2bvwv")
 nodes/fragment/20/position = Vector2(-380, 400)
 nodes/fragment/21/node = SubResource("VisualShaderNodeExpression_41xtb")
 nodes/fragment/21/position = Vector2(600, 200)
-nodes/fragment/21/size = Vector2(672.429, 464.317)
+nodes/fragment/21/size = Vector2(744.532, 583.615)
 nodes/fragment/21/input_ports = "0,0,x;1,0,y;2,0,a;"
 nodes/fragment/21/output_ports = "0,0,res;"
-nodes/fragment/21/expression = "res = sin(0.785 * a * (sin(x) + x)) * sin(0.785 * a * (sin(y) + y));"
+nodes/fragment/21/expression = "res = sin(0.785 * a * (sinh(x) + x)) *
+sin(0.785 * a * (sinh(y) + y));"
 nodes/fragment/22/node = SubResource("VisualShaderNodeFloatConstant_mdygm")
 nodes/fragment/22/position = Vector2(292.59, 383.497)
 nodes/fragment/23/node = SubResource("VisualShaderNodeVectorOp_0msi3")

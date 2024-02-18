@@ -134,6 +134,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Level1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
 offset_left = -896.0
 offset_top = -476.0
@@ -143,6 +144,7 @@ text = "1-1"
 destination = "res://levels/level_1.tscn"
 
 [node name="Level2" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
 offset_left = -896.0
 offset_top = -412.0
@@ -152,6 +154,7 @@ text = "1-2"
 destination = "res://levels/level_2.tscn"
 
 [node name="Level3" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
 offset_left = -896.0
 offset_top = -348.0
@@ -161,6 +164,7 @@ text = "1-3"
 destination = "res://levels/level_3.tscn"
 
 [node name="Level4" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
 offset_left = -896.0
 offset_top = -284.0
@@ -169,7 +173,8 @@ offset_bottom = -219.0
 text = "1-4"
 destination = "res://levels/level_4.tscn"
 
-[node name="Level5" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="LevelB1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
 offset_left = -896.0
 offset_top = -156.0
@@ -178,7 +183,8 @@ offset_bottom = -91.0
 text = "1-#"
 destination = "res://levels/level_b1.tscn"
 
-[node name="Level10" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="LevelB2" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
 offset_left = -704.0
 offset_top = -156.0
@@ -187,7 +193,8 @@ offset_bottom = -91.0
 text = "2-#"
 destination = "res://levels/level_b2.tscn"
 
-[node name="Level6" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level5" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
 offset_left = -704.0
 offset_top = -476.0
@@ -196,7 +203,8 @@ offset_bottom = -411.0
 text = "2-1"
 destination = "res://levels/level_5.tscn"
 
-[node name="Level7" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level6" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
 offset_left = -704.0
 offset_top = -412.0
@@ -205,7 +213,8 @@ offset_bottom = -347.0
 text = "2-2"
 destination = "res://levels/level_6.tscn"
 
-[node name="Level8" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level7" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
 offset_left = -704.0
 offset_top = -348.0
@@ -214,7 +223,8 @@ offset_bottom = -283.0
 text = "2-3"
 destination = "res://levels/level_7.tscn"
 
-[node name="Level9" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level8" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
 offset_left = -704.0
 offset_top = -284.0
@@ -222,6 +232,16 @@ offset_right = -576.0
 offset_bottom = -219.0
 text = "2-4"
 destination = "res://levels/level_8.tscn"
+
+[node name="Level9" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(0.988235, 0.988235, 0.988235, 0.705882)
+layout_mode = 1
+offset_left = -512.0
+offset_top = -476.0
+offset_right = -384.0
+offset_bottom = -411.0
+text = "3-1"
+destination = "res://levels/level_9.tscn"
 
 [node name="MusicPlayer" parent="." instance=ExtResource("9_g60jg")]
 position = Vector2(0, -96)

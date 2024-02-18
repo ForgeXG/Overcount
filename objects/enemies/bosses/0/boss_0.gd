@@ -94,12 +94,10 @@ func _process(_delta):
 			scale.y += 0.05
 			rotation += 0.05
 			modulate.a = 0.4
-	
-	if d_timer == 0:
-		player.score += score
-		get_tree().call_group("EscapeWall", "switch")
-		get_parent().get_node("LevelPortal").active = true
-		queue_free()
+			player.score += score
+			get_tree().call_group("EscapeWall", "switch", 0)
+			get_parent().get_node("LevelPortal").active = true
+			queue_free()
 		
 	queue_redraw()
 

@@ -50,7 +50,7 @@ func _physics_process(_delta):
 					player.dmg_effect += dmg
 				if float(d_timer) / maxd_timer <= 0.5:
 					player.dmg_effect += dmg
-					queue_free()
+				queue_free()
 
 func _on_draw():
 	if blackhole:

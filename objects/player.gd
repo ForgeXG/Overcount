@@ -137,6 +137,7 @@ func _physics_process(delta):
 	var key_right = Input.is_action_pressed("key_d")
 	var key_jump = Input.is_action_pressed("key_w")
 	var key_accelerate = Input.is_action_pressed("key_acceleration")
+	var key_ability = Input.is_action_just_pressed("key_ability")
 	if s_frames > 0:
 		key_left = false
 		key_right = false
@@ -162,7 +163,6 @@ func _physics_process(delta):
 			j_frames -= 1
 	else:
 		j_frames = 10 # Standard 1/4 s
-		last_safe_position = position
 
 	# Handle Jump.
 	if key_jump:
@@ -179,6 +179,10 @@ func _physics_process(delta):
 		velocity.x = h_sign * walk_spd * (clamp(mach, 0, 3) / 2 + 1)
 
 	move_and_slide()
+	
+	# Ability
+	if key_ability:
+		ability(10)
 	
 	# Restart.
 	if position.y > 0:
@@ -199,6 +203,8 @@ func _physics_process(delta):
 				s_frames = 45
 				velocity.x = -h_sign * walk_spd * 1.2
 				velocity.y = jump_force * 1.2
+		elif coll.is_in_group("WallTileMap") and is_on_floor():
+			last_safe_position = position
 
 func attack():
 	if energy >= energy_use and cooldown == 0:
@@ -227,7 +233,26 @@ func attack():
 				bullet.d_timer = 120
 				bullet.maxd_timer = 120
 
+func ability(ability_cost : int):
+	if energy >= ability_cost:
+		energy -= ability_cost
+		# Bullet Line
+		for i in range(10):
+			var bullet = preload("res://objects/weapons/ranged/bullet/player_bullet.tscn").instantiate()
+			get_tree().current_scene.add_child(bullet)
+			bullet.position = position
+			bullet.position += Vector2(i, 0).rotated(fire_angle)
+			bullet.apply_scale(Vector2(1.3, 1.3))
+			bullet.modulate = Color(0, 0, 1, 1)
+			bullet.dmg = 2
+			bullet.gravity_scale = 0
+			bullet.apply_central_impulse(Vector2(50 * i * cos(fire_angle), 50 * i * sin(fire_angle)))
+			bullet.d_timer = 300
+			bullet.maxd_timer = 300
+		cooldown = 60
+
 func _on_draw():
+	draw_line(Vector2.ZERO, Vector2(256, 0).rotated(fire_angle), Color(0, 0, 1, 0.3), 2, false)
 	if weapon_type == "Sling":
 		if weapon_name == "ParabolicSling":
 			if mouse_pos.x >= position.x:

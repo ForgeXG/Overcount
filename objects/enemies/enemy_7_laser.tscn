@@ -49,6 +49,7 @@ animations = [{
 [node name="Enemy7_Laser" type="CharacterBody2D" groups=["Laser"]]
 texture_filter = 1
 collision_layer = 0
+collision_mask = 2
 motion_mode = 1
 slide_on_ceiling = false
 wall_min_slide_angle = 3.14159
@@ -69,7 +70,7 @@ frame_progress = 0.436189
 
 [node name="Particles" type="CPUParticles2D" parent="."]
 position = Vector2(8, 0)
-amount = 10
+amount = 6
 lifetime = 1.5
 texture = ExtResource("17_o1t11")
 emission_shape = 3

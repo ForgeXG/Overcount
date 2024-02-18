@@ -45,7 +45,7 @@ func _process(_delta):
 	if dmg_effect > 0:
 		dmg_effect -= 0.1
 		hp -= 0.1
-		if hp <= 0:
+		if hp - dmg_effect <= 0:
 			$Coll.set_deferred("disabled", true)
 			velocity.x = randi_range(-500, 500) * (player.mach + 1)
 			velocity.y = randi_range(-500, 500) * (player.mach + 1)
@@ -86,9 +86,9 @@ func _physics_process(delta):
 		cooldown = max_cooldown
 		$Animations.animation = "idle"
 		
-	if float(cooldown) / max_cooldown <= 0.3 and cooldown % 5 == 0 and hp > 0:
+	if cooldown < max_cooldown / 4 and cooldown % 5 == 0 and hp > 0:
 		# Fire Conditions
-		if $Animations.animation_finished and $Animations.animation == "charge":
+		if $Animations.animation == "charge":
 			var bullet = preload("res://objects/enemies/enemy_7_laser.tscn").instantiate()
 			add_sibling(bullet)
 				
@@ -98,6 +98,7 @@ func _physics_process(delta):
 			bullet.dmg = dmg
 			bullet.d_timer = fire_lifetime
 			bullet.maxd_timer = fire_lifetime
+			bullet.hit_chance = 0.5
 			if cooldown == 0:
 				cooldown = max_cooldown
 			$Animations.animation = "idle"
@@ -134,6 +135,11 @@ func _physics_process(delta):
 
 
 func _draw():
+	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
+	draw_arc(Vector2(0, 0), 8,
+	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
+	 50, draw_color, 4, false)
+	
 	draw_circle(Vector2(0, 0), max_radius, Color(0.4, 0.7, 0.55, 0.4))
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
 		draw_line(Vector2(0, 0), player.position - position, Color(0.4, 0.7, 0.55, 0.5), 2*cooldown/max_cooldown, false)

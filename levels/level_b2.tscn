@@ -78,10 +78,10 @@ attenuation = 1.81459e-05
 [node name="LevelPortal" parent="." instance=ExtResource("11_1ce7v")]
 position = Vector2(1312, -224)
 scale = Vector2(2, 2)
-destination = "res://levels/start/titlescreen.tscn"
+destination = "res://levels/level_9.tscn"
 
 [node name="EscapeWall" parent="." instance=ExtResource("14_lopva")]
-position = Vector2(632, -248)
+position = Vector2(648, -248)
 on = true
 
 [node name="Spike" parent="." instance=ExtResource("15_5phxs")]

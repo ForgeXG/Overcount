@@ -42,7 +42,7 @@ func _process(_delta):
 		hp -= 0.1
 		if hp <= maxhp / 2:
 			scale.y = 1 / sqrt(2)
-		if hp <= 0:
+		if hp - dmg_effect <= 0:
 			$Coll.set_deferred("disabled", true)
 			velocity.x = -h_sign * randi_range(walk_spd * (player.mach + 3), walk_spd * (player.mach + 4)) * 0.2
 			velocity.y = randi_range(-300, -500) * (player.mach + 1)
@@ -61,6 +61,7 @@ func _process(_delta):
 	if d_timer == 0:
 		player.score += score
 		queue_free()
+	queue_redraw()
 
 func _physics_process(delta):
 	var key_jump = get_parent().get_node("Player").position.y < position.y - 2
@@ -101,3 +102,10 @@ func _physics_process(delta):
 	if position.y > 0:
 		player.score += score
 		queue_free()
+
+
+func _on_draw():
+	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
+	draw_arc(Vector2(0, 0), 8,
+	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
+	 50, draw_color, 4, false)

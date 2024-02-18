@@ -205,7 +205,6 @@ collision_layer = 5
 script = ExtResource("1_tjdng")
 walk_spd = 60
 jump_force = -400
-maxhp = 6.0
 min_radius = 8
 max_radius = 144
 detect_radius = 8

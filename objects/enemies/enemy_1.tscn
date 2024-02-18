@@ -85,3 +85,5 @@ emission_shape = 3
 emission_rect_extents = Vector2(5, 1)
 gravity = Vector2(0, 2)
 color = Color(0, 0, 0, 1)
+
+[connection signal="draw" from="." to="." method="_on_draw"]

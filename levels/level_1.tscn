@@ -97,7 +97,7 @@ position = Vector2(1192, -24)
 position = Vector2(1112, -584)
 
 [node name="Enemy1_13" parent="." instance=ExtResource("5_txvec")]
-position = Vector2(1680, -616)
+position = Vector2(1576, -616)
 
 [node name="Enemy1_14" parent="." instance=ExtResource("5_txvec")]
 position = Vector2(1472, -616)
@@ -108,8 +108,41 @@ position = Vector2(1488, -616)
 [node name="Enemy1_16" parent="." instance=ExtResource("5_txvec")]
 position = Vector2(1504, -616)
 
+[node name="Enemy1_82" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1424, -616)
+
+[node name="Enemy1_91" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1440, -616)
+
+[node name="Enemy1_92" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1456, -616)
+
 [node name="Enemy1_17" parent="." instance=ExtResource("5_txvec")]
-position = Vector2(1664, -616)
+position = Vector2(1560, -616)
+
+[node name="Enemy1_96" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1608, -616)
+
+[node name="Enemy1_97" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1592, -616)
+
+[node name="Enemy1_98" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1640, -616)
+
+[node name="Enemy1_99" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1624, -616)
+
+[node name="Enemy1_100" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1672, -616)
+
+[node name="Enemy1_101" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1656, -616)
+
+[node name="Enemy1_102" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1704, -616)
+
+[node name="Enemy1_103" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(1688, -616)
 
 [node name="FloatingText" parent="." instance=ExtResource("7_t5cmt")]
 offset_left = -24.0
@@ -148,11 +181,19 @@ offset_bottom = 10.0
 text = "<LMB>"
 
 [node name="FloatingText3" parent="." instance=ExtResource("7_t5cmt")]
-offset_left = 1681.0
-offset_top = -8.0
-offset_right = 1832.0
-offset_bottom = 10.0
+offset_left = 1912.0
+offset_top = 16.0
+offset_right = 2063.0
+offset_bottom = 38.0
 text = "<HOLD Shift+A/D>"
+
+[node name="FloatingText8" parent="." instance=ExtResource("7_t5cmt")]
+offset_left = 1720.0
+offset_top = -688.0
+offset_right = 1951.0
+offset_bottom = -644.0
+text = "Aim the line at enemies, tap T.
+This spends your energy bar unlike normal attacks."
 
 [node name="FloatingText5" parent="." instance=ExtResource("7_t5cmt")]
 offset_left = 1912.0
@@ -363,6 +404,15 @@ position = Vector2(632, -472)
 
 [node name="Enemy1_39" parent="." instance=ExtResource("5_txvec")]
 position = Vector2(648, -472)
+
+[node name="Enemy1_93" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(456, -472)
+
+[node name="Enemy1_94" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(472, -472)
+
+[node name="Enemy1_95" parent="." instance=ExtResource("5_txvec")]
+position = Vector2(488, -472)
 
 [node name="Teleport8" parent="." node_paths=PackedStringArray("link") instance=ExtResource("12_bp1i6")]
 position = Vector2(1232, -384)

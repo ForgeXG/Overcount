@@ -1,19 +1,23 @@
-[gd_scene load_steps=52 format=3 uid="uid://1faqvg8n13h4"]
+[gd_scene load_steps=56 format=3 uid="uid://1faqvg8n13h4"]
 
 [ext_resource type="Script" path="res://ui/player_ui.gd" id="1_117or"]
 [ext_resource type="Texture2D" uid="uid://byogppelk74mx" path="res://ui/ui_sprites/heart.png" id="2_54rg6"]
 [ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="3_66kkv"]
 [ext_resource type="Texture2D" uid="uid://qiofpt3fcx2t" path="res://ui/ui_sprites/cooldown.png" id="4_bi28e"]
 [ext_resource type="Script" path="res://ui/valuebar.gd" id="4_sjmv7"]
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="5_j74pw"]
 [ext_resource type="Texture2D" uid="uid://c2bil5m1q1bep" path="res://ui/ui_sprites/energy.png" id="5_t2jt5"]
 [ext_resource type="Texture2D" uid="uid://7a8j8fn8u1ab" path="res://ui/ui_sprites/score.png" id="6_om5ct"]
 [ext_resource type="SystemFont" uid="uid://byl5gjepf3q0r" path="res://fonts/classic_font.tres" id="7_75fxw"]
+[ext_resource type="Material" uid="uid://bl1tvw6u34bhd" path="res://materials/m_deltille_1.tres" id="7_xwl3d"]
 [ext_resource type="Texture2D" uid="uid://do0k5frvkcq2i" path="res://ui/ui_sprites/timer/0.png" id="8_15rmu"]
 [ext_resource type="Texture2D" uid="uid://4prvq5tjrbfg" path="res://ui/ui_sprites/timer/1.png" id="9_judht"]
+[ext_resource type="Material" uid="uid://dqcy5tqjdqc7c" path="res://materials/m_deltille_3.tres" id="9_n7af5"]
 [ext_resource type="Texture2D" uid="uid://c2awmw3acpp7k" path="res://ui/ui_sprites/overcount_sign/0.png" id="9_q0f7b"]
 [ext_resource type="Texture2D" uid="uid://dnjw77r6rgs84" path="res://ui/ui_sprites/timer/10.png" id="10_1n1np"]
 [ext_resource type="Texture2D" uid="uid://dpccusdqgj6t8" path="res://ui/ui_sprites/overcount_sign/1.png" id="10_r13ew"]
 [ext_resource type="Texture2D" uid="uid://dyfdarwt7rpew" path="res://ui/ui_sprites/timer/11.png" id="11_e1bfu"]
+[ext_resource type="Material" uid="uid://ctcadpwabv1j" path="res://materials/m_deltille_sq1.tres" id="11_qd7k3"]
 [ext_resource type="Texture2D" uid="uid://crtsgaexhy54e" path="res://ui/ui_sprites/overcount_sign/10.png" id="11_wmilr"]
 [ext_resource type="Texture2D" uid="uid://d1u11dapfu517" path="res://ui/ui_sprites/timer/12.png" id="12_0k0w2"]
 [ext_resource type="Texture2D" uid="uid://cfk7mpgcelh0i" path="res://ui/ui_sprites/overcount_sign/11.png" id="12_d5nvc"]
@@ -179,6 +183,7 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="FillerRect" type="ColorRect" parent="TextHealth"]
 z_index = -1
+material = ExtResource("5_j74pw")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -226,6 +231,7 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="FillerRect" type="ColorRect" parent="TextCooldown"]
 z_index = -1
+material = ExtResource("7_xwl3d")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -272,6 +278,7 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="FillerRect" type="ColorRect" parent="TextEnergy"]
 z_index = -1
+material = ExtResource("9_n7af5")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -318,6 +325,7 @@ color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="FillerRect" type="ColorRect" parent="TextScore"]
 z_index = -1
+material = ExtResource("11_qd7k3")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

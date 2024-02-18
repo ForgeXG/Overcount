@@ -44,7 +44,7 @@ func _process(_delta):
 	if dmg_effect > 0:
 		dmg_effect -= 0.1
 		hp -= 0.1
-		if hp <= 0:
+		if hp - dmg_effect <= 0:
 			$Coll.set_deferred("disabled", true)
 			velocity.x = randi_range(-400, 400) * (player.mach + 1)
 			velocity.y = randi_range(-50, 50) * (player.mach + 1)
@@ -128,6 +128,11 @@ func _physics_process(delta):
 		queue_free()
 
 func _draw():
+	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
+	draw_arc(Vector2(0, 0), 8,
+	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
+	 50, draw_color, 4, false)
+	
 	if $Animations.animation == "charge":
 		draw_circle(Vector2(0, 0), max_radius * 2 / (scale.x + scale.y), Color(138.0/255, 146.0/255, 174.0/255, 0.6 - abs($Animations.frame - 7) / 15.0))
 	if cooldown == 0 and hp > 0:
