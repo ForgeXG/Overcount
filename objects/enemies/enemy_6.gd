@@ -88,7 +88,8 @@ func _physics_process(delta):
 	if cooldown == 0 and hp > 0:
 		# Jump Conditions
 		if 2 <= $Animations.frame and $Animations.frame <= 13:
-			player.position -= Vector2(abs($Animations.frame - 7.5) / 2, 0).rotated(fire_angle)
+			# player.position -= Vector2(abs($Animations.frame - 7.5) / 2, 0).rotated(fire_angle)
+			player.position -= Vector2(3, 0).rotated(fire_angle)
 		if $Animations.frame == 15:
 			cooldown = max_cooldown
 			$Animations.animation = "idle"
@@ -131,7 +132,7 @@ func _draw():
 	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
 	draw_arc(Vector2(0, 0), 8,
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
-	 50, draw_color, 4, false)
+	 7, draw_color, 4, false)
 	
 	if $Animations.animation == "charge":
 		draw_circle(Vector2(0, 0), max_radius * 2 / (scale.x + scale.y), Color(138.0/255, 146.0/255, 174.0/255, 0.6 - abs($Animations.frame - 7) / 15.0))

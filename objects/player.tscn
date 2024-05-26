@@ -1,7 +1,8 @@
-[gd_scene load_steps=49 format=3 uid="uid://ei231eyk1t13"]
+[gd_scene load_steps=65 format=3 uid="uid://ei231eyk1t13"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_t6f3a"]
 [ext_resource type="Texture2D" uid="uid://b80bnfxvbnmor" path="res://sprites/player/walk/s_player_walk_f0.png" id="2_2mhk2"]
+[ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_re7j7"]
 [ext_resource type="Texture2D" uid="uid://x4yqm3fw5pjx" path="res://sprites/player/idle/s_player_idle_f0.png" id="2_sbail"]
 [ext_resource type="Texture2D" uid="uid://cpak5ddqrb1s7" path="res://sprites/player/idle/s_player_idle_f1.png" id="3_1vul8"]
 [ext_resource type="Texture2D" uid="uid://dfpusbm1mn4n8" path="res://sprites/player/walk/s_player_walk_f1.png" id="3_y65gr"]
@@ -11,22 +12,35 @@
 [ext_resource type="Texture2D" uid="uid://d3dy4ac1weapf" path="res://sprites/player/idle/s_player_idle_f3.png" id="5_xtaqd"]
 [ext_resource type="Texture2D" uid="uid://0t16angvw03m" path="res://sprites/player/walk/s_player_walk_f3.png" id="6_7t47g"]
 [ext_resource type="Texture2D" uid="uid://buyd2na3osyq1" path="res://sprites/player/idle/s_player_idle_f4.png" id="6_gboej"]
+[ext_resource type="Texture2D" uid="uid://cnu6h3ttnb81t" path="res://sprites/player/kickballs/0.png" id="7_6hbsp"]
 [ext_resource type="Texture2D" uid="uid://beauuf1ud2ncf" path="res://sprites/player/run1/s_player_run1_f2.png" id="7_cgjc3"]
+[ext_resource type="Texture2D" uid="uid://cgb4v8h77euku" path="res://sprites/player/kickballs/1.png" id="8_27tpr"]
 [ext_resource type="Texture2D" uid="uid://d262o0ny8a3e7" path="res://sprites/player/run1/s_player_run1_f3.png" id="8_44ej6"]
+[ext_resource type="Texture2D" uid="uid://5po0p7d7uxa8" path="res://sprites/player/kickballs/2.png" id="9_4mo5p"]
 [ext_resource type="Texture2D" uid="uid://bdlwun8g7h8s0" path="res://sprites/player/run1/s_player_run1_f4.png" id="9_y7ayr"]
 [ext_resource type="Texture2D" uid="uid://bqe4hua08e8ea" path="res://sprites/player/run1/s_player_run1_f0.png" id="10_bowa0"]
+[ext_resource type="Texture2D" uid="uid://bx8okc6xrqkxt" path="res://sprites/player/kickballs/3.png" id="10_rmyvc"]
+[ext_resource type="Texture2D" uid="uid://ck7kjp5f30pl1" path="res://sprites/player/kickballs/4.png" id="11_2prwe"]
 [ext_resource type="Texture2D" uid="uid://bnhhy1ei6ava5" path="res://sprites/player/run1/s_player_run1_f1.png" id="11_gxmqf"]
 [ext_resource type="Texture2D" uid="uid://c2rafmhg2ed6r" path="res://sprites/player/run2/0.png" id="12_nu3x5"]
+[ext_resource type="Texture2D" uid="uid://b026lw2a3xigg" path="res://sprites/player/kickballs/5.png" id="12_nx8bp"]
+[ext_resource type="Texture2D" uid="uid://n080ybu7bagi" path="res://sprites/player/kickballs/6.png" id="13_kwcwv"]
 [ext_resource type="Texture2D" uid="uid://ng5m4gk748w2" path="res://sprites/player/run2/1.png" id="13_u28e0"]
 [ext_resource type="Texture2D" uid="uid://put1eroxxifu" path="res://sprites/player/run2/2.png" id="14_4grke"]
+[ext_resource type="Texture2D" uid="uid://yr3kxk42tyj7" path="res://sprites/player/kickballs/7.png" id="14_jj21o"]
+[ext_resource type="Texture2D" uid="uid://b5nj3bnur82cx" path="res://sprites/player/kickballs/8.png" id="15_es3k3"]
 [ext_resource type="Texture2D" uid="uid://bgp5xfq4m1sl0" path="res://sprites/player/run2/3.png" id="15_vegoa"]
 [ext_resource type="Texture2D" uid="uid://fa7r1r5a6gx0" path="res://sprites/player/run2/4.png" id="16_d7s7y"]
+[ext_resource type="Texture2D" uid="uid://mqw61a0gbwjn" path="res://sprites/player/kickballs/9.png" id="16_nsqoj"]
 [ext_resource type="Texture2D" uid="uid://bxnoghb6iucty" path="res://sprites/player/invincible/s_player_inv_f1.png" id="17_6vulk"]
+[ext_resource type="Texture2D" uid="uid://cpo4jxl2j2x77" path="res://sprites/player/kickballs/10.png" id="17_jnuqb"]
 [ext_resource type="PackedScene" uid="uid://1faqvg8n13h4" path="res://ui/player_ui.tscn" id="17_nhemk"]
 [ext_resource type="Texture2D" uid="uid://bynmoapfnt727" path="res://sprites/player/run2/5.png" id="17_q43cm"]
+[ext_resource type="Texture2D" uid="uid://cfkvxai6uxx8b" path="res://sprites/player/kickballs/11.png" id="18_aun2a"]
 [ext_resource type="Texture2D" uid="uid://dbesvxiyuwgko" path="res://sprites/player/invincible/s_player_inv_f0.png" id="18_es8kc"]
 [ext_resource type="Texture2D" uid="uid://b6sw2ymkbjsnl" path="res://sprites/player/run2/6.png" id="18_rhsld"]
 [ext_resource type="Texture2D" uid="uid://bouos14kolnhp" path="res://sprites/player/run2/7.png" id="19_hf3rx"]
+[ext_resource type="Texture2D" uid="uid://cwwa4cesciwd5" path="res://sprites/player/kickballs/12.png" id="19_k0o5l"]
 [ext_resource type="Texture2D" uid="uid://cml1galm0njv3" path="res://sprites/player/invincible/s_player_inv_f2.png" id="19_ls3yn"]
 [ext_resource type="Texture2D" uid="uid://3fjepyas4rbr" path="res://sprites/player/run2/8.png" id="20_ty6m2"]
 [ext_resource type="Texture2D" uid="uid://dykabgtk1fipq" path="res://sprites/player/invincible/s_player_inv_f3.png" id="20_v1hok"]
@@ -44,6 +58,8 @@
 [ext_resource type="Texture2D" uid="uid://fu88ior5cvx8" path="res://sprites/player/wallclimb/2.png" id="31_itcts"]
 [ext_resource type="Texture2D" uid="uid://05bp62xe11s0" path="res://sprites/player/wallclimb/3.png" id="32_2bj48"]
 [ext_resource type="Texture2D" uid="uid://nfnt4018c327" path="res://sprites/player/wallclimb/4.png" id="33_oevaf"]
+[ext_resource type="AudioStream" uid="uid://daaav0v32tnff" path="res://audio/sounds/player/movement/walk.mp3" id="45_x85vj"]
+[ext_resource type="Script" path="res://objects/player_sounds.gd" id="46_8lalo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcbdv"]
 size = Vector2(8, 15)
@@ -69,6 +85,83 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_6hbsp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_27tpr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4mo5p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rmyvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2prwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_nx8bp")
+}, {
+"duration": 3.0,
+"texture": ExtResource("13_kwcwv")
+}, {
+"duration": 0.5,
+"texture": ExtResource("14_jj21o")
+}, {
+"duration": 0.5,
+"texture": ExtResource("15_es3k3")
+}, {
+"duration": 0.5,
+"texture": ExtResource("16_nsqoj")
+}, {
+"duration": 0.5,
+"texture": ExtResource("17_jnuqb")
+}, {
+"duration": 0.5,
+"texture": ExtResource("18_aun2a")
+}, {
+"duration": 0.5,
+"texture": ExtResource("19_k0o5l")
+}, {
+"duration": 0.4,
+"texture": ExtResource("18_aun2a")
+}, {
+"duration": 0.4,
+"texture": ExtResource("17_jnuqb")
+}, {
+"duration": 0.4,
+"texture": ExtResource("16_nsqoj")
+}, {
+"duration": 0.4,
+"texture": ExtResource("15_es3k3")
+}, {
+"duration": 0.4,
+"texture": ExtResource("14_jj21o")
+}, {
+"duration": 0.4,
+"texture": ExtResource("13_kwcwv")
+}, {
+"duration": 0.4,
+"texture": ExtResource("12_nx8bp")
+}, {
+"duration": 0.4,
+"texture": ExtResource("11_2prwe")
+}, {
+"duration": 0.4,
+"texture": ExtResource("10_rmyvc")
+}, {
+"duration": 0.4,
+"texture": ExtResource("9_4mo5p")
+}, {
+"duration": 0.4,
+"texture": ExtResource("8_27tpr")
+}],
+"loop": true,
+"name": &"kickballs",
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 2.0,
@@ -229,6 +322,7 @@ color = Color(0.223529, 0.223529, 0.223529, 1)
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 script = ExtResource("1_t6f3a")
+draw_font = ExtResource("2_re7j7")
 
 [node name="Coll" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -239,6 +333,7 @@ texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_3spa2")
 animation = &"idle"
 autoplay = "idle"
+frame_progress = 0.732307
 
 [node name="Invincible" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -255,5 +350,12 @@ frame_progress = 0.773992
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 visible = false
 process_material = SubResource("ParticleProcessMaterial_yfw1n")
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("45_x85vj")
+volume_db = -6.0
+attenuation = 0.00120229
+max_polyphony = 16
+script = ExtResource("46_8lalo")
 
 [connection signal="draw" from="." to="." method="_on_draw"]

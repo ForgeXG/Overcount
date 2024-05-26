@@ -6,7 +6,7 @@ op_type = 0
 operator = 3
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_rwrm0"]
-default_input_values = [0, Vector2(0, 0), 1, Vector2(300, 300)]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(1000, 1000)]
 op_type = 0
 operator = 2
 
@@ -40,7 +40,7 @@ constant = 0.1
 input_name = "screen_uv"
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_2bvwv"]
-default_input_values = [0, 0.0, 1, 10.0]
+default_input_values = [0, 0.0, 1, 20.0]
 operator = 3
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_41xtb"]
@@ -97,7 +97,7 @@ void fragment() {
 
 
 // VectorOp:11
-	vec2 n_in11p1 = vec2(300.00000, 300.00000);
+	vec2 n_in11p1 = vec2(1000.00000, 1000.00000);
 	vec2 n_out11p0 = n_out12p0 * n_in11p1;
 
 
@@ -110,7 +110,7 @@ void fragment() {
 
 
 // FloatOp:20
-	float n_in20p1 = 10.00000;
+	float n_in20p1 = 20.00000;
 	float n_out20p0 = n_out15p0 / n_in20p1;
 
 

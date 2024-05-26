@@ -6,6 +6,7 @@ var appear : bool = true
 
 func _ready():
 	$Disclaimer.modulate.a = 0
+	$Disclaimer.visible = true
 	$LevelSelection.modulate.a = 0
 
 func _process(_delta):

@@ -11,8 +11,8 @@ var h_sign = 0
 @export var maxhp : float = 400
 var dmg_effect = 0
 var heal_effect = 0
-var d_timer = 120 # No health because it's a zero
-var maxd_timer = 120
+var d_timer : int = 120 # No health because it's a zero
+var maxd_timer : int = 120
 var cooldown = 0
 @export var max_cooldown : int = 120
 var attack_bias : float = 0.3
@@ -114,7 +114,7 @@ func _process(_delta):
 			rotation += 0.2
 			modulate.a = 0.4
 			player.score += score
-			get_tree().call_group("EscapeWall", "switch", 0)
+			get_tree().call_group("OnOff", "switch", 0)
 			get_parent().get_node("LevelPortal").active = true
 			queue_free()
 	

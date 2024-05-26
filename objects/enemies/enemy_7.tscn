@@ -213,7 +213,7 @@ score = 20
 [node name="Coll" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_45psn")
 
-[node name="Animations" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
+[node name="Animations" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_vn8r5")
 animation = &"idle"
 autoplay = "idle"

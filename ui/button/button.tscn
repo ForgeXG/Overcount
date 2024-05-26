@@ -12,6 +12,7 @@ offset_bottom = 48.0
 theme_override_fonts/font = ExtResource("1_oxpmn")
 theme_override_font_sizes/font_size = 48
 flat = true
+expand_icon = true
 script = ExtResource("1_uod0s")
 
 [node name="Image" type="NinePatchRect" parent="."]

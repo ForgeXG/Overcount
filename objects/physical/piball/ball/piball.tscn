@@ -1,0 +1,105 @@
+[gd_scene load_steps=22 format=3 uid="uid://dd3vwxnn1y2d4"]
+
+[ext_resource type="Script" path="res://objects/physical/piball/ball/piball.gd" id="1_iyg2d"]
+[ext_resource type="Texture2D" uid="uid://djt3ooagbnx62" path="res://objects/physical/piball/ball/animations/0.png" id="1_ltdep"]
+[ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_bejub"]
+[ext_resource type="Texture2D" uid="uid://60vsb3jyiql5" path="res://objects/physical/piball/ball/animations/1.png" id="2_mep30"]
+[ext_resource type="Texture2D" uid="uid://cwprh2xvhqk7w" path="res://objects/physical/piball/ball/animations/2.png" id="3_sxhaw"]
+[ext_resource type="Texture2D" uid="uid://b4apm3s1xe0qu" path="res://objects/physical/piball/ball/animations/3.png" id="4_28qda"]
+[ext_resource type="Texture2D" uid="uid://dhar847wrg0p7" path="res://objects/physical/piball/ball/animations/4.png" id="5_cmgkc"]
+[ext_resource type="Texture2D" uid="uid://ch8qiy1c4aiex" path="res://objects/physical/piball/ball/animations/5.png" id="6_ptx75"]
+[ext_resource type="Texture2D" uid="uid://550x01fk6soq" path="res://objects/physical/piball/ball/animations/6.png" id="7_rqs25"]
+[ext_resource type="Texture2D" uid="uid://b4s6uoym250cg" path="res://objects/physical/piball/ball/animations/7.png" id="8_8t1ir"]
+[ext_resource type="Texture2D" uid="uid://31wxfui18y0i" path="res://objects/physical/piball/ball/animations/8.png" id="9_224w6"]
+[ext_resource type="Texture2D" uid="uid://bokqm4bipf82d" path="res://objects/physical/piball/ball/animations/9.png" id="10_5d4jn"]
+[ext_resource type="Texture2D" uid="uid://b81rsudjdpy7n" path="res://objects/physical/piball/ball/animations/10.png" id="11_wlnkk"]
+[ext_resource type="Texture2D" uid="uid://dstmjy7k77o1d" path="res://objects/physical/piball/ball/animations/11.png" id="12_6twx1"]
+[ext_resource type="Texture2D" uid="uid://br02wut2imsx3" path="res://objects/physical/piball/ball/animations/12.png" id="13_16xjp"]
+[ext_resource type="Texture2D" uid="uid://dog82tn0b441a" path="res://objects/physical/piball/ball/animations/13.png" id="14_174vd"]
+[ext_resource type="Texture2D" uid="uid://qdive8cs0pgc" path="res://objects/physical/piball/ball/animations/14.png" id="15_flx80"]
+[ext_resource type="Texture2D" uid="uid://cjtqexqo73xcl" path="res://objects/physical/piball/ball/animations/15.png" id="16_516rt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d8xxc"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_quqx2"]
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nh4dc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ltdep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_mep30")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sxhaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_28qda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_cmgkc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ptx75")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rqs25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_8t1ir")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_224w6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5d4jn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_wlnkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_6twx1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_16xjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_174vd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_flx80")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_516rt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="PiBall" type="RigidBody2D" groups=["PiBall"]]
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_d8xxc")
+continuous_cd = 2
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_iyg2d")
+draw_font = ExtResource("2_bejub")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_quqx2")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_nh4dc")
+autoplay = "default"
+
+[node name="Ray" type="RayCast2D" parent="."]
+target_position = Vector2(0, 16)
+collision_mask = 2
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="draw" from="." to="." method="_on_draw"]

@@ -1,0 +1,67 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkrp8nn8q6w3q"]
+
+[ext_resource type="Script" path="res://objects/foreground/checkpoint/checkpoint.gd" id="1_evjr6"]
+[ext_resource type="Texture2D" uid="uid://bvr8ennsojp2q" path="res://objects/foreground/checkpoint/0.png" id="1_np4ol"]
+[ext_resource type="Texture2D" uid="uid://otc0q65i7xyi" path="res://objects/foreground/checkpoint/1.png" id="2_l16ia"]
+[ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_yu7w3"]
+[ext_resource type="Texture2D" uid="uid://py8iu56wnim1" path="res://objects/foreground/checkpoint/2.png" id="3_cw306"]
+[ext_resource type="Texture2D" uid="uid://drix551v1222d" path="res://objects/foreground/checkpoint/3.png" id="4_6lvkq"]
+[ext_resource type="Texture2D" uid="uid://040hi0b76r4n" path="res://objects/foreground/checkpoint/4.png" id="5_vuwhu"]
+[ext_resource type="Texture2D" uid="uid://bk6pb5ti031nd" path="res://objects/foreground/checkpoint/5.png" id="6_dbt5n"]
+[ext_resource type="Texture2D" uid="uid://6in4pibrmbmj" path="res://objects/foreground/checkpoint/6.png" id="7_utu2m"]
+[ext_resource type="Texture2D" uid="uid://bqbddqtmohf3t" path="res://objects/foreground/checkpoint/7.png" id="8_3ecsd"]
+[ext_resource type="Texture2D" uid="uid://wvakpu03vyqr" path="res://objects/foreground/checkpoint/8.png" id="9_c2hc6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgi8a"]
+size = Vector2(16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j1iv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_np4ol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_l16ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cw306")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6lvkq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vuwhu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dbt5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_utu2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3ecsd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_c2hc6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[node name="Checkpoint" type="Area2D" groups=["Checkpoint"]]
+script = ExtResource("1_evjr6")
+draw_font = ExtResource("2_yu7w3")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_lgi8a")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6j1iv")
+autoplay = "default"
+frame = 1
+frame_progress = 0.671564
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="draw" from="." to="." method="_draw"]

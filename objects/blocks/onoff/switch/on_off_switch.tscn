@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://ln4hp87b4vad"]
+[gd_scene load_steps=13 format=3 uid="uid://ln4hp87b4vad"]
 
 [ext_resource type="Texture2D" uid="uid://c5sm4lem4po38" path="res://objects/blocks/onoff/switch/off/4.png" id="1_4ow1j"]
 [ext_resource type="Script" path="res://objects/blocks/onoff/switch/on_off_switch.gd" id="1_vxav0"]
+[ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_3ru7q"]
 [ext_resource type="Texture2D" uid="uid://dyhdjleggquvr" path="res://objects/blocks/onoff/switch/off/5.png" id="2_c3gnj"]
 [ext_resource type="Texture2D" uid="uid://60oil5d4bkaj" path="res://objects/blocks/onoff/switch/off/6.png" id="3_nd3aq"]
 [ext_resource type="Texture2D" uid="uid://366wgcro8ldn" path="res://objects/blocks/onoff/switch/off/7.png" id="4_v4uti"]
@@ -54,6 +55,7 @@ animations = [{
 motion_mode = 1
 wall_min_slide_angle = 1.5708
 script = ExtResource("1_vxav0")
+draw_font = ExtResource("2_3ru7q")
 
 [node name="Coll" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_u21uh")
@@ -68,4 +70,5 @@ frame_progress = 0.559488
 one_shot = true
 autostart = true
 
+[connection signal="draw" from="." to="." method="_draw"]
 [connection signal="timeout" from="SwitchTimer" to="." method="_on_timeout"]

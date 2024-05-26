@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://ch05q0bt5lcxo"]
+[gd_scene load_steps=26 format=3 uid="uid://ch05q0bt5lcxo"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_wr5yv"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_8281v"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://b3uoy70x3kq5v" path="res://objects/blocks/onoff/escape/on_off_escape_wall.tscn" id="20_uijrf"]
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="21_4ep25"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="22_yysrg"]
+[ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="24_qqgd3"]
 
 [sub_resource type="Environment" id="Environment_w7jsw"]
 background_mode = 3
@@ -93,6 +94,7 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(5320, -1448)
 scale = Vector2(1.2, 1.2)
 final = true
+finalmusic = "res://audio/music/special/badtothebone.mp3"
 mode = "mul"
 a = 50
 b = 50
@@ -1725,3 +1727,12 @@ position = Vector2(7160, -1336)
 
 [node name="EscapeWall114" parent="." instance=ExtResource("20_uijrf")]
 position = Vector2(3848, -1080)
+
+[node name="Checkpoint" parent="." instance=ExtResource("24_qqgd3")]
+position = Vector2(776, -328)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("24_qqgd3")]
+position = Vector2(3720, -1096)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("24_qqgd3")]
+position = Vector2(5976, -1000)

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://objects/special/camera.gd" id="1_140cw"]
 [ext_resource type="Texture2D" uid="uid://bs24xq3gyrbtq" path="res://sprites/s_camera.png" id="2_nkxgu"]
 
-[node name="Camera" type="Camera2D"]
+[node name="Camera" type="Camera2D" groups=["Camera"]]
 modulate = Color(1, 1, 1, 0.54902)
 ignore_rotation = false
 zoom = Vector2(4, 4)
@@ -17,3 +17,5 @@ script = ExtResource("1_140cw")
 modulate = Color(1, 1, 1, 0.588235)
 texture_filter = 1
 texture = ExtResource("2_nkxgu")
+
+[connection signal="draw" from="." to="." method="_on_draw"]

@@ -85,10 +85,6 @@ scale = Vector2(2, 2)
 [node name="Weapon" parent="." instance=ExtResource("10_dyldj")]
 position = Vector2(184, -119)
 
-[node name="EscapeWall" parent="." instance=ExtResource("12_lgevj")]
-position = Vector2(632, -248)
-on = true
-
 [node name="Spike" parent="." instance=ExtResource("13_s3c6e")]
 modulate = Color(0.282353, 0.282353, 0.282353, 1)
 position = Vector2(1048, -264)
@@ -123,3 +119,7 @@ rotation = 1.57079
 modulate = Color(0.282353, 0.282353, 0.282353, 1)
 position = Vector2(1048, -360)
 rotation = 1.57079
+
+[node name="OnOffWall" parent="." instance=ExtResource("12_lgevj")]
+position = Vector2(632, -248)
+on = true

@@ -1,0 +1,105 @@
+[gd_scene load_steps=18 format=3 uid="uid://dlxkhm0e7p7hp"]
+
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_ntebx"]
+[ext_resource type="Script" path="res://levels/post_process.gd" id="2_i57m1"]
+[ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_yo2ar"]
+[ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_kaoxw"]
+[ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="5_c2w42"]
+[ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="6_vnon6"]
+[ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="7_o7e2l"]
+[ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_jjdvv"]
+[ext_resource type="AudioStream" uid="uid://bjp037m7mwusb" path="res://audio/music/oskar.mp3" id="9_k1can"]
+[ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="10_ntuwi"]
+[ext_resource type="PackedScene" uid="uid://buqh6v4j34c3w" path="res://weapon_pickup.tscn" id="11_a84l7"]
+[ext_resource type="PackedScene" uid="uid://oarr2ybyy1vq" path="res://objects/enemies/enemy_3.tscn" id="13_roaxu"]
+[ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="14_736ci"]
+[ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="15_0r2m3"]
+[ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="15_t04q5"]
+[ext_resource type="PackedScene" uid="uid://cmh8r43seq681" path="res://objects/enemies/enemy_1.tscn" id="16_kcixu"]
+
+[sub_resource type="Environment" id="Environment_u3ifr"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.05
+fog_enabled = true
+adjustment_enabled = true
+
+[node name="Level1" type="Node2D"]
+material = ExtResource("1_ntebx")
+
+[node name="PostProcess" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u3ifr")
+script = ExtResource("2_i57m1")
+
+[node name="Player" parent="." instance=ExtResource("3_yo2ar")]
+position = Vector2(120, -104)
+hp = 150.0
+maxhp = 150.0
+maxscore = 450
+escape_time = 10800
+
+[node name="Camera" parent="Player" instance=ExtResource("4_kaoxw")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Player/ParallaxBackground"]
+modulate = Color(1, 0.215686, 0, 1)
+texture_filter = 1
+material = ExtResource("1_ntebx")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("5_c2w42")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="SquareTileMap" parent="." instance=ExtResource("6_vnon6")]
+modulate = Color(1, 0.533333, 0, 1)
+position = Vector2(0, -16)
+layer_0/tile_data = PackedInt32Array(-327674, 4, 0, -262138, 4, 1, -196602, 4, 2, -327673, 65540, 0, -262137, 65540, 1, -196601, 65540, 2, -327672, 131076, 0, -262136, 131076, 1, -196600, 131076, 2, -131066, 4, 0, -65530, 4, 1, 6, 4, 2, -131065, 65540, 0, -65529, 65540, 1, 7, 65540, 2, -131064, 131076, 0, -65528, 131076, 1, 8, 131076, 2, -131072, 4, 0, -65536, 4, 2, -131071, 131076, 0, -65535, 131076, 2, -327662, 4, 1, -327661, 65540, 1, -327660, 131076, 1, -262126, 4, 1, -262125, 65540, 1, -262124, 131076, 1, -196590, 4, 1, -196589, 65540, 1, -196588, 131076, 1, -131054, 4, 2, -131053, 65540, 2, -131052, 131076, 2, -786426, 4, 0, -720890, 4, 1, -655354, 4, 2, -786425, 65540, 0, -720889, 65540, 1, -655353, 65540, 2, -786424, 131076, 0, -720888, 131076, 1, -655352, 131076, 2, -458734, 4, 0, -458733, 65540, 0, -458732, 131076, 0, -393198, 4, 1, -393197, 65540, 1, -393196, 131076, 1, -393195, 4, 0, -327659, 4, 1, -262123, 4, 2, -393194, 65540, 0, -327658, 65540, 1, -262122, 65540, 2, -393193, 131076, 0, -327657, 131076, 1, -262121, 131076, 2, -393192, 4, 0, -327656, 4, 1, -262120, 4, 2, -393191, 65540, 0, -327655, 65540, 1, -262119, 65540, 2, -393190, 131076, 0, -327654, 131076, 1, -262118, 131076, 2, -393189, 196612, 2, -327653, 196612, 2, -262117, 196612, 2, -393188, 4, 0, -327652, 4, 1, -262116, 4, 2, -393187, 65540, 0, -327651, 65540, 1, -262115, 65540, 2, -393186, 131076, 0, -327650, 131076, 1, -262114, 131076, 2, -393185, 4, 0, -327649, 4, 1, -262113, 4, 2, -393184, 65540, 0, -327648, 65540, 1, -262112, 65540, 2, -393183, 131076, 0, -327647, 131076, 1, -262111, 131076, 2, -458718, 4, 0, -393182, 4, 1, -327646, 4, 1, -262110, 4, 1, -196574, 4, 1, -131038, 4, 2, -458717, 65540, 0, -393181, 65540, 1, -327645, 65540, 1, -262109, 65540, 1, -196573, 65540, 1, -131037, 65540, 2, -458716, 131076, 0, -393180, 131076, 1, -327644, 131076, 1, -262108, 131076, 1, -196572, 131076, 1, -131036, 131076, 2, -524262, 4, 2, -524261, 65540, 2, -524260, 131076, 2, -851942, 196612, 2, -851941, 196612, 2, -851940, 196612, 2, -786406, 4, 1, -786405, 65540, 1, -786404, 131076, 1, -720870, 4, 1, -720869, 65540, 1, -720868, 131076, 1, -655334, 4, 1, -655333, 65540, 1, -655332, 131076, 1, -589798, 4, 1, -589797, 65540, 1, -589796, 131076, 1, -917478, 196612, 2, -917477, 196612, 2, -917476, 196612, 2, -983013, 196612, 2, -851943, 196612, 2, -851939, 196612, 2, -851944, 196612, 2, -1048549, 196612, 2, -851938, 196612, 2, -720903, 4, 0, -655367, 4, 1, -589831, 4, 2, -720902, 65540, 0, -655366, 65540, 1, -589830, 65540, 2, -720901, 131076, 0, -655365, 131076, 1, -589829, 131076, 2, -262151, 4, 1, -262150, 65540, 1, -262149, 131076, 1, -196615, 4, 2, -196614, 65540, 2, -196613, 131076, 2, -327687, 4, 0, -327686, 65540, 0, -327685, 131076, 0, -720900, 4, 0, -720899, 131076, 0, -786423, 4, 0, -720887, 4, 2, -786422, 131076, 0, -720886, 131076, 2, -655364, 4, 2, -655363, 131076, 2, -589828, 4, 0, -524292, 4, 1, -458756, 4, 2, -589827, 65540, 0, -524291, 65540, 1, -458755, 65540, 2, -589826, 131076, 0, -524290, 131076, 1, -458754, 131076, 2, -327684, 4, 0, -262148, 4, 2, -327683, 131076, 0, -262147, 131076, 2, -720898, 4, 0, -655362, 4, 2, -720897, 131076, 0, -655361, 131076, 2, -393218, 4, 0, -327682, 4, 2, -393217, 131076, 0, -327681, 131076, 2, -786432, 4, 0, -720896, 4, 2, -786431, 131076, 0, -720895, 131076, 2, -786430, 4, 0, -720894, 4, 2, -786429, 131076, 0, -720893, 131076, 2, -786428, 4, 0, -720892, 4, 2, -786427, 131076, 0, -720891, 131076, 2)
+
+[node name="DecorTileMap" parent="." instance=ExtResource("6_vnon6")]
+modulate = Color(1, 0.215686, 0, 1)
+tile_set = ExtResource("7_o7e2l")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("8_jjdvv")]
+position = Vector2(-40, -80)
+stream = ExtResource("9_k1can")
+attenuation = 1.81459e-05
+
+[node name="LevelPortal" parent="." instance=ExtResource("15_0r2m3")]
+position = Vector2(16, -64)
+scale = Vector2(2, 2)
+destination = "res://levels/level_2.tscn"
+
+[node name="FloatingText7" parent="." instance=ExtResource("10_ntuwi")]
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 200.0
+offset_bottom = 92.0
+text = "Hover mouse over this lock"
+
+[node name="Weapon" parent="." instance=ExtResource("11_a84l7")]
+position = Vector2(-40, -120)
+
+[node name="Enemy3_" parent="." instance=ExtResource("13_roaxu")]
+position = Vector2(440, -120)
+
+[node name="EquationLock" parent="." instance=ExtResource("14_736ci")]
+position = Vector2(-56, -120)
+mode = "log"
+a = 2
+b = 8
+a_range = 0
+b_range = 0
+
+[node name="InfoSign" parent="." instance=ExtResource("15_t04q5")]
+position = Vector2(-56, -218)
+txt = "A logarithm is a function which takes a base and value and gives out the power. It basically asks: What power do I need to raise the base to get a value? Example: log₂32=5, because 2⁵=32. log₅125=3, because 5³=125."
+
+[node name="Enemy1_" parent="." instance=ExtResource("16_kcixu")]
+position = Vector2(120, -216)

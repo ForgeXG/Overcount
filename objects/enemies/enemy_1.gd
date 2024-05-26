@@ -44,7 +44,8 @@ func _process(_delta):
 			$Coll.set_deferred("disabled", true)
 			velocity.x = -h_sign * randi_range(walk_spd * (player.mach + 3), walk_spd * (player.mach + 4))
 			velocity.y = randi_range(-300, -500) * (player.mach + 1)
-			
+		queue_redraw()
+	
 	if heal_effect > 0:
 		heal_effect -= 0.1
 		hp -= 0.1
@@ -60,16 +61,15 @@ func _process(_delta):
 	if d_timer == 0:
 		player.score += score
 		queue_free()
-	queue_redraw()
 
 func _physics_process(delta):
-	var key_jump = get_parent().get_node("Player").position.y < position.y
+	var key_jump = player.position.y < position.y
 	var key_accelerate = true
-	var player_dist = sqrt((get_parent().get_node("Player").position.x - position.x) ** 2 +
-	(get_parent().get_node("Player").position.y - position.y) ** 2)
+	var player_dist = sqrt((player.position.x - position.x) ** 2 +
+	(player.position.y - position.y) ** 2)
 	
 	if player_dist <= max_radius and player_dist >= min_radius:
-		h_sign = sign(get_parent().get_node("Player").position.x - position.x)
+		h_sign = sign(player.position.x - position.x)
 	else:
 		h_sign = 0
 	
@@ -106,4 +106,4 @@ func _on_draw():
 	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
 	draw_arc(Vector2(0, 0), 8,
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
-	 50, draw_color, 4, false)
+	 7, draw_color, 4, false)

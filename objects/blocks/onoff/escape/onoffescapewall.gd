@@ -5,17 +5,24 @@ extends AnimatableBody2D
 
 func _ready():
 	modulate = get_parent().get_node("SquareTileMap").modulate
-
-func _process(_delta):
-	if on:
-		$Animations.animation = "on"
-		$Coll.set_deferred("disabled", false)
-		modulate.a = 1
-	else:
-		$Animations.animation = "off"
-		$Coll.set_deferred("disabled", true)
-		modulate.a = 0.2
+	if s_group == 0:
+		if on:
+			$Animations.animation = "on"
+			$Coll.set_deferred("disabled", false)
+			modulate.a = 1
+		else:
+			$Animations.animation = "off"
+			$Coll.set_deferred("disabled", true)
+			modulate.a = 0.2
 
 func switch(switch_group):
 	if switch_group == s_group:
 		on = !on
+		if on:
+			$Animations.animation = "on"
+			$Coll.set_deferred("disabled", false)
+			modulate.a = 1
+		else:
+			$Animations.animation = "off"
+			$Coll.set_deferred("disabled", true)
+			modulate.a = 0.2

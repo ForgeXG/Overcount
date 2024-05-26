@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://7qsxvk7ul4dl"]
+[gd_scene load_steps=23 format=3 uid="uid://7qsxvk7ul4dl"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_ashkf"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_ik48l"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="17_enosl"]
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="18_a3s5a"]
 [ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="19_qtjox"]
+[ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="21_7wq1i"]
 
 [sub_resource type="Environment" id="Environment_j5hvl"]
 background_mode = 3
@@ -1103,3 +1104,18 @@ a = 40
 b = 50
 a_range = 0
 b_range = 0
+
+[node name="Checkpoint" parent="." instance=ExtResource("21_7wq1i")]
+position = Vector2(1576, -584)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("21_7wq1i")]
+position = Vector2(232, -1096)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("21_7wq1i")]
+position = Vector2(2408, -1656)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("21_7wq1i")]
+position = Vector2(2632, -2632)
+
+[node name="Checkpoint5" parent="." instance=ExtResource("21_7wq1i")]
+position = Vector2(2328, -3032)

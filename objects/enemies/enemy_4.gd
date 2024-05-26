@@ -137,7 +137,7 @@ func _draw():
 	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
 	draw_arc(Vector2(0, 0), 8,
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
-	 50, draw_color, 4, false)
+	 7, draw_color, 4, false)
 	
 	draw_circle(Vector2(0, 0), max_radius, Color(0, 0, 0.9, 0.1))
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:

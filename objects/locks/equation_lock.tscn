@@ -101,7 +101,7 @@ offset_top = 3.0
 offset_right = 68.0
 offset_bottom = 23.0
 theme_override_fonts/normal_font = ExtResource("12_ilc23")
-theme_override_font_sizes/normal_font_size = 10
+theme_override_font_sizes/normal_font_size = 8
 text = "Addition"
 
 [node name="CaptionRect" type="NinePatchRect" parent="UI"]
@@ -154,7 +154,7 @@ offset_left = 4.0
 offset_right = 68.0
 offset_bottom = 51.0
 theme_override_fonts/font = ExtResource("12_ilc23")
-theme_override_font_sizes/font_size = 10
+theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxEmpty_qprop")
 placeholder_text = "Type Here"
 deselect_on_focus_loss_enabled = false

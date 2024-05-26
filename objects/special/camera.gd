@@ -31,10 +31,24 @@ func _process(delta):
 			zoom_spd = timeline[timeline_index].z
 			if timeline_index < timeline.size() - 1:
 				timeline_index += 1
-		position += vel
-		zoom.x += zoom_spd
-		zoom.y += zoom_spd
+		position += vel * delta * 60
+		zoom.x += zoom_spd * delta * 60
+		zoom.y += zoom_spd * delta * 60
 		m_timer += delta
+		queue_redraw()
+
+func apply_stats():
+	timeline_index = 0
+	while m_timer > timeline[timeline_index + 1].w:
+		timeline_index += 1
+	if m_timer < timeline[0].w:
+		vel = Vector2.ZERO
+		zoom_spd = 0
+	else:
+		vel.x = timeline[timeline_index].x
+		vel.y = timeline[timeline_index].y
+		zoom_spd = timeline[timeline_index].z
+	position_smoothing_speed = 5
 
 func _on_draw():
-	pass
+	draw_line(Vector2.ZERO, vel * 16, Color.from_hsv(1 - vel.length() / 4, 1, 1), 2, false)

@@ -1,22 +1,40 @@
 extends CharacterBody2D
 
+# Movement
+@export var draw_font : SystemFont
+
 @export var walk_spd : int = 140
 @export var jump_force : int = -300
 var mach = 0
+var int_mach : int = 0
 var h_sign = 0
 var s_frames = 0
 var j_frames = 0
-var last_safe_position = Vector2(0, 0)
+var last_safe_position = Vector2.ZERO
 
+var kicked : bool = false
+
+# Checkpoints
+@export var keep_music_position : bool = true
+var checkpoint_position : Vector2 = Vector2.ZERO
+var checkpoint_music_position : float = 0
+var checkpoint_camera_position : Vector2 = Vector2.ZERO
+var checkpoint_camera_timeline : float = 0
+var checkpoint_camera_zoom : Vector2 = Vector2.ZERO
+
+# Health
 @export var hp : float = 30
 @export var maxhp : float = 30
 var dmg_effect = 0
 var heal_effect = 0
 var i_frames : int = 0
 
+# Score
 @export var score : int = 0
 @export var maxscore : int = 500
 
+# Speedrunning
+var speedrun_time : float = 0
 @export var escape_time : int = -1
 @export var escape_time_active : bool = false
 
@@ -38,34 +56,44 @@ var weapon_tip = Vector2(0, 0)
 var fire_speed = 0
 var fire_angle = 0
 
-var mouse_pos = Vector2(0, 0)
+var mouse_pos = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var cheats : bool = true
 
-func _process(_delta):
+func _ready():
+	checkpoint_position = position
+	if get_parent().get_node_or_null("Camera") != null:
+		checkpoint_camera_position = get_parent().get_node_or_null("Camera").position
+		checkpoint_camera_zoom = get_parent().get_node_or_null("Camera").zoom
+
+func _process(delta):
 	# Mouse
 	mouse_pos = get_global_mouse_position()
-	
+	int_mach = int(mach * 100)
+
 	# Animations Control
 	# Flip
-	$Animations.flip_h = h_sign < 0
+	# $Animations.flip_h = h_sign < 0
 	# Speed-based animations
-	if mach == 0:
+	if kicked:
+		$Animations.animation = "kickballs"
+	elif mach == 0:
 		$Animations.animation = "idle"
-	elif mach < 1:
-		$Animations.animation = "walk"
-	elif is_on_wall() and mach >= 1:
-		$Animations.animation = "wallclimb"
-	elif mach < 2:
-		$Animations.animation = "run1"
-	elif mach < 3:
-		$Animations.animation = "run2"
 	else:
-		$Animations.animation = "run3"
-		
+		if mach < 1:
+			$Animations.animation = "walk"
+		elif is_on_wall() and mach >= 1:
+			$Animations.animation = "wallclimb"
+		elif mach < 2:
+			$Animations.animation = "run1"
+		elif mach < 3:
+			$Animations.animation = "run2"
+		else:
+			$Animations.animation = "run3"
+	
 	# Invincible animation
 	$Invincible.visible = i_frames > 0
 	
@@ -130,18 +158,37 @@ func _process(_delta):
 	fire_angle = atan((mouse_pos.y - position.y) / (mouse_pos.x - position.x))
 	if mouse_pos.x - position.x < 0:
 		fire_angle -= PI
+		
+	speedrun_time += 60 * delta
 	queue_redraw()
 
 func _physics_process(delta):
-	var key_left = Input.is_action_pressed("key_a")
-	var key_right = Input.is_action_pressed("key_d")
-	var key_jump = Input.is_action_pressed("key_w")
-	var key_accelerate = Input.is_action_pressed("key_acceleration")
-	var key_ability = Input.is_action_just_pressed("key_ability")
+	var key_left : bool = Input.is_action_pressed("key_a")
+	var key_right : bool = Input.is_action_pressed("key_d")
+	var key_jump : bool = Input.is_action_pressed("key_w")
+	var key_accelerate : bool = Input.is_action_pressed("key_acceleration")
+	var key_ability : bool = Input.is_action_just_pressed("key_ability")
+	var key_checkpoint : bool = Input.is_action_just_pressed("key_checkpoint")
+	
+	var key_kick : bool = Input.is_action_just_pressed("key_kick")
+	
+	if key_left:
+		$Animations.flip_h = true
+	if key_right:
+		$Animations.flip_h = false
+	
+	if key_kick and s_frames <= 0:
+		s_frames = 20
+		kicked = true
+		get_tree().call_group("PiBall", "yeet", Vector2(320, 0).rotated(fire_angle))
+		mach = 0
+	
 	if s_frames > 0:
 		key_left = false
 		key_right = false
 		key_accelerate = false
+	else:
+		kicked = false
 	
 	h_sign = int(key_right) - int(key_left)
 	if h_sign != 0:
@@ -167,16 +214,16 @@ func _physics_process(delta):
 	# Handle Jump.
 	if key_jump:
 		if is_on_floor() or j_frames > 0:
-			velocity.y = jump_force
+			velocity.y = jump_force * delta * 60
 			j_frames = -1
 			if mach == 3:
 				velocity.y *= 1.5
 		elif is_on_wall() and mach >= 1:
-			velocity.y = jump_force * 0.75
+			velocity.y = jump_force * 0.75 * delta * 60
 			mach = clamp(mach, 0, 2)
 
 	if s_frames == 0:
-		velocity.x = h_sign * walk_spd * (clamp(mach, 0, 3) / 2 + 1)
+		velocity.x = h_sign * walk_spd * (clamp(mach, 0, 3) / 2 + 1) * delta * 60
 
 	move_and_slide()
 	
@@ -184,11 +231,19 @@ func _physics_process(delta):
 	if key_ability:
 		ability(10)
 	
-	# Restart.
-	if position.y > 0:
-		position = last_safe_position
+	# Void trigger load.
+	if position.y > 0 or key_checkpoint:
+		position = checkpoint_position
+		if !keep_music_position:
+			get_parent().get_node("MusicPlayer").play(checkpoint_music_position)
 		dmg_effect += 5
-		
+		if get_parent().get_node_or_null("Camera") != null:
+			get_parent().get_node_or_null("Camera").position_smoothing_speed = 1000
+			get_parent().get_node_or_null("Camera").position = checkpoint_camera_position
+			get_parent().get_node_or_null("Camera").m_timer = checkpoint_camera_timeline
+			# get_parent().get_node("Camera").zoom = checkpoint_camera_zoom
+			get_parent().get_node_or_null("Camera").apply_stats()
+			
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var coll = collision.get_collider()
@@ -196,13 +251,17 @@ func _physics_process(delta):
 			if coll.is_in_group("Enemies"):
 				coll.dmg_effect += 1
 				coll.d_timer -= 10
-		if coll.is_in_group("HazardSpike"):
-			if i_frames == 0:
-				dmg_effect += 2
-				i_frames = 90
-				s_frames = 45
-				velocity.x = -h_sign * walk_spd * 1.2
-				velocity.y = jump_force * 1.2
+		if coll.is_in_group("Hazard"):
+			if coll.is_in_group("HazardMelee"):
+				if i_frames == 0:
+					damage(2)
+					i_frames = 90
+					s_frames = 45
+					velocity.x = -h_sign * walk_spd * 1.2 * delta * 60
+					velocity.y = jump_force * 1.2 * delta * 60
+					if coll.is_in_group("HazardSaw"):
+						velocity.x = -h_sign * walk_spd * 1.6 * delta * 60
+						damage(8)
 		elif coll.is_in_group("WallTileMap") and is_on_floor():
 			last_safe_position = position
 
@@ -252,7 +311,10 @@ func ability(ability_cost : int):
 		cooldown = 60
 
 func _on_draw():
-	draw_line(Vector2.ZERO, Vector2(256, 0).rotated(fire_angle), Color(0, 0, 1, 0.3), 2, false)
+	draw_string(draw_font, Vector2(0, -16), $Animations.animation, HORIZONTAL_ALIGNMENT_FILL, -1, 12, 
+		Color.WHITE)
+	draw_line(Vector2.ZERO, Vector2(64, 0).rotated(fire_angle), Color(0, 0, 1, 0.3), 2, false)
+	
 	if weapon_type == "Sling":
 		if weapon_name == "ParabolicSling":
 			if mouse_pos.x >= position.x:
@@ -261,12 +323,16 @@ func _on_draw():
 			else:
 				for i in range(-256, 0, 1):
 					draw_line(Vector2(i, p_traj(i)), Vector2(i + 1, p_traj(i + 1)), Color(0, 0, 1, 0.6), 2)
+	
+	draw_line(Vector2.ZERO, velocity / 4.0, 
+	Color.from_hsv(velocity.length() / 500.0, 1, 1, 0.8), 2, false)
 
 func p_traj(a):
 	return (tan(fire_angle) * a) + ((gravity * (a * a)) / (2 * (fire_speed * fire_speed) * cos(fire_angle) * cos(fire_angle)))
 
 # Player Methods
 func damage(a : float, is_instant : bool = false):
+	print("DAMAGED")
 	if !is_instant:
 		dmg_effect += a
 	else:

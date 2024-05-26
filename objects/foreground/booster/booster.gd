@@ -5,6 +5,8 @@ extends Area2D
 var cooldown : int = 0
 var start_scale : Vector2 = Vector2(1, 1)
 
+var fire_angle : float = 0
+
 func _ready():
 	start_scale = scale
 
@@ -14,7 +16,11 @@ func _process(_delta):
 		cooldown -= 1
 	else:
 		modulate = Color.WHITE
-	scale = start_scale * (1.1 + (sin(Time.get_ticks_msec() / 200) / 10))
+	$Animations.scale = start_scale * (1.1 + (sin(Time.get_ticks_msec() / 200) / 10))
+	
+	fire_angle = rotation
+	if fire_angle != clamp(fire_angle, -PI/2, PI/2):
+		fire_angle -= PI
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
@@ -28,4 +34,15 @@ func _on_body_entered(body):
 
 
 func _draw():
-	pass
+	if is_equal_approx(cos(rotation), 0):
+		pass
+	elif fire_angle == clamp(fire_angle, -PI/2, PI/2):
+		for i in range(0, 192, 1):
+			draw_line(Vector2(i, p_traj(i)), Vector2(i + 1, p_traj(i + 1)), Color(1, 1, 0.16, 0.7), 2)
+	else:
+		for i in range(-192, 0, 1):
+			draw_line(Vector2(i, p_traj(i)), Vector2(i + 1, p_traj(i + 1)), Color(1, 1, 0.16, 0.7), 2)
+
+func p_traj(a):
+	return (tan(fire_angle) * a) + ((gravity * (a * a))
+	 / (2 * (velocity_add * velocity_add) * cos(fire_angle) * cos(fire_angle)))

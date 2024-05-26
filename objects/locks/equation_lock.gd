@@ -86,7 +86,15 @@ func _ready():
 		answer = a ** (1 / float(b))
 		$UI/ProblemRect/Problem.text = superscript_numbers(str(b)) + "√" + str(a)
 		if equation:
-			$UI/ProblemRect/Problem.text = ["x" + superscript_numbers(str(b)) + " = " + str(a)].pick_random()
+			$UI/ProblemRect/Problem.text = ["x" + superscript_numbers(str(b)) + " = " + str(a),
+			"x" + superscript_numbers(str(b)) + " + " + str(ch) + "x" + " = " + str(a + ch * answer)].pick_random() + ", x > 0"
+	elif mode == "log":
+		answer = log(b) / log(a) # a = base, b = value
+		$UI/ProblemRect/Problem.text = "log" + subscript_numbers(str(a)) + str(b)
+		# if equation:
+			# $UI/ProblemRect/Problem.text = ["x" + superscript_numbers(str(b)) + " = " + str(a),
+			# "x" + superscript_numbers(str(b)) + " + " + str(ch) + "x" + " = " + str(a + ch * answer)].pick_random() + ", x > 0"
+
 
 func _process(_delta):
 	player_dist = position.distance_to(player.position)
@@ -159,6 +167,19 @@ func superscript_numbers(s: String):
 	var normal_nums : Array[String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 	var superscript_nums : Array[String] = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
 	
+	for el in s:
+		var n_ind : int = normal_nums.find(el)
+		if n_ind != -1:
+			result += superscript_nums[n_ind]
+		else:
+			result += el
+	
+	return result
+
+func subscript_numbers(s: String):
+	var result : String = ""
+	var normal_nums : Array[String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+	var superscript_nums : Array[String] = ["₀", "₁", "₂", "₃", "₄", "₅", "₆", "₇", "₈", "₉"]
 	for el in s:
 		var n_ind : int = normal_nums.find(el)
 		if n_ind != -1:

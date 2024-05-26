@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cosaa4w7svupx"]
+[gd_scene load_steps=22 format=3 uid="uid://cosaa4w7svupx"]
 
 [ext_resource type="Script" path="res://levels/start/titlescreen.gd" id="1_ci33f"]
 [ext_resource type="Texture2D" uid="uid://bkaeh6xl8sgsx" path="res://ui/ui_sprites/titlescreen/NerdEmoji.png" id="1_tpeja"]
@@ -7,9 +7,20 @@
 [ext_resource type="Texture2D" uid="uid://dh1krarw4kbg7" path="res://ui/ui_sprites/titlescreen/Pencil.png" id="3_2gsj4"]
 [ext_resource type="Texture2D" uid="uid://drflb64p6haof" path="res://ui/ui_sprites/titlescreen/ForbiddenSign.png" id="4_trto5"]
 [ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="5_ayh5e"]
+[ext_resource type="Texture2D" uid="uid://cmlxqcv2h1fja" path="res://ui/map/line/MathMetroLine.png" id="8_e6r1y"]
 [ext_resource type="PackedScene" uid="uid://d12gyrw4crrg2" path="res://ui/button/button.tscn" id="8_ojxdu"]
 [ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="9_g60jg"]
 [ext_resource type="AudioStream" uid="uid://0qef4rx3udpk" path="res://audio/music/untitled.mp3" id="10_33bvj"]
+[ext_resource type="Texture2D" uid="uid://cbvpcvefm2gnh" path="res://ui/ui_sprites/difficulty_faces/DifficultyEasy.png" id="10_v2k81"]
+[ext_resource type="Texture2D" uid="uid://s4mwbe38c7sq" path="res://ui/ui_sprites/difficulty_faces/DifficultyMedium.png" id="11_yf7xo"]
+[ext_resource type="Texture2D" uid="uid://cgxbda0gbqpxs" path="res://ui/ui_sprites/difficulty_faces/DifficultyHarder.png" id="12_2twkl"]
+[ext_resource type="Texture2D" uid="uid://t6xhwgtdcak" path="res://ui/ui_sprites/difficulty_faces/DifficultyHard.png" id="13_35psm"]
+[ext_resource type="Texture2D" uid="uid://dk0isxrxsacrr" path="res://ui/ui_sprites/ranks/Rank0.png" id="16_bvory"]
+[ext_resource type="Texture2D" uid="uid://bm57t1q2e670w" path="res://ui/ui_sprites/ranks/Rank1.png" id="17_7dnlp"]
+[ext_resource type="Texture2D" uid="uid://ccue06ddnkygv" path="res://ui/ui_sprites/ranks/Rank2.png" id="18_qg7ym"]
+[ext_resource type="Texture2D" uid="uid://cqvmiq88w71k" path="res://ui/ui_sprites/ranks/Rank3.png" id="19_k6shh"]
+[ext_resource type="Texture2D" uid="uid://daefk34owqbbk" path="res://ui/ui_sprites/ranks/Rank4.png" id="20_c6tb2"]
+[ext_resource type="Texture2D" uid="uid://ce08nd042k6es" path="res://ui/ui_sprites/ranks/Rank5.png" id="21_0cmgk"]
 
 [node name="titlescreen" type="Control"]
 layout_mode = 3
@@ -38,6 +49,7 @@ color = Color(0, 0, 0, 1)
 metadata/_edit_lock_ = true
 
 [node name="Disclaimer" type="Control" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -130,120 +142,267 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -64.0
+offset_right = -320.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Level1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 1, 0.431373, 1)
+[node name="Line1" type="NinePatchRect" parent="LevelSelection"]
+modulate = Color(1, 0, 0, 1)
 layout_mode = 1
-offset_left = -896.0
-offset_top = -476.0
-offset_right = -768.0
-offset_bottom = -411.0
-text = "1-1"
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -532.0
+offset_right = -512.0
+offset_bottom = 132.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_e6r1y")
+patch_margin_left = 1
+patch_margin_right = 1
+axis_stretch_vertical = 1
+
+[node name="Line2" type="NinePatchRect" parent="LevelSelection"]
+modulate = Color(0, 0.584314, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 384.0
+offset_top = -180.0
+offset_right = 448.0
+offset_bottom = 780.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("8_e6r1y")
+patch_margin_left = 1
+patch_margin_right = 1
+axis_stretch_vertical = 1
+
+[node name="Line3" type="NinePatchRect" parent="LevelSelection"]
+modulate = Color(0, 0.392157, 1, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 392.0
+offset_top = -556.0
+offset_right = 456.0
+offset_bottom = 355.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 0.785398
+texture = ExtResource("8_e6r1y")
+patch_margin_left = 1
+patch_margin_right = 1
+axis_stretch_vertical = 1
+
+[node name="Level1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = -608.0
+offset_top = -308.0
+offset_right = -480.0
+offset_bottom = -244.0
+tooltip_text = "The tutorial level about addition."
+text = "+"
+icon = ExtResource("10_v2k81")
 destination = "res://levels/level_1.tscn"
 
 [node name="Level2" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
-offset_left = -896.0
-offset_top = -412.0
-offset_right = -768.0
-offset_bottom = -347.0
-text = "1-2"
+offset_left = -608.0
+offset_top = -436.0
+offset_right = -480.0
+offset_bottom = -371.0
+tooltip_text = "Slightly harder level about subtraction and ranged enemy attacks."
+text = "-"
+icon = ExtResource("11_yf7xo")
 destination = "res://levels/level_2.tscn"
 
 [node name="Level3" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
-offset_left = -896.0
-offset_top = -348.0
-offset_right = -768.0
-offset_bottom = -283.0
-text = "1-3"
+offset_left = -608.0
+offset_top = -180.0
+offset_right = -480.0
+offset_bottom = -115.0
+tooltip_text = "A confusing maze level teaching multiplication tricks."
+text = "×"
+icon = ExtResource("10_v2k81")
 destination = "res://levels/level_3.tscn"
 
 [node name="Level4" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 1, 0.431373, 1)
 layout_mode = 1
-offset_left = -896.0
-offset_top = -284.0
-offset_right = -768.0
-offset_bottom = -219.0
-text = "1-4"
+offset_left = -640.0
+offset_top = -52.0
+offset_right = -448.0
+offset_bottom = 13.0
+tooltip_text = "A hard level using floor division. You have to beat the whole level in 5 minutes soon after the start, think fast!"
+text = "//(⧗)"
+icon = ExtResource("12_2twkl")
 destination = "res://levels/level_4.tscn"
 
-[node name="LevelB1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 1, 0.431373, 1)
+[node name="Level4B" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
-offset_left = -896.0
-offset_top = -156.0
-offset_right = -768.0
-offset_bottom = -91.0
-text = "1-#"
+offset_left = -640.0
+offset_top = 76.0
+offset_right = -448.0
+offset_bottom = 141.0
+tooltip_text = "The first autoscrolling level. Does not introduce anything else. Easier than 1-4."
+text = "(↣)"
+icon = ExtResource("11_yf7xo")
+destination = "res://levels/level_4b.tscn"
+
+[node name="LevelB1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = -640.0
+offset_top = -564.0
+offset_right = -448.0
+offset_bottom = -499.0
+tooltip_text = "The first bossfight against 0."
+text = "0(#)"
+icon = ExtResource("13_35psm")
 destination = "res://levels/level_b1.tscn"
 
 [node name="LevelB2" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
-offset_left = -704.0
-offset_top = -156.0
-offset_right = -576.0
-offset_bottom = -91.0
-text = "2-#"
+offset_left = 336.0
+offset_top = -180.0
+offset_right = 536.0
+offset_bottom = -115.0
+tooltip_text = "The second boss, X. Attacks vary a lot between the music phases."
+text = "X(#)"
+icon = ExtResource("12_2twkl")
 destination = "res://levels/level_b2.tscn"
 
 [node name="Level5" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
-offset_left = -704.0
-offset_top = -476.0
-offset_right = -576.0
-offset_bottom = -411.0
-text = "2-1"
+offset_left = -432.0
+offset_top = -180.0
+offset_right = -304.0
+offset_bottom = -115.0
+tooltip_text = "The new world level introducing powers, a new enemy and a new weapon."
+text = "aᵇ"
+icon = ExtResource("11_yf7xo")
 destination = "res://levels/level_5.tscn"
 
 [node name="Level6" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
-offset_left = -704.0
-offset_top = -412.0
-offset_right = -576.0
-offset_bottom = -347.0
-text = "2-2"
+offset_left = -256.0
+offset_top = -180.0
+offset_right = -128.0
+offset_bottom = -115.0
+tooltip_text = "The second autoscrolling level. Not too easy but not too hard either."
+text = "(↣)"
+icon = ExtResource("13_35psm")
 destination = "res://levels/level_6.tscn"
 
 [node name="Level7" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
-offset_left = -704.0
-offset_top = -348.0
-offset_right = -576.0
-offset_bottom = -283.0
-text = "2-3"
+offset_left = -80.0
+offset_top = -180.0
+offset_right = 112.0
+offset_bottom = -115.0
+tooltip_text = "The fractions level. Adds a new enemy and a new mechanic."
+text = "a/b"
+icon = ExtResource("13_35psm")
 destination = "res://levels/level_7.tscn"
 
 [node name="Level8" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(1, 0.239216, 0.239216, 1)
 layout_mode = 1
-offset_left = -704.0
-offset_top = -284.0
-offset_right = -576.0
-offset_bottom = -219.0
-text = "2-4"
+offset_left = 160.0
+offset_top = -180.0
+offset_right = 288.0
+offset_bottom = -115.0
+tooltip_text = "A short vertical level to test you against all enemies and math topics before the second bossfight."
+text = "↻"
+icon = ExtResource("11_yf7xo")
 destination = "res://levels/level_8.tscn"
 
 [node name="Level9" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(0.988235, 0.988235, 0.988235, 0.705882)
 layout_mode = 1
-offset_left = -512.0
-offset_top = -476.0
-offset_right = -384.0
-offset_bottom = -411.0
-text = "3-1"
+offset_left = 96.0
+offset_top = -308.0
+offset_right = 224.0
+offset_bottom = -243.0
+tooltip_text = "The third world's first level introducing simple linear equations, a new enemy and switches."
+text = "x=?"
+icon = ExtResource("13_35psm")
 destination = "res://levels/level_9.tscn"
+
+[node name="Level10" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = 224.0
+offset_top = -436.0
+offset_right = 352.0
+offset_bottom = -371.0
+tooltip_text = "This level adds square roots and quadratic equations while giving the player limited vision. Includes a jumpscare."
+text = "√"
+icon = ExtResource("12_2twkl")
+destination = "res://levels/level_10.tscn"
+
+[node name="Level11" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = 320.0
+offset_top = -564.0
+offset_right = 512.0
+offset_bottom = -499.0
+tooltip_text = "This level introduces 8 and uses intermediate-level multiplication tricks."
+text = "×(II)"
+icon = ExtResource("13_35psm")
+destination = "res://levels/level_11.tscn"
+
+[node name="Level12" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = -320.0
+offset_top = 76.0
+offset_right = -128.0
+offset_bottom = 141.0
+tooltip_text = "Third autoscrolling level with boosters and saws."
+text = "(↣)"
+icon = ExtResource("12_2twkl")
+destination = "res://levels/level_12.tscn"
 
 [node name="MusicPlayer" parent="." instance=ExtResource("9_g60jg")]
 position = Vector2(0, -96)
 stream = ExtResource("10_33bvj")
 attenuation = 1.81459e-05
+
+[node name="TextureTest" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Rank0" type="Sprite2D" parent="TextureTest"]
+position = Vector2(2208, 248)
+texture = ExtResource("16_bvory")
+
+[node name="Rank1" type="Sprite2D" parent="TextureTest"]
+position = Vector2(2224, 248)
+texture = ExtResource("17_7dnlp")
+
+[node name="Rank2" type="Sprite2D" parent="TextureTest"]
+position = Vector2(2240, 248)
+texture = ExtResource("18_qg7ym")
+
+[node name="Rank3" type="Sprite2D" parent="TextureTest"]
+position = Vector2(2256, 248)
+texture = ExtResource("19_k6shh")
+
+[node name="Rank4" type="Sprite2D" parent="TextureTest"]
+position = Vector2(2272, 248)
+texture = ExtResource("20_c6tb2")
+
+[node name="Rank5" type="Sprite2D" parent="TextureTest"]
+position = Vector2(2288, 248)
+texture = ExtResource("21_0cmgk")

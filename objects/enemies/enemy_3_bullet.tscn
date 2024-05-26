@@ -8,8 +8,8 @@
 rough = true
 bounce = 1.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_i07xq"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjilb"]
+size = Vector2(6, 6)
 
 [node name="Enemy3_Bullet" type="RigidBody2D"]
 collision_layer = 0
@@ -22,7 +22,7 @@ contact_monitor = true
 script = ExtResource("1_5v73k")
 
 [node name="Coll" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_i07xq")
+shape = SubResource("RectangleShape2D_mjilb")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1

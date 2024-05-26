@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b2agfd5dj6l8d"]
+[gd_scene load_steps=30 format=3 uid="uid://b2agfd5dj6l8d"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_ju01x"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_s6cbf"]
@@ -26,6 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="22_tudap"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="23_hibxo"]
 [ext_resource type="PackedScene" uid="uid://b3uoy70x3kq5v" path="res://objects/blocks/onoff/escape/on_off_escape_wall.tscn" id="24_a0fbx"]
+[ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="27_xnxou"]
 
 [sub_resource type="Environment" id="Environment_xa3lu"]
 background_mode = 3
@@ -2186,4 +2187,8 @@ position = Vector2(5864, -2536)
 [node name="GemTriangle262" parent="." instance=ExtResource("22_tudap")]
 position = Vector2(5864, -2568)
 
-[connection signal="draw" from="Player" to="Player" method="_on_draw"]
+[node name="Checkpoint" parent="." instance=ExtResource("27_xnxou")]
+position = Vector2(104, -936)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("27_xnxou")]
+position = Vector2(3784, -1752)

@@ -20,7 +20,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Spike" type="StaticBody2D" groups=["HazardSpike"]]
+[node name="Spike" type="StaticBody2D" groups=["Hazard", "HazardMelee"]]
+metadata/dmg = 2.0
 
 [node name="Coll" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_m2e28")

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://pthxqfeeyoo3"]
+
+[ext_resource type="Script" path="res://objects/triggers/audio/music_change/t_music_change.gd" id="1_os4f5"]
+[ext_resource type="Texture2D" uid="uid://ca0w24qt3ws8s" path="res://objects/triggers/audio/music_change/t_music_change.png" id="2_ri32r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sqv6"]
+size = Vector2(14, 14)
+
+[node name="TMusicChange" type="Area2D" groups=["Trigger"]]
+modulate = Color(1, 1, 1, 0.627451)
+script = ExtResource("1_os4f5")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_7sqv6")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_ri32r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

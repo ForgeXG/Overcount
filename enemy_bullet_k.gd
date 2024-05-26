@@ -28,7 +28,7 @@ func _process(_delta):
 		modulate.a = d_timer / maxd_timer
 		
 	queue_redraw()
-	
+
 func _physics_process(_delta):
 	rotation += rot_spd
 	scale += scale_spd
@@ -47,8 +47,6 @@ func _physics_process(_delta):
 		if collision.get_collider() == player and player.mach < 3:
 			if player.i_frames == 0:
 				if randf_range(0, 1) <= hit_chance:
-					player.dmg_effect += dmg
-				if float(d_timer) / maxd_timer <= 0.5:
 					player.dmg_effect += dmg
 				queue_free()
 

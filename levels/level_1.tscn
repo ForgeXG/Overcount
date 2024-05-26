@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cr74r2vnuyosb"]
+[gd_scene load_steps=23 format=3 uid="uid://cr74r2vnuyosb"]
 
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="1_l4pvn"]
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_tegwq"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="17_mspuj"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="18_wynhm"]
 [ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="19_v35t0"]
+[ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="21_x5q8h"]
 
 [sub_resource type="Environment" id="Environment_u3ifr"]
 background_mode = 3
@@ -267,6 +268,7 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(1992, -1719)
 scale = Vector2(1.2, 1.2)
 final = true
+finalmusic = "res://audio/music/special/badtothebone.mp3"
 a = 500
 b = 500
 a_range = 500
@@ -1439,3 +1441,6 @@ offset_top = 48.0
 offset_right = 200.0
 offset_bottom = 92.0
 text = "Hover mouse over this lock"
+
+[node name="Checkpoint" parent="." instance=ExtResource("21_x5q8h")]
+position = Vector2(56, -24)

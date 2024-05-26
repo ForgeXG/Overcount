@@ -1,0 +1,84 @@
+[gd_scene load_steps=15 format=3 uid="uid://buh5s60kh5147"]
+
+[ext_resource type="Script" path="res://objects/enemies/enemy_8.gd" id="1_qncm4"]
+[ext_resource type="Texture2D" uid="uid://dac1fd6y0w31p" path="res://sprites/enemies/8/idle/0.png" id="2_ebyfa"]
+[ext_resource type="Texture2D" uid="uid://cd2hbirje2rjk" path="res://sprites/enemies/8/idle/1.png" id="3_rolsl"]
+[ext_resource type="Texture2D" uid="uid://dujn2hp6cvjgj" path="res://sprites/enemies/8/idle/2.png" id="4_nx6bw"]
+[ext_resource type="Texture2D" uid="uid://db6absogg3mjj" path="res://sprites/enemies/8/idle/3.png" id="5_w0bfa"]
+[ext_resource type="Texture2D" uid="uid://bxrypt0qeh1fk" path="res://sprites/enemies/8/idle/4.png" id="6_fw7ih"]
+[ext_resource type="Texture2D" uid="uid://drvnx6spo8f45" path="res://sprites/enemies/8/idle/5.png" id="7_rmrad"]
+[ext_resource type="Texture2D" uid="uid://cohla0m2cha6o" path="res://sprites/enemies/8/idle/6.png" id="8_i1con"]
+[ext_resource type="Texture2D" uid="uid://d1qqqbw27recw" path="res://sprites/enemies/8/idle/7.png" id="9_dgf11"]
+[ext_resource type="Texture2D" uid="uid://c0laqio62883u" path="res://sprites/enemies/8/idle/8.png" id="10_spvcj"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="22_dd5w6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45psn"]
+size = Vector2(10, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vn8r5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ebyfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_rolsl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_nx6bw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w0bfa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_fw7ih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rmrad")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_i1con")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_dgf11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_spvcj")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 9.0
+}]
+
+[sub_resource type="Curve" id="Curve_eby6m"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Enemy8_" type="CharacterBody2D" groups=["Enemies"]]
+texture_filter = 1
+collision_layer = 5
+script = ExtResource("1_qncm4")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_45psn")
+
+[node name="Animations" type="AnimatedSprite2D" parent="." groups=["Enemies"]]
+sprite_frames = SubResource("SpriteFrames_vn8r5")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.287712
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 30
+lifetime = 1.5
+texture = ExtResource("22_dd5w6")
+spread = 150.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 4.0
+orbit_velocity_max = 0.3
+radial_accel_min = 30.0
+radial_accel_max = 40.0
+scale_amount_min = 3.0
+scale_amount_max = 4.0
+scale_amount_curve = SubResource("Curve_eby6m")
+color = Color(1, 0.239216, 1, 0.709804)

@@ -1,10 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://cqif707cm6yj4"]
+[gd_scene load_steps=22 format=3 uid="uid://cqif707cm6yj4"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_tf7am"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_3th7o"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_653c7"]
 [ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="4_2pkal"]
-[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o.tres" id="4_s4rov"]
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="4_s4rov"]
 [ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="5_3rkx8"]
 [ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="7_f1dr4"]
 [ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_86vww"]
@@ -19,6 +19,7 @@
 [ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="16_qvnsw"]
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="17_ymkg0"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="18_dyuil"]
+[ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="20_0yjef"]
 
 [sub_resource type="Environment" id="Environment_u3ifr"]
 background_mode = 3
@@ -353,6 +354,7 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(3528, -2680)
 scale = Vector2(1.2, 1.2)
 final = true
+finalmusic = "res://audio/music/special/badtothebone.mp3"
 mode = "sub"
 a = 500
 b = 100
@@ -1285,3 +1287,15 @@ position = Vector2(5768, -488)
 
 [node name="GemTriangle294" parent="." instance=ExtResource("17_ymkg0")]
 position = Vector2(5192, -488)
+
+[node name="Checkpoint" parent="." instance=ExtResource("20_0yjef")]
+position = Vector2(904, -840)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("20_0yjef")]
+position = Vector2(3080, -440)
+
+[node name="Checkpoint3" parent="." instance=ExtResource("20_0yjef")]
+position = Vector2(4936, -392)
+
+[node name="Checkpoint4" parent="." instance=ExtResource("20_0yjef")]
+position = Vector2(5992, -1128)

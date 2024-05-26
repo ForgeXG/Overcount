@@ -95,7 +95,7 @@ func _process(_delta):
 			rotation += 0.05
 			modulate.a = 0.4
 			player.score += score
-			get_tree().call_group("EscapeWall", "switch", 0)
+			get_tree().call_group("OnOff", "switch", 0)
 			get_parent().get_node("LevelPortal").active = true
 			queue_free()
 		

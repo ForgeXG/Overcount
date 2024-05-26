@@ -47,13 +47,14 @@ func _process(_delta):
 		hp -= 0.1
 		if hp - dmg_effect <= 0:
 			$Coll.set_deferred("disabled", true)
-			velocity.x = randi_range(-500, 500) * (player.mach + 1)
-			velocity.y = randi_range(-500, 500) * (player.mach + 1)
+			velocity.x = randi_range(-100, 100) * (player.mach + 1)
+			velocity.y = randi_range(-100, 100) * (player.mach + 1)
 			
 	if heal_effect > 0:
 		heal_effect -= 0.1
 		hp -= 0.1
-		
+	
+	queue_redraw()
 	# Death
 	if hp <= 0:
 		d_timer -= 1
@@ -65,8 +66,6 @@ func _process(_delta):
 	if d_timer == 0:
 		player.score += score
 		queue_free()
-		
-	queue_redraw()
 
 func _physics_process(delta):
 	var key_jump = player.position.y < position.y - 2
@@ -86,21 +85,19 @@ func _physics_process(delta):
 		cooldown = max_cooldown
 		$Animations.animation = "idle"
 		
-	if cooldown < max_cooldown / 4 and cooldown % 5 == 0 and hp > 0:
+	if cooldown < max_cooldown / 4 and cooldown % 6 == 0 and hp > 0:
 		# Fire Conditions
-		if $Animations.animation == "charge":
-			var bullet = preload("res://objects/enemies/enemy_7_laser.tscn").instantiate()
-			add_sibling(bullet)
-				
-			bullet.velocity = Vector2(fire_impulse, 0).rotated(fire_angle)
-			bullet.position = position + Vector2(0, 0).rotated(fire_angle)
-			bullet.rotation = fire_angle
-			bullet.dmg = dmg
-			bullet.d_timer = fire_lifetime
-			bullet.maxd_timer = fire_lifetime
-			bullet.hit_chance = 0.5
-			if cooldown == 0:
-				cooldown = max_cooldown
+		var bullet = preload("res://objects/enemies/enemy_7_laser.tscn").instantiate()
+		add_sibling(bullet)
+		bullet.velocity = Vector2(fire_impulse, 0).rotated(fire_angle)
+		bullet.position = position + Vector2(12, 0).rotated(fire_angle)
+		bullet.rotation = fire_angle
+		bullet.dmg = dmg
+		bullet.d_timer = fire_lifetime
+		bullet.maxd_timer = fire_lifetime
+		bullet.hit_chance = 0.5
+		if cooldown == 0:
+			cooldown = max_cooldown
 			$Animations.animation = "idle"
 	
 	if !stationary:
@@ -138,8 +135,8 @@ func _draw():
 	var draw_color = Color(1, 0, 0, 1 - float(hp) / maxhp)
 	draw_arc(Vector2(0, 0), 8,
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
-	 50, draw_color, 4, false)
+	 7, draw_color, 4, false)
 	
 	draw_circle(Vector2(0, 0), max_radius, Color(0.4, 0.7, 0.55, 0.4))
-	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
-		draw_line(Vector2(0, 0), player.position - position, Color(0.4, 0.7, 0.55, 0.5), 2*cooldown/max_cooldown, false)
+	# if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
+	#	draw_line(Vector2(0, 0), player.position - position, Color(0.4, 0.7, 0.55, 0.5), 2*cooldown/max_cooldown, false)

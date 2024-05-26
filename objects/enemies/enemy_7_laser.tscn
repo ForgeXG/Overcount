@@ -69,6 +69,7 @@ frame = 4
 frame_progress = 0.436189
 
 [node name="Particles" type="CPUParticles2D" parent="."]
+visible = false
 position = Vector2(8, 0)
 amount = 6
 lifetime = 1.5

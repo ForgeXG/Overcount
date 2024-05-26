@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=11 format=3 uid="uid://ciaqcc656ddbs"]
+[gd_resource type="TileSet" load_steps=13 format=3 uid="uid://ciaqcc656ddbs"]
 
 [ext_resource type="Texture2D" uid="uid://bnqth7ajgn54r" path="res://tilesets/TilesetTriangle.png" id="1_w3240"]
 [ext_resource type="Texture2D" uid="uid://ddn4hfolr3hq3" path="res://tilesets/TilesetSquare.png" id="2_ek7uu"]
@@ -10,6 +10,12 @@ tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 1, 131072, 0, 1, 196608, 0, 2, 1
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_5btfu"]
 tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 1, 131072, 4, 1, 196608, 4, 1, 262144, 4, 1, 327680, 4, 2, 1, 65540, 0, 65537, 65540, 1, 131073, 65540, 1, 196609, 65540, 1, 262145, 65540, 1, 327681, 65540, 2, 2, 65540, 0, 65538, 65540, 1, 131074, 65540, 1, 196610, 65540, 1, 262146, 65540, 1, 327682, 65540, 2, 3, 65540, 0, 65539, 65540, 1, 131075, 65540, 1, 196611, 65540, 1, 262147, 65540, 1, 327683, 65540, 2, 4, 65540, 0, 65540, 65540, 1, 131076, 65540, 1, 196612, 65540, 1, 262148, 65540, 1, 327684, 65540, 2, 5, 131076, 0, 65541, 131076, 1, 131077, 131076, 1, 196613, 131076, 1, 262149, 131076, 1, 327685, 131076, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_a1lws"]
+tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 2, 1, 131076, 0, 65537, 131076, 2)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_6bfax"]
+tile_data = PackedInt32Array(0, 0, 1, 1, 131072, 1)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d0tkl"]
 texture = ExtResource("1_w3240")
@@ -264,3 +270,5 @@ sources/0 = SubResource("TileSetAtlasSource_d0tkl")
 sources/4 = SubResource("TileSetAtlasSource_tfj7p")
 pattern_0 = SubResource("TileMapPattern_ck84a")
 pattern_1 = SubResource("TileMapPattern_5btfu")
+pattern_2 = SubResource("TileMapPattern_a1lws")
+pattern_3 = SubResource("TileMapPattern_6bfax")

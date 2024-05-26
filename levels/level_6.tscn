@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bfc41dj6mqok0"]
+[gd_scene load_steps=25 format=3 uid="uid://bfc41dj6mqok0"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_rkhmb"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_fk6ut"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="20_nw8wp"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="21_0uecg"]
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="22_mbfof"]
+[ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="23_baaoo"]
 
 [sub_resource type="Environment" id="Environment_56hgk"]
 background_mode = 3
@@ -40,6 +41,7 @@ script = ExtResource("1_rkhmb")
 
 [node name="Player" parent="." instance=ExtResource("2_fk6ut")]
 position = Vector2(104, -120)
+keep_music_position = false
 hp = 60.0
 maxhp = 60.0
 escape_time = 18000
@@ -956,4 +958,22 @@ position = Vector2(16040, -536)
 [node name="GemTriangle176" parent="." instance=ExtResource("20_nw8wp")]
 position = Vector2(16072, -536)
 
-[connection signal="draw" from="Camera" to="Camera" method="_on_draw"]
+[node name="Checkpoint" parent="." instance=ExtResource("23_baaoo")]
+position = Vector2(968, -120)
+timeline_camera = true
+
+[node name="Checkpoint2" parent="." instance=ExtResource("23_baaoo")]
+position = Vector2(2744, -200)
+timeline_camera = true
+
+[node name="Checkpoint3" parent="." instance=ExtResource("23_baaoo")]
+position = Vector2(4648, -88)
+timeline_camera = true
+
+[node name="Checkpoint4" parent="." instance=ExtResource("23_baaoo")]
+position = Vector2(8904, -136)
+timeline_camera = true
+
+[node name="Checkpoint5" parent="." instance=ExtResource("23_baaoo")]
+position = Vector2(12984, -280)
+timeline_camera = true
