@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://brt6oa1gwtt6k"]
+
+[ext_resource type="Shader" uid="uid://bnn07lqx7tqfm" path="res://shaders/player/player_invincible.tres" id="1_fovqe"]
+
+[resource]
+shader = ExtResource("1_fovqe")

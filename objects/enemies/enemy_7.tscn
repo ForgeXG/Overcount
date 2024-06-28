@@ -48,7 +48,7 @@
 [ext_resource type="Texture2D" uid="uid://qgb66viyp55x" path="res://sprites/enemies/7/idle/22.png" id="45_q6bi6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_45psn"]
-size = Vector2(10, 16)
+size = Vector2(10, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_vn8r5"]
 animations = [{

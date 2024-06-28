@@ -1,0 +1,72 @@
+[gd_scene load_steps=14 format=3 uid="uid://bm57jli6r67pk"]
+
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_q0miy"]
+[ext_resource type="Script" path="res://levels/post_process.gd" id="2_nty3c"]
+[ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_duqyv"]
+[ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_wb5r3"]
+[ext_resource type="PackedScene" uid="uid://c1nxgonrxphy" path="res://objects/background/graph_background.tscn" id="5_52c8s"]
+[ext_resource type="Material" uid="uid://bp1x1hifb2msi" path="res://materials/m_fractal_1.tres" id="6_6ok2x"]
+[ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="6_tgmqx"]
+[ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="7_ol7sm"]
+[ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_8f35w"]
+[ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="9_ofn30"]
+[ext_resource type="AudioStream" uid="uid://blv7wxa2tw46m" path="res://audio/music/cs/spinbling.mp3" id="10_16c0x"]
+[ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="10_wy5sd"]
+
+[sub_resource type="Environment" id="Environment_u3ifr"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.05
+fog_enabled = true
+adjustment_enabled = true
+
+[node name="Level1" type="Node2D"]
+material = ExtResource("1_q0miy")
+
+[node name="PostProcess" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u3ifr")
+script = ExtResource("2_nty3c")
+
+[node name="Player" parent="." instance=ExtResource("3_duqyv")]
+position = Vector2(0, -24)
+hp = 50.0
+maxhp = 50.0
+maxscore = 450
+escape_time = 10800
+
+[node name="Camera" parent="Player" instance=ExtResource("4_wb5r3")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="NinePatchRect" parent="Player/ParallaxBackground" instance=ExtResource("5_52c8s")]
+modulate = Color(0.388235, 0, 0, 1)
+material = ExtResource("6_6ok2x")
+s_group = 1
+
+[node name="SquareTileMap" parent="." instance=ExtResource("6_tgmqx")]
+modulate = Color(0.14902, 0.14902, 0.14902, 0.513726)
+position = Vector2(0, -16)
+layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, 5, 196609, 2, 6, 196609, 2, 7, 196609, 2, 8, 196609, 2, 9, 196609, 2, 10, 196609, 2, 11, 196609, 2, 12, 196609, 2, 13, 196609, 2, 14, 196609, 2, 15, 196609, 2, 16, 196609, 2, 17, 196609, 2, 18, 196609, 2, 19, 196609, 2, 20, 196609, 2, 22, 196609, 2, 23, 196609, 2, 24, 196609, 2, 25, 196609, 2, 26, 196609, 2, 27, 196609, 2, 28, 196609, 2, 21, 196609, 2)
+
+[node name="DecorTileMap" parent="." instance=ExtResource("6_tgmqx")]
+modulate = Color(1, 0.215686, 0, 1)
+tile_set = ExtResource("7_ol7sm")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("8_8f35w")]
+position = Vector2(-40, -80)
+stream = ExtResource("10_16c0x")
+attenuation = 1.81459e-05
+
+[node name="LevelPortal" parent="." instance=ExtResource("9_ofn30")]
+position = Vector2(-48, -32)
+scale = Vector2(2, 2)
+destination = "res://levels/level_2.tscn"
+active = true
+
+[node name="FloatingText7" parent="." instance=ExtResource("10_wy5sd")]
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 200.0
+offset_bottom = 92.0
+text = "Hover mouse over this lock"

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1nxgonrxphy"]
+
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_dlojs"]
+[ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="2_hxpvi"]
+[ext_resource type="Script" path="res://objects/background/graph_background.gd" id="3_y4qeg"]
+
+[node name="NinePatchRect" type="NinePatchRect" groups=["T"]]
+texture_filter = 1
+material = ExtResource("1_dlojs")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("2_hxpvi")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+script = ExtResource("3_y4qeg")

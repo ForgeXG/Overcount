@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://naov6n0fqt1y"]
+
+[ext_resource type="Shader" uid="uid://b1p8hheqrlgif" path="res://shaders/overlays/s_o_laser.tres" id="1_ikcwt"]
+
+[resource]
+shader = ExtResource("1_ikcwt")

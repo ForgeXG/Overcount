@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=19 format=3 uid="uid://cbuyx21rupji8"]
+[gd_resource type="VisualShader" load_steps=20 format=3 uid="uid://cbuyx21rupji8"]
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_mg7v8"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(16, 9)]
@@ -41,7 +41,8 @@ input_name = "screen_uv"
 
 [sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_d6tvh"]
 size = Vector2(615.066, 243.036)
-expression = "res = sin(x * sqrt(float(3)) + y) * sin(x * sqrt(float(3)) - y) * sin(y * float(2));"
+expression = "res = sin(x * sqrt(float(3)) + y) * sin(x * sqrt(float(3)) - y) * sin(y * float(2));
+// res = sin(abs(x * x + abs(x) * y + y * y));"
 
 [sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_oa2bg"]
 default_input_values = [0, Vector2(0, 0), 1, Vector2(1, 3)]
@@ -52,6 +53,10 @@ operator = 5
 default_input_values = [0, Vector2(0, 0), 1, Vector2(0.2, 0.2)]
 op_type = 0
 operator = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_lgkpy"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(-0.5, -0.5)]
+op_type = 0
 
 [sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_x0hbk"]
 input_name = "color"
@@ -84,6 +89,11 @@ void fragment() {
 	vec2 n_out2p0 = SCREEN_UV;
 
 
+// VectorOp:23
+	vec2 n_in23p1 = vec2(-0.50000, -0.50000);
+	vec2 n_out23p0 = n_out2p0 + n_in23p1;
+
+
 // Input:12
 	vec2 n_out12p0 = SCREEN_PIXEL_SIZE;
 
@@ -94,7 +104,7 @@ void fragment() {
 
 
 // VectorOp:10
-	vec2 n_out10p0 = n_out2p0 / n_out11p0;
+	vec2 n_out10p0 = n_out23p0 / n_out11p0;
 
 
 // Input:15
@@ -137,6 +147,7 @@ void fragment() {
 	n_out20p0 = 0.0;
 	{
 		n_out20p0 = sin(n_out13p0 * sqrt(float(3)) + n_out13p1) * sin(n_out13p0 * sqrt(float(3)) - n_out13p1) * sin(n_out13p1 * float(2));
+		// n_out20p0 = sin(abs(n_out13p0 * n_out13p0 + abs(n_out13p0) * n_out13p1 + n_out13p1 * n_out13p1));
 	}
 
 
@@ -167,9 +178,9 @@ mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(1960, 80)
 nodes/fragment/2/node = SubResource("VisualShaderNodeInput_xippk")
-nodes/fragment/2/position = Vector2(-600, 160)
+nodes/fragment/2/position = Vector2(-780, 140)
 nodes/fragment/3/node = SubResource("VisualShaderNodeInput_x0hbk")
-nodes/fragment/3/position = Vector2(-600, 60)
+nodes/fragment/3/position = Vector2(-560, -20)
 nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_t1a5d")
 nodes/fragment/4/position = Vector2(1560, 80)
 nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_k77rp")
@@ -201,9 +212,12 @@ nodes/fragment/20/position = Vector2(640, 200)
 nodes/fragment/20/size = Vector2(615.066, 243.036)
 nodes/fragment/20/input_ports = "0,0,x;1,0,y;"
 nodes/fragment/20/output_ports = "0,0,res;"
-nodes/fragment/20/expression = "res = sin(x * sqrt(float(3)) + y) * sin(x * sqrt(float(3)) - y) * sin(y * float(2));"
+nodes/fragment/20/expression = "res = sin(x * sqrt(float(3)) + y) * sin(x * sqrt(float(3)) - y) * sin(y * float(2));
+// res = sin(abs(x * x + abs(x) * y + y * y));"
 nodes/fragment/21/node = SubResource("VisualShaderNodeVectorOp_oa2bg")
 nodes/fragment/21/position = Vector2(-140, 400)
 nodes/fragment/22/node = SubResource("VisualShaderNodeVectorOp_umlfr")
 nodes/fragment/22/position = Vector2(0, 400)
-nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 5, 0, 4, 1, 8, 0, 5, 0, 2, 0, 10, 0, 11, 0, 10, 1, 12, 0, 11, 0, 14, 0, 13, 0, 10, 0, 14, 0, 15, 0, 17, 0, 17, 0, 16, 0, 18, 0, 16, 1, 15, 0, 18, 0, 19, 0, 5, 1, 20, 0, 8, 0, 13, 0, 20, 0, 13, 1, 20, 1, 4, 0, 0, 0, 16, 0, 21, 0, 21, 0, 22, 0, 22, 0, 14, 1)
+nodes/fragment/23/node = SubResource("VisualShaderNodeVectorOp_lgkpy")
+nodes/fragment/23/position = Vector2(-440, 80)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 5, 0, 4, 1, 8, 0, 5, 0, 11, 0, 10, 1, 12, 0, 11, 0, 14, 0, 13, 0, 10, 0, 14, 0, 15, 0, 17, 0, 17, 0, 16, 0, 18, 0, 16, 1, 15, 0, 18, 0, 19, 0, 5, 1, 20, 0, 8, 0, 13, 0, 20, 0, 13, 1, 20, 1, 4, 0, 0, 0, 16, 0, 21, 0, 21, 0, 22, 0, 22, 0, 14, 1, 23, 0, 10, 0, 2, 0, 23, 0)

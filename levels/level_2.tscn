@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cqif707cm6yj4"]
+[gd_scene load_steps=23 format=3 uid="uid://cqif707cm6yj4"]
 
 [ext_resource type="Script" path="res://levels/post_process.gd" id="1_tf7am"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_3th7o"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="17_ymkg0"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="18_dyuil"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="20_0yjef"]
+[ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="21_n2kim"]
 
 [sub_resource type="Environment" id="Environment_u3ifr"]
 background_mode = 3
@@ -39,7 +40,7 @@ position = Vector2(8, -394)
 hp = 50.0
 maxhp = 50.0
 maxscore = 600
-escape_time = 10800
+escape_time = 14400
 
 [node name="Camera" parent="Player" instance=ExtResource("3_653c7")]
 visible = false
@@ -79,9 +80,9 @@ attenuation = 1.81459e-05
 [node name="FloatingText" parent="." instance=ExtResource("10_ytp3y")]
 offset_left = 664.0
 offset_top = -280.0
-offset_right = 904.0
-offset_bottom = -262.0
-text = "Void subtracts a lot of HP."
+offset_right = 848.0
+offset_bottom = -258.0
+text = "Void subtracts some HP."
 
 [node name="EquationLock" parent="." instance=ExtResource("13_s1gtb")]
 position = Vector2(760, -871)
@@ -354,7 +355,7 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(3528, -2680)
 scale = Vector2(1.2, 1.2)
 final = true
-finalmusic = "res://audio/music/special/badtothebone.mp3"
+finalmusic = "res://audio/music/special/blastthepixels.mp3"
 mode = "sub"
 a = 500
 b = 100
@@ -1299,3 +1300,7 @@ position = Vector2(4936, -392)
 
 [node name="Checkpoint4" parent="." instance=ExtResource("20_0yjef")]
 position = Vector2(5992, -1128)
+
+[node name="InfoSign2" parent="." instance=ExtResource("21_n2kim")]
+position = Vector2(-8, -152)
+txt = "The 3 is your first ranged enemy. Either dodge its slow bullets, or deflect them using <Q>. You will get 1/6 second of invincibility."

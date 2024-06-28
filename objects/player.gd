@@ -5,6 +5,10 @@ extends CharacterBody2D
 
 @export var walk_spd : int = 140
 @export var jump_force : int = -300
+
+var autorun : bool = false
+
+@export var y_death : float = 0
 var mach = 0
 var int_mach : int = 0
 var h_sign = 0
@@ -28,6 +32,9 @@ var checkpoint_camera_zoom : Vector2 = Vector2.ZERO
 var dmg_effect = 0
 var heal_effect = 0
 var i_frames : int = 0
+
+# Effects
+@export var status_effects : Array[String] = []
 
 # Score
 @export var score : int = 0
@@ -59,7 +66,7 @@ var fire_angle = 0
 var mouse_pos = Vector2.ZERO
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@export var gravity : float = 980.0
 
 @export var cheats : bool = true
 
@@ -77,6 +84,9 @@ func _process(delta):
 	# Animations Control
 	# Flip
 	# $Animations.flip_h = h_sign < 0
+	# Gravity
+	$Animations.flip_v = gravity < 0
+	up_direction.y = -sign(gravity + 0.001)
 	# Speed-based animations
 	if kicked:
 		$Animations.animation = "kickballs"
@@ -95,7 +105,10 @@ func _process(delta):
 			$Animations.animation = "run3"
 	
 	# Invincible animation
-	$Invincible.visible = i_frames > 0
+	if i_frames > 0:
+		$Animations.material = load("res://materials/player/player_invincible.tres")
+	else:
+		$Animations.material = load("res://materials/player/player_default.tres")
 	
 	# Attacking
 	if Input.is_action_pressed("mouse_attack") and weapon_name != "None":
@@ -110,10 +123,10 @@ func _process(delta):
 	
 	# Health Control
 	if dmg_effect > 0:
-		dmg_effect -= 0.1
 		if mach < 3:
-			hp -= 0.1
-		if dmg_effect <= 0.05:
+			hp -= dmg_effect * 0.1
+		dmg_effect *= 0.9
+		if dmg_effect <= 0.001:
 			dmg_effect = 0
 	if heal_effect > 0 and hp < maxhp:
 		heal_effect -= 0.1
@@ -153,8 +166,9 @@ func _process(delta):
 		get_tree().reload_current_scene()
 		
 	# Cheats
-	if Input.is_action_just_pressed("key_cheat_next_room"):
-		get_tree().change_scene_to_file(get_parent().get_node("LevelPortal").destination)
+	if G.enable_cheats:
+		if Input.is_action_just_pressed("key_cheat_next_room"):
+			get_tree().change_scene_to_file(get_parent().get_node("LevelPortal").destination)
 	fire_angle = atan((mouse_pos.y - position.y) / (mouse_pos.x - position.x))
 	if mouse_pos.x - position.x < 0:
 		fire_angle -= PI
@@ -166,12 +180,21 @@ func _physics_process(delta):
 	var key_left : bool = Input.is_action_pressed("key_a")
 	var key_right : bool = Input.is_action_pressed("key_d")
 	var key_jump : bool = Input.is_action_pressed("key_w")
-	var key_accelerate : bool = Input.is_action_pressed("key_acceleration")
+	var key_autorun : bool = Input.is_action_just_pressed("key_autorun")
+	var key_accelerate : bool = Input.is_action_pressed("key_acceleration") or autorun
 	var key_ability : bool = Input.is_action_just_pressed("key_ability")
 	var key_checkpoint : bool = Input.is_action_just_pressed("key_checkpoint")
 	
+	var key_parry : bool = Input.is_action_just_pressed("key_parry")
 	var key_kick : bool = Input.is_action_just_pressed("key_kick")
 	
+	if key_autorun:
+		autorun = !autorun
+	
+	if key_parry and i_frames <= 0 and s_frames <= 0:
+		i_frames = 10
+		s_frames = 10
+
 	if key_left:
 		$Animations.flip_h = true
 	if key_right:
@@ -191,6 +214,11 @@ func _physics_process(delta):
 		kicked = false
 	
 	h_sign = int(key_right) - int(key_left)
+	
+	# Reversed status effect
+	if "Reversed" in status_effects:
+		h_sign *= -1
+	
 	if h_sign != 0:
 		if key_accelerate:
 			if !is_on_wall():
@@ -209,17 +237,17 @@ func _physics_process(delta):
 		if j_frames > 0:
 			j_frames -= 1
 	else:
-		j_frames = 10 # Standard 1/4 s
+		j_frames = 10 # Standard 1/6 s
 
 	# Handle Jump.
 	if key_jump:
 		if is_on_floor() or j_frames > 0:
-			velocity.y = jump_force * delta * 60
+			velocity.y = jump_force * delta * 60 * -up_direction.y
 			j_frames = -1
 			if mach == 3:
 				velocity.y *= 1.5
 		elif is_on_wall() and mach >= 1:
-			velocity.y = jump_force * 0.75 * delta * 60
+			velocity.y = jump_force * 0.9 * delta * 60 * -up_direction.y
 			mach = clamp(mach, 0, 2)
 
 	if s_frames == 0:
@@ -232,7 +260,7 @@ func _physics_process(delta):
 		ability(10)
 	
 	# Void trigger load.
-	if position.y > 0 or key_checkpoint:
+	if position.y > y_death or key_checkpoint:
 		position = checkpoint_position
 		if !keep_music_position:
 			get_parent().get_node("MusicPlayer").play(checkpoint_music_position)
@@ -254,11 +282,11 @@ func _physics_process(delta):
 		if coll.is_in_group("Hazard"):
 			if coll.is_in_group("HazardMelee"):
 				if i_frames == 0:
-					damage(2)
+					damage(3)
 					i_frames = 90
 					s_frames = 45
 					velocity.x = -h_sign * walk_spd * 1.2 * delta * 60
-					velocity.y = jump_force * 1.2 * delta * 60
+					velocity.y = jump_force * 1.2 * delta * 60 * -up_direction.y
 					if coll.is_in_group("HazardSaw"):
 						velocity.x = -h_sign * walk_spd * 1.6 * delta * 60
 						damage(8)
@@ -311,8 +339,8 @@ func ability(ability_cost : int):
 		cooldown = 60
 
 func _on_draw():
-	draw_string(draw_font, Vector2(0, -16), $Animations.animation, HORIZONTAL_ALIGNMENT_FILL, -1, 12, 
-		Color.WHITE)
+	# draw_string(draw_font, Vector2(0, -16), $Animations.animation, HORIZONTAL_ALIGNMENT_FILL, -1, 12, 
+	#	Color.WHITE)
 	draw_line(Vector2.ZERO, Vector2(64, 0).rotated(fire_angle), Color(0, 0, 1, 0.3), 2, false)
 	
 	if weapon_type == "Sling":

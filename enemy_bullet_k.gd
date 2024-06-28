@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Area2D
 @export var rot_spd = 0
 @export var dmg : int = 1
 @export var hit_chance : float = 1
@@ -29,7 +29,7 @@ func _process(_delta):
 		
 	queue_redraw()
 
-func _physics_process(_delta):
+func _physics_process(delta):
 	rotation += rot_spd
 	scale += scale_spd
 	player_dist = position.distance_to(player.position)
@@ -41,17 +41,31 @@ func _physics_process(_delta):
 		if player_dist <= blackhole_radius:
 			player.position -= 2 * Vector2(cos(player_angle), -sin(player_angle))
 	
-	move_and_slide()
-	for i in get_slide_collision_count():
+	# move_and_slide()
+	
+	"""for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		if collision.get_collider() == player and player.mach < 3:
 			if player.i_frames == 0:
 				if randf_range(0, 1) <= hit_chance:
 					player.dmg_effect += dmg
-				queue_free()
+				if !laser:
+					queue_free()
+		elif collision.get_collider().is_in_group("WallTileMap"):
+			scale_spd = Vector2.ZERO"""
 
 func _on_draw():
 	if blackhole:
 		draw_circle(Vector2(0, 0), blackhole_radius, Color(0, 0, 0, 0.4))
 		if player_dist <= blackhole_radius:
 			draw_line(Vector2(0, 0), Vector2(player.position - position).rotated(-rotation), Color.BLACK, 3, false)
+
+
+func _on_body_entered(body):
+	if body.is_in_group("Player"):
+		if randf_range(0, 1) <= hit_chance:
+			player.dmg_effect += dmg
+		if !laser:
+			queue_free()
+	elif body.is_in_group("WallTileMap"):
+		scale_spd = Vector2.ZERO

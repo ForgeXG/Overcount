@@ -14,7 +14,7 @@ var player_angle = 0
 
 func _ready():
 	d_timer = maxd_timer
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 
 func _process(_delta):
 	if d_timer > 0:
@@ -41,7 +41,7 @@ func _on_body_entered(body):
 	if body.is_in_group("Enemies"):
 		position.y -= 16
 	elif body.is_in_group("Player"):
-		if body.mach < 3:
+		if body.mach < 3 and body.i_frames == 0:
 			body.dmg_effect += dmg - 0.01
 			queue_free()
 	elif body.is_in_group("WallTileMap"):

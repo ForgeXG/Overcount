@@ -12,7 +12,7 @@ var player
 @export var draw_font : SystemFont
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	modulate = get_parent().get_node("SquareTileMap").modulate
 	$SwitchTimer.wait_time = cooldown
 	$SwitchTimer.one_shot = manual
@@ -30,7 +30,7 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var coll = collision.get_collider()
-		if (coll.is_in_group("Player") or coll.is_in_group("Enemies")) and $SwitchTimer.time_left <= 0.01 and manual:
+		if (coll.is_in_group("Player") or coll.is_in_group("Enemies")) and is_equal_approx($SwitchTimer.time_left, 0.0) and manual:
 			get_tree().call_group("OnOff", "switch", s_group)
 			$SwitchTimer.start(cooldown)
 

@@ -1,7 +1,8 @@
-VisualShader
 ShaderMaterial
-SystemFont
+VisualShader
+ImageTexture
 SpriteFrames
+SystemFont
 FontFile
 TileSet
 PackedScene

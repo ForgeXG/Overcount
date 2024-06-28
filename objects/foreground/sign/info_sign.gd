@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var txt : String = ""
+@export_multiline var txt : String = ""
 var active = false
 var v_ratio = 0
 

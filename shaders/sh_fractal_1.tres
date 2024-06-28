@@ -1,0 +1,179 @@
+[gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://04k4owxrql4c"]
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_mg7v8"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(16, 9)]
+op_type = 0
+operator = 3
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_rwrm0"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(300, 300)]
+op_type = 0
+operator = 2
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qdla7"]
+input_name = "screen_pixel_size"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ae1nj"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_bxe31"]
+constant = 0.05
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_xippk"]
+input_name = "screen_uv"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_r74if"]
+size = Vector2(958.996, 563.516)
+expression = "vec2 z = vec2(cos(t) * 0.1, sin(t) * 0.1);
+int br = 0;
+for (int i = 0; i < int(l); ++i) {
+	++br;
+	z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + v;
+	// z = vec2(pow(z.x, 4.0) - 6.0 * pow(z.x * z.y, 2.0) + pow(z.y, 4.0),
+	// 4.0 * (z.x * z.x * z.x * z.y - z.y * z.y * z.y * z.x)) + v;
+	if (sqrt(z.x * z.x + z.y * z.y) > 2.0) {
+		break;
+	}
+};
+res = float(br) / l * 2.0;"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_bvbnn"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(-0.6, -0.5)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_3camd"]
+constant = 100.0
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_x0hbk"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_t1a5d"]
+default_input_values = [0, Quaternion(0, 0, 0, 0), 1, Quaternion(0, 0, 0, 0)]
+op_type = 2
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_k77rp"]
+default_input_values = [0, Vector3(0, 0, 0), 1, Vector3(0.1, 0.1, 0.1)]
+operator = 2
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void fragment() {
+// Input:3
+	vec4 n_out3p0 = COLOR;
+
+
+// Input:2
+	vec2 n_out2p0 = SCREEN_UV;
+
+
+// VectorOp:22
+	vec2 n_in22p1 = vec2(-0.60000, -0.50000);
+	vec2 n_out22p0 = n_out2p0 + n_in22p1;
+
+
+// Input:12
+	vec2 n_out12p0 = SCREEN_PIXEL_SIZE;
+
+
+// VectorOp:11
+	vec2 n_in11p1 = vec2(300.00000, 300.00000);
+	vec2 n_out11p0 = n_out12p0 * n_in11p1;
+
+
+// VectorOp:10
+	vec2 n_out10p0 = n_out22p0 / n_out11p0;
+
+
+// Input:15
+	float n_out15p0 = TIME;
+
+
+// FloatConstant:23
+	float n_out23p0 = 100.000000;
+
+
+	float n_out20p0;
+// Expression:20
+	n_out20p0 = 0.0;
+	{
+		vec2 z = vec2(cos(n_out15p0) * 0.1, sin(n_out15p0) * 0.1);
+		int br = 0;
+		for (int i = 0; i < int(n_out23p0); ++i) {
+			++br;
+			z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + n_out10p0;
+			// z = vec2(pow(z.x, 4.0) - 6.0 * pow(z.x * z.y, 2.0) + pow(z.y, 4.0),
+			// 4.0 * (z.x * z.x * z.x * z.y - z.y * z.y * z.y * z.x)) + n_out10p0;
+			if (sqrt(z.x * z.x + z.y * z.y) > 2.0) {
+				break;
+			}
+		};
+		n_out20p0 = float(br) / n_out23p0 * 2.0;
+	}
+
+
+// FloatConstant:19
+	float n_out19p0 = 0.050000;
+
+
+// VectorOp:5
+	vec3 n_out5p0 = vec3(n_out20p0) * vec3(n_out19p0);
+
+
+// VectorOp:4
+	vec4 n_out4p0 = n_out3p0 + vec4(n_out5p0, 0.0);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out4p0.xyz);
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(1460, 80)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_xippk")
+nodes/fragment/2/position = Vector2(-780, 120)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_x0hbk")
+nodes/fragment/3/position = Vector2(-100, -20)
+nodes/fragment/4/node = SubResource("VisualShaderNodeVectorOp_t1a5d")
+nodes/fragment/4/position = Vector2(1300, 80)
+nodes/fragment/5/node = SubResource("VisualShaderNodeVectorOp_k77rp")
+nodes/fragment/5/position = Vector2(1100, 200)
+nodes/fragment/10/node = SubResource("VisualShaderNodeVectorOp_mg7v8")
+nodes/fragment/10/position = Vector2(-260, 180)
+nodes/fragment/11/node = SubResource("VisualShaderNodeVectorOp_rwrm0")
+nodes/fragment/11/position = Vector2(-440, 240)
+nodes/fragment/12/node = SubResource("VisualShaderNodeInput_qdla7")
+nodes/fragment/12/position = Vector2(-760, 240)
+nodes/fragment/15/node = SubResource("VisualShaderNodeInput_ae1nj")
+nodes/fragment/15/position = Vector2(-600, 420)
+nodes/fragment/19/node = SubResource("VisualShaderNodeFloatConstant_bxe31")
+nodes/fragment/19/position = Vector2(920, 360)
+nodes/fragment/20/node = SubResource("VisualShaderNodeExpression_r74if")
+nodes/fragment/20/position = Vector2(-80, 180)
+nodes/fragment/20/size = Vector2(958.996, 563.516)
+nodes/fragment/20/input_ports = "0,3,v;1,0,t;2,0,l;"
+nodes/fragment/20/output_ports = "0,0,res;"
+nodes/fragment/20/expression = "vec2 z = vec2(cos(t) * 0.1, sin(t) * 0.1);
+int br = 0;
+for (int i = 0; i < int(l); ++i) {
+	++br;
+	z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + v;
+	// z = vec2(pow(z.x, 4.0) - 6.0 * pow(z.x * z.y, 2.0) + pow(z.y, 4.0),
+	// 4.0 * (z.x * z.x * z.x * z.y - z.y * z.y * z.y * z.x)) + v;
+	if (sqrt(z.x * z.x + z.y * z.y) > 2.0) {
+		break;
+	}
+};
+res = float(br) / l * 2.0;"
+nodes/fragment/22/node = SubResource("VisualShaderNodeVectorOp_bvbnn")
+nodes/fragment/22/position = Vector2(-440, 80)
+nodes/fragment/23/node = SubResource("VisualShaderNodeFloatConstant_3camd")
+nodes/fragment/23/position = Vector2(-300, 440)
+nodes/fragment/connections = PackedInt32Array(3, 0, 4, 0, 5, 0, 4, 1, 11, 0, 10, 1, 12, 0, 11, 0, 4, 0, 0, 0, 19, 0, 5, 1, 15, 0, 20, 1, 10, 0, 20, 0, 22, 0, 10, 0, 2, 0, 22, 0, 23, 0, 20, 2, 20, 0, 5, 0)

@@ -245,15 +245,15 @@ position = Vector2(3544, -199)
 scale = Vector2(3, 3)
 
 [node name="Saw14" parent="." instance=ExtResource("14_hsg4p")]
-position = Vector2(1816, -296)
+position = Vector2(2024, -280)
 scale = Vector2(3, 3)
 
 [node name="Saw16" parent="." instance=ExtResource("14_hsg4p")]
-position = Vector2(1768, -296)
+position = Vector2(1936, -280)
 scale = Vector2(3, 3)
 
 [node name="Saw15" parent="." instance=ExtResource("14_hsg4p")]
-position = Vector2(1720, -296)
+position = Vector2(1848, -280)
 scale = Vector2(3, 3)
 
 [node name="Saw8" parent="." instance=ExtResource("14_hsg4p")]

@@ -1,6 +1,6 @@
 extends Control
 
-@export var fadein : float = 240
+@export var fadein : float = 120
 @export var fadeout : float = 60
 var appear : bool = true
 
@@ -10,6 +10,11 @@ func _ready():
 	$LevelSelection.modulate.a = 0
 
 func _process(_delta):
+	# Global Data
+	$LevelSelection/GlobalData/TextCoins.text = str(G.coins)
+	if G.enable_cheats:
+		if Input.is_action_pressed("key_cheat_give_coins"): # P
+			G.coins += 10000
 	if appear:
 		$Disclaimer.modulate.a += 1 / fadein
 		if $Disclaimer.modulate.a >= 1:

@@ -1,0 +1,157 @@
+[gd_scene load_steps=33 format=3 uid="uid://dqbkhrlr10cqb"]
+
+[ext_resource type="Script" path="res://objects/enemies/enemy_9.gd" id="1_nmjqw"]
+[ext_resource type="Texture2D" uid="uid://bpcrt681a5o2t" path="res://sprites/enemies/3/charge/0.png" id="2_mlbam"]
+[ext_resource type="Texture2D" uid="uid://cls0o017xh4rs" path="res://sprites/enemies/3/charge/1.png" id="3_axrbl"]
+[ext_resource type="Texture2D" uid="uid://cqf8xuowi505m" path="res://sprites/enemies/3/charge/2.png" id="4_dfubm"]
+[ext_resource type="Texture2D" uid="uid://ddewagkybghmn" path="res://sprites/enemies/3/charge/3.png" id="5_g5fax"]
+[ext_resource type="Texture2D" uid="uid://cgwsxdbvul4y1" path="res://sprites/enemies/3/charge/4.png" id="6_2fg0i"]
+[ext_resource type="Texture2D" uid="uid://dca605pngtntm" path="res://sprites/enemies/3/charge/5.png" id="7_767pf"]
+[ext_resource type="Texture2D" uid="uid://c51mk0a8yiiia" path="res://sprites/enemies/3/charge/6.png" id="8_736r5"]
+[ext_resource type="Texture2D" uid="uid://bcyped2qctnvk" path="res://sprites/enemies/3/charge/7.png" id="9_b0d46"]
+[ext_resource type="Texture2D" uid="uid://b1a3rsix1hr0r" path="res://sprites/enemies/3/charge/8.png" id="10_4uqwf"]
+[ext_resource type="Texture2D" uid="uid://x65uswtjeim6" path="res://sprites/enemies/3/charge/9.png" id="11_h1gmi"]
+[ext_resource type="Texture2D" uid="uid://c0j0q6bo66ipf" path="res://sprites/enemies/3/charge/10.png" id="12_yk7rd"]
+[ext_resource type="Texture2D" uid="uid://dohy2jamf26f0" path="res://sprites/enemies/3/charge/11.png" id="13_2btg2"]
+[ext_resource type="Texture2D" uid="uid://nnctnqadhpyu" path="res://sprites/enemies/3/charge/12.png" id="14_btf21"]
+[ext_resource type="Texture2D" uid="uid://y2ph72phuke2" path="res://sprites/enemies/3/charge/13.png" id="15_sj5iq"]
+[ext_resource type="Texture2D" uid="uid://578wlemajb6u" path="res://sprites/enemies/3/charge/14.png" id="16_rgb3t"]
+[ext_resource type="Texture2D" uid="uid://0csagpixenqi" path="res://sprites/enemies/3/charge/15.png" id="17_mvesn"]
+[ext_resource type="Texture2D" uid="uid://bdf6lmcrurspg" path="res://sprites/enemies/3/charge/16.png" id="18_muisg"]
+[ext_resource type="Texture2D" uid="uid://bp5q5fohtebvm" path="res://sprites/enemies/3/charge/17.png" id="19_uygrw"]
+[ext_resource type="Texture2D" uid="uid://diupkdcf523ih" path="res://sprites/enemies/3/charge/18.png" id="20_p8tvw"]
+[ext_resource type="Texture2D" uid="uid://d26i6rj5seks2" path="res://sprites/enemies/3/charge/19.png" id="21_mmnmj"]
+[ext_resource type="Texture2D" uid="uid://bspnsrijalqsw" path="res://sprites/enemies/3/idle/0.png" id="22_mqxta"]
+[ext_resource type="Texture2D" uid="uid://cx6xr3tvagnfn" path="res://sprites/enemies/3/idle/1.png" id="23_h3v1n"]
+[ext_resource type="Texture2D" uid="uid://k7uy3m8cc4eh" path="res://sprites/enemies/3/idle/2.png" id="24_ggbvc"]
+[ext_resource type="Texture2D" uid="uid://dhvblagcy11ck" path="res://sprites/enemies/3/idle/3.png" id="25_l76xk"]
+[ext_resource type="Texture2D" uid="uid://rqchr4p7gsco" path="res://sprites/enemies/3/idle/4.png" id="26_ujwww"]
+[ext_resource type="Texture2D" uid="uid://s4u8iwmhsw8b" path="res://sprites/enemies/3/idle/5.png" id="27_necnw"]
+[ext_resource type="Texture2D" uid="uid://brqg8ncay4o2i" path="res://sprites/enemies/3/idle/6.png" id="28_1n7r0"]
+[ext_resource type="Texture2D" uid="uid://c6spsv0n34jvs" path="res://sprites/enemies/3/idle/7.png" id="29_n0qkf"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="30_flojx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bchm2"]
+size = Vector2(10, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqoxg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_mlbam")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_axrbl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dfubm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g5fax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2fg0i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_767pf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_736r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b0d46")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4uqwf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_h1gmi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_yk7rd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_2btg2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_btf21")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_sj5iq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_rgb3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_mvesn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_muisg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_uygrw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_p8tvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_mmnmj")
+}],
+"loop": true,
+"name": &"charge",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_mqxta")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_h3v1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ggbvc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_l76xk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ujwww")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_necnw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_1n7r0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_n0qkf")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 4.0
+}]
+
+[node name="Enemy9_" type="CharacterBody2D" groups=["Enemies"]]
+collision_layer = 5
+script = ExtResource("1_nmjqw")
+hp = 1.0
+maxhp = 1.0
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bchm2")
+
+[node name="Animations" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_qqoxg")
+animation = &"charge"
+autoplay = "idle"
+frame = 1
+frame_progress = 0.242131
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 24
+texture = ExtResource("30_flojx")
+emission_shape = 3
+emission_rect_extents = Vector2(4, 2)
+gravity = Vector2(0, 2)
+color = Color(0.996094, 0.46875, 0, 1)

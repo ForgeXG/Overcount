@@ -77,7 +77,7 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="LevelPortal" type="Area2D"]
+[node name="LevelPortal" type="Area2D" groups=["T"]]
 texture_filter = 1
 script = ExtResource("1_0vtfc")
 

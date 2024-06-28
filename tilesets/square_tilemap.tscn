@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://ciaqcc656ddbs" path="res://tilesets/tilesetsquare.tres" id="1_l205a"]
 
-[node name="SquareTileMap" type="TileMap" groups=["WallTileMap"]]
+[node name="SquareTileMap" type="TileMap" groups=["T", "WallTileMap"]]
 texture_filter = 1
 texture_repeat = 1
 tile_set = ExtResource("1_l205a")

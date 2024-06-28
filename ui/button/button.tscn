@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://d12gyrw4crrg2"]
+[gd_scene load_steps=8 format=3 uid="uid://d12gyrw4crrg2"]
 
 [ext_resource type="Texture2D" uid="uid://613ub5igfmo5" path="res://ui/button/uibutton.png" id="1_h3dgo"]
 [ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="1_oxpmn"]
 [ext_resource type="Script" path="res://ui/button/button.gd" id="1_uod0s"]
 [ext_resource type="Script" path="res://ui/ui_sprites/danger/uniform_scale_c.gd" id="4_f64gr"]
+[ext_resource type="Material" uid="uid://duto572am2w5" path="res://materials/trig/m_trig_1e.tres" id="5_yinwd"]
+[ext_resource type="Texture2D" uid="uid://dlmh4qo4cx1sr" path="res://ui/ui_sprites/s_textbox_l.png" id="6_qdlin"]
+[ext_resource type="Texture2D" uid="uid://cbvpcvefm2gnh" path="res://ui/ui_sprites/difficulty_faces/DifficultyEasy.png" id="7_813lr"]
 
 [node name="Button" type="Button"]
 texture_filter = 1
@@ -14,6 +17,8 @@ theme_override_font_sizes/font_size = 48
 flat = true
 expand_icon = true
 script = ExtResource("1_uod0s")
+level_title = "<TItle placeholder>"
+level_desc = "<Description placeholder>"
 
 [node name="Image" type="NinePatchRect" parent="."]
 show_behind_parent = true
@@ -33,6 +38,220 @@ script = ExtResource("4_f64gr")
 amplitude = 0.02
 speed = 0.02
 
+[node name="ButtonUI" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Control" type="Control" parent="ButtonUI"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 1216.0
+offset_bottom = 768.0
+
+[node name="FillerBox" type="NinePatchRect" parent="ButtonUI/Control"]
+modulate = Color(0.0392157, 0.0392157, 0.0392157, 1)
+material = ExtResource("5_yinwd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qdlin")
+region_rect = Rect2(2, 2, 12, 12)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="InfoBox" type="NinePatchRect" parent="ButtonUI/Control"]
+modulate = Color(0.196078, 0, 0.309804, 1)
+material = ExtResource("5_yinwd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qdlin")
+region_rect = Rect2(2, 2, 12, 12)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Difficulty" type="NinePatchRect" parent="ButtonUI/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 976.0
+offset_top = 40.0
+offset_right = -48.0
+offset_bottom = -536.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_813lr")
+
+[node name="LevelTitle" type="RichTextLabel" parent="ButtonUI/Control"]
+material = ExtResource("5_yinwd")
+clip_contents = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 40.0
+offset_right = 944.0
+offset_bottom = 167.0
+theme_override_fonts/normal_font = ExtResource("1_oxpmn")
+theme_override_font_sizes/normal_font_size = 96
+text = "<Title placeholder>"
+fit_content = true
+
+[node name="FillerBox" type="NinePatchRect" parent="ButtonUI/Control/LevelTitle"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = ExtResource("5_yinwd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qdlin")
+region_rect = Rect2(2, 2, 12, 12)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="InfoBox" type="NinePatchRect" parent="ButtonUI/Control/LevelTitle"]
+modulate = Color(0.462745, 0, 0.698039, 1)
+show_behind_parent = true
+material = ExtResource("5_yinwd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qdlin")
+region_rect = Rect2(2, 2, 12, 12)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="LevelDesc" type="RichTextLabel" parent="ButtonUI/Control"]
+material = ExtResource("5_yinwd")
+clip_contents = false
+layout_mode = 0
+offset_left = 32.0
+offset_top = 192.0
+offset_right = 1120.0
+offset_bottom = 384.0
+theme_override_fonts/normal_font = ExtResource("1_oxpmn")
+theme_override_font_sizes/normal_font_size = 36
+text = "<Description placeholder>"
+
+[node name="FillerBox" type="NinePatchRect" parent="ButtonUI/Control/LevelDesc"]
+modulate = Color(0, 0, 0, 1)
+show_behind_parent = true
+material = ExtResource("5_yinwd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qdlin")
+region_rect = Rect2(2, 2, 12, 12)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="InfoBox" type="NinePatchRect" parent="ButtonUI/Control/LevelDesc"]
+modulate = Color(0.486275, 0, 0.568627, 1)
+show_behind_parent = true
+material = ExtResource("5_yinwd")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_qdlin")
+region_rect = Rect2(2, 2, 12, 12)
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="TeleporterButton" type="Button" parent="ButtonUI/Control"]
+layout_mode = 0
+offset_left = 768.0
+offset_top = 448.0
+offset_right = 1088.0
+offset_bottom = 513.0
+theme_override_fonts/font = ExtResource("1_oxpmn")
+theme_override_font_sizes/font_size = 48
+text = "ENTER!"
+flat = true
+
+[node name="Image" type="NinePatchRect" parent="ButtonUI/Control/TeleporterButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h3dgo")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+script = ExtResource("4_f64gr")
+amplitude = 0.02
+speed = 0.02
+metadata/_edit_lock_ = true
+
+[node name="CancelButton" type="Button" parent="ButtonUI/Control"]
+modulate = Color(1, 0.301961, 0.301961, 1)
+layout_mode = 0
+offset_left = 768.0
+offset_top = 576.0
+offset_right = 1088.0
+offset_bottom = 641.0
+theme_override_fonts/font = ExtResource("1_oxpmn")
+theme_override_font_sizes/font_size = 48
+text = "No thanks💀"
+flat = true
+
+[node name="Image" type="NinePatchRect" parent="ButtonUI/Control/CancelButton"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_h3dgo")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+script = ExtResource("4_f64gr")
+amplitude = 0.02
+speed = 0.02
+metadata/_edit_lock_ = true
+
 [connection signal="button_down" from="." to="." method="_button_down"]
 [connection signal="mouse_entered" from="." to="." method="_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_mouse_exited"]
+[connection signal="button_down" from="ButtonUI/Control/TeleporterButton" to="." method="_child_button_down"]
+[connection signal="pressed" from="ButtonUI/Control/TeleporterButton" to="." method="_child_button_pressed"]
+[connection signal="button_down" from="ButtonUI/Control/CancelButton" to="." method="_cancel_button_down"]

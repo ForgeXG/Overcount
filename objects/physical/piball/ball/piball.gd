@@ -10,7 +10,7 @@ var player
 
 func _ready():
 	last_safe_position = global_position
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 
 
 func _process(_delta):
@@ -20,6 +20,7 @@ func _process(_delta):
 
 
 func _physics_process(_delta):
+	$Ray.rotation = -rotation
 	if global_position.y > 0:
 		linear_velocity = Vector2.ZERO
 		global_position = last_safe_position
@@ -36,9 +37,9 @@ func _on_body_entered(body):
 	if $Ray.is_colliding():
 		if $Ray.get_collider().is_in_group("WallTileMap") and global_position.y < 8:
 			last_safe_position = global_position
+			p_coll = 3
 	if body.is_in_group("Player"):
 		p_coll = 3
-		
 
 func _on_body_exited(body):
 	pass # Replace with function body.

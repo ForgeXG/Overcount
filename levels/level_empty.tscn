@@ -38,7 +38,6 @@ visible = false
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="Player/ParallaxBackground"]
-modulate = Color(1, 0.215686, 0, 1)
 texture_filter = 1
 material = ExtResource("1_xwbha")
 anchors_preset = 15
@@ -52,12 +51,10 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="SquareTileMap" parent="." instance=ExtResource("6_2mrjm")]
-modulate = Color(1, 0.215686, 0, 1)
 position = Vector2(0, -16)
 layer_0/tile_data = PackedInt32Array(65532, 196612, 2, 65533, 196612, 2, 65534, 196612, 2, 65535, 196612, 2, 0, 196612, 2, 1, 196612, 2, 2, 196612, 2, 3, 196612, 2, 4, 196612, 2, 5, 196612, 2)
 
 [node name="DecorTileMap" parent="." instance=ExtResource("6_2mrjm")]
-modulate = Color(1, 0.215686, 0, 1)
 tile_set = ExtResource("7_fgs6s")
 
 [node name="MusicPlayer" parent="." instance=ExtResource("8_jqgbw")]

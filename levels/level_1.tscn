@@ -41,7 +41,7 @@ position = Vector2(0, -24)
 hp = 50.0
 maxhp = 50.0
 maxscore = 450
-escape_time = 10800
+escape_time = 14400
 
 [node name="Camera" parent="Player" instance=ExtResource("3_70g55")]
 visible = false
@@ -268,7 +268,7 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(1992, -1719)
 scale = Vector2(1.2, 1.2)
 final = true
-finalmusic = "res://audio/music/special/badtothebone.mp3"
+finalmusic = "res://audio/music/special/blastthepixels.mp3"
 a = 500
 b = 500
 a_range = 500
@@ -588,7 +588,7 @@ position = Vector2(1273, -1912)
 position = Vector2(2000, -1896)
 
 [node name="Teleport10" parent="." node_paths=PackedStringArray("link") instance=ExtResource("12_bp1i6")]
-position = Vector2(1920, -1744)
+position = Vector2(1912, -1720)
 link = NodePath("../Teleport11")
 
 [node name="Teleport11" parent="." node_paths=PackedStringArray("link") instance=ExtResource("12_bp1i6")]
@@ -1427,6 +1427,10 @@ position = Vector2(2040, -1736)
 position = Vector2(856, -1704)
 txt = "Pro tip: When adding 2 big numbers in your head, start from the leftmost digits. 1234+567=1000+(200+500)+(30+60)+(4+7)=1000+700+90+11=1801. "
 
+[node name="InfoSign2" parent="." instance=ExtResource("19_v35t0")]
+position = Vector2(1864, -1896)
+txt = "Below you is a final lock. By solving it, you can now escape the level back to the entrance. The path might change."
+
 [node name="EquationLock6" parent="." instance=ExtResource("11_4e8tt")]
 position = Vector2(1656, -1624)
 scale = Vector2(1.2, 1.2)
@@ -1436,11 +1440,11 @@ a_range = 600
 b_range = 600
 
 [node name="FloatingText7" parent="." instance=ExtResource("7_t5cmt")]
-offset_left = 88.0
-offset_top = 48.0
-offset_right = 200.0
-offset_bottom = 92.0
-text = "Hover mouse over this lock"
+offset_left = 104.0
+offset_top = 40.0
+offset_right = 216.0
+offset_bottom = 84.0
+text = "Solve this"
 
 [node name="Checkpoint" parent="." instance=ExtResource("21_x5q8h")]
-position = Vector2(56, -24)
+position = Vector2(984, -24)

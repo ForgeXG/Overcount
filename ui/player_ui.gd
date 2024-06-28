@@ -28,6 +28,10 @@ func _process(_delta):
 	$TextHealth.text = "%.1f" % player.hp
 	if player.heal_effect > 0:
 		$TextHealth.text = "%.1f" % player.hp + "+" + "%.1f" % player.heal_effect
+	if player.hp / player.maxhp < 0.2:
+		$TextHealth/FillerRect.material = load("res://materials/player/player_invincible.tres")
+	else:
+		$TextHealth/FillerRect.material = load("res://materials/m_quadrille_o1.tres")
 	$TextCooldown.text = str(player.cooldown)
 	$TextEnergy.text = str(player.energy)
 	$TextScore.text = str(player.score)
@@ -46,7 +50,8 @@ func _process(_delta):
 		$OvercountSign.rotation += sin($OvercountSign.texture.current_frame/10)
 	
 	$FillerBox/InfoBox/TextSpeedrunTimer.text = time_to_speedrun(player.speedrun_time)
-
+	$FillerBox/InfoBox/TextMach.text = "Phase: " + "%.1f" % player.mach
+	$FillerBox/InfoBox/TextAutorun.text = "Autorun: " + str(player.autorun)
 
 func time_to_speedrun(t: float) -> String:
 	var output : String = "%s:%s:%s"

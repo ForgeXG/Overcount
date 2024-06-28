@@ -1,0 +1,74 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://bnn07lqx7tqfm"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_ss3wt"]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_g1vxb"]
+input_name = "uv"
+
+[sub_resource type="VisualShaderNodeExpression" id="VisualShaderNodeExpression_pe8dn"]
+size = Vector2(564, 313.35)
+expression = "res = sin(t * mul + col) * sin(t * mul + col);"
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_8pxvy"]
+input_name = "time"
+
+[sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_0wk61"]
+constant = 6.0
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void fragment() {
+// Input:3
+	vec2 n_out3p0 = UV;
+
+
+// Input:2
+	vec4 n_out2p0 = COLOR;
+
+
+// Input:5
+	float n_out5p0 = TIME;
+
+
+// FloatConstant:6
+	float n_out6p0 = 6.000000;
+
+
+	vec3 n_out4p0;
+// Expression:4
+	n_out4p0 = vec3(0.0, 0.0, 0.0);
+	{
+		n_out4p0 = sin(vec3(n_out5p0) * n_out6p0 + vec3(n_out2p0.xyz)) * sin(vec3(n_out5p0) * n_out6p0 + vec3(n_out2p0.xyz));
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out4p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/fragment/0/position = Vector2(720, 60)
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_ss3wt")
+nodes/fragment/2/position = Vector2(-380, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeInput_g1vxb")
+nodes/fragment/3/position = Vector2(-380, 60)
+nodes/fragment/4/node = SubResource("VisualShaderNodeExpression_pe8dn")
+nodes/fragment/4/position = Vector2(40, 80)
+nodes/fragment/4/size = Vector2(564, 313.35)
+nodes/fragment/4/input_ports = "0,4,u;1,4,col;2,4,t;3,0,mul;"
+nodes/fragment/4/output_ports = "0,4,res;"
+nodes/fragment/4/expression = "res = sin(t * mul + col) * sin(t * mul + col);"
+nodes/fragment/5/node = SubResource("VisualShaderNodeInput_8pxvy")
+nodes/fragment/5/position = Vector2(-380, 260)
+nodes/fragment/6/node = SubResource("VisualShaderNodeFloatConstant_0wk61")
+nodes/fragment/6/position = Vector2(-240, 340)
+nodes/fragment/connections = PackedInt32Array(5, 0, 4, 2, 4, 0, 0, 0, 2, 0, 4, 1, 3, 0, 4, 0, 6, 0, 4, 3)

@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://beah2ujfnc2xv"]
+
+[ext_resource type="Shader" uid="uid://b7uvg0kvydryl" path="res://shaders/sh_polar_1b.tres" id="1_adc3j"]
+
+[resource]
+shader = ExtResource("1_adc3j")

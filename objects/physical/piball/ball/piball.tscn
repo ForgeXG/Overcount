@@ -1,5 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://dd3vwxnn1y2d4"]
 
+[ext_resource type="PhysicsMaterial" uid="uid://c6glwfoxtksbq" path="res://objects/physical/piball/ball/pm_piball.tres" id="1_ewdce"]
 [ext_resource type="Script" path="res://objects/physical/piball/ball/piball.gd" id="1_iyg2d"]
 [ext_resource type="Texture2D" uid="uid://djt3ooagbnx62" path="res://objects/physical/piball/ball/animations/0.png" id="1_ltdep"]
 [ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_bejub"]
@@ -18,8 +19,6 @@
 [ext_resource type="Texture2D" uid="uid://dog82tn0b441a" path="res://objects/physical/piball/ball/animations/13.png" id="14_174vd"]
 [ext_resource type="Texture2D" uid="uid://qdive8cs0pgc" path="res://objects/physical/piball/ball/animations/14.png" id="15_flx80"]
 [ext_resource type="Texture2D" uid="uid://cjtqexqo73xcl" path="res://objects/physical/piball/ball/animations/15.png" id="16_516rt"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_d8xxc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_quqx2"]
 radius = 8.0
@@ -82,10 +81,11 @@ animations = [{
 
 [node name="PiBall" type="RigidBody2D" groups=["PiBall"]]
 mass = 2.0
-physics_material_override = SubResource("PhysicsMaterial_d8xxc")
+physics_material_override = ExtResource("1_ewdce")
 continuous_cd = 2
 max_contacts_reported = 10
 contact_monitor = true
+freeze_mode = 1
 script = ExtResource("1_iyg2d")
 draw_font = ExtResource("2_bejub")
 
@@ -97,8 +97,8 @@ sprite_frames = SubResource("SpriteFrames_nh4dc")
 autoplay = "default"
 
 [node name="Ray" type="RayCast2D" parent="."]
-target_position = Vector2(0, 16)
-collision_mask = 2
+target_position = Vector2(0, 12)
+collision_mask = 3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

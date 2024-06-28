@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d2g8u3g77yspe"]
+
+[ext_resource type="Shader" uid="uid://bah4pkpjdkxtt" path="res://shaders/overlays/m_o_circular.tres" id="1_yholf"]
+
+[resource]
+shader = ExtResource("1_yholf")

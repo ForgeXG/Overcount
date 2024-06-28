@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://603yeg4cfh6v"]
+
+[ext_resource type="Script" path="res://objects/enemies/spawner/enemy_spawner.gd" id="1_rcf5m"]
+[ext_resource type="Texture2D" uid="uid://k8aklo1p4dqr" path="res://objects/enemies/spawner/animations/enemy_spawner.png" id="1_v2gol"]
+[ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_j6kfd"]
+[ext_resource type="Material" uid="uid://d2g8u3g77yspe" path="res://materials/overlays/m_o_circular.tres" id="3_ll2l0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ho62j"]
+size = Vector2(12, 12)
+
+[node name="EnemySpawner" type="Area2D"]
+script = ExtResource("1_rcf5m")
+draw_font = ExtResource("2_j6kfd")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ho62j")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = ExtResource("3_ll2l0")
+texture = ExtResource("1_v2gol")
+
+[node name="SpawnTimer" type="Timer" parent="."]
+
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_timeout"]

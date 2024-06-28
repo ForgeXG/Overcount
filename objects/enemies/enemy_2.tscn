@@ -22,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="20_hqipx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2iuv4"]
-size = Vector2(11, 14)
+size = Vector2(10, 14)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dqhc0"]
 animations = [{
@@ -96,7 +96,7 @@ collision_layer = 5
 script = ExtResource("1_bb24o")
 
 [node name="Coll" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 1)
+position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_2iuv4")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]

@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c76mgq7aky2ai"]
+
+[ext_resource type="Shader" uid="uid://bw5skc5dnrvrk" path="res://shaders/sh_hyperbolic_-1.tres" id="1_gw7xr"]
+
+[resource]
+shader = ExtResource("1_gw7xr")

@@ -1,0 +1,83 @@
+[gd_scene load_steps=14 format=3 uid="uid://ucuhtomtrrci"]
+
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_qkpeq"]
+[ext_resource type="Script" path="res://levels/post_process.gd" id="2_dbbku"]
+[ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_bpk3s"]
+[ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_pv6pl"]
+[ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="5_xxmd7"]
+[ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="6_rywly"]
+[ext_resource type="Script" path="res://tilesets/movable_tilemap.gd" id="7_cnlhl"]
+[ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="7_grqw0"]
+[ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_w3313"]
+[ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="9_meqnx"]
+[ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="10_0kbgh"]
+[ext_resource type="AudioStream" uid="uid://dvwm43fnpq5ip" path="res://audio/music/eklipse.mp3" id="10_upclb"]
+
+[sub_resource type="Environment" id="Environment_u3ifr"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.05
+fog_enabled = true
+adjustment_enabled = true
+
+[node name="Level1" type="Node2D"]
+material = ExtResource("1_qkpeq")
+
+[node name="PostProcess" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_u3ifr")
+script = ExtResource("2_dbbku")
+
+[node name="Player" parent="." instance=ExtResource("3_bpk3s")]
+position = Vector2(0, -24)
+hp = 50.0
+maxhp = 50.0
+maxscore = 450
+escape_time = 10800
+
+[node name="Camera" parent="Player" instance=ExtResource("4_pv6pl")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Player/ParallaxBackground"]
+modulate = Color(0, 0.716667, 1, 1)
+texture_filter = 1
+material = ExtResource("1_qkpeq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture = ExtResource("5_xxmd7")
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="SquareTileMap" parent="." instance=ExtResource("6_rywly")]
+modulate = Color(0, 0.716667, 1, 1)
+position = Vector2(0, -16)
+layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, -458757, 196609, 2, -393221, 196609, 2, -327685, 196609, 2, -262149, 196609, 2, -196613, 196609, 2, -131077, 196609, 2, -65541, 196609, 2, -5, 196609, 2, 65531, 196609, 2, -524284, 196609, 2, -458748, 196609, 2, -393212, 196609, 2, -327676, 196609, 2, -262140, 196609, 2, -196604, 196609, 2, -131068, 196609, 2, -65532, 196609, 2, -524293, 196609, 2, -524292, 196609, 2, -524291, 196609, 2, -524290, 196609, 2, -524289, 196609, 2, -589824, 196609, 2, -589823, 196609, 2, -589822, 196609, 2, -589821, 196609, 2, -589820, 196609, 2)
+script = ExtResource("7_cnlhl")
+rot_spd = 0.01
+
+[node name="LevelPortal" parent="SquareTileMap" instance=ExtResource("9_meqnx")]
+position = Vector2(-48, -17)
+scale = Vector2(2, 2)
+destination = "res://levels/level_2.tscn"
+active = true
+
+[node name="DecorTileMap" parent="." instance=ExtResource("6_rywly")]
+modulate = Color(0, 0.716667, 1, 1)
+tile_set = ExtResource("7_grqw0")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("8_w3313")]
+position = Vector2(-40, -80)
+stream = ExtResource("10_upclb")
+attenuation = 1.81459e-05
+
+[node name="FloatingText7" parent="." instance=ExtResource("10_0kbgh")]
+offset_left = 88.0
+offset_top = 48.0
+offset_right = 200.0
+offset_bottom = 92.0
+text = "Hover mouse over this lock"

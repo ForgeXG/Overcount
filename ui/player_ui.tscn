@@ -565,6 +565,30 @@ theme_override_font_sizes/normal_font_size = 48
 text = "0"
 fit_content = true
 
+[node name="TextMach" type="RichTextLabel" parent="FillerBox/InfoBox"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 152.0
+offset_right = 304.0
+offset_bottom = 200.0
+theme_override_fonts/normal_font = ExtResource("3_66kkv")
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+fit_content = true
+
+[node name="TextAutorun" type="RichTextLabel" parent="FillerBox/InfoBox"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 24.0
+offset_top = 216.0
+offset_right = 304.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("3_66kkv")
+theme_override_font_sizes/normal_font_size = 48
+text = "0"
+fit_content = true
+
 [node name="MovementBox" type="ColorRect" parent="."]
 material = ExtResource("53_sj535")
 offset_left = 8.0

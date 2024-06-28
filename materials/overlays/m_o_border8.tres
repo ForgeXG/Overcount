@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b5b3pnvgec4jf"]
+
+[ext_resource type="Shader" uid="uid://eu68bl8ryfoh" path="res://shaders/overlays/m_o_border8.tres" id="1_rpilt"]
+
+[resource]
+shader = ExtResource("1_rpilt")

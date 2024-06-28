@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 @export var walk_spd : int = 80
 var walk_spd_m : float = 1
+var total_spd_m : float = 1
 @export var jump_force : float = 0
 @export var stationary : bool = false
 var start_pos = Vector2(0, 0)
@@ -47,7 +48,7 @@ var player
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	start_pos = position
 
 func _process(_delta):
@@ -141,14 +142,19 @@ func _physics_process(delta):
 	attack_bias = 0.3
 	if m_pos == clamp(m_pos, phase_loops[0].x, phase_loops[0].y):
 		attack_bias = 0.2
+		total_spd_m = 0.75
 	elif m_pos == clamp(m_pos, phase_loops[3].x, phase_loops[3].y):
 		attack_bias = 0.4
+		total_spd_m = 1.25
 	elif m_pos == clamp(m_pos, phase_loops[4].x, phase_loops[4].y):
 		attack_bias = 0.6
+		total_spd_m = 1.5
 	elif m_pos == clamp(m_pos, phase_loops[5].x, phase_loops[5].y):
 		attack_bias = 0.7
+		total_spd_m = 1.5
 	elif m_pos == clamp(m_pos, phase_loops[6].x, phase_loops[6].y):
 		attack_bias = 0.2
+		total_spd_m = 0.75
 	
 	if float(cooldown) / max_cooldown <= attack_bias and d_timer != -1:
 		attack(atk_id)
@@ -161,9 +167,11 @@ func _physics_process(delta):
 			if is_on_floor():
 				velocity.y = jump_force
 	
-	velocity.x = h_sign * (walk_spd * walk_spd_m)
+	velocity.x = h_sign * (walk_spd * walk_spd_m) * total_spd_m
 	if walk_spd_m > 1.1:
 		walk_spd_m *= 0.99
+		if is_on_wall() and hp / maxhp < 0.5:
+			walk_spd_m *= 0.9
 	else:
 		walk_spd_m = 1
 	
@@ -324,8 +332,8 @@ func attack(id : int):
 			add_sibling(bullet)
 			
 			bullet.apply_central_impulse(
-			Vector2(fire_impulse*cos(atk_angle + cooldown * PI / 25)*1.1,
-				fire_impulse*sin(atk_angle + cooldown * PI / 25 * sign(position.x - player.position.x))*1.1))
+			Vector2(fire_impulse*cos(atk_angle + cooldown * PI / 25 / total_spd_m / hp * maxhp / 3)*1.1,
+				fire_impulse*sin(atk_angle + cooldown * PI / 25 / total_spd_m / hp * maxhp / 3 * sign(position.x - player.position.x))*1.1))
 				
 			bullet.position = position
 			bullet.dmg = 1
@@ -414,7 +422,11 @@ func _draw():
 	var draw_color = Color.from_hsv(1, 1 - hp / maxhp, 1 - hp / maxhp, 1)
 	draw_arc(Vector2(0, 0), 24,
 	 -PI / 2, -PI / 2 + 2 * PI * hp / maxhp,
-	 50, draw_color, 6, false)
+	 50, Color.DARK_RED, 6, false) # HP
+	draw_arc(Vector2(0, 0), 24,
+	-PI / 2 + 2 * PI * hp / maxhp - 2 * PI * dmg_effect / maxhp,
+	-PI / 2 + 2 * PI * hp / maxhp,
+	50, Color(1, 1, 1, 0.7), 6, false) # dmg_effect
 	for i in range(-90, 250, 360 / 7):
 		var notch_coords = Vector2(cos(i * PI / 180), sin(i * PI / 180))
 		if float(d_timer) / maxd_timer > float(i + 90) / 360:

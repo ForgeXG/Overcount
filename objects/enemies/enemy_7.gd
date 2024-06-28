@@ -17,12 +17,12 @@ var cooldown = 0
 @export var min_radius : int = 16
 @export var max_radius : int = 160
 @export var detect_radius : int = 16
-@export var fire_impulse : int = 300
-@export var fire_lifetime : float = 90
+@export var fire_impulse : int = 900
+@export var fire_lifetime : float = 30
 var fire_angle = 0
 var player_dist = 10**10
 
-@export var dmg : int = 1
+@export var dmg : int = 7
 
 @export var score : int = 35
 
@@ -32,7 +32,7 @@ var player
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	start_pos = position
 
 func _process(_delta):
@@ -49,12 +49,13 @@ func _process(_delta):
 			$Coll.set_deferred("disabled", true)
 			velocity.x = randi_range(-100, 100) * (player.mach + 1)
 			velocity.y = randi_range(-100, 100) * (player.mach + 1)
-			
+		queue_redraw()
+	
 	if heal_effect > 0:
 		heal_effect -= 0.1
 		hp -= 0.1
+		queue_redraw()
 	
-	queue_redraw()
 	# Death
 	if hp <= 0:
 		d_timer -= 1
@@ -80,25 +81,31 @@ func _physics_process(delta):
 		if cooldown > 0:
 			cooldown -= 1
 		$Animations.animation = "charge"
-	else:
+	elif cooldown == 0:
 		h_sign = 0
 		cooldown = max_cooldown
 		$Animations.animation = "idle"
+	else:
+		$Animations.animation = "idle"
 		
-	if cooldown < max_cooldown / 4 and cooldown % 6 == 0 and hp > 0:
+	if cooldown == 0 and hp > 0:
 		# Fire Conditions
 		var bullet = preload("res://objects/enemies/enemy_7_laser.tscn").instantiate()
 		add_sibling(bullet)
-		bullet.velocity = Vector2(fire_impulse, 0).rotated(fire_angle)
+		# bullet.velocity = Vector2(fire_impulse, 0).rotated(fire_angle)
+		# bullet.velocity = Vector2.ZERO
+		bullet.scale.x = 0
+		bullet.scale_spd = Vector2(2, 0)
+		bullet.laser = true
+		
 		bullet.position = position + Vector2(12, 0).rotated(fire_angle)
 		bullet.rotation = fire_angle
 		bullet.dmg = dmg
 		bullet.d_timer = fire_lifetime
 		bullet.maxd_timer = fire_lifetime
-		bullet.hit_chance = 0.5
-		if cooldown == 0:
-			cooldown = max_cooldown
-			$Animations.animation = "idle"
+		bullet.hit_chance = 0.9
+		cooldown = max_cooldown
+		$Animations.animation = "idle"
 	
 	if !stationary:
 		if not is_on_floor():

@@ -39,7 +39,7 @@ func _ready():
 	input_pickable = true
 	
 	randomize()
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	
 	$UI/CaptionRect/Caption.text = ["Prove you are human.", "Are you a robot?", "Solve this captcha."].pick_random()
 	if equation:

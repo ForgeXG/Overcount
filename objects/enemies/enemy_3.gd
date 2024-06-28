@@ -32,7 +32,7 @@ var player
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	start_pos = position
 
 func _process(_delta):
@@ -49,10 +49,12 @@ func _process(_delta):
 			$Coll.set_deferred("disabled", true)
 			velocity.x = randi_range(-100, 100) * (player.mach + 1)
 			velocity.y = randi_range(-100, 100) * (player.mach + 1)
-			
+		queue_redraw()
+	
 	if heal_effect > 0:
 		heal_effect -= 0.1
 		hp -= 0.1
+		queue_redraw()
 		
 	# Death
 	if hp <= 0:

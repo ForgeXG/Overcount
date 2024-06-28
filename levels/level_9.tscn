@@ -103,8 +103,7 @@ maxdmg = 2
 fire_speed = 500
 
 [node name="Enemy7_" parent="." instance=ExtResource("14_r13io")]
-position = Vector2(536, -440)
-max_cooldown = 30
+position = Vector2(536, -456)
 
 [node name="Enemy7_2" parent="." instance=ExtResource("14_r13io")]
 position = Vector2(120, -584)
@@ -136,12 +135,6 @@ position = Vector2(184, -728)
 [node name="Enemy2_2" parent="." instance=ExtResource("17_dj6qd")]
 position = Vector2(792, -744)
 
-[node name="Enemy2_3" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(824, -744)
-
-[node name="Enemy2_4" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(856, -744)
-
 [node name="Enemy2_5" parent="." instance=ExtResource("17_dj6qd")]
 position = Vector2(888, -744)
 
@@ -166,9 +159,6 @@ txt = "Sometimes x can be multipSometimes stuff in the equation can be multiplie
 [node name="InfoSign5" parent="." instance=ExtResource("20_7y0ka")]
 position = Vector2(648, -344)
 txt = "Example equation solve: 5x+27=52. Subtract 27 from both sides: 5x=25. x=5."
-
-[node name="Enemy7_3" parent="." instance=ExtResource("14_r13io")]
-position = Vector2(1192, -520)
 
 [node name="Enemy1_6" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(1256, -760)
@@ -316,7 +306,7 @@ position = Vector2(120, -120)
 txt = "Equations are math expressions 2 sides around the (=) sign which equal each other. Examples: 3 + 7 = 10, 9 * 9 / 3 = 27. But sometimes equations can have unknowns..."
 
 [node name="Enemy7_4" parent="." instance=ExtResource("14_r13io")]
-position = Vector2(1208, -200)
+position = Vector2(1192, -520)
 
 [node name="Enemy1_9" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(1208, -56)
@@ -371,23 +361,11 @@ position = Vector2(3424, -832)
 [node name="GemOctagon" parent="." instance=ExtResource("23_3a5iw")]
 position = Vector2(3416, -792)
 
-[node name="Enemy2_9" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(2904, -1112)
-
-[node name="Enemy2_10" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(2872, -1112)
-
 [node name="Enemy5_3" parent="." instance=ExtResource("19_umdnk")]
 position = Vector2(2936, -1112)
 
 [node name="Enemy5_4" parent="." instance=ExtResource("19_umdnk")]
 position = Vector2(2664, -1032)
-
-[node name="Enemy2_11" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(2696, -1032)
-
-[node name="Enemy2_12" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(2728, -1032)
 
 [node name="Enemy3_7" parent="." instance=ExtResource("16_xidia")]
 position = Vector2(3040, -1072)
@@ -623,24 +601,12 @@ link = NodePath("../Teleport3")
 position = Vector2(4152, -1240)
 walk_spd = 0
 
-[node name="Enemy1_18" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(4152, -1256)
-walk_spd = 0
-
 [node name="Enemy1_19" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(4136, -1240)
 walk_spd = 0
 
 [node name="Enemy1_20" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(4168, -1240)
-walk_spd = 0
-
-[node name="Enemy1_21" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(4136, -1256)
-walk_spd = 0
-
-[node name="Enemy1_22" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(4168, -1256)
 walk_spd = 0
 
 [node name="Enemy3_12" parent="." instance=ExtResource("16_xidia")]
@@ -943,20 +909,8 @@ position = Vector2(5896, -2440)
 [node name="Enemy1_24" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(5800, -2440)
 
-[node name="Enemy2_19" parent="." instance=ExtResource("17_dj6qd")]
-position = Vector2(5848, -2440)
-
-[node name="Enemy4_2" parent="." instance=ExtResource("18_wh13y")]
-position = Vector2(5944, -2440)
-
 [node name="Enemy5_10" parent="." instance=ExtResource("19_umdnk")]
 position = Vector2(5992, -2440)
-
-[node name="Enemy6_" parent="." instance=ExtResource("27_lq7tb")]
-position = Vector2(6040, -2440)
-
-[node name="Enemy7_10" parent="." instance=ExtResource("14_r13io")]
-position = Vector2(6088, -2440)
 
 [node name="Enemy7_11" parent="." instance=ExtResource("14_r13io")]
 position = Vector2(6512, -2568)
@@ -1832,54 +1786,6 @@ position = Vector2(9688, -4232)
 
 [node name="Enemy1_42" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(9688, -4248)
-
-[node name="Enemy1_43" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4520)
-
-[node name="Enemy1_44" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4536)
-
-[node name="Enemy1_45" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4552)
-
-[node name="Enemy1_46" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4568)
-
-[node name="Enemy1_47" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4584)
-
-[node name="Enemy1_48" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4600)
-
-[node name="Enemy1_49" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4616)
-
-[node name="Enemy1_50" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4632)
-
-[node name="Enemy1_51" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4648)
-
-[node name="Enemy1_52" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4664)
-
-[node name="Enemy1_53" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4680)
-
-[node name="Enemy1_54" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4696)
-
-[node name="Enemy1_55" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4712)
-
-[node name="Enemy1_56" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4728)
-
-[node name="Enemy1_57" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4744)
-
-[node name="Enemy1_58" parent="." instance=ExtResource("15_0o23v")]
-position = Vector2(9656, -4760)
 
 [node name="Checkpoint" parent="." instance=ExtResource("28_nu5f8")]
 position = Vector2(1368, -696)

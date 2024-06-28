@@ -4,6 +4,7 @@ extends Area2D
 @export var max_cooldown : int = 60
 var cooldown : int = 0
 var activated : bool = false
+@export var reusable : bool = true
 var timer : float = 0
 
 @export var draw_font : SystemFont
@@ -21,7 +22,7 @@ func _process(delta):
 	queue_redraw()
 
 func _on_body_entered(body):
-	if body.is_in_group("Player") and cooldown == 0 and !activated:
+	if body.is_in_group("Player") and cooldown == 0 and (!activated or reusable):
 		body.checkpoint_position = position
 		body.checkpoint_music_position = get_parent().get_node("MusicPlayer").get_playback_position()	
 		if timeline_camera:

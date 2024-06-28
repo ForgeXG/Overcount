@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0hsskw6bkmso"]
+
+[ext_resource type="Script" path="res://objects/triggers/visual/material_change/t_material_change.gd" id="1_8aenh"]
+[ext_resource type="Texture2D" uid="uid://pir4qr7i1s42" path="res://objects/triggers/visual/material_change/t_material_change.png" id="1_nn2y1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t5iys"]
+size = Vector2(16, 16)
+
+[node name="TMaterialChange" type="Area2D"]
+script = ExtResource("1_8aenh")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t5iys")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_nn2y1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

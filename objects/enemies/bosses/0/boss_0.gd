@@ -36,7 +36,7 @@ var player
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
-	player = get_parent().get_node("Player")
+	player = get_tree().get_first_node_in_group("Player")
 	start_pos = position
 
 func _process(_delta):

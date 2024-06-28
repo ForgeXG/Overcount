@@ -1,10 +1,11 @@
-[gd_scene load_steps=65 format=3 uid="uid://ei231eyk1t13"]
+[gd_scene load_steps=66 format=3 uid="uid://ei231eyk1t13"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_t6f3a"]
 [ext_resource type="Texture2D" uid="uid://b80bnfxvbnmor" path="res://sprites/player/walk/s_player_walk_f0.png" id="2_2mhk2"]
 [ext_resource type="SystemFont" uid="uid://dhq1c382rybwt" path="res://fonts/micro_font.tres" id="2_re7j7"]
 [ext_resource type="Texture2D" uid="uid://x4yqm3fw5pjx" path="res://sprites/player/idle/s_player_idle_f0.png" id="2_sbail"]
 [ext_resource type="Texture2D" uid="uid://cpak5ddqrb1s7" path="res://sprites/player/idle/s_player_idle_f1.png" id="3_1vul8"]
+[ext_resource type="Material" uid="uid://cg7xwh51iky4x" path="res://materials/player/player_default.tres" id="3_gqevr"]
 [ext_resource type="Texture2D" uid="uid://dfpusbm1mn4n8" path="res://sprites/player/walk/s_player_walk_f1.png" id="3_y65gr"]
 [ext_resource type="Texture2D" uid="uid://f3q1g3qw6204" path="res://sprites/player/walk/s_player_walk_f2.png" id="4_0lv7o"]
 [ext_resource type="Texture2D" uid="uid://dk8vkl836bwru" path="res://sprites/player/idle/s_player_idle_f2.png" id="4_slr8q"]
@@ -321,6 +322,7 @@ color = Color(0.223529, 0.223529, 0.223529, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
+floor_stop_on_slope = false
 script = ExtResource("1_t6f3a")
 draw_font = ExtResource("2_re7j7")
 
@@ -330,6 +332,7 @@ shape = SubResource("RectangleShape2D_xcbdv")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("3_gqevr")
 sprite_frames = SubResource("SpriteFrames_3spa2")
 animation = &"idle"
 autoplay = "idle"
