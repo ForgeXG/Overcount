@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://1faqvg8n13h4"]
+[gd_scene load_steps=75 format=3 uid="uid://1faqvg8n13h4"]
 
 [ext_resource type="Script" path="res://ui/player_ui.gd" id="1_117or"]
 [ext_resource type="Texture2D" uid="uid://byogppelk74mx" path="res://ui/ui_sprites/heart.png" id="2_54rg6"]
@@ -116,7 +116,7 @@ frame_21/duration = 1.0
 frames = 18
 pause = true
 one_shot = true
-speed_scale = 8.0
+speed_scale = 7.0
 frame_0/texture = ExtResource("9_q0f7b")
 frame_1/texture = ExtResource("10_r13ew")
 frame_1/duration = 1.0
@@ -272,6 +272,38 @@ color = Color(0, 0.298039, 1, 1)
 grow_begin = 4.0
 grow_end = 4.0
 thickness = 8
+
+[sub_resource type="Animation" id="Animation_ctcrt"]
+resource_name = "activate"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("OvercountSign:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.8, 1),
+"transitions": PackedFloat32Array(0.267943, 1.56917, 1.8025, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1), Vector2(1.3, 1.3), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("OvercountSign:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1.8025, 1),
+"update": 0,
+"values": [0.0, 0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6w72h"]
+_data = {
+"activate": SubResource("Animation_ctcrt")
+}
 
 [node name="PlayerUI" type="CanvasLayer"]
 script = ExtResource("1_117or")
@@ -509,6 +541,7 @@ fit_content = true
 [node name="OvercountSign" type="TextureRect" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.666667)
+z_index = 1
 texture_filter = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -521,6 +554,7 @@ offset_right = 192.0
 offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1.05351, 1.05351)
 pivot_offset = Vector2(192, 192)
 texture = SubResource("AnimatedTexture_1rvmd")
 
@@ -880,3 +914,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("3_66kkv")
 theme_override_font_sizes/font_size = 54
 text = "Restart"
+
+[node name="EscapeAnim" type="AnimationPlayer" parent="."]
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_6w72h")
+}

@@ -384,9 +384,9 @@ level_desc = "Survive and get to the goal!"
 
 [node name="Level4B3" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
-offset_left = -424.0
+offset_left = 320.0
 offset_top = 204.0
-offset_right = -232.0
+offset_right = 512.0
 offset_bottom = 269.0
 text = "(⊟)"
 icon = ExtResource("11_yf7xo")
@@ -397,6 +397,7 @@ level_title = "slortnoc lausunU"
 level_desc = "Get to the goal with a twist!"
 
 [node name="Level4B5" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(0.3, 0.3, 0.3, 1)
 layout_mode = 1
 offset_left = 64.0
 offset_top = 204.0
@@ -406,11 +407,26 @@ text = "logₐb"
 icon = ExtResource("12_2twkl")
 button_type = 1
 destination = "res://levels/level_13.tscn"
-coins_fee = 400
+coins_fee = -1
 level_title = "Eco-friendly wood logs"
-level_desc = "Get to the goal!"
+level_desc = "This level is also completely locked... for now."
+
+[node name="Level4B6" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = -416.0
+offset_top = 204.0
+offset_right = -224.0
+offset_bottom = 269.0
+text = "◯"
+icon = ExtResource("11_yf7xo")
+button_type = 1
+destination = "res://levels/level_14.tscn"
+coins_fee = 100
+level_title = "Be careful with balls!"
+level_desc = "Get yourself and the ball to the goal!"
 
 [node name="Level4B4" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(0.3, 0.3, 0.3, 1)
 layout_mode = 1
 offset_left = 576.0
 offset_top = 204.0
@@ -420,9 +436,9 @@ text = "Θ'"
 icon = ExtResource("14_6w27c")
 button_type = 1
 destination = "res://levels/level_aftermath.tscn"
-coins_fee = 2000
+coins_fee = -1
 level_title = "The Aftermath"
-level_desc = "Get to the goal... and unlock the secret."
+level_desc = "This level is completely locked for now..."
 
 [node name="LevelB1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1

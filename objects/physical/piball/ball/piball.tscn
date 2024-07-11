@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dd3vwxnn1y2d4"]
+[gd_scene load_steps=23 format=3 uid="uid://dd3vwxnn1y2d4"]
 
 [ext_resource type="PhysicsMaterial" uid="uid://c6glwfoxtksbq" path="res://objects/physical/piball/ball/pm_piball.tres" id="1_ewdce"]
 [ext_resource type="Script" path="res://objects/physical/piball/ball/piball.gd" id="1_iyg2d"]
@@ -79,6 +79,9 @@ animations = [{
 "speed": 4.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bd31c"]
+size = Vector2(2, 2)
+
 [node name="PiBall" type="RigidBody2D" groups=["PiBall"]]
 mass = 2.0
 physics_material_override = ExtResource("1_ewdce")
@@ -96,8 +99,10 @@ shape = SubResource("CircleShape2D_quqx2")
 sprite_frames = SubResource("SpriteFrames_nh4dc")
 autoplay = "default"
 
-[node name="Ray" type="RayCast2D" parent="."]
+[node name="Ray" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_bd31c")
 target_position = Vector2(0, 12)
+max_results = 4
 collision_mask = 3
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

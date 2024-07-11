@@ -40,7 +40,7 @@ position = Vector2(8, -394)
 hp = 50.0
 maxhp = 50.0
 maxscore = 600
-escape_time = 14400
+escape_time = 13740
 
 [node name="Camera" parent="Player" instance=ExtResource("3_653c7")]
 visible = false
@@ -355,7 +355,6 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(3528, -2680)
 scale = Vector2(1.2, 1.2)
 final = true
-finalmusic = "res://audio/music/special/blastthepixels.mp3"
 mode = "sub"
 a = 500
 b = 100

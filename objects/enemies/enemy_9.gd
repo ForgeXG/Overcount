@@ -12,13 +12,13 @@ var dmg_effect = 0
 var heal_effect = 0
 var d_timer = 60
 var cooldown = 0
-@export var max_cooldown : int = 150
+@export var max_cooldown : int = 240
 
-@export var min_radius : int = 16
+@export var min_radius : int = 32
 @export var max_radius : int = 240
-@export var detect_radius : int = 16
-@export var fire_impulse : int = 300
-@export var fire_lifetime : float = 120
+@export var detect_radius : int = 32
+@export var fire_impulse : int = 120
+@export var fire_lifetime : float = 240
 var fire_angle = 0
 var player_dist = 10**10
 
@@ -88,19 +88,22 @@ func _physics_process(delta):
 		cooldown = max_cooldown
 		$Animations.animation = "idle"
 		
-	if cooldown == 0 and hp > 0:
+	if cooldown % 20 == 0 and cooldown < 60 and hp > 0:
 		# Fire Conditions
 		if $Animations.animation_finished and $Animations.animation == "charge":
-			var bullet = preload("res://objects/enemies/enemy_3_bullet.tscn").instantiate()
-			add_sibling(bullet)
+			for i in range(-60, 120, 60):
+				var bullet = preload("res://objects/enemies/enemy_9_rocket.tscn").instantiate()
+				add_sibling(bullet)
 				
-			bullet.apply_central_impulse(Vector2(fire_impulse, 0).rotated(fire_angle))
-			bullet.position = position + Vector2(0, 0).rotated(fire_angle)
-			bullet.dmg = dmg
-			bullet.d_timer = fire_lifetime
-			bullet.maxd_timer = fire_lifetime
-			cooldown = max_cooldown
-			$Animations.animation = "idle"
+				bullet.apply_central_impulse(Vector2(fire_impulse, 0).rotated(fire_angle + i * PI / 180.0))
+				bullet.position = position + Vector2(0, 0).rotated(fire_angle)
+				bullet.dmg = dmg
+				bullet.d_timer = fire_lifetime
+				bullet.maxd_timer = fire_lifetime
+				bullet.homing = true
+				if cooldown == 0:
+					cooldown = max_cooldown
+				$Animations.animation = "idle"
 	
 	if !stationary:
 		if not is_on_floor():
@@ -120,7 +123,7 @@ func _physics_process(delta):
 		if collision.get_collider() == player and hp > 0 and player.mach < 3:
 			if player.i_frames == 0:
 				player.i_frames = 60
-				player.dmg_effect += ceil(dmg / 3)
+				player.dmg_effect += ceil(dmg / 3.0)
 				player.s_frames = 30
 				player.velocity.x = -sign(position.x - player.position.x) * player.walk_spd * 0.5
 				player.velocity.y = player.jump_force * 1
@@ -139,6 +142,7 @@ func _draw():
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
 	7, draw_color, 4, false)
 	
-	draw_circle(Vector2(0, 0), max_radius, Color(1, 0, 0, 0.2))
+	draw_circle(Vector2(0, 0), detect_radius, Color(0, 0, 0, 0.4))
+	draw_circle(Vector2(0, 0), max_radius, Color.hex(0xf9d5b744))
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
 		draw_line(Vector2(0, 0), player.position - position, Color(1, 0, 0, 0.5), 2*cooldown/max_cooldown, false)

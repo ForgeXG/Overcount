@@ -95,14 +95,19 @@ func _process(delta):
 	else:
 		if mach < 1:
 			$Animations.animation = "walk"
+			$GPUPart.process_material = preload("res://sprites/player/particles/playerwalk.tres")
 		elif is_on_wall() and mach >= 1:
 			$Animations.animation = "wallclimb"
+			$GPUPart.process_material = preload("res://sprites/player/particles/playerrun1.tres")
 		elif mach < 2:
 			$Animations.animation = "run1"
+			$GPUPart.process_material = preload("res://sprites/player/particles/playerrun1.tres")
 		elif mach < 3:
 			$Animations.animation = "run2"
+			$GPUPart.process_material = preload("res://sprites/player/particles/playerrun2.tres")
 		else:
 			$Animations.animation = "run3"
+			$GPUPart.process_material = preload("res://sprites/player/particles/playerrun3.tres")
 	
 	# Invincible animation
 	if i_frames > 0:

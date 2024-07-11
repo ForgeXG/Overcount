@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 @export var final : bool = false
-@export var finalmusic : String = "res://audio/music/OH.mp3"
+@export var finalmusic : String = "res://audio/music/special/overcounted.mp3"
 @export var mode : String = "add"
 @export var a : int = 1
 @export var b : int = 1
 @export var a_range : int = 10
 @export var b_range : int = 10
+@export var modifiers : Array[String] = [""]
 
 @export var equation : bool = false
 @export var ch_min : int = 1
@@ -94,7 +95,11 @@ func _ready():
 		# if equation:
 			# $UI/ProblemRect/Problem.text = ["x" + superscript_numbers(str(b)) + " = " + str(a),
 			# "x" + superscript_numbers(str(b)) + " + " + str(ch) + "x" + " = " + str(a + ch * answer)].pick_random() + ", x > 0"
-
+	
+	# Modifiers
+	if "-" in modifiers:
+		answer = -answer
+		$UI/ProblemRect/Problem.text = "-(" + $UI/ProblemRect/Problem.text + ")"
 
 func _process(_delta):
 	player_dist = position.distance_to(player.position)
@@ -116,7 +121,7 @@ func _process(_delta):
 				velocity.x = randi_range(100, 300)
 				velocity.y = randi_range(-500, -100)
 			elif a == 9 and b == 10 and is_equal_approx(answer, 19) and input == "21":
-				get_tree().change_scene_to_file("res://levels/level_broken.tscn")
+				get_tree().change_scene_to_file("res://levels/level_stupid.tscn")
 
 		if Input.is_action_just_pressed("key_w"):
 			active = false
@@ -130,6 +135,7 @@ func _process(_delta):
 			get_parent().get_node("Player/PlayerUI/OvercountSign").visible = true
 			get_parent().get_node("Player/PlayerUI/OvercountSign").texture.pause = false
 			get_parent().get_node("Player/PlayerUI/OvercountSign").texture.current_frame = 0
+			get_parent().get_node("Player/PlayerUI/EscapeAnim").play("activate")
 			
 			get_tree().call_group("OnOff", "switch", 0)
 			
@@ -137,7 +143,7 @@ func _process(_delta):
 			get_parent().get_node("Player/Camera").wiggle = get_parent().get_node("Player/Camera").wiggle * 2 + 0.0002
 			
 			get_parent().get_node("MusicPlayer").set_stream(load(finalmusic))
-			# get_parent().get_node("MusicPlayer").volume_db = -4
+			get_parent().get_node("MusicPlayer").volume_db = 2
 			get_parent().get_node("MusicPlayer").play()
 			
 			get_parent().get_node("LevelPortal").active = true

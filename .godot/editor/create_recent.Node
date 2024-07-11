@@ -1,5 +1,7 @@
-RayCast2D
+AnimationPlayer
+Sprite2D
 ShapeCast2D
+RayCast2D
 CollisionShape2D
 RemoteTransform2D
 Path2D
@@ -12,10 +14,8 @@ CanvasLayer
 NinePatchRect
 Container
 TextureRect
-Sprite2D
 Timer
 AnimatedSprite2D
-AnimationPlayer
 TextureProgressBar
 GraphEdit
 ProgressBar

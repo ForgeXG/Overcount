@@ -37,7 +37,7 @@ adjustment_enabled = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rue5f"]
 shader = ExtResource("8_m48m0")
 
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_l4sls"]
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_olhvc"]
 resource_local_to_scene = true
 
 [node name="Level1" type="Node2D"]
@@ -512,4 +512,4 @@ position = Vector2(8424, -3112)
 
 [node name="PiBall" parent="." instance=ExtResource("26_yd66b")]
 position = Vector2(8632, -3208)
-physics_material_override = SubResource("PhysicsMaterial_l4sls")
+physics_material_override = SubResource("PhysicsMaterial_olhvc")

@@ -1,7 +1,7 @@
+SpriteFrames
 ShaderMaterial
 VisualShader
 ImageTexture
-SpriteFrames
 SystemFont
 FontFile
 TileSet

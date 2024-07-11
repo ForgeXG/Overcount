@@ -41,7 +41,7 @@ position = Vector2(0, -24)
 hp = 50.0
 maxhp = 50.0
 maxscore = 450
-escape_time = 14400
+escape_time = 13740
 
 [node name="Camera" parent="Player" instance=ExtResource("3_70g55")]
 visible = false
@@ -268,7 +268,6 @@ modulate = Color(1, 0, 0, 1)
 position = Vector2(1992, -1719)
 scale = Vector2(1.2, 1.2)
 final = true
-finalmusic = "res://audio/music/special/blastthepixels.mp3"
 a = 500
 b = 500
 a_range = 500
@@ -630,6 +629,54 @@ position = Vector2(1352, -1752)
 [node name="EscapeWall10" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(1368, -1752)
 
+[node name="EscapeWall135" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(712, -1832)
+
+[node name="EscapeWall136" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(712, -1815)
+
+[node name="EscapeWall137" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(712, -1800)
+
+[node name="EscapeWall138" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(712, -1784)
+
+[node name="EscapeWall139" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(632, -1848)
+
+[node name="EscapeWall140" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(632, -1831)
+
+[node name="EscapeWall141" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(632, -1816)
+
+[node name="EscapeWall142" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(632, -1800)
+
+[node name="EscapeWall143" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(536, -1752)
+
+[node name="EscapeWall144" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(536, -1735)
+
+[node name="EscapeWall145" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(536, -1720)
+
+[node name="EscapeWall146" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(536, -1704)
+
+[node name="EscapeWall147" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(552, -1864)
+
+[node name="EscapeWall148" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(552, -1847)
+
+[node name="EscapeWall149" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(552, -1832)
+
+[node name="EscapeWall150" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(552, -1816)
+
 [node name="EscapeWall11" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(712, -1416)
 
@@ -684,6 +731,74 @@ position = Vector2(1352, -1368)
 [node name="EscapeWall28" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(1368, -1368)
 
+[node name="EscapeWall115" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1768, -1416)
+
+[node name="EscapeWall116" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1784, -1416)
+
+[node name="EscapeWall117" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1800, -1416)
+
+[node name="EscapeWall118" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1816, -1416)
+
+[node name="EscapeWall119" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1832, -1416)
+
+[node name="EscapeWall120" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1848, -1416)
+
+[node name="EscapeWall129" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1864, -1416)
+
+[node name="EscapeWall130" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1880, -1416)
+
+[node name="EscapeWall131" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1896, -1416)
+
+[node name="EscapeWall121" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1848, -1336)
+
+[node name="EscapeWall122" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1864, -1336)
+
+[node name="EscapeWall123" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1880, -1336)
+
+[node name="EscapeWall132" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1800, -1336)
+
+[node name="EscapeWall133" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1816, -1336)
+
+[node name="EscapeWall134" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1832, -1336)
+
+[node name="EscapeWall124" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1896, -1336)
+
+[node name="EscapeWall125" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1912, -1336)
+
+[node name="EscapeWall126" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(1928, -1336)
+
+[node name="EscapeWall127" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(2040, -1416)
+on = true
+
+[node name="EscapeWall128" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(2056, -1416)
+on = true
+
+[node name="EscapeWall151" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(424, -1815)
+
+[node name="EscapeWall152" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(440, -1815)
+
 [node name="EscapeWall29" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(1144, -1208)
 
@@ -729,6 +844,48 @@ position = Vector2(688, -1288)
 [node name="EscapeWall43" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(704, -1288)
 
+[node name="EscapeWall162" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(72, -1288)
+
+[node name="EscapeWall163" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(72, -1272)
+
+[node name="EscapeWall164" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(72, -1256)
+
+[node name="EscapeWall165" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(72, -1240)
+
+[node name="EscapeWall166" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(88, -1288)
+
+[node name="EscapeWall167" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(104, -1288)
+
+[node name="EscapeWall168" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(120, -1288)
+
+[node name="EscapeWall169" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(328, -1288)
+
+[node name="EscapeWall170" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(376, -1272)
+
+[node name="EscapeWall171" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(376, -1256)
+
+[node name="EscapeWall172" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(376, -1240)
+
+[node name="EscapeWall173" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(344, -1288)
+
+[node name="EscapeWall174" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(360, -1288)
+
+[node name="EscapeWall175" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(376, -1288)
+
 [node name="EscapeWall44" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(768, -1240)
 
@@ -746,6 +903,33 @@ position = Vector2(768, -1208)
 
 [node name="EscapeWall49" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(816, -1240)
+
+[node name="EscapeWall153" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(952, -1512)
+
+[node name="EscapeWall154" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(968, -1512)
+
+[node name="EscapeWall155" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(984, -1512)
+
+[node name="EscapeWall156" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(904, -1464)
+
+[node name="EscapeWall157" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(920, -1464)
+
+[node name="EscapeWall158" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(936, -1464)
+
+[node name="EscapeWall159" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(856, -1464)
+
+[node name="EscapeWall160" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(872, -1464)
+
+[node name="EscapeWall161" parent="." instance=ExtResource("15_q0nac")]
+position = Vector2(888, -1464)
 
 [node name="EscapeWall50" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(1688, -376)

@@ -44,7 +44,7 @@ func _mouse_exited():
 
 
 func _child_button_down():
-	if G.coins >= coins_fee:
+	if G.coins >= coins_fee and coins_fee >= 0:
 		button_activated = true
 
 func _child_button_pressed():

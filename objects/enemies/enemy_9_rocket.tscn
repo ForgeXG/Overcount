@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://o78mflw5muu1"]
+
+[ext_resource type="Script" path="res://enemy_bullet.gd" id="1_6mqcr"]
+[ext_resource type="Texture2D" uid="uid://b8u5ivubgvt7i" path="res://sprites/enemies/9/rocket/ArrowRocket.png" id="2_8ta7s"]
+[ext_resource type="Texture2D" uid="uid://cs8fs487vwtst" path="res://ui/ui_sprites/particle_shapes/Pixel.png" id="3_x8dku"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4520l"]
+rough = true
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mjilb"]
+size = Vector2(6, 6)
+
+[node name="Enemy9_Rocket" type="RigidBody2D"]
+collision_layer = 0
+collision_mask = 2
+physics_material_override = SubResource("PhysicsMaterial_4520l")
+gravity_scale = 0.0
+continuous_cd = 1
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_6mqcr")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mjilb")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_8ta7s")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+amount = 15
+lifetime = 3.0
+explosiveness = 0.5
+texture = ExtResource("3_x8dku")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+scale_amount_min = 1.5
+scale_amount_max = 1.5
+color = Color(0.670588, 0.670588, 0.670588, 1)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

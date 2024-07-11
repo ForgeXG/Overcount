@@ -35,7 +35,7 @@ func yeet(force : Vector2):
 
 func _on_body_entered(body):
 	if $Ray.is_colliding():
-		if $Ray.get_collider().is_in_group("WallTileMap") and global_position.y < 8:
+		if $Ray.get_collider(0).is_in_group("WallTileMap") and global_position.y < 8:
 			last_safe_position = global_position
 			p_coll = 3
 	if body.is_in_group("Player"):

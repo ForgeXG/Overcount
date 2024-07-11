@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bm57jli6r67pk"]
+[gd_scene load_steps=17 format=3 uid="uid://bm57jli6r67pk"]
 
 [ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_q0miy"]
 [ext_resource type="Script" path="res://levels/post_process.gd" id="2_nty3c"]
@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="9_ofn30"]
 [ext_resource type="AudioStream" uid="uid://blv7wxa2tw46m" path="res://audio/music/cs/spinbling.mp3" id="10_16c0x"]
 [ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="10_wy5sd"]
+[ext_resource type="PackedScene" uid="uid://dqbkhrlr10cqb" path="res://objects/enemies/enemy_9.tscn" id="13_ufyfe"]
+[ext_resource type="PackedScene" uid="uid://buqh6v4j34c3w" path="res://weapon_pickup.tscn" id="14_gbqob"]
+[ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="15_yj1i4"]
 
 [sub_resource type="Environment" id="Environment_u3ifr"]
 background_mode = 3
@@ -47,7 +50,7 @@ s_group = 1
 [node name="SquareTileMap" parent="." instance=ExtResource("6_tgmqx")]
 modulate = Color(0.14902, 0.14902, 0.14902, 0.513726)
 position = Vector2(0, -16)
-layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, 5, 196609, 2, 6, 196609, 2, 7, 196609, 2, 8, 196609, 2, 9, 196609, 2, 10, 196609, 2, 11, 196609, 2, 12, 196609, 2, 13, 196609, 2, 14, 196609, 2, 15, 196609, 2, 16, 196609, 2, 17, 196609, 2, 18, 196609, 2, 19, 196609, 2, 20, 196609, 2, 22, 196609, 2, 23, 196609, 2, 24, 196609, 2, 25, 196609, 2, 26, 196609, 2, 27, 196609, 2, 28, 196609, 2, 21, 196609, 2)
+layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, 5, 196609, 2, 6, 196609, 2, 7, 196609, 2, 8, 196609, 2, 9, 196609, 2, 10, 196609, 2, 11, 196609, 2, 12, 196609, 2, 13, 196609, 2, 14, 196609, 2, 15, 196609, 2, 16, 196609, 2, 17, 196609, 2, 18, 196609, 2, 19, 196609, 2, 20, 196609, 2, 22, 196609, 2, 23, 196609, 2, 24, 196609, 2, 25, 196609, 2, 26, 196609, 2, 27, 196609, 2, 28, 196609, 2, 21, 196609, 2, 29, 196609, 2, 30, 196609, 2, 31, 196609, 2, 32, 196609, 2, 33, 196609, 2, 34, 196609, 2, 35, 196609, 2, 36, 196609, 2, 37, 196609, 2, 38, 196609, 2, 39, 196609, 2, 40, 196609, 2, 41, 196609, 2, 42, 196609, 2, 43, 196609, 2, 44, 196609, 2, 45, 196609, 2, 46, 196609, 2, 47, 196609, 2, -262105, 196609, 2, -262104, 196609, 2, -262103, 196609, 2)
 
 [node name="DecorTileMap" parent="." instance=ExtResource("6_tgmqx")]
 modulate = Color(1, 0.215686, 0, 1)
@@ -70,3 +73,18 @@ offset_top = 48.0
 offset_right = 200.0
 offset_bottom = 92.0
 text = "Hover mouse over this lock"
+
+[node name="Enemy9_" parent="." instance=ExtResource("13_ufyfe")]
+position = Vector2(648, -168)
+
+[node name="Weapon2" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(368, -32)
+weapon_name = "ParabolicSling"
+weapon_type = "Sling"
+cooldown_use = 15
+maxdmg = 2
+fire_speed = 500
+
+[node name="EquationLock" parent="." instance=ExtResource("15_yj1i4")]
+position = Vector2(264, -28)
+final = true

@@ -31,9 +31,12 @@ func _on_body_entered(body):
 	elif body.is_in_group("Enemies"):
 		body.velocity += Vector2(velocity_add, 0).rotated(rotation)
 		cooldown = max_cooldown
+	elif body.is_in_group("PiBall"):
+		body.linear_velocity = Vector2(velocity_add, 0).rotated(rotation)
 
 
 func _draw():
+	draw_set_transform(Vector2.ZERO, 0, Vector2(1 / scale.x, 1 / scale.y))
 	if is_equal_approx(cos(rotation), 0):
 		pass
 	elif fire_angle == clamp(fire_angle, -PI/2, PI/2):

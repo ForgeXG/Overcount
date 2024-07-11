@@ -2,12 +2,17 @@ extends Area2D
 
 @export var destination : String = "" # Destination scene path
 @export var active : bool = false
+@export var ball_required : bool = false
 @export var s_group : int = 1
 var player
 
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
+	if ball_required:
+		modulate = Color.CYAN
+		$Animations.sprite_frames = preload("res://objects/physical/piball/goal/animations/sf_piballgoal.tres")
+		$Animations.play("default")
 
 
 func _process(_delta):
@@ -22,7 +27,7 @@ func _process(_delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group("Player") and active:
+	if ((body.is_in_group("Player")) or (ball_required and body.is_in_group("PiBall"))) and active:
 		# Player safety
 		player.i_frames = 100000000
 		player.escape_time_active = false

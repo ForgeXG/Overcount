@@ -6,6 +6,7 @@ extends RigidBody2D
 @export var blackhole_radius : int = 0
 @export var maxd_timer : float = -1
 @export var fading : bool = true
+@export var homing : bool = false
 
 var d_timer : float = -1
 var player
@@ -27,7 +28,7 @@ func _process(_delta):
 	queue_redraw()
 	
 func _physics_process(_delta):
-	rotation += rot_spd
+	rotation = player_angle
 	player_dist = position.distance_to(player.position)
 	player_angle = atan((player.position.y - position.y) / (player.position.x - position.x))
 	if player.position.x - position.x < 0:
@@ -36,6 +37,9 @@ func _physics_process(_delta):
 	if blackhole:
 		if player_dist <= blackhole_radius:
 			player.position -= 2 * Vector2(cos(player_angle), -sin(player_angle))
+	
+	if homing:
+		apply_central_force(linear_velocity.rotated(sign(player_angle - rotation)))
 
 func _on_body_entered(body):
 	if body.is_in_group("Enemies"):

@@ -61,6 +61,7 @@
 [ext_resource type="Texture2D" uid="uid://nfnt4018c327" path="res://sprites/player/wallclimb/4.png" id="33_oevaf"]
 [ext_resource type="AudioStream" uid="uid://daaav0v32tnff" path="res://audio/sounds/player/movement/walk.mp3" id="45_x85vj"]
 [ext_resource type="Script" path="res://objects/player_sounds.gd" id="46_8lalo"]
+[ext_resource type="Material" uid="uid://kt1i8k4tbu8d" path="res://sprites/player/particles/playerwalk.tres" id="60_dwahm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xcbdv"]
 size = Vector2(8, 15)
@@ -309,17 +310,6 @@ animations = [{
 "speed": 12.0
 }]
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfw1n"]
-particle_flag_disable_z = true
-direction = Vector3(0, 1, 0)
-spread = 30.0
-gravity = Vector3(0, 0, 0)
-initial_velocity_min = 20.0
-initial_velocity_max = 20.0
-orbit_velocity_min = 0.0
-orbit_velocity_max = 0.0
-color = Color(0.223529, 0.223529, 0.223529, 1)
-
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 floor_stop_on_slope = false
@@ -350,9 +340,14 @@ frame_progress = 0.773992
 
 [node name="PlayerUI" parent="." instance=ExtResource("17_nhemk")]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-visible = false
-process_material = SubResource("ParticleProcessMaterial_yfw1n")
+[node name="GPUPart" type="GPUParticles2D" parent="."]
+amount = 12
+process_material = ExtResource("60_dwahm")
+lifetime = 2.0
+speed_scale = 2.0
+fixed_fps = 60
+local_coords = true
+trail_lifetime = 1.0
 
 [node name="SoundPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("45_x85vj")
