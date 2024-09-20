@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqp0hworfd6er"]
+
+[ext_resource type="Material" uid="uid://ccnin75wdyc63" path="res://materials/overlays/m_o_physical.tres" id="1_2ygia"]
+[ext_resource type="Script" path="res://objects/blocks/physical/box/physical_box.gd" id="1_i3pxb"]
+[ext_resource type="Texture2D" uid="uid://chxik1r1dymwi" path="res://sprites/wall/s_wall_square_editor.png" id="2_56oq1"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pcd23"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5o1w0"]
+size = Vector2(16, 16)
+
+[node name="PhysicalBox" type="RigidBody2D" groups=["Physical"]]
+modulate = Color(1, 0.283333, 0, 1)
+material = ExtResource("1_2ygia")
+collision_layer = 20
+collision_mask = 2321
+physics_material_override = SubResource("PhysicsMaterial_pcd23")
+freeze_mode = 1
+continuous_cd = 1
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_i3pxb")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5o1w0")
+
+[node name="Sprite" type="NinePatchRect" parent="."]
+material = ExtResource("1_2ygia")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_56oq1")
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+
+[connection signal="draw" from="." to="." method="_on_draw"]

@@ -65,6 +65,11 @@ func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		if randf_range(0, 1) <= hit_chance:
 			player.dmg_effect += dmg
+			var dmg_number = preload("res://ui/damage_number.tscn").instantiate()
+			get_tree().current_scene.add_child(dmg_number)
+			dmg_number.position = position
+			dmg_number.text = "%.1f" % dmg
+			dmg_number.target = "Player"
 		if !laser:
 			queue_free()
 	elif body.is_in_group("WallTileMap"):

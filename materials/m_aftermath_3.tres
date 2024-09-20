@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c4bcpd5d7a7lm"]
+
+[ext_resource type="Shader" uid="uid://dtu11tfw1y121" path="res://shaders/sh_aftermath_3.tres" id="1_7jr6e"]
+
+[resource]
+shader = ExtResource("1_7jr6e")

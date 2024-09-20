@@ -70,6 +70,7 @@ autoplay = "default"
 frame_progress = 0.415061
 
 [node name="UI" type="Control" parent="."]
+visible = false
 modulate = Color(1, 1, 1, 0.823529)
 layout_mode = 3
 anchors_preset = 0
@@ -104,6 +105,33 @@ theme_override_fonts/normal_font = ExtResource("12_ilc23")
 theme_override_font_sizes/normal_font_size = 8
 text = "Addition"
 
+[node name="DrawRect" type="NinePatchRect" parent="UI"]
+self_modulate = Color(0.501961, 0.501961, 0.501961, 1)
+z_index = -1
+layout_mode = 0
+offset_left = -84.0
+offset_top = -44.0
+offset_right = -36.0
+offset_bottom = 4.0
+texture = ExtResource("11_4jktl")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 13
+patch_margin_top = 13
+patch_margin_right = 13
+patch_margin_bottom = 13
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+metadata/_edit_group_ = true
+
+[node name="Problem" type="RichTextLabel" parent="UI/DrawRect"]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 68.0
+offset_bottom = 23.0
+theme_override_fonts/normal_font = ExtResource("12_ilc23")
+theme_override_font_sizes/normal_font_size = 8
+
 [node name="CaptionRect" type="NinePatchRect" parent="UI"]
 self_modulate = Color(0.5, 0.5, 0.5, 1)
 layout_mode = 0
@@ -119,7 +147,6 @@ patch_margin_right = 13
 patch_margin_bottom = 13
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
-metadata/_edit_group_ = true
 
 [node name="Caption" type="RichTextLabel" parent="UI/CaptionRect"]
 layout_mode = 0
@@ -181,5 +208,6 @@ offset_bottom = 44.0
 color = Color(1, 0.47451, 0.14902, 1)
 metadata/_edit_group_ = true
 
+[connection signal="draw" from="." to="." method="_on_draw"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

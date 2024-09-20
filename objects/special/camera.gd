@@ -11,9 +11,12 @@ var m_timer : float = 0
 var vel : Vector2 = Vector2(0, 0)
 var zoom_spd : float = 0
 var timeline_index : int = 0
+var player
 
 func _ready():
+	player = get_tree().get_first_node_in_group("Player")
 	start_pos = global_position
+	zoom *= ProjectSettings.get_setting("display/window/size/viewport_width") / 1920.0
 
 func _physics_process(_delta):
 	if static_x:
@@ -24,6 +27,15 @@ func _physics_process(_delta):
 	wiggle_sine += PI / 180
 
 func _process(delta):
+	# Zooming (for non-timeline cameras)
+	if timeline.size() == 0 and !("Solving" in player.status_effects):
+		if Input.is_action_just_released("key_zoom_in") and zoom.x < 9:
+			zoom.x += 0.25 * delta * 60
+			zoom.y += 0.25 * delta * 60
+		if Input.is_action_just_released("key_zoom_out") and zoom.x > 1:
+			zoom.x -= 0.25 * delta * 60
+			zoom.y -= 0.25 * delta * 60
+	# Timeline camera
 	if timeline.size() > 0:
 		if m_timer >= timeline[timeline_index].w:
 			vel.x = timeline[timeline_index].x

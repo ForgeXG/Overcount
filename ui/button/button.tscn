@@ -40,6 +40,7 @@ speed = 0.02
 
 [node name="ButtonUI" type="CanvasLayer" parent="."]
 visible = false
+follow_viewport_enabled = true
 
 [node name="Control" type="Control" parent="ButtonUI"]
 layout_mode = 3
@@ -103,7 +104,7 @@ offset_top = 40.0
 offset_right = 944.0
 offset_bottom = 167.0
 theme_override_fonts/normal_font = ExtResource("1_oxpmn")
-theme_override_font_sizes/normal_font_size = 96
+theme_override_font_sizes/normal_font_size = 72
 text = "<Title placeholder>"
 fit_content = true
 

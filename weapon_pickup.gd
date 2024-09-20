@@ -1,52 +1,52 @@
 extends Area2D
 
+#class Weapon:
+	#var name : String = "Dagger"
+	#var type : String = "Melee" # Melee/Polynomial/Wavinator/Stringer/Projector
+	#var energy_cost : int = 1
+	#var cooldown : int = 20 # Frames, 1 frame = 1/60 of a second
+	#var damage : float = 1.0
+	#var range : float = 3 # Tiles, 1 tile = 16 pixels
+	#var projectile_speed : float = 64.0 # Tiles
+	#var projectile_count : int = 1
+	#var projectile_lifetime : int = 120 # Frames
+	#var spread : float = 0 # Radians
+	#var projectile_delay : int = 0 # Frames
+	#var inaccuracy : float = 0 # Radians
+	#var offset : Vector2 = Vector2(0, 0)
+
 var owned = self
 var picked = false
+@export var weapon : WeaponNew = WeaponNew.new()
 @export var weapon_name : String = "Dagger"
-@export var weapon_type : String = "Melee"
-@export var energy_use : int = 0
-@export var cooldown_use : int = 30
-@export var mindmg : int = 1
-@export var maxdmg : int = 1
-@export var fire_speed : int = 0
+@export var infinite : bool = false
+var pickup_cooldown : int = 0
+
+var player
 
 func _ready():
-	if weapon_type == "Sling":
-		if weapon_name == "ParabolicSling":
-			$Animations.sprite_frames = load("res://sprites/weapons/ranged/parabolicsling/sling/ps_frames.tres")
+	weapon = WeaponNew.create(weapon_name)
+	$Animations.sprite_frames = SpriteFrames.new()
+	$Sprite.texture = weapon.texture 
+	player = get_tree().get_first_node_in_group("Player")
 
 func _process(_delta):
-	if owned != self and !picked:
-		get_parent().remove_child(self)
-		owned.add_child(self)
-		owned.has_weapon = true
-		picked = true
+	if pickup_cooldown > 0:
+		modulate = Color.BLACK
+		pickup_cooldown -= 1
+	else:
+		modulate = weapon.tint
 
 func _physics_process(_delta):
-	var mouse_pos = get_global_mouse_position()
-	if owned != self:
-		var level = get_tree().current_scene
-		position = Vector2(0, 3)
-		
-		rotation = Vector2(mouse_pos.x - global_position.x,
-		mouse_pos.y - global_position.y).angle()
-	else:
-		rotation += 0.01
+	rotation += 0.01
 
 func _on_body_entered(body):
-	if owned == self:
+	if owned == self and pickup_cooldown == 0:
 		if body.is_in_group("Player"):
-			if body.weapon_name != "None":
-				body.get_node(body.weapon_filename).queue_free()
-				body.has_weapon = false
-			body.weapon_filename = name
-			owned = body
-			owned.weapon_name = weapon_name
-			owned.weapon_type = weapon_type
-			owned.energy_use = energy_use
-			owned.cooldown_use = cooldown_use
-			owned.mindmg = mindmg
-			owned.maxdmg = maxdmg
-			owned.fire_speed = fire_speed
-			owned.get_node("PlayerUI").get_node("TextCooldown").maxval = cooldown_use
+			body.weapon = weapon
+			player.get_node("PlayerUI/TextCooldown").reassign()
 			print("PICKED UP " + str(weapon_name).capitalize())
+			if !infinite:
+				queue_free()
+			else:
+				pickup_cooldown = 30

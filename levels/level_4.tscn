@@ -19,8 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="16_hfe68"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="17_enosl"]
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="18_a3s5a"]
-[ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="19_qtjox"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="21_7wq1i"]
+[ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="22_efwvb"]
 
 [sub_resource type="Environment" id="Environment_j5hvl"]
 background_mode = 3
@@ -84,11 +84,8 @@ destination = "res://levels/level_b1.tscn"
 
 [node name="Weapon" parent="." instance=ExtResource("10_aatak")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(4096, -3144)
+position = Vector2(4088, -3080)
 scale = Vector2(1.2, 1.2)
-cooldown_use = 40
-mindmg = 2
-maxdmg = 2
 
 [node name="EquationLock" parent="." instance=ExtResource("11_xhgn8")]
 modulate = Color(1, 0, 0, 1)
@@ -1043,14 +1040,6 @@ position = Vector2(2216, -2952)
 [node name="GemTriangle212" parent="." instance=ExtResource("16_hfe68")]
 position = Vector2(2216, -2936)
 
-[node name="InfoSign" parent="." instance=ExtResource("19_qtjox")]
-position = Vector2(-168, -104)
-txt = "The floor division (//) is like regular division, but with the remainder removed. 40 // 6 = (36 + 4) // 6 = 6 + 4 // 6 = 6."
-
-[node name="InfoSign2" parent="." instance=ExtResource("19_qtjox")]
-position = Vector2(4088, -3082)
-txt = "Took the weapon? Run back!"
-
 [node name="GemTriangle101" parent="." instance=ExtResource("16_hfe68")]
 position = Vector2(3400, -3208)
 
@@ -1119,3 +1108,39 @@ position = Vector2(2632, -2632)
 
 [node name="Checkpoint5" parent="." instance=ExtResource("21_7wq1i")]
 position = Vector2(2328, -3032)
+
+[node name="TPhrase" parent="." instance=ExtResource("22_efwvb")]
+position = Vector2(-104, -104)
+text = "To get started with division, let's see the simpler case. Floor division (//) counts how many whole times the second number goes into the first, remainder ignored.
+40 // 7 = 35 // 7 + 5 // 7 = 5 + 0 = 5."
+char_ind = 3
+
+[node name="TPhrase4" parent="." instance=ExtResource("22_efwvb")]
+position = Vector2(-40, -72)
+text = "Wait, the final lock is in the beginning? That means we do have limited time once you solve it."
+char_ind = 3
+
+[node name="TPhrase6" parent="." instance=ExtResource("22_efwvb")]
+position = Vector2(-72, -40)
+text = "Why are there 2 fours blocking the portal, can't we just destroy them?
+Oh, you don't have a weapon.
+Just get one at the top of the level!
+(Scroll mouse to zoom)"
+
+[node name="TPhrase5" parent="." instance=ExtResource("22_efwvb")]
+position = Vector2(72, -40)
+text = "You only have 5 minutes to get the weapon at the very top and back again.
+Good luck."
+char_ind = 3
+
+[node name="TPhrase2" parent="." instance=ExtResource("22_efwvb")]
+position = Vector2(2440, -1656)
+text = "You're halfway there!"
+
+[node name="TPhrase3" parent="." instance=ExtResource("22_efwvb")]
+position = Vector2(4120, -3112)
+text = "Go all the way BACK once you take this dagger."
+
+[node name="Weapon2" parent="." instance=ExtResource("10_aatak")]
+position = Vector2(-184, -64)
+weapon_name = "Empty"

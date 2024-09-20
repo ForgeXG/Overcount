@@ -1,7 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://dkkcnq5lc5nwu"]
+[gd_scene load_steps=14 format=3 uid="uid://dkkcnq5lc5nwu"]
 
 [ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_4f0l3"]
-[ext_resource type="Script" path="res://levels/post_process.gd" id="2_7m3ed"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_aphc6"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_xx5eh"]
 [ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="5_r78aj"]
@@ -13,20 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="10_hy1uj"]
 [ext_resource type="PackedScene" uid="uid://603yeg4cfh6v" path="res://objects/enemies/spawner/enemy_spawner.tscn" id="12_jp2o0"]
 [ext_resource type="PackedScene" uid="uid://c8o0mckbsobk8" path="res://objects/triggers/toggle/active/t_active.tscn" id="13_t74q4"]
-
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
+[ext_resource type="PackedScene" uid="uid://buqh6v4j34c3w" path="res://weapon_pickup.tscn" id="14_v1xav"]
 
 [node name="Level1" type="Node2D"]
 material = ExtResource("1_4f0l3")
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("2_7m3ed")
 
 [node name="Camera" parent="." instance=ExtResource("4_xx5eh")]
 visible = false
@@ -153,3 +142,7 @@ position = Vector2(-80, -56)
 timer = 3786.0
 open = false
 s_group_target = 1
+
+[node name="Weapon3" parent="." instance=ExtResource("14_v1xav")]
+position = Vector2(152, -23)
+weapon_name = "Empty"

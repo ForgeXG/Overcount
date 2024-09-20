@@ -15,7 +15,7 @@ func _ready():
 	$WinScreen.scale = Vector2.ZERO
 	$Pause/ButtonRestart.destination = get_tree().current_scene.scene_file_path
 	$WinScreen/ButtonRestart.destination = get_tree().current_scene.scene_file_path
-
+	$DialogueBox/TextDialogue.visible_ratio = 0
 
 func _process(_delta):
 	var key_pause : bool = Input.is_action_just_pressed("key_pause")
@@ -35,15 +35,18 @@ func _process(_delta):
 	$TextCooldown.text = str(player.cooldown)
 	$TextEnergy.text = str(player.energy)
 	$TextScore.text = str(player.score)
+	$TextCharge.text = str(int(player.special_charge))
 	$FillerBox/InfoBox/TextFPS.text = "FPS: " + str(floori(Engine.get_frames_per_second()))
 
 	var scale_factor = sin(Time.get_ticks_usec()/100000)/50
-	$ImageHealth.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor)
-	$ImageCooldown.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor)
-	$ImageEnergy.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor)
-	$ImageScore.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor)
-	$ImageScoreRank.scale = Vector2(scale.x + scale_factor * 2, scale.y - scale_factor)
+	$ImageHealth.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor) / scale.x
+	$ImageCooldown.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor) / scale.x
+	$ImageEnergy.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor) / scale.x
+	$ImageScore.scale = Vector2(scale.x + scale_factor, scale.y + scale_factor) / scale.x
+	$ImageScoreRank.scale = Vector2(scale.x + scale_factor * 2, scale.y - scale_factor) / scale.x
 	$ImageScoreRank.texture = rank_textures[clampi(float(player.score) / float(player.maxscore) * 6, 0, 5)]
+	$ImageCharge.material.set_shader_parameter("anglelimit",
+	 TAU * player.special_charge / player.weapon.special_points)
 	if $OvercountSign.texture.current_frame == 17:
 		$OvercountSign.visible = false
 	else:
@@ -51,7 +54,18 @@ func _process(_delta):
 	
 	$FillerBox/InfoBox/TextSpeedrunTimer.text = time_to_speedrun(player.speedrun_time)
 	$FillerBox/InfoBox/TextMach.text = "Phase: " + "%.1f" % player.mach
-	$FillerBox/InfoBox/TextAutorun.text = "Autorun: " + str(player.autorun)
+	$FillerBox/InfoBox/TextAutorun.text = "Auto: " + str(player.autorun)
+	$FillerBox/InfoBox/TextDPS.text = "DPS: " + str("%.1f" % player.dps)
+	$FillerBox/InfoBox/TextDebug.text = str(player.debug_float)
+	# Dialogue
+	var dl = player.dialogue
+	var ph = dl.phrases[dl.phrase_ind]
+	$DialogueBox/TextureRect.texture = ph.char_sprites[ph.char_ind]
+	$DialogueBox/TextDialogue.text = ph.text # Can also add ph.characters[ph.char_ind] before
+	if $DialogueBox/TextDialogue.visible_characters < ph.text.length():
+		$DialogueBox/TextDialogue.visible_characters += 1
+	# if $DialogueBox/TextDialogue.visible_ratio < 1:
+		# $DialogueBox/TextDialogue.visible_ratio = clamp($DialogueBox/TextDialogue.visible_ratio + 0.02, 0, 1)
 
 func time_to_speedrun(t: float) -> String:
 	var output : String = "%s:%s:%s"

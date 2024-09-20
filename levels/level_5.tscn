@@ -21,11 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="17_xkn84"]
 [ext_resource type="PackedScene" uid="uid://ba7uk34q48n6n" path="res://objects/hazards/spike.tscn" id="18_busn3"]
 [ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="19_r0bxn"]
-[ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="20_y7cx4"]
 [ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="21_plgow"]
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="22_tudap"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="23_hibxo"]
 [ext_resource type="PackedScene" uid="uid://b3uoy70x3kq5v" path="res://objects/blocks/onoff/escape/on_off_escape_wall.tscn" id="24_a0fbx"]
+[ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="27_487mh"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="27_xnxou"]
 
 [sub_resource type="Environment" id="Environment_xa3lu"]
@@ -91,12 +91,9 @@ scale = Vector2(2, 2)
 destination = "res://levels/level_6.tscn"
 
 [node name="Weapon" parent="." instance=ExtResource("10_tpwcd")]
-modulate = Color(1, 0, 0, 1)
-position = Vector2(-816, -123)
+position = Vector2(-296, -120)
 scale = Vector2(1.2, 1.2)
-cooldown_use = 40
-mindmg = 2
-maxdmg = 2
+weapon_name = "WellDef Dagger"
 
 [node name="Enemy5_" parent="." instance=ExtResource("11_6r1m1")]
 position = Vector2(744, -72)
@@ -225,13 +222,22 @@ position = Vector2(1464, -1064)
 position = Vector2(1448, -1064)
 
 [node name="Enemy2_11" parent="." instance=ExtResource("12_cnrul")]
-position = Vector2(2008, -1064)
+position = Vector2(2440, -1032)
 
 [node name="Enemy1_22" parent="." instance=ExtResource("13_0t5e7")]
-position = Vector2(2008, -1080)
+position = Vector2(2440, -1048)
 
 [node name="Enemy1_23" parent="." instance=ExtResource("13_0t5e7")]
-position = Vector2(2008, -1096)
+position = Vector2(2440, -1064)
+
+[node name="Enemy2_22" parent="." instance=ExtResource("12_cnrul")]
+position = Vector2(2536, -1032)
+
+[node name="Enemy1_50" parent="." instance=ExtResource("13_0t5e7")]
+position = Vector2(2536, -1048)
+
+[node name="Enemy1_51" parent="." instance=ExtResource("13_0t5e7")]
+position = Vector2(2536, -1064)
 
 [node name="Enemy3_2" parent="." instance=ExtResource("14_iq8hl")]
 position = Vector2(2232, -1096)
@@ -344,14 +350,6 @@ position = Vector2(3752, -1464)
 [node name="GemOctagon2" parent="." instance=ExtResource("17_xkn84")]
 position = Vector2(-216, -1160)
 
-[node name="Weapon2" parent="." instance=ExtResource("10_tpwcd")]
-position = Vector2(1848, -1064)
-weapon_name = "ParabolicSling"
-weapon_type = "Sling"
-cooldown_use = 15
-maxdmg = 2
-fire_speed = 500
-
 [node name="Accelerator5" parent="." instance=ExtResource("16_wb84o")]
 position = Vector2(4984, -1768)
 
@@ -406,7 +404,7 @@ a_range = 100
 b_range = 0
 
 [node name="EquationLock4" parent="." instance=ExtResource("19_r0bxn")]
-position = Vector2(1816, -1063)
+position = Vector2(1816, -1064)
 mode = "power"
 b = 0
 a_range = 9999
@@ -446,18 +444,6 @@ a = 3
 b = 4
 a_range = 6
 b_range = 0
-
-[node name="InfoSign" parent="." instance=ExtResource("20_y7cx4")]
-position = Vector2(-56, -168)
-txt = "The power operator a^b raises number a to the power b and is written as a^b. It means a * a *a * ... (b times). 2 ^ 3 = 2 * 2 * 2 = 8 "
-
-[node name="InfoSign2" parent="." instance=ExtResource("20_y7cx4")]
-position = Vector2(136, -490)
-txt = "Anything to the 1st power doesn't change. 1234567^1 = 1234567"
-
-[node name="InfoSign3" parent="." instance=ExtResource("20_y7cx4")]
-position = Vector2(1768, -1067)
-txt = "Anything to the 0th power(except 0) is 1."
 
 [node name="Enemy2_16" parent="." instance=ExtResource("12_cnrul")]
 position = Vector2(5752, -1960)
@@ -2192,3 +2178,82 @@ position = Vector2(104, -936)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("27_xnxou")]
 position = Vector2(3784, -1752)
+
+[node name="Weapon2" parent="." instance=ExtResource("10_tpwcd")]
+position = Vector2(1928, -1064)
+weapon_name = "ParabolicSling"
+
+[node name="TPhrase5" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(-904, -136)
+
+[node name="TPhrase6" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(-824, -120)
+text = "..."
+char_ind = 3
+
+[node name="TPhrase14" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(-328, -120)
+text = "Notice how this dagger is tinted? Sometimes weapons can have variations.
+This is a WellDef Dagger, it is well-defined because it has more accuracy and range, yet costs more energy, cooldown and deals slightly less damage."
+char_ind = 2
+
+[node name="TPhrase7" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(-696, -120)
+text = "Are both of them quiet? Finally we can do better stuff than that."
+char_ind = 2
+
+[node name="TPhrase8" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(-56, -168)
+text = "The power operator aᵇ or a^b raises number a to the power b. It means a * a * a * ... (b times). 2 ^ 3 = 2 * 2 * 2 = 8."
+char_ind = 2
+
+[node name="TPhrase9" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(72, -136)
+text = "You may have noticed multiplication is repeated addition.
+2 * 3 = 2 + 2 + 2 = 6.
+And addition is repeated succession.
+2 + 3 = 2 + 1 + 1 + 1 = 5"
+char_ind = 2
+
+[node name="TPhrase11" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(136, -488)
+text = "Anything to the 1st power doesn't change. Why? Let's see an example with decreasing powers.
+a ^ 3 = a * a * a
+a ^ 2 = a * a
+a ^ 1 = a"
+char_ind = 2
+
+[node name="TPhrase17" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(-216, -1160)
+text = "Nice, an octagonal gem!"
+char_ind = 2
+
+[node name="TPhrase12" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(1768, -1064)
+text = "Anything to the 0th power is 1, except 0, because you cannot divide by 0.
+Let's see that example again, but notice how we divide by a every time we make the power 1 less.
+a ^ 3 = a * a * a
+a ^ 2 = a * a * a / a = a * a
+a ^ 1 = a * a * a / a / a = a
+a ^ 0 = a * a * a / a / a / a = 1"
+char_ind = 2
+
+[node name="TPhrase15" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(1888, -1064)
+text = "A new weapon type! This is from a type of polynomial weapons, a parabolic sling. It shoots in a parabola trajectory, obviously..."
+char_ind = 2
+
+[node name="TPhrase13" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(2808, -1336)
+text = "Well that's a big 5."
+char_ind = 2
+
+[node name="TPhrase16" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(6056, -2584)
+text = "A 4th power? Nah, shouldn't be that hard."
+char_ind = 2
+
+[node name="TPhrase10" parent="." instance=ExtResource("27_487mh")]
+position = Vector2(312, -72)
+text = "Mathematicians are lazy anyway, can tell from personal experience. We had one like you before..."
+char_ind = 2

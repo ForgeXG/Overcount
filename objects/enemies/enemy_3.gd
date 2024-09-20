@@ -66,6 +66,7 @@ func _process(_delta):
 		dmg = 0
 	if d_timer == 0:
 		player.score += score
+		player.energy += 4
 		queue_free()
 		
 	queue_redraw()
@@ -117,7 +118,7 @@ func _physics_process(delta):
 	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.get_collider() == player and hp > 0 and player.mach < 3:
+		if collision.get_collider() == player and hp > 0 and player.mach < 3 and dmg > 0:
 			if player.i_frames == 0:
 				player.i_frames = 60
 				player.dmg_effect += ceil(dmg / 3)
@@ -139,6 +140,7 @@ func _draw():
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
 	7, draw_color, 4, false)
 	
-	draw_circle(Vector2(0, 0), max_radius, Color(1, 0, 0, 0.2))
+	# draw_circle(Vector2(0, 0), max_radius, Color(1, 0, 0, 0.2))
+	draw_arc(Vector2(0, 0), max_radius, 0, TAU, 15, Color(1, 0, 0, 0.3), 1, false)
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
 		draw_line(Vector2(0, 0), player.position - position, Color(1, 0, 0, 0.5), 2*cooldown/max_cooldown, false)

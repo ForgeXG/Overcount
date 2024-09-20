@@ -1,0 +1,42 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bcuni25w37lc6"]
+
+[ext_resource type="Texture2D" uid="uid://blnlqqwn218hi" path="res://sprites/weapons/polynomials/parabolicsling/bullet/0.png" id="1_53yqh"]
+[ext_resource type="Texture2D" uid="uid://1n3typy33ij" path="res://sprites/weapons/polynomials/parabolicsling/bullet/1.png" id="2_38g5l"]
+[ext_resource type="Texture2D" uid="uid://bsm28mr1eixmc" path="res://sprites/weapons/polynomials/parabolicsling/bullet/2.png" id="3_lbs1b"]
+[ext_resource type="Texture2D" uid="uid://r33lqwbpjjxj" path="res://sprites/weapons/polynomials/parabolicsling/bullet/3.png" id="4_wt0ot"]
+[ext_resource type="Texture2D" uid="uid://dinwsu5hdv564" path="res://sprites/weapons/polynomials/parabolicsling/bullet/4.png" id="5_3biag"]
+[ext_resource type="Texture2D" uid="uid://dj5m6ly5sfsx" path="res://sprites/weapons/polynomials/parabolicsling/bullet/5.png" id="6_q481u"]
+[ext_resource type="Texture2D" uid="uid://d0ordxmqn6apk" path="res://sprites/weapons/polynomials/parabolicsling/bullet/6.png" id="7_kqnak"]
+[ext_resource type="Texture2D" uid="uid://ce7g16y70t0ma" path="res://sprites/weapons/polynomials/parabolicsling/bullet/7.png" id="8_v653i"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_53yqh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_38g5l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lbs1b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wt0ot")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3biag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_q481u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kqnak")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v653i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]

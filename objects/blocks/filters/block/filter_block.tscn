@@ -1,0 +1,60 @@
+[gd_scene load_steps=10 format=3 uid="uid://kfddcpjv1td2"]
+
+[ext_resource type="Script" path="res://objects/blocks/filters/block/filter_block.gd" id="1_ely8f"]
+[ext_resource type="Texture2D" uid="uid://76cw88h711ao" path="res://objects/blocks/filters/icons/PlayerIcon.png" id="2_i2xf0"]
+[ext_resource type="Texture2D" uid="uid://d3tmffm7g3r4t" path="res://objects/blocks/filters/icons/LaserIcon.png" id="3_t1wng"]
+[ext_resource type="Texture2D" uid="uid://cau1lesmoc14i" path="res://objects/blocks/filters/icons/BulletIcon.png" id="4_054g8"]
+[ext_resource type="Texture2D" uid="uid://c7t2y7x7omkne" path="res://objects/blocks/filters/icons/EnemyIcon.png" id="5_16d1i"]
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="6_tuwis"]
+[ext_resource type="Texture2D" uid="uid://cd5dmehphqsvh" path="res://objects/blocks/filters/block/FilterBlock.png" id="7_popjo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inv04"]
+size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ol12"]
+size = Vector2(16, 16)
+
+[node name="FilterBlock" type="StaticBody2D" groups=["Filter"]]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("1_ely8f")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_inv04")
+metadata/_edit_lock_ = true
+
+[node name="PlayerIcon" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 0, 1, 0.705882)
+position = Vector2(-4, -3)
+texture = ExtResource("2_i2xf0")
+
+[node name="LaserIcon" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 1, 0.705882)
+position = Vector2(4, 4)
+texture = ExtResource("3_t1wng")
+
+[node name="BulletIcon" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 0, 0.705882)
+position = Vector2(-4, 4)
+texture = ExtResource("4_054g8")
+
+[node name="EnemyIcon" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 0, 0, 0.705882)
+position = Vector2(4, -3)
+texture = ExtResource("5_16d1i")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+material = ExtResource("6_tuwis")
+texture = ExtResource("7_popjo")
+metadata/_edit_lock_ = true
+
+[node name="AreaDetector" type="Area2D" parent="."]
+monitorable = false
+
+[node name="Coll" type="CollisionShape2D" parent="AreaDetector"]
+shape = SubResource("RectangleShape2D_0ol12")

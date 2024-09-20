@@ -173,6 +173,8 @@ b = 2
 a_range = 0
 b_range = 0
 equation = true
+ch_min = 0
+ch_max = 0
 
 [node name="EquationLock6" parent="." instance=ExtResource("17_llec1")]
 modulate = Color(1, 0.215686, 0, 1)
@@ -215,11 +217,13 @@ b_range = 0
 modulate = Color(1, 0.215686, 0, 1)
 position = Vector2(2840, -568)
 mode = "root"
-a = 8
+a = 27
 b = 3
 a_range = 0
 b_range = 0
 equation = true
+ch_min = 0
+ch_max = 0
 
 [node name="EquationLock11" parent="." instance=ExtResource("17_llec1")]
 modulate = Color(1, 0.215686, 0, 1)
@@ -230,6 +234,8 @@ b = 2
 a_range = 0
 b_range = 0
 equation = true
+ch_min = 0
+ch_max = 0
 
 [node name="EquationLock12" parent="." instance=ExtResource("17_llec1")]
 modulate = Color(1, 0.215686, 0, 1)
@@ -239,7 +245,8 @@ a = 36
 b = 2
 a_range = 0
 b_range = 0
-equation = true
+ch_min = 0
+ch_max = 0
 
 [node name="EquationLock13" parent="." instance=ExtResource("17_llec1")]
 modulate = Color(1, 0.215686, 0, 1)
@@ -261,12 +268,12 @@ final = true
 finalmusic = "res://audio/music/zenon.mp3"
 mode = "root"
 a = 64
-b = 3
+b = 6
 a_range = 0
 b_range = 0
 equation = true
-ch_min = 6
-ch_max = 10
+ch_min = 0
+ch_max = 0
 
 [node name="EquationLock2" parent="." instance=ExtResource("17_llec1")]
 modulate = Color(1, 0.215686, 0, 1)

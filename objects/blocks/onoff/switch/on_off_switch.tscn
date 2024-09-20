@@ -51,7 +51,8 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="OnOffSwitch" type="CharacterBody2D" groups=["OnOff"]]
+[node name="OnOffSwitch" type="CharacterBody2D" groups=["OnOff", "OnOffSwitch"]]
+collision_mask = 3841
 motion_mode = 1
 wall_min_slide_angle = 1.5708
 script = ExtResource("1_vxav0")

@@ -66,6 +66,7 @@ func _process(_delta):
 		dmg = 0
 	if d_timer == 0:
 		player.score += score
+		player.energy += 7
 		queue_free()
 		
 	queue_redraw()
@@ -141,6 +142,7 @@ func _draw():
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
 	 7, draw_color, 4, false)
 	
-	draw_circle(Vector2(0, 0), max_radius, Color(0, 0, 0.9, 0.1))
+	# draw_circle(Vector2(0, 0), max_radius, Color(0, 0, 0.9, 0.1))
+	draw_arc(Vector2(0, 0), max_radius, 0, TAU, 15, Color(0, 0, 0.9, 0.3), 1, false)
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
 		draw_line(Vector2(0, 0), player.position - position, Color(0.3, 0.3, 1, 0.5), 2*cooldown/max_cooldown, false)

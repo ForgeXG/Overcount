@@ -50,7 +50,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="OnOffWall" type="AnimatableBody2D" groups=["OnOff"]]
+[node name="OnOffWall" type="AnimatableBody2D" groups=["OnOff", "OnOffBlock"]]
 editor_description = "Switches collision when escape sequence is activated."
 texture_filter = 1
 script = ExtResource("1_ifaoy")
@@ -59,6 +59,7 @@ script = ExtResource("1_ifaoy")
 shape = SubResource("RectangleShape2D_om8l2")
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_0t64r")
 animation = &"off"
 autoplay = "off"

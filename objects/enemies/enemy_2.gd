@@ -46,7 +46,6 @@ func _process(_delta):
 			$Coll.set_deferred("disabled", true)
 			velocity.x = -h_sign * randi_range(walk_spd * (player.mach + 3), walk_spd * (player.mach + 4)) * 0.2
 			velocity.y = randi_range(-300, -500) * (player.mach + 1)
-			queue_redraw()
 	
 	if heal_effect > 0:
 		heal_effect -= 0.1
@@ -61,7 +60,9 @@ func _process(_delta):
 		dmg = 0
 	if d_timer == 0:
 		player.score += score
+		player.energy += 3
 		queue_free()
+	queue_redraw()
 
 func _physics_process(delta):
 	var key_jump = player.position.y < position.y - 2

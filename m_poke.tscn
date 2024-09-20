@@ -81,13 +81,13 @@ animations = [{
 script = ExtResource("1_qyfhm")
 
 [node name="Coll" type="CollisionShape2D" parent="."]
-position = Vector2(2, 0)
+position = Vector2(6, 0)
 shape = SubResource("RectangleShape2D_x5qby")
 one_way_collision_margin = 0.0
 
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(2, 0)
+position = Vector2(6, 0)
 sprite_frames = SubResource("SpriteFrames_a4ya7")
 autoplay = "default"
 frame_progress = 0.029042

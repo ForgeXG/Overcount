@@ -28,7 +28,8 @@ func _process(_delta):
 	queue_redraw()
 	
 func _physics_process(_delta):
-	rotation = player_angle
+	if homing:
+		rotation = player_angle
 	player_dist = position.distance_to(player.position)
 	player_angle = atan((player.position.y - position.y) / (player.position.x - position.x))
 	if player.position.x - position.x < 0:
@@ -47,6 +48,11 @@ func _on_body_entered(body):
 	elif body.is_in_group("Player"):
 		if body.mach < 3 and body.i_frames == 0:
 			body.dmg_effect += dmg - 0.01
+			var dmg_number = preload("res://ui/damage_number.tscn").instantiate()
+			get_tree().current_scene.add_child(dmg_number)
+			dmg_number.position = position
+			dmg_number.text = "%.1f" % dmg
+			dmg_number.target = "Player"
 			queue_free()
 	elif body.is_in_group("WallTileMap"):
 		if sticky:

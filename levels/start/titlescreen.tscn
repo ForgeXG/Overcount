@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://ce08nd042k6es" path="res://ui/ui_sprites/ranks/Rank5.png" id="21_0cmgk"]
 
 [node name="titlescreen" type="Control"]
+top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -61,14 +62,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -540.0
-offset_right = -960.0
-offset_bottom = -540.0
+offset_left = -568.0
+offset_top = -344.0
+offset_right = -568.0
+offset_bottom = -344.0
 grow_horizontal = 2
 grow_vertical = 2
-metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="NerdEmoji" type="TextureRect" parent="Disclaimer"]
 layout_mode = 2
@@ -147,10 +148,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -64.0
-offset_right = -320.0
-offset_bottom = -64.0
+offset_left = -128.0
+offset_top = 112.0
+offset_right = -128.0
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -369,7 +370,7 @@ coins_fee = 300
 level_title = "Double Square Beam"
 level_desc = "Get to the goal quickly!"
 
-[node name="Level4B2" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level15" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
 offset_left = -640.0
 offset_top = 204.0
@@ -382,22 +383,23 @@ destination = "res://levels/level_15.tscn"
 level_title = "Slide left, Slide right"
 level_desc = "Survive and get to the goal!"
 
-[node name="Level4B3" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level16" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
 offset_left = 320.0
 offset_top = 204.0
 offset_right = 512.0
 offset_bottom = 269.0
 text = "(⊟)"
-icon = ExtResource("11_yf7xo")
+icon = ExtResource("12_2twkl")
 button_type = 1
 destination = "res://levels/level_16.tscn"
 coins_fee = 400
 level_title = "slortnoc lausunU"
-level_desc = "Get to the goal with a twist!"
+level_desc = "Get to the goal with a twist!
+Required to know: +, -, ×, //, /"
 
-[node name="Level4B5" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(0.3, 0.3, 0.3, 1)
+[node name="Level13" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(0.7, 0.7, 0.7, 1)
 layout_mode = 1
 offset_left = 64.0
 offset_top = 204.0
@@ -409,9 +411,25 @@ button_type = 1
 destination = "res://levels/level_13.tscn"
 coins_fee = -1
 level_title = "Eco-friendly wood logs"
-level_desc = "This level is also completely locked... for now."
+level_desc = "This level is also completely locked... for now.
+Required to know: ^, √"
 
-[node name="Level4B6" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+[node name="Level19" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+modulate = Color(0.7, 0.7, 0.7, 1)
+layout_mode = 1
+offset_left = -384.0
+offset_top = -564.0
+offset_right = -256.0
+offset_bottom = -499.0
+text = "a̅"
+icon = ExtResource("11_yf7xo")
+button_type = 1
+destination = "res://levels/level_13.tscn"
+coins_fee = -1
+level_title = "Vectors, vectors and more vectors"
+level_desc = ""
+
+[node name="Level14" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
 offset_left = -416.0
 offset_top = 204.0
@@ -425,8 +443,7 @@ coins_fee = 100
 level_title = "Be careful with balls!"
 level_desc = "Get yourself and the ball to the goal!"
 
-[node name="Level4B4" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
-modulate = Color(0.3, 0.3, 0.3, 1)
+[node name="LevelAftermath" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
 offset_left = 576.0
 offset_top = 204.0
@@ -436,9 +453,10 @@ text = "Θ'"
 icon = ExtResource("14_6w27c")
 button_type = 1
 destination = "res://levels/level_aftermath.tscn"
-coins_fee = -1
+coins_fee = 1984
 level_title = "The Aftermath"
-level_desc = "This level is completely locked for now..."
+level_desc = "This level is completely locked for now...
+Required to know: A lot"
 
 [node name="LevelB1" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
@@ -480,6 +498,21 @@ button_type = 1
 destination = "res://levels/level_5.tscn"
 coins_fee = 300
 level_title = "A Powerful Place"
+level_desc = "Get to the goal with a ranged weapon!
+Required to know: ×"
+
+[node name="Level18" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
+layout_mode = 1
+offset_left = -384.0
+offset_top = -308.0
+offset_right = -256.0
+offset_bottom = -243.0
+text = "∠"
+icon = ExtResource("11_yf7xo")
+button_type = 1
+destination = "res://levels/level_18.tscn"
+coins_fee = 150
+level_title = "A Cruel Angle's Thesis"
 level_desc = "Get to the goal with a ranged weapon!"
 
 [node name="Level6" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
@@ -507,7 +540,7 @@ icon = ExtResource("13_35psm")
 button_type = 1
 destination = "res://levels/level_7.tscn"
 coins_fee = 300
-level_title = "Periodic fracti.66666"
+level_title = "Periodic frac.ttttttt"
 level_desc = "Get to the goal while avoiding attracting enemies."
 
 [node name="Level8" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
@@ -522,7 +555,8 @@ button_type = 1
 destination = "res://levels/level_8.tscn"
 coins_fee = 200
 level_title = "Revision Takedown"
-level_desc = "<Revise some stuff you learned before and get to the goal!"
+level_desc = "Revise some stuff you learned before and get to the goal!
+Required to know: +, -, ×, //, /, ^"
 
 [node name="Level9" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
@@ -536,7 +570,8 @@ button_type = 1
 destination = "res://levels/level_9.tscn"
 coins_fee = 300
 level_title = "Linear Dependency"
-level_desc = "Get to the goal while finding x."
+level_desc = "Get to the goal while finding x.
+Required to know: +, -, ×, //"
 
 [node name="Level10" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
@@ -550,7 +585,8 @@ button_type = 1
 destination = "res://levels/level_10.tscn"
 coins_fee = 450
 level_title = "The root of all evil"
-level_desc = "Get to the goal in total d███████"
+level_desc = "Get to the goal in total d███████
+Required to know: +, -, ×, ^"
 
 [node name="Level11" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
@@ -564,7 +600,8 @@ button_type = 1
 destination = "res://levels/level_11.tscn"
 coins_fee = 300
 level_title = "MMM - Mental Multi Math"
-level_desc = "Learn better multiplication and get to the goal!"
+level_desc = "Learn better multiplication and get to the goal!
+Required to know: ×"
 
 [node name="Level12" parent="LevelSelection" instance=ExtResource("8_ojxdu")]
 layout_mode = 1
@@ -667,3 +704,7 @@ texture = ExtResource("20_c6tb2")
 [node name="Rank5" type="Sprite2D" parent="TextureTest"]
 position = Vector2(2288, 248)
 texture = ExtResource("21_0cmgk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1072, 584)
+zoom = Vector2(0.667, 0.667)

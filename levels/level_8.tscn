@@ -1,6 +1,5 @@
-[gd_scene load_steps=23 format=3 uid="uid://c4bld58ewsh1t"]
+[gd_scene load_steps=22 format=3 uid="uid://c4bld58ewsh1t"]
 
-[ext_resource type="Script" path="res://levels/post_process.gd" id="2_gw22t"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_no8jt"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_d5hmq"]
 [ext_resource type="Material" uid="uid://dqcy5tqjdqc7c" path="res://materials/m_deltille_3.tres" id="5_j40ov"]
@@ -21,19 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="20_s3xdn"]
 [ext_resource type="PackedScene" uid="uid://c7lqdw76wthbs" path="res://objects/enemies/enemy_4.tscn" id="20_scn1d"]
 [ext_resource type="PackedScene" uid="uid://b4r57j2eg4eef" path="res://objects/enemies/enemy_6.tscn" id="21_sgb3b"]
-
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
+[ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="22_w8lku"]
 
 [node name="Level1" type="Node2D"]
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("2_gw22t")
 
 [node name="Player" parent="." instance=ExtResource("3_no8jt")]
 position = Vector2(136, -56)
@@ -163,9 +152,6 @@ position = Vector2(152, -856)
 modulate = Color(1, 0, 0, 1)
 position = Vector2(0, -128)
 scale = Vector2(1.2, 1.2)
-cooldown_use = 40
-mindmg = 2
-maxdmg = 2
 
 [node name="Enemy3_3" parent="." instance=ExtResource("17_cqhww")]
 position = Vector2(0, -992)
@@ -255,7 +241,7 @@ position = Vector2(184, -2264)
 modulate = Color(1, 0.268286, 0.259614, 1)
 position = Vector2(-56, -472)
 mode = "div"
-b = 12
+b = 200
 a_range = 0
 b_range = 0
 
@@ -323,10 +309,10 @@ b_range = 0
 [node name="EquationLock9" parent="." instance=ExtResource("20_s3xdn")]
 modulate = Color(1, 0.268286, 0.259614, 1)
 position = Vector2(-136, -2616)
-mode = "div"
-b = 27
-a_range = 0
-b_range = 0
+a = 1000
+b = 1000
+a_range = 1000
+b_range = 1000
 
 [node name="EquationLock11" parent="." instance=ExtResource("20_s3xdn")]
 modulate = Color(1, 0.268286, 0.259614, 1)
@@ -460,3 +446,8 @@ position = Vector2(952, -4104)
 
 [node name="Enemy1_38" parent="." instance=ExtResource("16_xr282")]
 position = Vector2(1096, -4104)
+
+[node name="TPhrase" parent="." instance=ExtResource("22_w8lku")]
+position = Vector2(72, -56)
+text = "Remember all you learned before!"
+char_ind = 2

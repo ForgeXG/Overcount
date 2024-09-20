@@ -66,6 +66,7 @@ func _process(_delta):
 		dmg = 0
 	if d_timer == 0:
 		player.score += score
+		player.energy += 13
 		queue_free()
 		
 	queue_redraw()
@@ -91,7 +92,7 @@ func _physics_process(delta):
 	if cooldown % 20 == 0 and cooldown < 60 and hp > 0:
 		# Fire Conditions
 		if $Animations.animation_finished and $Animations.animation == "charge":
-			for i in range(-60, 120, 60):
+			for i in range(-30, 60, 30):
 				var bullet = preload("res://objects/enemies/enemy_9_rocket.tscn").instantiate()
 				add_sibling(bullet)
 				
@@ -142,7 +143,9 @@ func _draw():
 	 -PI / 2, -PI / 2 + 2 * PI * float(hp) / maxhp,
 	7, draw_color, 4, false)
 	
-	draw_circle(Vector2(0, 0), detect_radius, Color(0, 0, 0, 0.4))
-	draw_circle(Vector2(0, 0), max_radius, Color.hex(0xf9d5b744))
+	# draw_circle(Vector2(0, 0), detect_radius, Color(0, 0, 0, 0.4))
+	# draw_circle(Vector2(0, 0), max_radius, Color.hex(0xf9d5b744))
+	draw_arc(Vector2(0, 0), detect_radius, 0, TAU, 15, Color(0, 0, 0, 0.7), 1, false)
+	draw_arc(Vector2(0, 0), max_radius, 0, TAU, 15, Color.hex(0xf9d5b744), 1, false)
 	if player_dist <= max_radius and player_dist >= min_radius and hp > 0:
 		draw_line(Vector2(0, 0), player.position - position, Color(1, 0, 0, 0.5), 2*cooldown/max_cooldown, false)

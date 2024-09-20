@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cs2pdtr5jgf8v"]
+
+[ext_resource type="Shader" uid="uid://bw7378ak0kq4i" path="res://shaders/overlays/sh_o_retro.tres" id="1_i16f2"]
+
+[resource]
+shader = ExtResource("1_i16f2")

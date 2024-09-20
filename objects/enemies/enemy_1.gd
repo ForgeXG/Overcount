@@ -60,6 +60,7 @@ func _process(_delta):
 		dmg = 0
 	if d_timer == 0:
 		player.score += score
+		player.energy += 1
 		queue_free()
 
 func _physics_process(delta):

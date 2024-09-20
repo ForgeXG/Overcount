@@ -20,6 +20,7 @@ var timer_active : bool = false
 var answer : float = 0
 var input = 0
 
+var draw_font : SystemFont = preload("res://fonts/cambriamath.tres")
 var active = false
 var player
 var player_dist : float = 1000
@@ -29,6 +30,7 @@ var d_timer = -1
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	$UI/DrawRect.hide()
 	if equation:
 		timer *= 2 # Accounted for equations being solved slower
 		hp_restore *= 2
@@ -95,7 +97,10 @@ func _ready():
 		# if equation:
 			# $UI/ProblemRect/Problem.text = ["x" + superscript_numbers(str(b)) + " = " + str(a),
 			# "x" + superscript_numbers(str(b)) + " + " + str(ch) + "x" + " = " + str(a + ch * answer)].pick_random() + ", x > 0"
-	
+	elif mode == "angle1":
+		$UI/DrawRect.show()
+		answer = 180 - a
+		$UI/ProblemRect/Problem.text = "Find the other angle"
 	# Modifiers
 	if "-" in modifiers:
 		answer = -answer
@@ -113,6 +118,7 @@ func _process(_delta):
 		if active:
 			input = $UI/AnswerRect/Answer.text
 			if is_equal_approx(answer, float(input)) and input != "":
+				player.status_effects.erase("Solving")
 				player.heal_effect += float(timer) / max_timer * hp_restore
 				d_timer = 60
 				$UI.visible = false
@@ -124,6 +130,7 @@ func _process(_delta):
 				get_tree().change_scene_to_file("res://levels/level_stupid.tscn")
 
 		if Input.is_action_just_pressed("key_w"):
+			player.status_effects.erase("Solving")
 			active = false
 			modulate.a = 0.8
 
@@ -136,10 +143,11 @@ func _process(_delta):
 			get_parent().get_node("Player/PlayerUI/OvercountSign").texture.pause = false
 			get_parent().get_node("Player/PlayerUI/OvercountSign").texture.current_frame = 0
 			get_parent().get_node("Player/PlayerUI/EscapeAnim").play("activate")
+			get_parent().get_node("Player/PlayerUI/ImageTimer").modulate = Color(1, 1, 1, 0.75)
 			
 			get_tree().call_group("OnOff", "switch", 0)
 			
-			get_parent().get_node("Player/Camera").zoom = Vector2(4.1, 4.1)
+			# get_parent().get_node("Player/Camera").zoom = Vector2(4.1, 4.1)
 			get_parent().get_node("Player/Camera").wiggle = get_parent().get_node("Player/Camera").wiggle * 2 + 0.0002
 			
 			get_parent().get_node("MusicPlayer").set_stream(load(finalmusic))
@@ -148,7 +156,9 @@ func _process(_delta):
 			
 			get_parent().get_node("LevelPortal").active = true
 		queue_free()
-		
+	queue_redraw()
+
+
 func _physics_process(delta):
 	if d_timer > 0:
 		scale.x += 0.05
@@ -157,17 +167,31 @@ func _physics_process(delta):
 		
 	move_and_slide()
 
+
+func _on_draw():
+	var s_begin : Vector2 = $UI/DrawRect.position # Top Left
+	var s_end : Vector2 = $UI/DrawRect.position + $UI/DrawRect.size # Bottom Right
+	var s_center : Vector2 = (s_begin + s_end) / 2
+	draw_set_transform(s_center)
+	if active:
+		if mode == "angle1":
+			draw_line(s_center - Vector2(48, 0), s_center + Vector2(48, 0), Color.SKY_BLUE, 4)
+			draw_line(s_center, s_center + Vector2(48, 0).rotated(-a * PI / 180), Color.SKY_BLUE, 4)
+			draw_string(draw_font, s_center + Vector2(12, 0).rotated(-(a / 2) * PI / 180) + Vector2(0, -2), str(a) + "°")
+			draw_string(draw_font, s_center + Vector2(12, 0).rotated(-(a / 2 + 90) * PI / 180) + Vector2(0, -2), "?")
+
 func _on_mouse_entered():
-	if player_dist <= 64:
+	if player_dist <= 64 and !("Solving" in player.status_effects):
 		active = true
 		timer_active = true
 		modulate.a = 1
+		player.status_effects.append("Solving")
 
 
 func _on_mouse_exited():
 	pass
-	
-	
+
+
 func superscript_numbers(s: String):
 	var result : String = ""
 	var normal_nums : Array[String] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
@@ -181,6 +205,7 @@ func superscript_numbers(s: String):
 			result += el
 	
 	return result
+
 
 func subscript_numbers(s: String):
 	var result : String = ""

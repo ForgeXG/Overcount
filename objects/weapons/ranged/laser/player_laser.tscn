@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://tmwxuwcynjik"]
+
+[ext_resource type="Script" path="res://objects/weapons/ranged/laser/player_laser.gd" id="1_bev0y"]
+[ext_resource type="Material" uid="uid://naov6n0fqt1y" path="res://materials/overlays/m_o_laser.tres" id="2_6g278"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rbwhj"]
+size = Vector2(4, 4)
+
+[sub_resource type="Gradient" id="Gradient_uqww6"]
+colors = PackedColorArray(0, 0, 0, 1, 0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2qgsr"]
+gradient = SubResource("Gradient_uqww6")
+width = 4
+height = 4
+metadata/_snap_enabled = true
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6niln"]
+b = Vector2(0, -4)
+
+[node name="PlayerLaser" type="Area2D" groups=["Laser", "PlayerLaser"]]
+texture_filter = 1
+collision_layer = 513
+collision_mask = 5
+script = ExtResource("1_bev0y")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0)
+shape = SubResource("RectangleShape2D_rbwhj")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+material = ExtResource("2_6g278")
+position = Vector2(2, 0)
+texture = SubResource("GradientTexture2D_2qgsr")
+
+[node name="Tip" type="Area2D" parent="."]
+position = Vector2(4, 0)
+
+[node name="Coll" type="CollisionShape2D" parent="Tip"]
+position = Vector2(0, 2)
+shape = SubResource("SegmentShape2D_6niln")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
+[connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="body_entered" from="Tip" to="." method="_on_tip_body_entered"]

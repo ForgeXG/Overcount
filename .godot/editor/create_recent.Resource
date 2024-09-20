@@ -1,6 +1,7 @@
-SpriteFrames
 ShaderMaterial
 VisualShader
+WeaponNew
+SpriteFrames
 ImageTexture
 SystemFont
 FontFile

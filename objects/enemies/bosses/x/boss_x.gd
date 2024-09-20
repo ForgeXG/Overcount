@@ -93,6 +93,8 @@ func _process(_delta):
 	if dmg_effect > 0:
 		dmg_effect -= 0.1
 		hp -= 0.1
+		if randf_range(0, 1) <= 0.1:
+			player.energy += 1
 		if d_timer == 0:
 			$Coll.set_deferred("disabled", true)
 			velocity.x = randi_range(-1000, 100) * (player.mach + 1)
@@ -332,8 +334,8 @@ func attack(id : int):
 			add_sibling(bullet)
 			
 			bullet.apply_central_impulse(
-			Vector2(fire_impulse*cos(atk_angle + cooldown * PI / 25 / total_spd_m / hp * maxhp / 3)*1.1,
-				fire_impulse*sin(atk_angle + cooldown * PI / 25 / total_spd_m / hp * maxhp / 3 * sign(position.x - player.position.x))*1.1))
+			Vector2(fire_impulse*cos(atk_angle + cooldown * PI / total_spd_m / 3),
+				fire_impulse*sin(atk_angle + cooldown * PI / total_spd_m / 3 * sign(position.x - player.position.x))) * 0.8)
 				
 			bullet.position = position
 			bullet.dmg = 1

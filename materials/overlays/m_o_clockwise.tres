@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bd8fyttrj4u1m"]
+
+[ext_resource type="Shader" uid="uid://dg4526yhytv1f" path="res://shaders/overlays/sh_o_clockwise.tres" id="1_grf4e"]
+
+[resource]
+shader = ExtResource("1_grf4e")
+shader_parameter/anglelimit = 1.047
+shader_parameter/col = Color(0.151276, 0.151276, 0.151276, 1)

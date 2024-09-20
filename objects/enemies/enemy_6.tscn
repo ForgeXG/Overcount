@@ -106,6 +106,7 @@ point_count = 2
 [node name="Enemy6_" type="CharacterBody2D" groups=["Enemies"]]
 texture_filter = 1
 collision_layer = 5
+collision_mask = 2049
 script = ExtResource("1_067gb")
 
 [node name="Coll" type="CollisionShape2D" parent="."]

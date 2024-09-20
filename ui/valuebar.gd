@@ -11,7 +11,7 @@ func _ready():
 	if mode == "health":
 		maxval = player.maxhp
 	elif mode == "cooldown":
-		maxval = player.cooldown
+		maxval = player.weapon.cooldown
 	elif mode == "energy":
 		maxval = player.maxenergy
 	elif mode == "score":
@@ -26,3 +26,15 @@ func _process(_delta):
 		$FillerRect.size.x = initial_size.x * pow(val / maxval, scale_power)
 	if int(text) == 0:
 		$FillerRect.size.x = 0
+		
+func reassign():
+	var player = get_parent().get_parent()
+	if mode == "health":
+		maxval = player.maxhp
+	elif mode == "cooldown":
+		maxval = player.weapon.cooldown
+	elif mode == "energy":
+		maxval = player.maxenergy
+	elif mode == "score":
+		maxval = player.maxscore
+		scale_power = 1

@@ -1,7 +1,6 @@
-[gd_scene load_steps=24 format=3 uid="uid://dhyatv5tc7bpf"]
+[gd_scene load_steps=22 format=3 uid="uid://dhyatv5tc7bpf"]
 
 [ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_8ohjg"]
-[ext_resource type="Script" path="res://levels/post_process.gd" id="2_vribg"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_8a42e"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_8u7ge"]
 [ext_resource type="Material" uid="uid://bp4mbp3h14bn5" path="res://materials/m_polar_1.tres" id="5_3h3jd"]
@@ -22,22 +21,11 @@
 [ext_resource type="PackedScene" uid="uid://dfxhh4xvtrdc" path="res://objects/enemies/enemy_5.tscn" id="20_08jj1"]
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="21_22fyu"]
 
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
-
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8sgl5"]
 resource_local_to_scene = true
 
 [node name="Level1" type="Node2D"]
 material = ExtResource("1_8ohjg")
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("2_vribg")
 
 [node name="Player" parent="." instance=ExtResource("3_8a42e")]
 position = Vector2(-136, -24)

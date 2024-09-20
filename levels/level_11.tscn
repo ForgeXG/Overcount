@@ -25,10 +25,10 @@
 [ext_resource type="PackedScene" uid="uid://b4r57j2eg4eef" path="res://objects/enemies/enemy_6.tscn" id="23_61a2v"]
 [ext_resource type="PackedScene" uid="uid://dfxhh4xvtrdc" path="res://objects/enemies/enemy_5.tscn" id="24_eyxaq"]
 [ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="25_nfag3"]
-[ext_resource type="PackedScene" uid="uid://c7bky116yv7qp" path="res://objects/foreground/sign/info_sign.tscn" id="26_ekxnv"]
 [ext_resource type="PackedScene" uid="uid://tpffhm7nfx8i" path="res://objects/blocks/teleport.tscn" id="27_cxrsl"]
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="28_tfg65"]
 [ext_resource type="PackedScene" uid="uid://oarr2ybyy1vq" path="res://objects/enemies/enemy_3.tscn" id="29_f1lxy"]
+[ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="30_7tkx0"]
 
 [sub_resource type="Environment" id="Environment_u3ifr"]
 background_mode = 3
@@ -846,13 +846,9 @@ position = Vector2(3528, -1144)
 [node name="Weapon" parent="." instance=ExtResource("18_u8ywg")]
 position = Vector2(136, -104)
 weapon_name = "ParabolicSling"
-weapon_type = "Sling"
-cooldown_use = 15
-maxdmg = 2
-fire_speed = 500
 
 [node name="Enemy8_" parent="." instance=ExtResource("19_4t806")]
-position = Vector2(1544, -616)
+position = Vector2(1592, -616)
 
 [node name="Enemy8_2" parent="." instance=ExtResource("19_4t806")]
 position = Vector2(2584, -1112)
@@ -969,9 +965,9 @@ final = true
 finalmusic = "res://audio/music/zenon.mp3"
 mode = "mul"
 a = 111
-b = 111
+b = 10
 a_range = 0
-b_range = 888
+b_range = 90
 
 [node name="EquationLock8" parent="." instance=ExtResource("25_nfag3")]
 position = Vector2(3528, -1448)
@@ -980,14 +976,6 @@ a = 10001
 b = 1001
 a_range = 0
 b_range = 999
-
-[node name="InfoSign" parent="." instance=ExtResource("26_ekxnv")]
-position = Vector2(1224, -618)
-txt = "Advanced multiplication trick: If both numbers have 2 digits, the first digit is the same and last digits add to 10, you can do it this way: ab * ac = a*(a+1)_(b*c). Example: 23*27 = 2(2+1)_(3*7)=6_21=621. 81*89=8(8+1)_1*9=7209. Keep in mind that this only works if numbers satisfy those 3 conditions!"
-
-[node name="InfoSign2" parent="." instance=ExtResource("26_ekxnv")]
-position = Vector2(3256, -1528)
-txt = "When multiplying by a number like 11, 101, 1001, etc. Just repeat the number if it has one less digit. Examples: 101*37=3737, 457*1001=457457, but 101 * 123 is 12423, not 123123 because the condition is not satisfied."
 
 [node name="Enemy8_4" parent="." instance=ExtResource("19_4t806")]
 position = Vector2(3592, -1192)
@@ -1080,9 +1068,6 @@ link = NodePath("../Teleport2")
 [node name="Teleport2" parent="." node_paths=PackedStringArray("link") instance=ExtResource("27_cxrsl")]
 position = Vector2(3792, -1616)
 link = NodePath("../Teleport")
-
-[node name="GemOctagon" parent="." instance=ExtResource("28_tfg65")]
-position = Vector2(5088, -1408)
 
 [node name="GemOctagon2" parent="." instance=ExtResource("28_tfg65")]
 position = Vector2(5048, -848)
@@ -1408,7 +1393,7 @@ position = Vector2(856, -184)
 position = Vector2(1000, -184)
 
 [node name="Enemy8_5" parent="." instance=ExtResource("19_4t806")]
-position = Vector2(1352, -744)
+position = Vector2(1320, -792)
 
 [node name="Enemy6_2" parent="." instance=ExtResource("23_61a2v")]
 position = Vector2(1656, -1000)
@@ -1433,3 +1418,35 @@ position = Vector2(3400, -1000)
 
 [node name="Enemy3_5" parent="." instance=ExtResource("29_f1lxy")]
 position = Vector2(3400, -888)
+
+[node name="TPhrase" parent="." instance=ExtResource("30_7tkx0")]
+position = Vector2(1272, -616)
+text = "If both numbers have 2 digits, the first digit is the same and last digits add to 10, you can do it this way: ab * ac = a*(a+1)_(b*c). 
+Example: 23*27 = 2(2+1)_(3*7)=6_21=621. 81*89=8(8+1)_1*9=7209. Keep in mind that this only works if numbers satisfy those 3 conditions!"
+char_ind = 2
+
+[node name="TPhrase3" parent="." instance=ExtResource("30_7tkx0")]
+position = Vector2(1344, -616)
+text = "Unlike the 6 which attempts to attract you, 8 repels instead."
+char_ind = 3
+
+[node name="TPhrase2" parent="." instance=ExtResource("30_7tkx0")]
+position = Vector2(1112, -376)
+text = "Sometimes it's possible to calculate faster than normal."
+char_ind = 2
+
+[node name="TPhrase4" parent="." instance=ExtResource("30_7tkx0")]
+position = Vector2(2344, -1096)
+text = "It can't be that bad, right?"
+char_ind = 3
+
+[node name="TPhrase5" parent="." instance=ExtResource("30_7tkx0")]
+position = Vector2(3272, -1528)
+text = "When multiplying by a number like 11, 101, 1001, etc. Just repeat the first number if it has one less digit. 
+Examples: 101*37=3737, 457*1001=457457, but 101 * 123 is 12423, not 123123 because the condition is not satisfied."
+char_ind = 2
+
+[node name="TPhrase6" parent="." instance=ExtResource("30_7tkx0")]
+position = Vector2(3976, -808)
+text = "This maze is full of sawblades and packs of enemies, but you'll get through it anyway"
+char_ind = 3

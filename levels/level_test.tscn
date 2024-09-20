@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bm57jli6r67pk"]
+[gd_scene load_steps=25 format=3 uid="uid://bm57jli6r67pk"]
 
 [ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_q0miy"]
-[ext_resource type="Script" path="res://levels/post_process.gd" id="2_nty3c"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_duqyv"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_wb5r3"]
 [ext_resource type="PackedScene" uid="uid://c1nxgonrxphy" path="res://objects/background/graph_background.tscn" id="5_52c8s"]
@@ -11,27 +10,47 @@
 [ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_8f35w"]
 [ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="9_ofn30"]
 [ext_resource type="AudioStream" uid="uid://blv7wxa2tw46m" path="res://audio/music/cs/spinbling.mp3" id="10_16c0x"]
-[ext_resource type="PackedScene" uid="uid://dy3b6e5xsbff4" path="res://ui/floating_text.tscn" id="10_wy5sd"]
-[ext_resource type="PackedScene" uid="uid://dqbkhrlr10cqb" path="res://objects/enemies/enemy_9.tscn" id="13_ufyfe"]
 [ext_resource type="PackedScene" uid="uid://buqh6v4j34c3w" path="res://weapon_pickup.tscn" id="14_gbqob"]
+[ext_resource type="PackedScene" uid="uid://c7lqdw76wthbs" path="res://objects/enemies/enemy_4.tscn" id="14_um8bp"]
 [ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="15_yj1i4"]
+[ext_resource type="PackedScene" uid="uid://cmh8r43seq681" path="res://objects/enemies/enemy_1.tscn" id="16_q65h7"]
+[ext_resource type="PackedScene" uid="uid://oarr2ybyy1vq" path="res://objects/enemies/enemy_3.tscn" id="17_npgf1"]
+[ext_resource type="PackedScene" uid="uid://dqp0hworfd6er" path="res://objects/blocks/physical/box/physical_box.tscn" id="17_wk8vc"]
+[ext_resource type="PackedScene" uid="uid://kfddcpjv1td2" path="res://objects/blocks/filters/block/filter_block.tscn" id="17_xtmex"]
+[ext_resource type="Shader" uid="uid://e6na3owjxr8u" path="res://shaders/overlays/sh_o_physical.tres" id="18_du68n"]
+[ext_resource type="PackedScene" uid="uid://bnbpo3ao63qak" path="res://objects/3d/polyhedron.tscn" id="19_8twyq"]
 
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nvk2e"]
+resource_local_to_scene = true
+shader = ExtResource("18_du68n")
+shader_parameter/tint = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yoqtf"]
+resource_local_to_scene = true
+shader = ExtResource("18_du68n")
+shader_parameter/tint = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iki87"]
+resource_local_to_scene = true
+shader = ExtResource("18_du68n")
+shader_parameter/tint = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aqkad"]
+resource_local_to_scene = true
+shader = ExtResource("18_du68n")
+shader_parameter/tint = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q62sy"]
+resource_local_to_scene = true
+shader = ExtResource("18_du68n")
+shader_parameter/tint = 1.0
 
 [node name="Level1" type="Node2D"]
 material = ExtResource("1_q0miy")
 
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("2_nty3c")
-
 [node name="Player" parent="." instance=ExtResource("3_duqyv")]
-position = Vector2(0, -24)
+position = Vector2(152, -168)
+y_death = 1024.0
 hp = 50.0
 maxhp = 50.0
 maxscore = 450
@@ -48,9 +67,9 @@ material = ExtResource("6_6ok2x")
 s_group = 1
 
 [node name="SquareTileMap" parent="." instance=ExtResource("6_tgmqx")]
-modulate = Color(0.14902, 0.14902, 0.14902, 0.513726)
+modulate = Color(1, 0.36, 0.36, 1)
 position = Vector2(0, -16)
-layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, 5, 196609, 2, 6, 196609, 2, 7, 196609, 2, 8, 196609, 2, 9, 196609, 2, 10, 196609, 2, 11, 196609, 2, 12, 196609, 2, 13, 196609, 2, 14, 196609, 2, 15, 196609, 2, 16, 196609, 2, 17, 196609, 2, 18, 196609, 2, 19, 196609, 2, 20, 196609, 2, 22, 196609, 2, 23, 196609, 2, 24, 196609, 2, 25, 196609, 2, 26, 196609, 2, 27, 196609, 2, 28, 196609, 2, 21, 196609, 2, 29, 196609, 2, 30, 196609, 2, 31, 196609, 2, 32, 196609, 2, 33, 196609, 2, 34, 196609, 2, 35, 196609, 2, 36, 196609, 2, 37, 196609, 2, 38, 196609, 2, 39, 196609, 2, 40, 196609, 2, 41, 196609, 2, 42, 196609, 2, 43, 196609, 2, 44, 196609, 2, 45, 196609, 2, 46, 196609, 2, 47, 196609, 2, -262105, 196609, 2, -262104, 196609, 2, -262103, 196609, 2)
+layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, 5, 196609, 2, 6, 196609, 2, 7, 196609, 2, 8, 196609, 2, 9, 196609, 2, 10, 196609, 2, 11, 196609, 2, 12, 196609, 2, 13, 196609, 2, 14, 196609, 2, 15, 196609, 2, 16, 196609, 2, 17, 196609, 2, 18, 196609, 2, 19, 196609, 2, 20, 196609, 2, 22, 196609, 2, 23, 196609, 2, 24, 1, 0, 25, 65537, 0, 26, 65537, 0, 27, 65537, 0, 28, 65537, 0, 21, 196609, 2, 29, 65537, 0, 30, 65537, 0, 31, 65537, 0, 32, 65537, 0, 33, 65537, 0, 34, 65537, 0, 35, 65537, 0, 36, 65537, 0, 37, 65537, 0, 38, 131073, 0, 39, 196609, 2, 40, 196609, 2, 41, 196609, 2, 42, 196609, 2, 43, 196609, 2, 44, 196609, 2, 45, 196609, 2, 46, 196609, 2, 47, 196609, 2, -262105, 196609, 2, -262104, 196609, 2, -262103, 196609, 2, 262139, 196608, 2, 262140, 196608, 2, 262141, 196608, 2, 262142, 196608, 2, -655377, 131073, 0, -589841, 131073, 1, -524305, 131073, 1, -458769, 131073, 1, -393233, 131073, 1, -327697, 131073, 1, -262161, 131073, 1, -196625, 131073, 1, -131089, 131073, 1, -65553, 131073, 1, -17, 131073, 1, 65519, 131073, 1, 131055, 131073, 1, 196591, 131073, 1, 262127, 131073, 2, 262125, 1, 2, 262126, 65537, 2, -655379, 1, 0, -655378, 65537, 0, -589843, 1, 1, -589842, 65537, 1, -524307, 1, 1, -524306, 65537, 1, -458771, 1, 1, -458770, 65537, 1, -393235, 1, 1, -393234, 65537, 1, -327699, 1, 1, -327698, 65537, 1, -262163, 1, 1, -262162, 65537, 1, -196627, 1, 1, -196626, 65537, 1, -131091, 1, 1, -131090, 65537, 1, -65555, 1, 1, -65554, 65537, 1, -19, 1, 1, -18, 65537, 1, 65517, 1, 1, 65518, 65537, 1, 131053, 1, 1, 131054, 65537, 1, 196589, 1, 1, 196590, 65537, 1, -589816, 196609, 2, -589815, 196609, 2, -589814, 196609, 2, -589813, 196609, 2, -589812, 196609, 2, -589811, 196609, 2, -589810, 196609, 2, -589809, 196609, 2, -589808, 196609, 2, 65560, 1, 1, 131096, 1, 2, 65561, 65537, 1, 131097, 65537, 2, 65562, 65537, 1, 131098, 65537, 2, 65563, 65537, 1, 131099, 65537, 2, 65564, 65537, 1, 131100, 65537, 2, 65565, 65537, 1, 131101, 65537, 2, 65566, 65537, 1, 131102, 65537, 2, 65567, 65537, 1, 131103, 65537, 2, 65568, 65537, 1, 131104, 65537, 2, 65569, 65537, 1, 131105, 65537, 2, 65570, 65537, 1, 131106, 65537, 2, 65574, 131073, 1, 131110, 131073, 2, 65571, 65537, 1, 131107, 65537, 2, 65572, 65537, 1, 131108, 65537, 2, 65573, 65537, 1, 131109, 65537, 2, -589807, 196609, 2, -589806, 196609, 2, -589805, 196609, 2, -589804, 196609, 2, -589803, 196609, 2, -589802, 196609, 2, -589801, 196609, 2, -589800, 196609, 2, -589799, 196609, 2, -589798, 196609, 2, -589797, 196609, 2, -589796, 196609, 2, -589795, 196609, 2, -720866, 1, 0, -655330, 1, 1, -589794, 1, 2, -720865, 65537, 0, -655329, 65537, 1, -589793, 65537, 2, -720864, 65537, 0, -655328, 65537, 1, -589792, 65537, 2, -720863, 65537, 0, -655327, 65537, 1, -589791, 65537, 2, -720862, 65537, 0, -655326, 65537, 1, -589790, 65537, 2, -720861, 65537, 0, -655325, 65537, 1, -589789, 65537, 2, -720860, 65537, 0, -655324, 65537, 1, -589788, 65537, 2, -720859, 65537, 0, -655323, 65537, 1, -589787, 65537, 2, -720858, 65537, 0, -655322, 65537, 1, -589786, 65537, 2, -720857, 65537, 0, -655321, 65537, 1, -589785, 65537, 2, -720856, 131073, 0, -655320, 131073, 1, -589784, 131073, 2, 65520, 196609, 2, 65521, 196609, 2, 65522, 196609, 2, 65523, 196609, 2, 65524, 196609, 2, 65525, 196609, 2, 65526, 196609, 2, 65527, 196609, 2, 65528, 196609, 2, -262149, 196609, 2, -262148, 196609, 2, -262147, 196609, 2, -262146, 196609, 2, -262145, 196609, 2, -327680, 196609, 2, -327679, 196609, 2, -327678, 196609, 2, -327677, 196609, 2, -327676, 196609, 2, -327675, 196609, 2, -327674, 196609, 2, -327673, 196609, 2, -458725, 196609, 0, -458724, 196609, 0, -458723, 196609, 0, -458722, 196609, 0, -458721, 196609, 0, -458720, 196609, 0, -458719, 196609, 0, -524261, 196609, 2, 48, 196609, 2, 49, 196609, 2, 50, 196609, 2, 51, 196609, 2, -393165, 196609, 2, -327629, 196609, 2, -262093, 196609, 2, -196557, 196609, 2, -131021, 196609, 2, -65485, 196609, 2, -458718, 196609, 0, -458717, 196609, 0, -458716, 196609, 0, -524252, 196609, 2, -786416, 196609, 2, -720880, 196609, 2, -655344, 196609, 2, -327672, 196609, 2, -327671, 196609, 2, -327670, 196609, 2, -327669, 196609, 2, -327668, 196609, 2, -262132, 196609, 2)
 
 [node name="DecorTileMap" parent="." instance=ExtResource("6_tgmqx")]
 modulate = Color(1, 0.215686, 0, 1)
@@ -62,29 +81,214 @@ stream = ExtResource("10_16c0x")
 attenuation = 1.81459e-05
 
 [node name="LevelPortal" parent="." instance=ExtResource("9_ofn30")]
-position = Vector2(-48, -32)
+position = Vector2(-48, 16)
 scale = Vector2(2, 2)
 destination = "res://levels/level_2.tscn"
 active = true
 
-[node name="FloatingText7" parent="." instance=ExtResource("10_wy5sd")]
-offset_left = 88.0
-offset_top = 48.0
-offset_right = 200.0
-offset_bottom = 92.0
-text = "Hover mouse over this lock"
-
-[node name="Enemy9_" parent="." instance=ExtResource("13_ufyfe")]
-position = Vector2(648, -168)
-
-[node name="Weapon2" parent="." instance=ExtResource("14_gbqob")]
-position = Vector2(368, -32)
-weapon_name = "ParabolicSling"
-weapon_type = "Sling"
-cooldown_use = 15
-maxdmg = 2
-fire_speed = 500
-
 [node name="EquationLock" parent="." instance=ExtResource("15_yj1i4")]
-position = Vector2(264, -28)
-final = true
+position = Vector2(-280, -200)
+mode = "angle1"
+a = 70
+
+[node name="Weapon3" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(136, -56)
+weapon_name = "Angleshot"
+infinite = true
+
+[node name="Weapon10" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(168, -56)
+weapon_name = "Thrangleshot"
+infinite = true
+
+[node name="Weapon5" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(-56, -56)
+infinite = true
+
+[node name="Weapon6" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(8, -56)
+weapon_name = "Deco Dagger"
+infinite = true
+
+[node name="Weapon7" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(-24, -56)
+weapon_name = "WellDef Dagger"
+infinite = true
+
+[node name="Weapon4" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(38, -56)
+weapon_name = "ParabolicSling"
+infinite = true
+
+[node name="Weapon8" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(70, -56)
+weapon_name = "CubicSling"
+infinite = true
+
+[node name="Weapon9" parent="." instance=ExtResource("14_gbqob")]
+position = Vector2(102, -56)
+weapon_name = "QuarticSling"
+infinite = true
+
+[node name="Enemy4_" parent="." instance=ExtResource("14_um8bp")]
+position = Vector2(552, -312)
+
+[node name="Enemy3_" parent="." instance=ExtResource("17_npgf1")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-216, -24)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="Enemy3_2" parent="." instance=ExtResource("17_npgf1")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-216, -87)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="Enemy3_3" parent="." instance=ExtResource("17_npgf1")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-152, -87)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="Enemy3_4" parent="." instance=ExtResource("17_npgf1")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-152, -24)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="FilterBlock" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(328, -136)
+blocked = Array[String](["Bullet"])
+
+[node name="FilterBlock2" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(328, -120)
+blocked = Array[String](["Bullet"])
+
+[node name="FilterBlock3" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(328, -104)
+blocked = Array[String](["Bullet"])
+
+[node name="FilterBlock4" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(328, -88)
+blocked = Array[String](["Bullet"])
+
+[node name="FilterBlock5" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(408, -72)
+blocked = Array[String](["Laser"])
+
+[node name="FilterBlock6" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(408, -56)
+blocked = Array[String](["Laser"])
+
+[node name="FilterBlock7" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(408, -40)
+blocked = Array[String](["Laser"])
+
+[node name="FilterBlock8" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(408, -24)
+blocked = Array[String](["Laser"])
+
+[node name="FilterBlock13" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(488, -136)
+blocked = Array[String](["Enemies"])
+
+[node name="FilterBlock14" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(488, -120)
+blocked = Array[String](["Enemies"])
+
+[node name="FilterBlock15" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(488, -104)
+blocked = Array[String](["Enemies"])
+
+[node name="FilterBlock16" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(488, -88)
+blocked = Array[String](["Enemies"])
+
+[node name="FilterBlock9" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(568, -72)
+
+[node name="FilterBlock17" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(696, -24)
+
+[node name="FilterBlock20" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(744, -24)
+
+[node name="FilterBlock10" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(568, -56)
+
+[node name="FilterBlock11" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(568, -40)
+
+[node name="FilterBlock12" parent="." instance=ExtResource("17_xtmex")]
+position = Vector2(568, -24)
+
+[node name="Enemy1_" parent="." instance=ExtResource("16_q65h7")]
+position = Vector2(568, -136)
+
+[node name="PhysicalBox" parent="." instance=ExtResource("17_wk8vc")]
+material = SubResource("ShaderMaterial_nvk2e")
+position = Vector2(336, -264)
+scale = Vector2(10, 1)
+pivoted = true
+rot_spd = 0.01
+
+[node name="PhysicalBox2" parent="." instance=ExtResource("17_wk8vc")]
+material = SubResource("ShaderMaterial_yoqtf")
+position = Vector2(-72, -104)
+
+[node name="PhysicalBox3" parent="." instance=ExtResource("17_wk8vc")]
+material = SubResource("ShaderMaterial_iki87")
+position = Vector2(-72, -120)
+
+[node name="PhysicalBox4" parent="." instance=ExtResource("17_wk8vc")]
+material = SubResource("ShaderMaterial_aqkad")
+position = Vector2(-72, -136)
+
+[node name="PhysicalBox5" parent="." instance=ExtResource("17_wk8vc")]
+material = SubResource("ShaderMaterial_q62sy")
+position = Vector2(-72, -152)
+
+[node name="Polyhedron2" parent="." instance=ExtResource("19_8twyq")]
+position = Vector2(72, -184)
+vertices = Array[Vector3]([Vector3(0, 0, 8), Vector3(-8, 8, 0), Vector3(8, 8, 0), Vector3(8, -8, 0), Vector3(-8, -8, 0), Vector3(0, 0, -8)])
+edges = Array[Vector2i]([Vector2i(0, 1), Vector2i(0, 2), Vector2i(0, 3), Vector2i(0, 4), Vector2i(1, 2), Vector2i(2, 3), Vector2i(3, 4), Vector2i(4, 1), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5)])
+lerp_speed = 0.001
+offset_start = Vector3(0, 0, -32)
+offset_end = Vector3(0, 0, 32)
+uniform_scale = 4.0
+
+[node name="Polyhedron4" parent="." instance=ExtResource("19_8twyq")]
+position = Vector2(8, -224)
+vertices = Array[Vector3]([Vector3(8, 8, 8), Vector3(8, -8, -8), Vector3(-8, -8, 8), Vector3(-8, 8, -8)])
+edges = Array[Vector2i]([Vector2i(0, 1), Vector2i(1, 2), Vector2i(2, 3), Vector2i(3, 0)])
+lerp_speed = 0.001
+offset_start = Vector3(0, 0, -32)
+offset_end = Vector3(0, 0, 32)
+uniform_scale = 4.0
+
+[node name="Polyhedron3" parent="." instance=ExtResource("19_8twyq")]
+position = Vector2(40, -136)
+lerp_speed = 0.001
+offset_start = Vector3(-16, 0, -16)
+offset_end = Vector3(16, 0, 16)

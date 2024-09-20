@@ -5,7 +5,7 @@ extends AnimatableBody2D
 
 func _ready():
 	modulate = get_parent().get_node("SquareTileMap").modulate
-	if s_group == 0:
+	if true:
 		if on:
 			$Animations.animation = "on"
 			$Coll.set_deferred("disabled", false)

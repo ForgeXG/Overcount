@@ -13,8 +13,8 @@ func _process(_delta):
 	# Global Data
 	$LevelSelection/GlobalData/TextCoins.text = str(G.coins)
 	if G.enable_cheats:
-		if Input.is_action_pressed("key_cheat_give_coins"): # P
-			G.coins += 10000
+		if Input.is_action_just_pressed("key_cheat_give_coins"): # P
+			G.coins += 1000
 	if appear:
 		$Disclaimer.modulate.a += 1 / fadein
 		if $Disclaimer.modulate.a >= 1:

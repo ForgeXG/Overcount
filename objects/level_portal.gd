@@ -4,11 +4,18 @@ extends Area2D
 @export var active : bool = false
 @export var ball_required : bool = false
 @export var s_group : int = 1
-var player
-
+var player : CharacterBody2D
+var music_player : AudioStreamPlayer2D
+var jingles : Array[AudioStream] = [load("res://audio/music/vjs/vj_f.mp3"),
+load("res://audio/music/vjs/vj_d.mp3"),
+load("res://audio/music/vjs/vj_c.mp3"),
+load("res://audio/music/vjs/vj_b.mp3"),
+load("res://audio/music/vjs/vj_a.mp3"),
+load("res://audio/music/vjs/vj_w.mp3")]
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
+	music_player = get_tree().get_first_node_in_group("MusicPlayer")
 	if ball_required:
 		modulate = Color.CYAN
 		$Animations.sprite_frames = preload("res://objects/physical/piball/goal/animations/sf_piballgoal.tres")
@@ -38,9 +45,14 @@ func _on_body_entered(body):
 		# Save data
 		G.coins += player.score + 50 * clampi(float(player.score) / float(player.maxscore) * 6, 0, 5)
 		# End UI
+		player.get_node("PlayerUI/TextTimer").text = "GG"
+		player.escape_time = -1
 		player.get_node("PlayerUI/WinScreen/ButtonNextLevel").destination = destination
 		player.get_node("PlayerUI/WinScreen/WinAnim").play("win")
-		
+		music_player.stop()
+		music_player.pitch_scale = 1.0
+		music_player.stream = jingles[int(floor(float(player.score) / player.maxscore * 5))]
+		music_player.play()
 		
 func activate(a : bool = true):
 	active = a

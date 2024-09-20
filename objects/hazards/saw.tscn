@@ -16,3 +16,5 @@ shape = SubResource("CircleShape2D_dt3tq")
 [node name="Sprite" type="Sprite2D" parent="."]
 texture_filter = 1
 texture = ExtResource("1_qdrel")
+
+[connection signal="draw" from="." to="." method="_on_draw"]

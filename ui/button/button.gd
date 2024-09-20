@@ -21,10 +21,13 @@ func _ready():
 func _process(_delta):
 	pivot_offset = size / 2
 	if button_activated:
-		if coins_fee == 0:
+		if coins_fee <= 0:
 			get_tree().change_scene_to_file(destination)
-		G.coins -= 5
-		coins_fee -= 5
+		G.coins -= ceil(coins_fee / 2)
+		coins_fee -= ceil(coins_fee / 2)
+		if coins_fee == 1:
+			coins_fee -= 1
+			G.coins -= 1
 		$ButtonUI/Control/TeleporterButton.text = "Enter for " + str(coins_fee) + " ⍟"
 
 
@@ -55,4 +58,3 @@ func _cancel_button_down():
 	scale = Vector2(1, 1)
 	if button_type == 1:
 		$ButtonUI.visible = false
-

@@ -60,4 +60,3 @@ func p_traj(a):
 	var fire_angle : float = linear_velocity.angle()
 	var fire_speed : float = linear_velocity.length()
 	return (tan(fire_angle) * a) + ((gravity * (a * a)) / (2 * (fire_speed * fire_speed) * cos(fire_angle) * cos(fire_angle)))
-

@@ -1,0 +1,168 @@
+[gd_scene load_steps=17 format=3 uid="uid://dyas6qq4ga0nj"]
+
+[ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_o3k05"]
+[ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_3u42y"]
+[ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_d4l0r"]
+[ext_resource type="PackedScene" uid="uid://c1nxgonrxphy" path="res://objects/background/graph_background.tscn" id="4_x2iyg"]
+[ext_resource type="Material" uid="uid://bp1x1hifb2msi" path="res://materials/m_fractal_1.tres" id="5_cy5s4"]
+[ext_resource type="PackedScene" uid="uid://n7g22gk706ui" path="res://tilesets/square_tilemap.tscn" id="6_tyrrn"]
+[ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="7_71scp"]
+[ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="8_jte4x"]
+[ext_resource type="AudioStream" uid="uid://blv7wxa2tw46m" path="res://audio/music/cs/spinbling.mp3" id="9_xkq1q"]
+[ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="10_03mc8"]
+[ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="11_i7ihv"]
+[ext_resource type="PackedScene" uid="uid://buqh6v4j34c3w" path="res://weapon_pickup.tscn" id="12_wqfjw"]
+[ext_resource type="PackedScene" uid="uid://c7lqdw76wthbs" path="res://objects/enemies/enemy_4.tscn" id="13_esdqc"]
+[ext_resource type="PackedScene" uid="uid://cmh8r43seq681" path="res://objects/enemies/enemy_1.tscn" id="14_6vb2e"]
+[ext_resource type="PackedScene" uid="uid://d0xg5252r0ibu" path="res://objects/enemies/enemy_2.tscn" id="15_01lqq"]
+[ext_resource type="PackedScene" uid="uid://oarr2ybyy1vq" path="res://objects/enemies/enemy_3.tscn" id="16_kirtb"]
+
+[node name="Level1" type="Node2D"]
+material = ExtResource("1_o3k05")
+
+[node name="Player" parent="." instance=ExtResource("2_3u42y")]
+position = Vector2(0, -24)
+hp = 50.0
+maxhp = 50.0
+maxscore = 450
+escape_time = 10800
+
+[node name="Camera" parent="Player" instance=ExtResource("3_d4l0r")]
+visible = false
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Player"]
+
+[node name="NinePatchRect" parent="Player/ParallaxBackground" instance=ExtResource("4_x2iyg")]
+modulate = Color(0.388235, 0, 0, 1)
+material = ExtResource("5_cy5s4")
+s_group = 1
+
+[node name="SquareTileMap" parent="." instance=ExtResource("6_tyrrn")]
+modulate = Color(1, 0.36, 0.36, 1)
+position = Vector2(0, -16)
+layer_0/tile_data = PackedInt32Array(65532, 196609, 2, 65533, 196609, 2, 65534, 196609, 2, 65535, 196609, 2, 0, 196609, 2, 1, 196609, 2, 2, 196609, 2, 3, 196609, 2, 4, 196609, 2, 5, 196609, 2, 6, 196609, 2, 7, 196609, 2, 8, 196609, 2, 9, 196609, 2, 10, 196609, 2, 11, 196609, 2, 12, 196609, 2, 13, 196609, 2, 14, 196609, 2, 15, 196609, 2, 16, 196609, 2, 17, 196609, 2, 18, 196609, 2, 19, 196609, 2, 20, 196609, 2, 22, 196609, 2, 23, 196609, 2, 24, 1, 0, 25, 65537, 0, 26, 65537, 0, 27, 65537, 0, 28, 65537, 0, 21, 196609, 2, 29, 65537, 0, 30, 65537, 0, 31, 65537, 0, 32, 65537, 0, 33, 65537, 0, 34, 65537, 0, 35, 65537, 0, 36, 65537, 0, 37, 65537, 0, 38, 131073, 0, 39, 196609, 2, 40, 196609, 2, 41, 196609, 2, 42, 196609, 2, 43, 196609, 2, 44, 196609, 2, 45, 196609, 2, 46, 196609, 2, 47, 196609, 2, -262105, 196609, 2, -262104, 196609, 2, -262103, 196609, 2, 262139, 196608, 2, 262140, 196608, 2, 262141, 196608, 2, 262142, 196608, 2, -655377, 131073, 0, -589841, 131073, 1, -524305, 131073, 1, -458769, 131073, 1, -393233, 131073, 1, -327697, 131073, 1, -262161, 131073, 1, -196625, 131073, 1, -131089, 131073, 1, -65553, 131073, 1, -17, 131073, 1, 65519, 131073, 1, 131055, 131073, 1, 196591, 131073, 1, 262127, 131073, 2, 262125, 1, 2, 262126, 65537, 2, -655379, 1, 0, -655378, 65537, 0, -589843, 1, 1, -589842, 65537, 1, -524307, 1, 1, -524306, 65537, 1, -458771, 1, 1, -458770, 65537, 1, -393235, 1, 1, -393234, 65537, 1, -327699, 1, 1, -327698, 65537, 1, -262163, 1, 1, -262162, 65537, 1, -196627, 1, 1, -196626, 65537, 1, -131091, 1, 1, -131090, 65537, 1, -65555, 1, 1, -65554, 65537, 1, -19, 1, 1, -18, 65537, 1, 65517, 1, 1, 65518, 65537, 1, 131053, 1, 1, 131054, 65537, 1, 196589, 1, 1, 196590, 65537, 1, -589816, 196609, 2, -589815, 196609, 2, -589814, 196609, 2, -589813, 196609, 2, -589812, 196609, 2, -589811, 196609, 2, -589810, 196609, 2, -589809, 196609, 2, -589808, 196609, 2, 65560, 1, 1, 131096, 1, 2, 65561, 65537, 1, 131097, 65537, 2, 65562, 65537, 1, 131098, 65537, 2, 65563, 65537, 1, 131099, 65537, 2, 65564, 65537, 1, 131100, 65537, 2, 65565, 65537, 1, 131101, 65537, 2, 65566, 65537, 1, 131102, 65537, 2, 65567, 65537, 1, 131103, 65537, 2, 65568, 65537, 1, 131104, 65537, 2, 65569, 65537, 1, 131105, 65537, 2, 65570, 65537, 1, 131106, 65537, 2, 65574, 131073, 1, 131110, 131073, 2, 65571, 65537, 1, 131107, 65537, 2, 65572, 65537, 1, 131108, 65537, 2, 65573, 65537, 1, 131109, 65537, 2, -589807, 196609, 2, -589806, 196609, 2, -589805, 196609, 2, -589804, 196609, 2, -589803, 196609, 2, -589802, 196609, 2, -589801, 196609, 2, -589800, 196609, 2, -589799, 196609, 2, -589798, 196609, 2, -589797, 196609, 2, -589796, 196609, 2, -589795, 196609, 2, -720866, 1, 0, -655330, 1, 1, -589794, 1, 2, -720865, 65537, 0, -655329, 65537, 1, -589793, 65537, 2, -720864, 65537, 0, -655328, 65537, 1, -589792, 65537, 2, -720863, 65537, 0, -655327, 65537, 1, -589791, 65537, 2, -720862, 65537, 0, -655326, 65537, 1, -589790, 65537, 2, -720861, 65537, 0, -655325, 65537, 1, -589789, 65537, 2, -720860, 65537, 0, -655324, 65537, 1, -589788, 65537, 2, -720859, 65537, 0, -655323, 65537, 1, -589787, 65537, 2, -720858, 65537, 0, -655322, 65537, 1, -589786, 65537, 2, -720857, 65537, 0, -655321, 65537, 1, -589785, 65537, 2, -720856, 131073, 0, -655320, 131073, 1, -589784, 131073, 2, 65520, 196609, 2, 65521, 196609, 2, 65522, 196609, 2, 65523, 196609, 2, 65524, 196609, 2, 65525, 196609, 2, 65526, 196609, 2, 65527, 196609, 2, 65528, 196609, 2, -327668, 196609, 2, -262132, 196609, 2, -196596, 196609, 2, -131060, 196609, 2, -65524, 196609, 2, -262149, 196609, 2, -262148, 196609, 2, -262147, 196609, 2, -262146, 196609, 2, -262145, 196609, 2, -327680, 196609, 2, -327679, 196609, 2, -327678, 196609, 2, -327677, 196609, 2, -327676, 196609, 2, -327675, 196609, 2, -327674, 196609, 2, -327673, 196609, 2, -327672, 196609, 0, -327671, 196609, 0, -983023, 196609, 0, -786413, 196609, 2, -786412, 196609, 2, -786411, 196609, 2, -1310707, 196609, 2, -1310706, 196609, 2, -1310705, 196609, 2, -1310699, 196609, 2, -1245163, 196609, 2, -1179627, 196609, 2, -917491, 196609, 2, -851955, 196609, 2, -786419, 196609, 2, -327670, 196609, 0, -327669, 196609, 0)
+
+[node name="DecorTileMap" parent="." instance=ExtResource("6_tyrrn")]
+modulate = Color(1, 0.215686, 0, 1)
+tile_set = ExtResource("7_71scp")
+
+[node name="MusicPlayer" parent="." instance=ExtResource("8_jte4x")]
+position = Vector2(-40, -80)
+stream = ExtResource("9_xkq1q")
+attenuation = 1.81459e-05
+
+[node name="LevelPortal" parent="." instance=ExtResource("10_03mc8")]
+position = Vector2(-48, 16)
+scale = Vector2(2, 2)
+destination = "res://levels/level_2.tscn"
+active = true
+
+[node name="EquationLock" parent="." instance=ExtResource("11_i7ihv")]
+position = Vector2(-176, 104)
+mode = "angle1"
+a = 70
+
+[node name="Weapon3" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(152, -68)
+weapon_name = "Angleshot"
+infinite = true
+
+[node name="Weapon5" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(-64, -68)
+infinite = true
+
+[node name="Weapon6" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(0, -68)
+weapon_name = "Deco Dagger"
+infinite = true
+
+[node name="Weapon7" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(-32, -68)
+weapon_name = "WellDef Dagger"
+infinite = true
+
+[node name="Weapon4" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(48, -68)
+weapon_name = "ParabolicSling"
+infinite = true
+
+[node name="Weapon8" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(80, -68)
+weapon_name = "CubicSling"
+infinite = true
+
+[node name="Weapon9" parent="." instance=ExtResource("12_wqfjw")]
+position = Vector2(112, -68)
+weapon_name = "QuarticSling"
+infinite = true
+
+[node name="Enemy4_" parent="." instance=ExtResource("13_esdqc")]
+position = Vector2(720, -128)
+
+[node name="Enemy4_2" parent="." instance=ExtResource("13_esdqc")]
+position = Vector2(720, -40)
+
+[node name="Enemy1_" parent="." instance=ExtResource("14_6vb2e")]
+position = Vector2(472, -24)
+
+[node name="Enemy1_2" parent="." instance=ExtResource("14_6vb2e")]
+position = Vector2(488, -24)
+
+[node name="Enemy1_3" parent="." instance=ExtResource("14_6vb2e")]
+position = Vector2(504, -24)
+
+[node name="Enemy2_" parent="." instance=ExtResource("15_01lqq")]
+position = Vector2(520, -24)
+
+[node name="Enemy2_2" parent="." instance=ExtResource("15_01lqq")]
+position = Vector2(648, -88)
+
+[node name="Enemy2_3" parent="." instance=ExtResource("15_01lqq")]
+position = Vector2(664, -88)
+
+[node name="Enemy2_4" parent="." instance=ExtResource("15_01lqq")]
+position = Vector2(632, -88)
+
+[node name="Enemy3_" parent="." instance=ExtResource("16_kirtb")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-216, -24)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="Enemy3_2" parent="." instance=ExtResource("16_kirtb")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-216, -87)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="Enemy3_3" parent="." instance=ExtResource("16_kirtb")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-152, -87)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0
+
+[node name="Enemy3_4" parent="." instance=ExtResource("16_kirtb")]
+modulate = Color(0, 0.0166669, 1, 1)
+position = Vector2(-152, -24)
+hp = 1e+06
+maxhp = 1e+06
+max_cooldown = 1000000
+min_radius = 0
+max_radius = 0
+detect_radius = 0
+dmg = 0

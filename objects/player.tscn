@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://ei231eyk1t13"]
+[gd_scene load_steps=73 format=3 uid="uid://ei231eyk1t13"]
 
 [ext_resource type="Script" path="res://objects/player.gd" id="1_t6f3a"]
 [ext_resource type="Texture2D" uid="uid://b80bnfxvbnmor" path="res://sprites/player/walk/s_player_walk_f0.png" id="2_2mhk2"]
@@ -310,8 +310,76 @@ animations = [{
 "speed": 12.0
 }]
 
+[sub_resource type="Animation" id="Animation_cm72w"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_r8kv1"]
+resource_name = "attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2.21914, 1),
+"update": 0,
+"values": [Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7un2o"]
+_data = {
+"RESET": SubResource("Animation_cm72w"),
+"attack": SubResource("Animation_r8kv1")
+}
+
+[sub_resource type="Animation" id="Animation_l3cko"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_1g0f2"]
+resource_name = "default"
+step = 0.05
+
+[sub_resource type="Animation" id="Animation_713fj"]
+resource_name = "jump"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Animations:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(0.297302, 0.258816, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.8, 1.25), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hclh8"]
+_data = {
+"RESET": SubResource("Animation_l3cko"),
+"default": SubResource("Animation_1g0f2"),
+"jump": SubResource("Animation_713fj")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
+collision_mask = 273
 floor_stop_on_slope = false
 script = ExtResource("1_t6f3a")
 draw_font = ExtResource("2_re7j7")
@@ -323,6 +391,7 @@ shape = SubResource("RectangleShape2D_xcbdv")
 [node name="Animations" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = ExtResource("3_gqevr")
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_3spa2")
 animation = &"idle"
 autoplay = "idle"
@@ -356,4 +425,22 @@ attenuation = 0.00120229
 max_polyphony = 16
 script = ExtResource("46_8lalo")
 
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+offset = Vector2(4, 0)
+
+[node name="WeaponAnim" type="AnimationPlayer" parent="WeaponSprite"]
+libraries = {
+"": SubResource("AnimationLibrary_7un2o")
+}
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="PlayerAnim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_hclh8")
+}
+
 [connection signal="draw" from="." to="." method="_on_draw"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

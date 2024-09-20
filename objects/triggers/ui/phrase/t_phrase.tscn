@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkc7jg6bm3c2"]
+
+[ext_resource type="Script" path="res://objects/triggers/ui/phrase/t_phrase.gd" id="1_xhajc"]
+[ext_resource type="Texture2D" uid="uid://6vjtpcafdgf7" path="res://objects/triggers/ui/phrase/t_phrase.png" id="2_lbyak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_02jhc"]
+size = Vector2(14, 14)
+
+[node name="TPhrase" type="Area2D" groups=["Trigger"]]
+modulate = Color(1, 1, 1, 0.588235)
+script = ExtResource("1_xhajc")
+
+[node name="Coll" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_02jhc")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_lbyak")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

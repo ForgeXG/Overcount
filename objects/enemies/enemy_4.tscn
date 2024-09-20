@@ -118,6 +118,7 @@ animations = [{
 [node name="Enemy4_" type="CharacterBody2D" groups=["Enemies"]]
 texture_filter = 1
 collision_layer = 5
+collision_mask = 2049
 script = ExtResource("1_vsxdo")
 
 [node name="Coll" type="CollisionShape2D" parent="."]

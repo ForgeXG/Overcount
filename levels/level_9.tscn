@@ -1,6 +1,5 @@
-[gd_scene load_steps=30 format=3 uid="uid://y6j2co5oeqxo"]
+[gd_scene load_steps=29 format=3 uid="uid://y6j2co5oeqxo"]
 
-[ext_resource type="Script" path="res://levels/post_process.gd" id="1_57ye3"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_pdpcr"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_ap0c8"]
 [ext_resource type="Material" uid="uid://cd5lkrqv8y1di" path="res://materials/trig/m_trig_1.tres" id="4_efock"]
@@ -28,20 +27,9 @@
 [ext_resource type="PackedScene" uid="uid://da7eifk5mhssy" path="res://objects/foreground/accelerator/accelerator.tscn" id="26_m7784"]
 [ext_resource type="PackedScene" uid="uid://b4r57j2eg4eef" path="res://objects/enemies/enemy_6.tscn" id="27_lq7tb"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="28_nu5f8"]
-
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-background_color = Color(0.592157, 0.592157, 0.592157, 1)
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
+[ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="29_hh8vu"]
 
 [node name="Level9" type="Node2D"]
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("1_57ye3")
 
 [node name="Player" parent="." instance=ExtResource("2_pdpcr")]
 position = Vector2(24, -56)
@@ -97,10 +85,6 @@ text = "Really wide on-off block."
 [node name="Weapon" parent="." instance=ExtResource("16_c0tdn")]
 position = Vector2(40, -53)
 weapon_name = "ParabolicSling"
-weapon_type = "Sling"
-cooldown_use = 15
-maxdmg = 2
-fire_speed = 500
 
 [node name="Enemy7_" parent="." instance=ExtResource("14_r13io")]
 position = Vector2(536, -456)
@@ -143,22 +127,6 @@ position = Vector2(920, -744)
 
 [node name="Enemy5_" parent="." instance=ExtResource("19_umdnk")]
 position = Vector2(952, -744)
-
-[node name="InfoSign" parent="." instance=ExtResource("20_7y0ka")]
-position = Vector2(200, -280)
-txt = "The 7 is rather chaotic with its lasers firing spontaneously. Every laser has a 50% chance of hitting you or just vanishing. It's not a bug, it's a feature!"
-
-[node name="InfoSign4" parent="." instance=ExtResource("20_7y0ka")]
-position = Vector2(632, -344)
-txt = "x is something that stands for the unknown in equations. As in x+7=18, x=11 is the answer because the equality holds."
-
-[node name="InfoSign6" parent="." instance=ExtResource("20_7y0ka")]
-position = Vector2(872, -520)
-txt = "Sometimes x can be multipSometimes stuff in the equation can be multiplied by a number to obscure the answer. As in 3x + 6 = 12, divide everything by 3, x + 2 = 4, x = 2."
-
-[node name="InfoSign5" parent="." instance=ExtResource("20_7y0ka")]
-position = Vector2(648, -344)
-txt = "Example equation solve: 5x+27=52. Subtract 27 from both sides: 5x=25. x=5."
 
 [node name="Enemy1_6" parent="." instance=ExtResource("15_0o23v")]
 position = Vector2(1256, -760)
@@ -960,6 +928,27 @@ s_group = 3
 position = Vector2(7800, -2520)
 s_group = 3
 
+[node name="OnOffWall84" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6728, -2552)
+
+[node name="OnOffWall90" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6712, -2552)
+
+[node name="OnOffWall184" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6696, -2552)
+
+[node name="OnOffWall214" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6680, -2552)
+
+[node name="OnOffWall218" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6664, -2552)
+
+[node name="OnOffWall219" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6648, -2552)
+
+[node name="OnOffWall220" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(6632, -2552)
+
 [node name="OnOffWall52" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(7816, -2520)
 s_group = 3
@@ -1473,20 +1462,12 @@ s_group = 4
 position = Vector2(8568, -3576)
 s_group = 4
 
-[node name="OnOffWall176" parent="." instance=ExtResource("24_krm54")]
-position = Vector2(8872, -4056)
-s_group = 4
-
 [node name="OnOffWall177" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(8888, -4056)
 s_group = 4
 
 [node name="OnOffWall178" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(8904, -4056)
-s_group = 4
-
-[node name="OnOffWall179" parent="." instance=ExtResource("24_krm54")]
-position = Vector2(8920, -4056)
 s_group = 4
 
 [node name="OnOffWall185" parent="." instance=ExtResource("24_krm54")]
@@ -1529,6 +1510,22 @@ s_group = 4
 position = Vector2(9032, -4056)
 s_group = 4
 
+[node name="OnOffWall221" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(8984, -4168)
+s_group = 4
+
+[node name="OnOffWall222" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(9000, -4168)
+s_group = 4
+
+[node name="OnOffWall228" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(9016, -4168)
+s_group = 4
+
+[node name="OnOffWall229" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(9032, -4168)
+s_group = 4
+
 [node name="OnOffWall191" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(9064, -4104)
 s_group = 4
@@ -1539,6 +1536,14 @@ s_group = 4
 
 [node name="OnOffWall203" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(9064, -4072)
+s_group = 4
+
+[node name="OnOffWall230" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(9048, -4056)
+s_group = 4
+
+[node name="OnOffWall231" parent="." instance=ExtResource("24_krm54")]
+position = Vector2(9064, -4056)
 s_group = 4
 
 [node name="OnOffWall204" parent="." instance=ExtResource("24_krm54")]
@@ -1566,7 +1571,7 @@ position = Vector2(9064, -4184)
 s_group = 4
 
 [node name="OnOffWall202" parent="." instance=ExtResource("24_krm54")]
-position = Vector2(9064, -4200)
+position = Vector2(9080, -4056)
 s_group = 4
 
 [node name="OnOffWall205" parent="." instance=ExtResource("24_krm54")]
@@ -1646,20 +1651,12 @@ position = Vector2(9560, -4248)
 on = true
 s_group = 4
 
-[node name="OnOffWall198" parent="." instance=ExtResource("24_krm54")]
-position = Vector2(9096, -4056)
-s_group = 4
-
 [node name="OnOffWall199" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(9112, -4056)
 s_group = 4
 
 [node name="OnOffWall200" parent="." instance=ExtResource("24_krm54")]
 position = Vector2(9128, -4056)
-s_group = 4
-
-[node name="OnOffWall201" parent="." instance=ExtResource("24_krm54")]
-position = Vector2(9144, -4056)
 s_group = 4
 
 [node name="OnOffWall112" parent="." instance=ExtResource("24_krm54")]
@@ -1800,7 +1797,7 @@ position = Vector2(4072, -1096)
 position = Vector2(4744, -1672)
 
 [node name="Checkpoint5" parent="." instance=ExtResource("28_nu5f8")]
-position = Vector2(6648, -2488)
+position = Vector2(6808, -2488)
 
 [node name="Checkpoint6" parent="." instance=ExtResource("28_nu5f8")]
 position = Vector2(7720, -2536)
@@ -1828,3 +1825,57 @@ position = Vector2(9560, -4072)
 
 [node name="Checkpoint14" parent="." instance=ExtResource("28_nu5f8")]
 position = Vector2(10312, -4440)
+
+[node name="TPhrase" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(248, -280)
+text = "Let's transform that 292 px room into a fully functional house!"
+
+[node name="TPhrase2" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(344, -344)
+text = "The 7 has ranged attacks and moves horizontally. Avoid the lasers by taking cover."
+char_ind = 2
+
+[node name="TPhrase4" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(632, -344)
+text = "x is something that stands for the unknown in equations. As in x+7=18, x=11 is the answer because the equality holds."
+char_ind = 3
+
+[node name="TPhrase5" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(680, -344)
+text = "You can do operations (+, -, ×, /) to both sides to find x.
+Example equation solve: 5x+27=52. Subtract 27 from both sides: 5x=25. x=5."
+char_ind = 2
+
+[node name="TPhrase6" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(6808, -2552)
+text = "Once you solve this final lock, get ready for a few hard on/off switch challenges with limited time. If you don't have enough time, tough luck..."
+
+[node name="TPhrase7" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(7704, -2536)
+text = "The easiest one."
+
+[node name="TPhrase8" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(7976, -2920)
+text = "It's getting harder, at least you have a platform below all those switching blocks."
+
+[node name="TPhrase9" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(8280, -3544)
+text = "Pretty hard since they switch 25% quicker now."
+
+[node name="TPhrase10" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(8792, -4072)
+text = "It's all about timing. Jump in the square before it turns on."
+
+[node name="TPhrase11" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(9592, -4072)
+text = "Timings again..."
+
+[node name="TPhrase12" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(9608, -4392)
+text = "Wait, why is this 7 so large?"
+char_ind = 3
+
+[node name="TPhrase3" parent="." instance=ExtResource("29_hh8vu")]
+position = Vector2(184, -280)
+text = "No."
+char_ind = 3

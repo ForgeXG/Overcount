@@ -3,8 +3,8 @@
 [ext_resource type="FontFile" uid="uid://068m2d2se8sy" path="res://fonts/Classic.ttf" id="1_t5ats"]
 
 [resource]
+fallbacks = Array[Font]([ExtResource("1_t5ats")])
 font_names = PackedStringArray("MKARCADECAPS")
 hinting = 2
 multichannel_signed_distance_field = true
 msdf_size = 128
-fallbacks = Array[Font]([ExtResource("1_t5ats")])

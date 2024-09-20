@@ -65,6 +65,7 @@ func _process(_delta):
 		dmg = 0
 	if d_timer == 0:
 		player.score += score
+		player.energy += 12
 		queue_free()
 		
 	queue_redraw()

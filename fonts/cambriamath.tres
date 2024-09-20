@@ -2,6 +2,5 @@
 
 [resource]
 font_names = PackedStringArray("Cambria Math")
-subpixel_positioning = 0
 msdf_pixel_range = 32
 oversampling = 10.0

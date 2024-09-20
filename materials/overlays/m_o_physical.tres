@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ccnin75wdyc63"]
+
+[ext_resource type="Shader" uid="uid://e6na3owjxr8u" path="res://shaders/overlays/sh_o_physical.tres" id="1_ptvpq"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_ptvpq")
+shader_parameter/tint = 1.0

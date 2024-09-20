@@ -1,7 +1,13 @@
 extends CharacterBody2D
 
+# OOP (Player and Weapon)
+class_name Player
+
+var debug_float : float = 0.0
+
 # Movement
 @export var draw_font : SystemFont
+@export var material_changing : bool = true
 
 @export var walk_spd : int = 140
 @export var jump_force : int = -300
@@ -35,9 +41,24 @@ var i_frames : int = 0
 
 # Effects
 @export var status_effects : Array[String] = []
+# Boolean
+# Reversed - Horizontal controls are inverted.
+# Solving - Completely invulnerable, unable to attack and horizontally static.
+# Anticlimb - Cannot get up walls.
+# Jumphobia - Only jumps when getting off a ledge.
+# Y-negative - Cannot jump OR climb.
+# Continuous
+# Resistance - Subtracts less hp per damage
+# Quickdraw - Weapon cooldown is lowered.
+# Efficiency - Spends less energy per attack.
+# Supercharge - Special weapon takes less time/damage to charge up.
+# Math-aid - Math problems recover more hp.
 
 # Score
-@export var score : int = 0
+@export var score : int:
+	set(value):
+		score = clamp(value, 0, INF)
+
 @export var maxscore : int = 500
 
 # Speedrunning
@@ -45,10 +66,15 @@ var speedrun_time : float = 0
 @export var escape_time : int = -1
 @export var escape_time_active : bool = false
 
-# Weapon variables
+# Weapon class (Current)
+var weapon : WeaponNew = WeaponNew.new()
+# Weapon variables (Legacy)
 var energy = 100
 @export var maxenergy : int = 100
 var cooldown = 0
+var special_charge : float = 0: # Max is 100
+	set(value):
+		special_charge = clamp(value, 0, weapon.special_points)
 
 var has_weapon = false
 var weapon_name = "None"
@@ -64,10 +90,32 @@ var fire_speed = 0
 var fire_angle = 0
 
 var mouse_pos = Vector2.ZERO
+var dps : float = 0
+var dps_next : float = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 @export var gravity : float = 980.0
 
+class Phrase:
+	var characters : Array[String] = ["Alpha", "Beta", "Zeta", "Sigma"]
+	var char_sprites : Array[Resource] = [load("res://ui/ui_sprites/dialogue/alpha/DialogueAlpha.png"),
+	load("res://ui/ui_sprites/dialogue/alpha/DialogueAlpha.png"),
+	load("res://ui/ui_sprites/dialogue/zeta/DialogueZeta.png"),
+	load("res://ui/ui_sprites/dialogue/sigma/DialogueSigma.png")]
+	var text : String = ""
+	var char_ind : int = 0
+	static func create_phrase(text : String = "", char_ind : int = 0):
+		var p = Phrase.new()
+		p.text = text
+		p.char_ind = char_ind
+		print("Created new Phrase!")
+		return p
+	
+class Dialogue:
+	var phrases : Array[Phrase] = [Phrase.create_phrase()]
+	var phrase_ind : int = 0
+
+var dialogue = Dialogue.new()
 @export var cheats : bool = true
 
 func _ready():
@@ -77,6 +125,10 @@ func _ready():
 		checkpoint_camera_zoom = get_parent().get_node_or_null("Camera").zoom
 
 func _process(delta):
+	if Input.is_key_pressed(KEY_4):
+		debug_float *= 1.1
+	elif Input.is_key_pressed(KEY_5):
+		debug_float /= 1.1
 	# Mouse
 	mouse_pos = get_global_mouse_position()
 	int_mach = int(mach * 100)
@@ -110,18 +162,25 @@ func _process(delta):
 			$GPUPart.process_material = preload("res://sprites/player/particles/playerrun3.tres")
 	
 	# Invincible animation
-	if i_frames > 0:
-		$Animations.material = load("res://materials/player/player_invincible.tres")
+	if material_changing:
+		$Animations.use_parent_material = false
+		if i_frames > 0:
+			$Animations.material = load("res://materials/player/player_invincible.tres")
+		else:
+			$Animations.material = load("res://materials/player/player_default.tres")
 	else:
-		$Animations.material = load("res://materials/player/player_default.tres")
-	
+		$Animations.material = material
 	# Attacking
-	if Input.is_action_pressed("mouse_attack") and weapon_name != "None":
-		attack()
+	$WeaponSprite.rotation = fire_angle
+	if Input.is_action_pressed("mouse_attack") and weapon_name != "":
+		attacknew()
 	
 	if cooldown > 0:
 		cooldown -= 1
 	
+	# Weapon
+	$WeaponSprite.texture = weapon.texture
+	$WeaponSprite.modulate = weapon.tint
 	if has_weapon:
 		weapon_rot = get_node(weapon_filename).rotation
 		weapon_tip = Vector2(12*cos(weapon_rot), 12*sin(weapon_rot)) + Vector2(0, 3)
@@ -145,6 +204,8 @@ func _process(delta):
 	heal_effect = clamp(heal_effect, 0, 10**10)
 	
 	# Energy Control
+	if dmg_effect == 0 and cooldown == 0:
+		energy += 1
 	if energy > maxenergy:
 		energy = maxenergy
 	
@@ -162,7 +223,8 @@ func _process(delta):
 			get_tree().reload_current_scene()
 		elif escape_time > 0:
 			escape_time -= 1
-			$PlayerUI/TextTimer.text = str(escape_time / 3600) + ":" + str(escape_time % 3600 / 60)
+			if $PlayerUI/TextTimer.text != "GG":
+				$PlayerUI/TextTimer.text = str(escape_time / 3600) + ":" + str(escape_time % 3600 / 60)
 			$PlayerUI/ImageTimer.visible = true
 			$PlayerUI/ImageTimer.texture.pause = false
  
@@ -174,11 +236,23 @@ func _process(delta):
 	if G.enable_cheats:
 		if Input.is_action_just_pressed("key_cheat_next_room"):
 			get_tree().change_scene_to_file(get_parent().get_node("LevelPortal").destination)
+		if Input.is_action_pressed("key_cheat_give_energy") and energy < maxenergy:
+			energy += 1
+		if Input.is_action_just_pressed("key_instant_charge"):
+			special_charge = weapon.special_points
 	fire_angle = atan((mouse_pos.y - position.y) / (mouse_pos.x - position.x))
 	if mouse_pos.x - position.x < 0:
 		fire_angle -= PI
-		
-	speedrun_time += 60 * delta
+	
+	if $PlayerUI/TextTimer.text != "GG":
+		speedrun_time += 60 * delta
+	
+	# Dialogue
+	if Input.is_action_just_pressed("key_phrase_next") and dialogue.phrase_ind < dialogue.phrases.size() - 1:
+		dialogue.phrase_ind += 1
+	elif Input.is_action_just_pressed("key_phrase_previous") and dialogue.phrase_ind > 0:
+		dialogue.phrase_ind -= 1
+	
 	queue_redraw()
 
 func _physics_process(delta):
@@ -192,6 +266,13 @@ func _physics_process(delta):
 	
 	var key_parry : bool = Input.is_action_just_pressed("key_parry")
 	var key_kick : bool = Input.is_action_just_pressed("key_kick")
+	
+	var key_exchange_energy = Input.is_action_pressed("key_exchange_energy")
+	
+	if key_exchange_energy:
+		if energy < maxenergy:
+			dmg_effect += 1
+			energy += 1
 	
 	if key_autorun:
 		autorun = !autorun
@@ -223,6 +304,8 @@ func _physics_process(delta):
 	# Reversed status effect
 	if "Reversed" in status_effects:
 		h_sign *= -1
+	if "Solving" in status_effects:
+		h_sign = 0
 	
 	if h_sign != 0:
 		if key_accelerate:
@@ -251,9 +334,12 @@ func _physics_process(delta):
 			j_frames = -1
 			if mach == 3:
 				velocity.y *= 1.5
+			$PlayerAnim.play("jump")
 		elif is_on_wall() and mach >= 1:
-			velocity.y = jump_force * 0.9 * delta * 60 * -up_direction.y
-			mach = clamp(mach, 0, 2)
+			var last_coll = get_last_slide_collision().get_collider()
+			if last_coll.is_in_group("WallTileMap") or last_coll.is_in_group("OnOff"):
+				velocity.y = jump_force * 0.9 * delta * 60 * -up_direction.y
+				mach = clamp(mach, 0, 2)
 
 	if s_frames == 0:
 		velocity.x = h_sign * walk_spd * (clamp(mach, 0, 3) / 2 + 1) * delta * 60
@@ -261,8 +347,8 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	# Ability
-	if key_ability:
-		ability(10)
+	if key_ability and special_charge >= weapon.special_points:
+		ability(weapon.special_points)
 	
 	# Void trigger load.
 	if position.y > y_death or key_checkpoint:
@@ -297,8 +383,62 @@ func _physics_process(delta):
 						damage(8)
 		elif coll.is_in_group("WallTileMap") and is_on_floor():
 			last_safe_position = position
+		elif coll.is_in_group("Physical"):
+			print("PHYSICAL COLLISION")
+			# coll.apply_force(Vector2(velocity.x * 100, 0))
 
-func attack():
+func attacknew(): # Current
+	if energy >= weapon.energy_cost and cooldown == 0:
+		# print("ENERGY CHECKED")
+		$WeaponSprite/WeaponAnim.play("attack", -1, 90.0 / weapon.cooldown)
+		energy -= weapon.energy_cost
+		cooldown = weapon.cooldown
+		randomize()
+		var inacc : float = randf_range(-weapon.inaccuracy, weapon.inaccuracy)
+		if weapon.type == "Melee":
+			var poke : Node = preload("res://m_poke.tscn").instantiate()
+			add_child(poke)
+			poke.dmg = weapon.damage
+			poke.position += weapon.tip.rotated(fire_angle + inacc)
+			poke.rotation = fire_angle + inacc
+			poke.scale.x *= weapon.radius
+			poke.modulate = weapon.tint
+		elif weapon.type == "Polynomial":
+			var bullet = preload("res://objects/weapons/ranged/bullet/player_bullet.tscn").instantiate()
+			get_tree().current_scene.add_child(bullet)
+			bullet.position = position
+			bullet.position += Vector2(2, 0).rotated(fire_angle + inacc)
+			bullet.dmg = weapon.damage
+			bullet.apply_central_impulse(weapon.projectile_speed * Vector2(cos(fire_angle + inacc),
+			sin(fire_angle + inacc)))
+			bullet.d_timer = weapon.projectile_lifetime
+			bullet.maxd_timer = weapon.projectile_lifetime
+			bullet.modulate = weapon.tint
+			bullet.derivatives[0] = weapon.extra[0]
+			bullet.derivatives[1] = weapon.extra[1]
+		elif weapon.type == "Linear":
+			if weapon.weapon_name == "Angleshot" or weapon.weapon_name == "Thrangleshot":
+				var begin : float = -(weapon.spread / 2) if weapon.projectile_count != 1 else 0
+				var end : float = (weapon.spread / 2) if weapon.projectile_count != 1 else 1
+				var step : float = (end * 2 / (weapon.projectile_count - 1)) if weapon.projectile_count != 1 else 1
+				print(begin, end, step)
+				for i in range(rad_to_deg(begin), rad_to_deg(end) + 1 if begin != 0 else 1, rad_to_deg(step)):
+					var laser = preload("res://objects/weapons/ranged/laser/player_laser.tscn").instantiate()
+					get_tree().current_scene.add_child(laser)
+					laser.position = position
+					laser.position += Vector2(2, 0).rotated(fire_angle + inacc)
+					laser.rotation = fire_angle + deg_to_rad(i) + inacc
+					laser.dmg = weapon.damage
+					laser.extension_speed.x = weapon.projectile_speed
+					laser.reflections = weapon.extra[0]
+					laser.d_timer = weapon.projectile_lifetime
+					laser.maxd_timer = weapon.projectile_lifetime
+					laser.modulate = weapon.tint
+					# if weapon.projectile_count == 1:
+						# laser.rotation -= i
+						# break
+
+func attack(): # Deprecated
 	if energy >= energy_use and cooldown == 0:
 		energy -= energy_use
 		cooldown = cooldown_use
@@ -325,43 +465,52 @@ func attack():
 				bullet.d_timer = 120
 				bullet.maxd_timer = 120
 
-func ability(ability_cost : int):
-	if energy >= ability_cost:
-		energy -= ability_cost
+func ability(ability_cost : float = weapon.special_points):
+	if weapon.special_weapon != "None":
+		print("SPECIAL ATTACK")
+		special_charge -= ability_cost
 		# Bullet Line
-		for i in range(10):
-			var bullet = preload("res://objects/weapons/ranged/bullet/player_bullet.tscn").instantiate()
-			get_tree().current_scene.add_child(bullet)
-			bullet.position = position
-			bullet.position += Vector2(i, 0).rotated(fire_angle)
-			bullet.apply_scale(Vector2(1.3, 1.3))
-			bullet.modulate = Color(0, 0, 1, 1)
-			bullet.dmg = 2
-			bullet.gravity_scale = 0
-			bullet.apply_central_impulse(Vector2(50 * i * cos(fire_angle), 50 * i * sin(fire_angle)))
-			bullet.d_timer = 300
-			bullet.maxd_timer = 300
-		cooldown = 60
+		if weapon.special_weapon == "Bullet Line":
+			for i in range(25):
+				var bullet = preload("res://objects/weapons/ranged/bullet/player_bullet.tscn").instantiate()
+				get_tree().current_scene.add_child(bullet)
+				bullet.position = position
+				bullet.position += Vector2(i, 0).rotated(fire_angle)
+				bullet.apply_scale(Vector2(1.5, 1.5))
+				bullet.modulate = Color(0, 0, 1, 1)
+				bullet.dmg = 2
+				bullet.gravity_scale = 0
+				bullet.apply_central_impulse(Vector2(10 * i * cos(fire_angle), 10 * i * sin(fire_angle)))
+				bullet.d_timer = 300
+				bullet.maxd_timer = 300
+			cooldown = 60
 
 func _on_draw():
-	# draw_string(draw_font, Vector2(0, -16), $Animations.animation, HORIZONTAL_ALIGNMENT_FILL, -1, 12, 
-	#	Color.WHITE)
+	draw_set_transform(Vector2(0, 2))
 	draw_line(Vector2.ZERO, Vector2(64, 0).rotated(fire_angle), Color(0, 0, 1, 0.3), 2, false)
-	
-	if weapon_type == "Sling":
-		if weapon_name == "ParabolicSling":
-			if mouse_pos.x >= position.x:
-				for i in range(0, 256, 1):
-					draw_line(Vector2(i, p_traj(i)), Vector2(i + 1, p_traj(i + 1)), Color(0, 0, 1, 0.6), 2)
-			else:
-				for i in range(-256, 0, 1):
-					draw_line(Vector2(i, p_traj(i)), Vector2(i + 1, p_traj(i + 1)), Color(0, 0, 1, 0.6), 2)
+	draw_arc(Vector2.ZERO, 16, fire_angle - weapon.inaccuracy, fire_angle + weapon.inaccuracy, 15, Color.ORANGE_RED, 2, false)
+	draw_set_transform(Vector2.ZERO)
+	if weapon.type == "Polynomial":
+		if mouse_pos.x >= position.x:
+			for i in range(0, 320, 1):
+				draw_line(Vector2(i, p_traj(i, gravity, weapon.extra[0], weapon.extra[1])),
+				Vector2(i + 1, p_traj(i + 1, gravity, weapon.extra[0], weapon.extra[1])), Color(0, 0, 1, 0.5), 2)
+		else:
+			for i in range(-320, 0, 1):
+				draw_line(Vector2(i, p_traj(i, gravity, weapon.extra[0], weapon.extra[1])),
+				Vector2(i + 1, p_traj(i + 1, gravity, weapon.extra[0], weapon.extra[1])), Color(0, 0, 1, 0.5), 2)
 	
 	draw_line(Vector2.ZERO, velocity / 4.0, 
 	Color.from_hsv(velocity.length() / 500.0, 1, 1, 0.8), 2, false)
 
-func p_traj(a):
-	return (tan(fire_angle) * a) + ((gravity * (a * a)) / (2 * (fire_speed * fire_speed) * cos(fire_angle) * cos(fire_angle)))
+# Projectile Trajectory (g = gravity, j = Jolt, s = Snap)
+func p_traj(x : float, g : float, j : float = 0.0, s : float = 0.0) -> float:
+	var v : float = weapon.projectile_speed
+	var initial : float = (tan(fire_angle) * x) + (g * x * x) / (2 * v * v * pow(cos(fire_angle), 2))
+	var jerk : float = (j * pow(x, 3)) / (6 * pow(v, 3) * pow(cos(fire_angle), 3)) * 60000
+	var snap : float = (s * pow(x, 4)) / (24 * pow(v, 4) * pow(cos(fire_angle), 4)) * 3600000
+	return initial + jerk + snap
+
 
 # Player Methods
 func damage(a : float, is_instant : bool = false):
@@ -376,3 +525,8 @@ func heal(a : float, is_instant : bool = false):
 		heal_effect += a
 	else:
 		hp += a
+
+
+func _on_timer_timeout():
+	dps = dps_next
+	dps_next = 0
