@@ -1,6 +1,5 @@
-[gd_scene load_steps=28 format=3 uid="uid://d3u7bfswq280g"]
+[gd_scene load_steps=26 format=3 uid="uid://d3u7bfswq280g"]
 
-[ext_resource type="Script" path="res://levels/post_process.gd" id="1_40pp3"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_ftgd4"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_y2nve"]
 [ext_resource type="Material" uid="uid://bfjwa12ri6lky" path="res://materials/trig/m_trig_2.tres" id="4_0uq3k"]
@@ -27,19 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://c7lqdw76wthbs" path="res://objects/enemies/enemy_4.tscn" id="25_ut8ku"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="26_mq2ys"]
 
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-background_color = Color(0.592157, 0.592157, 0.592157, 1)
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
-
 [node name="Level10" type="Node2D"]
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("1_40pp3")
 
 [node name="Player" parent="." instance=ExtResource("2_ftgd4")]
 position = Vector2(40, -56)

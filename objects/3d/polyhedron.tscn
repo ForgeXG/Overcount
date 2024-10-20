@@ -4,22 +4,23 @@
 [ext_resource type="Material" uid="uid://d2g8u3g77yspe" path="res://materials/overlays/m_o_circular.tres" id="2_5amcv"]
 [ext_resource type="Material" uid="uid://cd5lkrqv8y1di" path="res://materials/trig/m_trig_1.tres" id="3_145i3"]
 
-[sub_resource type="Gradient" id="Gradient_tadv2"]
+[sub_resource type="Gradient" id="Gradient_1pn20"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_4kx1w"]
-gradient = SubResource("Gradient_tadv2")
+gradient = SubResource("Gradient_1pn20")
 width = 16
 height = 16
 use_hdr = true
 
-[sub_resource type="Gradient" id="Gradient_tkat2"]
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+[sub_resource type="Gradient" id="Gradient_tknew"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_toacn"]
-gradient = SubResource("Gradient_tkat2")
+gradient = SubResource("Gradient_tknew")
+fill_to = Vector2(1, 1)
 
-[node name="Polyhedron" type="AnimatableBody2D"]
+[node name="Polyhedron" type="AnimatableBody2D" groups=["Polyhedron"]]
 collision_layer = 20
 collision_mask = 2305
 script = ExtResource("1_e8jst")
@@ -37,6 +38,7 @@ material = ExtResource("2_5amcv")
 texture = SubResource("GradientTexture2D_4kx1w")
 
 [node name="Polygon" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
 material = ExtResource("3_145i3")
 color = Color(0.548963, 0.548963, 0.548962, 1)
 texture = SubResource("GradientTexture2D_toacn")

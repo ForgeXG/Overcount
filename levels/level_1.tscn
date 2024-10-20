@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cr74r2vnuyosb"]
+[gd_scene load_steps=23 format=3 uid="uid://cr74r2vnuyosb"]
 
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="1_l4pvn"]
 [ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_upnid"]
@@ -8,16 +8,20 @@
 [ext_resource type="TileSet" uid="uid://dwmqnt588kipj" path="res://tilesets/tileset_decor_stone.tres" id="4_54o1a"]
 [ext_resource type="PackedScene" uid="uid://c7s2oug01cmj" path="res://objects/special/music_player.tscn" id="5_30rxa"]
 [ext_resource type="PackedScene" uid="uid://cmh8r43seq681" path="res://objects/enemies/enemy_1.tscn" id="5_txvec"]
+[ext_resource type="Texture2D" uid="uid://dnmqekfcxt2xe" path="res://objects/special/pointers/PointerExclamation.png" id="10_6vdad"]
 [ext_resource type="PackedScene" uid="uid://db4yguj5tbhmu" path="res://objects/locks/equation_lock.tscn" id="11_4e8tt"]
 [ext_resource type="PackedScene" uid="uid://tpffhm7nfx8i" path="res://objects/blocks/teleport.tscn" id="12_bp1i6"]
+[ext_resource type="Texture2D" uid="uid://b35p34u8obbna" path="res://objects/special/pointers/PointerQuestion.png" id="13_bq8wt"]
 [ext_resource type="PackedScene" uid="uid://d0xg5252r0ibu" path="res://objects/enemies/enemy_2.tscn" id="14_r4qee"]
 [ext_resource type="PackedScene" uid="uid://b3uoy70x3kq5v" path="res://objects/blocks/onoff/escape/on_off_escape_wall.tscn" id="15_q0nac"]
 [ext_resource type="PackedScene" uid="uid://csquo4odua4w2" path="res://objects/level_portal.tscn" id="15_slypi"]
 [ext_resource type="PackedScene" uid="uid://ds048i8xh347l" path="res://objects/pickups/gems/gem_octagon.tscn" id="16_203bj"]
 [ext_resource type="PackedScene" uid="uid://cyi1ko3vsnqdc" path="res://objects/pickups/gems/gem_triangle.tscn" id="17_mspuj"]
 [ext_resource type="PackedScene" uid="uid://dakoio0l4dr1d" path="res://objects/pickups/gems/gem_square.tscn" id="18_wynhm"]
+[ext_resource type="PackedScene" uid="uid://b15qofqfdu3cx" path="res://objects/special/pointers/pointer.tscn" id="19_d1vbl"]
 [ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="20_85x0b"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="21_x5q8h"]
+[ext_resource type="Texture2D" uid="uid://bfo8e1h1m5omn" path="res://objects/special/pointers/PointerCircle.png" id="21_xdyh5"]
 
 [node name="Level1" type="Node2D"]
 material = ExtResource("1_upnid")
@@ -26,7 +30,6 @@ material = ExtResource("1_upnid")
 position = Vector2(72, -24)
 hp = 50.0
 maxhp = 50.0
-maxscore = 450
 escape_time = 13740
 
 [node name="Camera" parent="Player" instance=ExtResource("3_70g55")]
@@ -75,7 +78,12 @@ position = Vector2(1017, -151)
 position = Vector2(888, -616)
 
 [node name="Enemy1_5" parent="." instance=ExtResource("5_txvec")]
-position = Vector2(1129, -24)
+position = Vector2(1128, -24)
+
+[node name="Pointer7" parent="Enemy1_5" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, -24)
+scale = Vector2(2, 2)
+texture = ExtResource("10_6vdad")
 
 [node name="Enemy1_6" parent="." instance=ExtResource("5_txvec")]
 position = Vector2(1192, -24)
@@ -145,6 +153,16 @@ position = Vector2(632, -56)
 a_range = 4
 b_range = 4
 
+[node name="Pointer2" parent="EquationLock" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, -32)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="Pointer6" parent="EquationLock" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, 32)
+rotation = -1.5708
+scale = Vector2(2, 2)
+
 [node name="EquationLock2" parent="." instance=ExtResource("11_4e8tt")]
 position = Vector2(1368, -664)
 a = 10
@@ -152,8 +170,18 @@ b = 10
 a_range = 40
 b_range = 40
 
+[node name="Pointer2" parent="EquationLock2" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, -32)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
+[node name="Pointer6" parent="EquationLock2" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, 32)
+rotation = -1.5708
+scale = Vector2(2, 2)
+
 [node name="EquationLock7" parent="." instance=ExtResource("11_4e8tt")]
-position = Vector2(552, -712)
+position = Vector2(1000, -520)
 a = 9
 b = 10
 a_range = 0
@@ -168,17 +196,35 @@ b_range = 150
 
 [node name="EquationLock4" parent="." instance=ExtResource("11_4e8tt")]
 modulate = Color(1, 0, 0, 1)
-position = Vector2(1992, -1719)
-scale = Vector2(1.2, 1.2)
+position = Vector2(1992, -1720)
 final = true
 a = 500
 b = 500
 a_range = 500
 b_range = 500
 
+[node name="Pointer" parent="EquationLock4" instance=ExtResource("19_d1vbl")]
+position = Vector2(-0.000101725, 26.6668)
+rotation = -1.5708
+scale = Vector2(2, 2)
+
+[node name="Pointer2" parent="EquationLock4" instance=ExtResource("19_d1vbl")]
+position = Vector2(-0.000101725, -26.6666)
+rotation = 1.5708
+scale = Vector2(2, 2)
+
 [node name="Teleport" parent="." node_paths=PackedStringArray("link") instance=ExtResource("12_bp1i6")]
 position = Vector2(1816, -552)
 link = NodePath("../Teleport2")
+
+[node name="Pointer" parent="Teleport" instance=ExtResource("19_d1vbl")]
+position = Vector2(-48, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("13_bq8wt")
+
+[node name="Pointer2" parent="Teleport" instance=ExtResource("19_d1vbl")]
+position = Vector2(-24, 0)
+scale = Vector2(2, 2)
 
 [node name="Teleport2" parent="." node_paths=PackedStringArray("link") instance=ExtResource("12_bp1i6")]
 position = Vector2(1943, -616)
@@ -511,6 +557,21 @@ link = NodePath(".")
 position = Vector2(-48, -32)
 scale = Vector2(2, 2)
 destination = "res://levels/level_2.tscn"
+
+[node name="Pointer" parent="LevelPortal" instance=ExtResource("19_d1vbl")]
+position = Vector2(-16, 0)
+
+[node name="Pointer2" parent="LevelPortal" instance=ExtResource("19_d1vbl")]
+position = Vector2(16, 0)
+rotation = 3.14159
+
+[node name="Pointer3" parent="LevelPortal" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, 16)
+rotation = -1.5708
+
+[node name="Pointer4" parent="LevelPortal" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, -16)
+rotation = 1.5708
 
 [node name="EscapeWall" parent="." instance=ExtResource("15_q0nac")]
 position = Vector2(1224, -1752)
@@ -1045,14 +1106,13 @@ on = true
 [node name="GemOctagon" parent="." instance=ExtResource("16_203bj")]
 position = Vector2(856, -552)
 
-[node name="GemTriangle" parent="." instance=ExtResource("17_mspuj")]
-position = Vector2(296, -88)
-
-[node name="GemTriangle2" parent="." instance=ExtResource("17_mspuj")]
-position = Vector2(264, -88)
-
 [node name="GemTriangle3" parent="." instance=ExtResource("17_mspuj")]
 position = Vector2(280, -88)
+
+[node name="Pointer" parent="GemTriangle3" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, -32)
+rotation = 1.5708
+scale = Vector2(1.5, 1.5)
 
 [node name="GemTriangle4" parent="." instance=ExtResource("17_mspuj")]
 position = Vector2(1448, -56)
@@ -1506,7 +1566,6 @@ position = Vector2(2040, -1736)
 
 [node name="EquationLock6" parent="." instance=ExtResource("11_4e8tt")]
 position = Vector2(1656, -1624)
-scale = Vector2(1.2, 1.2)
 a = 100
 b = 100
 a_range = 600
@@ -1515,8 +1574,13 @@ b_range = 600
 [node name="Checkpoint" parent="." instance=ExtResource("21_x5q8h")]
 position = Vector2(1880, -23)
 
+[node name="Pointer" parent="Checkpoint" instance=ExtResource("19_d1vbl")]
+position = Vector2(0, -1)
+scale = Vector2(2, 2)
+texture = ExtResource("21_xdyh5")
+
 [node name="Checkpoint2" parent="." instance=ExtResource("21_x5q8h")]
-position = Vector2(1976, -1720)
+position = Vector2(2024, -1720)
 
 [node name="TPhrase" parent="." instance=ExtResource("20_85x0b")]
 position = Vector2(72, -32)
@@ -1538,7 +1602,7 @@ char_ind = 3
 [node name="TPhrase5" parent="." instance=ExtResource("20_85x0b")]
 position = Vector2(1264, -48)
 scale = Vector2(4, 4)
-text = "Hold Shift while walking to run. Or if you want to run automatically, press Caps Lock."
+text = "Hold Shift while walking to run. Or if you want to run automatically, press Q."
 
 [node name="TPhrase6" parent="." instance=ExtResource("20_85x0b")]
 position = Vector2(1736, -72)
@@ -1590,3 +1654,9 @@ char_ind = 3
 position = Vector2(536, -40)
 scale = Vector2(3, 3)
 text = "Erm... what the sigma?"
+
+[node name="GemSquare11" parent="." instance=ExtResource("18_wynhm")]
+position = Vector2(280, -536)
+
+[node name="GemSquare12" parent="." instance=ExtResource("18_wynhm")]
+position = Vector2(96, -96)

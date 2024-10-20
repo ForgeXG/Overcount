@@ -43,12 +43,26 @@ func _on_body_entered(body):
 		player.walk_spd = 0
 		player.jump_force = 0
 		# Save data
-		G.coins += player.score + 50 * clampi(float(player.score) / float(player.maxscore) * 6, 0, 5)
+		var total_coins = (player.score + 50 * clampi(float(player.score) / float(player.maxscore) * 6, 0, 5) + 
+		5 * clampi(int(player.hp - player.maxhp), 0, 1000000))
+		G.coins += total_coins
 		# End UI
 		player.get_node("PlayerUI/TextTimer").text = "GG"
 		player.escape_time = -1
-		player.get_node("PlayerUI/WinScreen/ButtonNextLevel").destination = destination
+		# player.get_node("PlayerUI/WinScreen/ButtonNextLevel").destination = destination
 		player.get_node("PlayerUI/WinScreen/WinAnim").play("win")
+		player.get_node("PlayerUI/WinScreen/TextStats").visible_ratio = 0
+		player.get_node("PlayerUI/WinScreen/TextStats").text = "Stats:
+		Score coins: {score_coins}
+		Rank coins: {rank_coins}
+		Extra HP coins: {extra_hp_coins}
+		Total coins: {total_coins}
+		End Rank: {rank}".format({"score_coins" : player.score,
+		"rank_coins" : 50 * clampi(float(player.score) / float(player.maxscore) * 6, 0, 5),
+		"extra_hp_coins" : 5 * clampi(int(player.hp - player.maxhp), 0, 1000000),
+		"total_coins" : total_coins,
+		"rank" : clampi(float(player.score) / float(player.maxscore) * 6, 0, 5)})
+		
 		music_player.stop()
 		music_player.pitch_scale = 1.0
 		music_player.stream = jingles[int(floor(float(player.score) / player.maxscore * 5))]

@@ -3,6 +3,7 @@ extends RichTextLabel
 var target : String = "Enemy"
 var d_timer : int = 30
 var maxd_timer : int = 30
+var link : CharacterBody2D
 
 func _process(_delta):
 	if d_timer == 0:
@@ -12,6 +13,8 @@ func _process(_delta):
 	modulate.a -= 1.0 / d_timer
 	if target == "Player":
 		modulate.v = 0.5
+	if link != null:
+		text = "%.1f" % link.dmg_effect
 
 
 func _physics_process(delta):

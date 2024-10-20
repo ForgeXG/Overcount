@@ -140,7 +140,7 @@ shader_parameter/tint = 1.0
 [node name="Level1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("3_yo2ar")]
-position = Vector2(1064, -504)
+position = Vector2(120, -104)
 hp = 150.0
 maxhp = 150.0
 maxscore = 450
@@ -197,7 +197,7 @@ position = Vector2(-40, -120)
 weapon_name = "CubicSling"
 
 [node name="Weapon2" parent="." instance=ExtResource("11_a84l7")]
-position = Vector2(1064, -504)
+position = Vector2(120, -104)
 weapon_name = "Empty"
 
 [node name="Enemy3_" parent="." instance=ExtResource("13_roaxu")]

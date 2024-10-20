@@ -1,6 +1,5 @@
-[gd_scene load_steps=23 format=3 uid="uid://cqif707cm6yj4"]
+[gd_scene load_steps=21 format=3 uid="uid://cqif707cm6yj4"]
 
-[ext_resource type="Script" path="res://levels/post_process.gd" id="1_tf7am"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_3th7o"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_653c7"]
 [ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="4_2pkal"]
@@ -22,18 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="20_cfrtp"]
 [ext_resource type="PackedScene" uid="uid://b3uoy70x3kq5v" path="res://objects/blocks/onoff/escape/on_off_escape_wall.tscn" id="21_8ak0q"]
 
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
-
 [node name="Level2" type="Node2D"]
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("1_tf7am")
 
 [node name="Player" parent="." instance=ExtResource("2_3th7o")]
 position = Vector2(8, -394)
@@ -78,7 +66,7 @@ stream = ExtResource("9_wxenv")
 attenuation = 1.81459e-05
 
 [node name="EquationLock" parent="." instance=ExtResource("13_s1gtb")]
-position = Vector2(760, -871)
+position = Vector2(760, -872)
 mode = "sub"
 a = 20
 b = 0
@@ -346,7 +334,6 @@ b_range = 300
 [node name="EquationLock5" parent="." instance=ExtResource("13_s1gtb")]
 modulate = Color(1, 0, 0, 1)
 position = Vector2(3528, -2680)
-scale = Vector2(1.2, 1.2)
 final = true
 mode = "sub"
 a = 500
@@ -1295,7 +1282,7 @@ position = Vector2(3512, -2680)
 
 [node name="TPhrase" parent="." instance=ExtResource("20_cfrtp")]
 position = Vector2(-40, -200)
-text = "The 3 can do ranged attacks. You can either dodge the bullets or parry them with Q (you get 1/6 seconds of shielding)"
+text = "The 3 can do ranged attacks. You can either dodge the bullets or parry them with E (you get 1/6 seconds of shielding)"
 char_ind = 3
 
 [node name="TPhrase7" parent="." instance=ExtResource("20_cfrtp")]

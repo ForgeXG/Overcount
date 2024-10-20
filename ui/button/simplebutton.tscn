@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu4lbv8he8yot"]
+
+[ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="1_q6ige"]
+[ext_resource type="Script" path="res://ui/button/button.gd" id="2_auj8i"]
+[ext_resource type="Texture2D" uid="uid://613ub5igfmo5" path="res://ui/button/uibutton.png" id="3_w4ydb"]
+[ext_resource type="Script" path="res://ui/ui_sprites/danger/uniform_scale_c.gd" id="4_segec"]
+
+[node name="SimpleButton" type="Button"]
+texture_filter = 1
+offset_right = 64.0
+offset_bottom = 48.0
+mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("1_q6ige")
+theme_override_font_sizes/font_size = 48
+flat = true
+expand_icon = true
+script = ExtResource("2_auj8i")
+
+[node name="Image" type="NinePatchRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_w4ydb")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 3
+patch_margin_top = 3
+patch_margin_right = 3
+patch_margin_bottom = 3
+script = ExtResource("4_segec")
+amplitude = 0.02
+speed = 0.02
+
+[connection signal="button_down" from="." to="." method="_button_down"]
+[connection signal="mouse_entered" from="." to="." method="_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_mouse_exited"]

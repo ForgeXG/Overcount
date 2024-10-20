@@ -34,7 +34,7 @@
 [node name="Player" parent="." instance=ExtResource("2_pdpcr")]
 position = Vector2(24, -56)
 maxhp = 150.0
-maxscore = 1000
+maxscore = 800
 escape_time = 13200
 
 [node name="Camera" parent="Player" instance=ExtResource("3_ap0c8")]

@@ -1,5 +1,6 @@
 extends AnimatableBody2D
 
+class_name Polyhedron
 @export var vertices : Array[Vector3] = [
 Vector3(-8, -8, -8), Vector3(8, -8, -8), Vector3(-8, 8, -8), Vector3(-8, -8, 8),
 Vector3(8, 8, -8), Vector3(-8, 8, 8), Vector3(8, -8, 8), Vector3(8, 8, 8)]
@@ -15,47 +16,62 @@ Vector2(4, 7), Vector2(5, 7), Vector2(6, 7)]
 @export var offset_end : Vector3 = Vector3.ZERO # x, y, z
 @export var angular_offset : Vector3 = Vector3.ZERO # yz, zx, xy
 @export var angular_velocity : Vector3 = Vector3.ZERO # yz, zx, xy
-@export var uniform_scale : float = 1
+@export var uniform_scale : Vector3 = Vector3.ONE
 var template : String = "Any"
 var temp_a : float = 0
 var temp_b : float = 0
 var temp_c : float = 0
 var temp_d : float = 0
+@export var stationary : bool = false
+@export var hazard : bool = false
 
 var unordered_vert : Array[Vector2] = []
 
+var player : Player
+
 func _ready() -> void:
+	if hazard:
+		modulate = Color.RED
 	for i in range(0, vertices.size()):
 		vertices[i] *= uniform_scale
 	vert = vertices.duplicate(true)
+	player = get_tree().get_first_node_in_group("Player")
 
 
 func _process(delta: float):
-	queue_redraw()
+	visible = global_position.distance_to(player.global_position) < 64 * uniform_scale.length()
+	if visible:
+		queue_redraw()
 
 
 func _physics_process(delta: float):
 	# Movement
-	if lerp_speed != 0:
-		for i in range(0, vert.size()):
-			vert[i] = vertices[i] + lerp(offset_start, offset_end, offset_lerp)
-			offset_lerp += lerp_speed * delta * 60
-	if offset_lerp > 1 or offset_lerp < 0:
-		lerp_speed = -lerp_speed
-	# Rotation
-	if angular_velocity != Vector3.ZERO:
-		for i in range(0, vert.size()):
-			var tr : Transform3D = Transform3D(Basis.IDENTITY, vert[i])
-			tr = tr.rotated(Vector3(0, 1, 0), angular_offset.y).orthonormalized()
-			tr = tr.rotated(Vector3(0, 0, 1), angular_offset.z).orthonormalized()
-			tr = tr.rotated(Vector3(1, 0, 0), angular_offset.x).orthonormalized()
+	
+	if !stationary:
+		if lerp_speed != 0:
+			for i in range(0, vert.size()):
+				vert[i] = vertices[i] + lerp(offset_start, offset_end, offset_lerp)
+				offset_lerp += lerp_speed * delta * 60
+		if offset_lerp > 1 or offset_lerp < 0:
+			lerp_speed = -lerp_speed
+		# Rotation
+		if angular_velocity != Vector3.ZERO:
+			for i in range(0, vert.size()):
+				var tr : Transform3D = Transform3D(Basis.IDENTITY, vert[i])
+				tr = tr.rotated(Vector3(0, 1, 0), angular_offset.y).orthonormalized()
+				tr = tr.rotated(Vector3(0, 0, 1), angular_offset.z).orthonormalized()
+				tr = tr.rotated(Vector3(1, 0, 0), angular_offset.x).orthonormalized()
 			
-			vert[i] = tr.origin
-		angular_offset += angular_velocity
-	unordered_vert = cross_section()
-	unordered_vert.sort_custom(sort_clockwise)
-	$Coll.polygon = unordered_vert
-	$Polygon.polygon = unordered_vert
+				vert[i] = tr.origin
+			angular_offset += angular_velocity
+		unordered_vert = cross_section()
+		unordered_vert.sort_custom(sort_clockwise)
+		if len(unordered_vert) >= 3:
+			$Coll.polygon = unordered_vert
+			$Polygon.polygon = unordered_vert
+		else:
+			$Coll.polygon = []
+			$Polygon.polygon = []
 
 
 func sort_clockwise(a : Vector2, b : Vector2):
@@ -87,11 +103,13 @@ func cross_section(): # Intersection with z = 0 plane
 func _on_draw() -> void:
 	for i in edges:
 		var draw_color : Color = Color.BLACK
+		draw_color.a = abs(vert[i.x].z + vert[i.y].z) / 64
 		if vert[i.x].z > 0 and vert[i.y].z > 0:
 			draw_color = Color.ORANGE
 		elif vert[i.x].z < 0 and vert[i.y].z < 0:
 			draw_color = Color.CYAN
-		draw_color.a = abs(vert[i.x].z + vert[i.y].z) / 32
+		else:
+			draw_color.a = 0.7
 		draw_line(Vector2(vert[i.x].x, vert[i.x].y), Vector2(vert[i.y].x, vert[i.y].y),
 		 draw_color, 1, false)
 	for i in vert:
@@ -100,7 +118,7 @@ func _on_draw() -> void:
 			draw_color = Color.ORANGE
 		elif i.z < 0:
 			draw_color = Color.CYAN
-		draw_color.a = abs(i.z) / 32
+		draw_color.a = 32 - abs(i.z) / 32
 		draw_circle(Vector2(i.x, i.y), 1, draw_color, true)
 	for i in range(0, unordered_vert.size() - 1):
 		draw_line(unordered_vert[i], unordered_vert[i + 1], Color.BLACK, 1, false)

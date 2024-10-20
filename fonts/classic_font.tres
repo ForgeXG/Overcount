@@ -1,10 +1,11 @@
 [gd_resource type="SystemFont" load_steps=2 format=3 uid="uid://byl5gjepf3q0r"]
 
-[ext_resource type="FontFile" uid="uid://068m2d2se8sy" path="res://fonts/Classic.ttf" id="1_t5ats"]
+[ext_resource type="FontFile" uid="uid://cs58g4bmvwecd" path="res://fonts/19246.ttf" id="1_rtqpv"]
 
 [resource]
-fallbacks = Array[Font]([ExtResource("1_t5ats")])
+fallbacks = Array[Font]([ExtResource("1_rtqpv")])
 font_names = PackedStringArray("MKARCADECAPS")
+generate_mipmaps = true
 hinting = 2
 multichannel_signed_distance_field = true
 msdf_size = 128

@@ -9,7 +9,7 @@ extends RigidBody2D
 @export var homing : bool = false
 
 var d_timer : float = -1
-var player
+var player : Player
 var player_dist = 0
 var player_angle = 0
 
@@ -47,7 +47,7 @@ func _on_body_entered(body):
 		position.y -= 16
 	elif body.is_in_group("Player"):
 		if body.mach < 3 and body.i_frames == 0:
-			body.dmg_effect += dmg - 0.01
+			player.damage(dmg - 0.01)
 			var dmg_number = preload("res://ui/damage_number.tscn").instantiate()
 			get_tree().current_scene.add_child(dmg_number)
 			dmg_number.position = position

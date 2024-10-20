@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://gbnciht7koin"]
+
+[ext_resource type="Script" path="res://objects/4d/polychoron.gd" id="1_i4k3p"]
+[ext_resource type="Material" uid="uid://d2g8u3g77yspe" path="res://materials/overlays/m_o_circular.tres" id="2_5vepd"]
+[ext_resource type="Material" uid="uid://2jbd358krccx" path="res://materials/trig/m_trig_1c.tres" id="3_eena8"]
+
+[sub_resource type="Gradient" id="Gradient_tadv2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0vwfl"]
+gradient = SubResource("Gradient_tadv2")
+width = 16
+height = 16
+use_hdr = true
+
+[sub_resource type="Gradient" id="Gradient_tkat2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1pucv"]
+gradient = SubResource("Gradient_tkat2")
+fill_to = Vector2(1, 1)
+
+[node name="Polychoron" type="AnimatableBody2D"]
+script = ExtResource("1_i4k3p")
+
+[node name="Coll" type="CollisionPolygon2D" parent="."]
+visible = false
+build_mode = 1
+polygon = PackedVector2Array(8, -8, 8, 8, -8, 8, -8, -8)
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Coll"]
+visible = false
+modulate = Color(0.20871, 0.20871, 0.20871, 1)
+clip_children = 2
+material = ExtResource("2_5vepd")
+texture = SubResource("GradientTexture2D_0vwfl")
+
+[node name="Polygon" type="Polygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.784314)
+material = ExtResource("3_eena8")
+color = Color(0.410303, 0.489365, 1, 1)
+texture = SubResource("GradientTexture2D_1pucv")
+polygon = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
+
+[connection signal="draw" from="." to="." method="_on_draw"]

@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dwh4qscgdemd7"]
+
+[ext_resource type="Shader" uid="uid://bq63df014snxw" path="res://materials/screen/sh_screen_start.tres" id="1_mlx5r"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_mlx5r")
+shader_parameter/a = 0.0
+shader_parameter/b = 0.0

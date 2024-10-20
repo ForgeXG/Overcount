@@ -6,6 +6,7 @@ var extension_speed : Vector2 = Vector2(0, 0)
 var reflections : int = 0
 var reflection_angle : float = 0
 var hit : bool = false
+var hit_list : Array[CharacterBody2D] = []
 var powered : bool = true
 
 var player
@@ -29,11 +30,14 @@ func _physics_process(_delta):
 		if body.is_in_group("Enemies"):
 			player.dps_next += dmg
 			body.dmg_effect += dmg
-			# var dmg_number = preload("res://ui/damage_number.tscn").instantiate()
-			# get_tree().current_scene.add_child(dmg_number)
-			# dmg_number.position = body.position + Vector2(randi_range(8, 24), 0).rotated(randf_range(0, TAU))
-			# dmg_number.text = "%.1f" % dmg
-			# player.special_charge += dmg
+			if !(body in hit_list):
+				hit_list.append(body)
+				var dmg_number = preload("res://ui/damage_number.tscn").instantiate()
+				get_tree().current_scene.add_child(dmg_number)
+				dmg_number.position = body.position + Vector2(randi_range(8, 24), 0).rotated(randf_range(0, TAU))
+				dmg_number.text = "%.1f" % dmg
+				dmg_number.link = body
+				player.special_charge += dmg
 		elif body.is_in_group("WallTileMap") or body.is_in_group("OnOffBlock") or body.is_in_group("Filter") or body.is_in_group("Physical"):
 			if body.is_in_group("OnOffBlock"):
 				if body.on and extension_speed != Vector2.ZERO:
@@ -57,7 +61,7 @@ func _physics_process(_delta):
 func reflect(rad_offset : float = 0.0):
 	if reflections > 0 and maxd_timer - d_timer > 2:
 		for i in [PI + rad_offset * 2, 2 * PI + rad_offset * 2]:
-			var laser = preload("res://objects/weapons/ranged/laser/player_laser.tscn").instantiate()
+			var laser = load("res://objects/weapons/ranged/laser/player_laser.tscn").instantiate()
 			var fire_angle : float = i - rotation
 			get_tree().current_scene.add_child(laser)
 			laser.position = position

@@ -22,7 +22,7 @@ var input = 0
 
 var draw_font : SystemFont = preload("res://fonts/cambriamath.tres")
 var active = false
-var player
+var player : Player
 var player_dist : float = 1000
 
 var d_timer = -1
@@ -31,6 +31,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	$UI/DrawRect.hide()
+	$UI.scale = Vector2(1.5 / scale.x, 1.5 / scale.y)
+	# Snap to grid to avoid collision bugs
+	position = position.snapped(Vector2(8, 8))
+	scale = scale.snapped(Vector2(1, 1))
 	if equation:
 		timer *= 2 # Accounted for equations being solved slower
 		hp_restore *= 2
@@ -129,8 +133,13 @@ func _process(_delta):
 			elif a == 9 and b == 10 and is_equal_approx(answer, 19) and input == "21":
 				get_tree().change_scene_to_file("res://levels/level_stupid.tscn")
 
-		if Input.is_action_just_pressed("key_w"):
+		if Input.is_action_pressed("key_w") and "Solving" in player.status_effects:
 			player.status_effects.erase("Solving")
+			$UI.hide()
+			var player_angle : float = player.position.angle_to(position)
+			if player.position.x - position.x < 0:
+				player_angle -= PI
+			player.position += Vector2(2, 0).rotated(player_angle)
 			active = false
 			modulate.a = 0.8
 
@@ -152,6 +161,8 @@ func _process(_delta):
 			
 			get_parent().get_node("MusicPlayer").set_stream(load(finalmusic))
 			get_parent().get_node("MusicPlayer").volume_db = 2
+			if load(finalmusic) == load("res://audio/music/special/overcounted.mp3"):
+				get_parent().get_node("MusicPlayer").volume_db = 4
 			get_parent().get_node("MusicPlayer").play()
 			
 			get_parent().get_node("LevelPortal").active = true
@@ -166,7 +177,18 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 		
 	move_and_slide()
-
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var coll = collision.get_collider()
+		if coll.is_in_group("Player"):
+			if !("Solving" in player.status_effects):
+				active = true
+				timer_active = true
+				modulate.a = 1
+				$UI/AnswerRect/Answer.set_selection_mode(TextEdit.SELECTION_MODE_POINTER)
+				$UI/AnswerRect/Answer.grab_focus()
+				player.status_effects.append("Solving")
+				break
 
 func _on_draw():
 	var s_begin : Vector2 = $UI/DrawRect.position # Top Left
@@ -181,11 +203,7 @@ func _on_draw():
 			draw_string(draw_font, s_center + Vector2(12, 0).rotated(-(a / 2 + 90) * PI / 180) + Vector2(0, -2), "?")
 
 func _on_mouse_entered():
-	if player_dist <= 64 and !("Solving" in player.status_effects):
-		active = true
-		timer_active = true
-		modulate.a = 1
-		player.status_effects.append("Solving")
+	pass
 
 
 func _on_mouse_exited():

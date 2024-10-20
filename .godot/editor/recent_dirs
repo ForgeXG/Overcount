@@ -1,6 +1,10 @@
+C:/OvercountBuilds/Alpha2
+res://ui
+res://materials/screen
+res://fonts
+C:/OvercountBuilds/Alpha1
 res://shaders/overlays
 res://materials/overlays
-res://materials/screen
 res://materials/trig
 res://materials/player
 res://audio/music
@@ -17,6 +21,3 @@ res://tilesets
 C:/OvercountVideoTests
 res://objects/enemies
 res://ui/ui_sprites
-res://ui
-res://shaders/trig
-res://objects/background

@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=3 uid="uid://1faqvg8n13h4"]
+[gd_scene load_steps=81 format=3 uid="uid://1faqvg8n13h4"]
 
 [ext_resource type="Script" path="res://ui/player_ui.gd" id="1_117or"]
 [ext_resource type="Texture2D" uid="uid://byogppelk74mx" path="res://ui/ui_sprites/heart.png" id="2_54rg6"]
@@ -67,6 +67,7 @@
 [ext_resource type="Material" uid="uid://6p5jhiva5qp6" path="res://materials/m_trihex_1.tres" id="61_ripfg"]
 [ext_resource type="Texture2D" uid="uid://dlmh4qo4cx1sr" path="res://ui/ui_sprites/s_textbox_l.png" id="62_kbth0"]
 [ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="63_al4ig"]
+[ext_resource type="Script" path="res://ui/text_stats.gd" id="68_asdcx"]
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_s2mio"]
 frames = 22
@@ -162,7 +163,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("ButtonMainMenu:scale")
+tracks/0/path = NodePath("ButtonTitleScreen:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -212,17 +213,58 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
 }
+
+[sub_resource type="Animation" id="Animation_2r0oh"]
+resource_name = "loss"
+length = 2.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.233258, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.8),
+"transitions": PackedFloat32Array(0.25, 3.60501, 0.25),
+"update": 0,
+"values": [0.0, 3.14159, 6.28319]
+}
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ButtonRestart:scale")
+tracks/2/path = NodePath("ButtonTitleScreen:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3),
+"times": PackedFloat32Array(0.8, 1),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(1e-05, 1e-05)]
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ButtonMainMenu:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_ldhdp"]
@@ -253,22 +295,11 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("ButtonRestart:scale")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.6),
-"transitions": PackedFloat32Array(0.25, 1),
-"update": 0,
-"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
-}
 
-[sub_resource type="Animation" id="Animation_2r0oh"]
+[sub_resource type="Animation" id="Animation_l4lhd"]
 resource_name = "win"
 length = 2.0
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -277,7 +308,7 @@ tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(0.450625, 1),
+"transitions": PackedFloat32Array(0.233258, 1),
 "update": 0,
 "values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
@@ -296,7 +327,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("ButtonMainMenu:scale")
+tracks/2/path = NodePath("ButtonTitleScreen:scale")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -308,22 +339,35 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ButtonRestart:scale")
+tracks/3/path = NodePath("ButtonMainMenu:scale")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(1, 1.2),
+"times": PackedFloat32Array(1.2, 1.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ButtonRestart:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(1, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_h43gw"]
 _data = {
 "RESET": SubResource("Animation_2ish8"),
 "close": SubResource("Animation_hwery"),
+"loss": SubResource("Animation_2r0oh"),
 "open": SubResource("Animation_ldhdp"),
-"win": SubResource("Animation_2r0oh")
+"win": SubResource("Animation_l4lhd")
 }
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_c0ree"]
@@ -421,7 +465,7 @@ offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.929688, 0.109375, 0.140625, 1)
+color = Color(0.93, 0.1116, 0.13888, 1)
 
 [node name="ImageCooldown" type="TextureRect" parent="."]
 texture_filter = 1
@@ -645,10 +689,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -196.0
-offset_right = 192.0
-offset_bottom = 188.0
+offset_left = 53.3334
+offset_top = -157.333
+offset_right = 437.333
+offset_bottom = 226.667
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.05351, 1.05351)
@@ -785,7 +829,9 @@ offset_right = 1016.0
 offset_bottom = 205.0
 theme_override_fonts/normal_font = ExtResource("63_al4ig")
 theme_override_font_sizes/normal_font_size = 40
-text = "This character will probably speak brainrot while others would force him to shut up."
+text = "Dialogue text"
+fit_content = true
+scroll_active = false
 
 [node name="TextHint" type="RichTextLabel" parent="DialogueBox"]
 texture_filter = 1
@@ -951,16 +997,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -416.871
-offset_top = 192.996
-offset_right = -96.871
-offset_bottom = 256.996
+offset_left = -160.0
+offset_top = 138.666
+offset_right = 160.0
+offset_bottom = 202.666
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
 theme_override_fonts/font = ExtResource("3_66kkv")
 theme_override_font_sizes/font_size = 54
-text = "Main menu"
+text = "LEVEL MAP"
+button_type = 0
 
 [node name="ButtonRestart" parent="Pause" instance=ExtResource("49_h61e7")]
 layout_mode = 1
@@ -978,7 +1025,8 @@ grow_vertical = 2
 scale = Vector2(1e-05, 1e-05)
 theme_override_fonts/font = ExtResource("3_66kkv")
 theme_override_font_sizes/font_size = 54
-text = "Restart"
+text = "RESTART"
+button_type = 0
 
 [node name="SFXSlider" type="HSlider" parent="Pause"]
 material = ExtResource("9_n7af5")
@@ -1004,7 +1052,7 @@ theme_override_styles/grabber_area = SubResource("StyleBoxLine_7ck1n")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxLine_7ck1n")
 min_value = -40.0
 max_value = 20.0
-value = -20.0
+value = -15.0
 rounded = true
 tick_count = 6
 ticks_on_borders = true
@@ -1083,7 +1131,6 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="WinScreen" type="Control" parent="."]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -1096,8 +1143,9 @@ offset_right = 768.0
 offset_bottom = 376.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
 pivot_offset = Vector2(576, 448)
-metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="WinAnim" type="AnimationPlayer" parent="WinScreen"]
 libraries = {
@@ -1146,14 +1194,14 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 metadata/_edit_lock_ = true
 
-[node name="TextWin" type="RichTextLabel" parent="WinScreen"]
+[node name="TitleWin" type="RichTextLabel" parent="WinScreen"]
 texture_filter = 1
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -328.0
-offset_right = 328.0
+offset_left = -378.667
+offset_right = 392.333
 offset_bottom = 127.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = ExtResource("63_al4ig")
@@ -1161,44 +1209,65 @@ theme_override_font_sizes/normal_font_size = 108
 text = "Level cleared!"
 fit_content = true
 
-[node name="ButtonMainMenu" parent="WinScreen" instance=ExtResource("49_h61e7")]
-modulate = Color(1, 0.478431, 0.45098, 1)
+[node name="TextStats" type="RichTextLabel" parent="WinScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 107.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("63_al4ig")
+theme_override_font_sizes/normal_font_size = 48
+text = "Stats:"
+fit_content = true
+context_menu_enabled = true
+script = ExtResource("68_asdcx")
+
+[node name="ButtonTitleScreen" parent="WinScreen" instance=ExtResource("49_h61e7")]
+modulate = Color(0.726153, 0.74092, 1, 1)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -320.0
+offset_left = -690.667
 offset_top = -64.0
-offset_right = 0.0
+offset_right = -370.667
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
 scale = Vector2(1e-05, 1e-05)
 theme_override_fonts/font = ExtResource("3_66kkv")
 theme_override_font_sizes/font_size = 54
-text = "Main menu"
+text = "LEVEL MAP"
+button_type = 0
 
-[node name="ButtonNextLevel" parent="WinScreen" instance=ExtResource("49_h61e7")]
+[node name="ButtonMainMenu" parent="WinScreen" instance=ExtResource("49_h61e7")]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -160.0
+offset_left = 208.0
 offset_top = -64.0
-offset_right = 160.0
+offset_right = 528.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
 theme_override_fonts/font = ExtResource("3_66kkv")
 theme_override_font_sizes/font_size = 54
-text = "Next Level"
+text = "MAIN MENU"
+button_type = 0
+destination = "res://levels/start/startscreen.tscn"
 
 [node name="ButtonRestart" parent="WinScreen" instance=ExtResource("49_h61e7")]
-modulate = Color(1, 1, 0, 1)
+modulate = Color(2.06962e-06, 0.920536, 0.201687, 1)
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -1210,7 +1279,144 @@ grow_vertical = 0
 scale = Vector2(1e-05, 1e-05)
 theme_override_fonts/font = ExtResource("3_66kkv")
 theme_override_font_sizes/font_size = 54
-text = "Restart"
+text = "RESTART"
+button_type = 0
+
+[node name="LossScreen" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -264.0
+offset_right = 768.0
+offset_bottom = 376.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 6.28319
+pivot_offset = Vector2(576, 448)
+metadata/_edit_lock_ = true
+
+[node name="LossAnim" type="AnimationPlayer" parent="LossScreen"]
+libraries = {
+"": SubResource("AnimationLibrary_h43gw")
+}
+
+[node name="BorderRect" type="NinePatchRect" parent="LossScreen"]
+modulate = Color(0, 0, 0, 1)
+material = ExtResource("61_ripfg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("62_kbth0")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+metadata/_edit_lock_ = true
+
+[node name="FillerRect" type="NinePatchRect" parent="LossScreen"]
+modulate = Color(0.34, 0, 0, 1)
+material = ExtResource("61_ripfg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("62_kbth0")
+region_rect = Rect2(0, 0, 16, 16)
+patch_margin_left = 2
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 2
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+metadata/_edit_lock_ = true
+
+[node name="TitleLoss" type="RichTextLabel" parent="LossScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -528.002
+offset_top = 0.00256925
+offset_right = 242.998
+offset_bottom = 127.003
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("63_al4ig")
+theme_override_font_sizes/normal_font_size = 72
+text = "Womp womp"
+fit_content = true
+
+[node name="TextStats" type="RichTextLabel" parent="LossScreen"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 107.0
+offset_bottom = -139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("63_al4ig")
+theme_override_font_sizes/normal_font_size = 48
+text = "Stats:"
+fit_content = true
+context_menu_enabled = true
+script = ExtResource("68_asdcx")
+
+[node name="ButtonTitleScreen" parent="LossScreen" instance=ExtResource("49_h61e7")]
+modulate = Color(0.726153, 0.74092, 1, 1)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1056.0
+offset_top = -64.0
+offset_right = -736.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(1e-05, 1e-05)
+theme_override_fonts/font = ExtResource("3_66kkv")
+theme_override_font_sizes/font_size = 54
+text = "LEVEL MAP"
+button_type = 0
+
+[node name="ButtonMainMenu" parent="LossScreen" instance=ExtResource("49_h61e7")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 208.0
+offset_top = -64.0
+offset_right = 528.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_66kkv")
+theme_override_font_sizes/font_size = 54
+text = "MAIN MENU"
+button_type = 0
+destination = "res://levels/start/startscreen.tscn"
 
 [node name="EscapeAnim" type="AnimationPlayer" parent="."]
 libraries = {

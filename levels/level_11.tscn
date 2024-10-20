@@ -1,7 +1,6 @@
-[gd_scene load_steps=31 format=3 uid="uid://cqpbg454dfku4"]
+[gd_scene load_steps=29 format=3 uid="uid://cqpbg454dfku4"]
 
 [ext_resource type="Material" uid="uid://t0tlsyb4cf1r" path="res://materials/m_quadrille_o1.tres" id="1_sqmdr"]
-[ext_resource type="Script" path="res://levels/post_process.gd" id="2_hhwwq"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="3_aj3rp"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="4_36o6e"]
 [ext_resource type="Texture2D" uid="uid://cxl2wuam7t1x7" path="res://sprites/bg/s_bg_square.png" id="5_3ka8s"]
@@ -30,19 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://oarr2ybyy1vq" path="res://objects/enemies/enemy_3.tscn" id="29_f1lxy"]
 [ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="30_7tkx0"]
 
-[sub_resource type="Environment" id="Environment_u3ifr"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
-
 [node name="Level11" type="Node2D"]
 material = ExtResource("1_sqmdr")
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_u3ifr")
-script = ExtResource("2_hhwwq")
 
 [node name="Player" parent="." instance=ExtResource("3_aj3rp")]
 position = Vector2(56, -104)

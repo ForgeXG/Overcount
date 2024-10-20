@@ -11,7 +11,7 @@ size = Vector2(6, 6)
 [node name="PlayerBullet" type="RigidBody2D" groups=["Bullet", "PlayerBullet"]]
 texture_filter = 1
 collision_layer = 0
-collision_mask = 1029
+collision_mask = 5
 physics_material_override = SubResource("PhysicsMaterial_itm77")
 continuous_cd = 1
 contact_monitor = true

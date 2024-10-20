@@ -11,7 +11,7 @@ extends Area2D
 @export var laser : bool = false
 @export var scale_spd : Vector2 = Vector2(0, 0)
 var d_timer : float = -1
-var player
+var player : Player
 var player_dist = 0
 var player_angle = 0
 
@@ -64,7 +64,7 @@ func _on_draw():
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		if randf_range(0, 1) <= hit_chance:
-			player.dmg_effect += dmg
+			player.damage(dmg)
 			var dmg_number = preload("res://ui/damage_number.tscn").instantiate()
 			get_tree().current_scene.add_child(dmg_number)
 			dmg_number.position = position

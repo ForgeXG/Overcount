@@ -18,8 +18,12 @@ var autorun : bool = false
 var mach = 0
 var int_mach : int = 0
 var h_sign = 0
-var s_frames = 0
-var j_frames = 0
+var s_frames : float = 0:
+	set(value):
+		s_frames = clamp(value, 0, INF) # Stasis (uncontrollable) frames
+var j_frames : float = 0:
+	set(value):
+		j_frames = clamp(value, 0, INF)
 var last_safe_position = Vector2.ZERO
 
 var kicked : bool = false
@@ -37,7 +41,9 @@ var checkpoint_camera_zoom : Vector2 = Vector2.ZERO
 @export var maxhp : float = 30
 var dmg_effect = 0
 var heal_effect = 0
-var i_frames : int = 0
+var i_frames : float = 0:
+	set(value):
+		i_frames = clamp(value, 0, INF)
 
 # Effects
 @export var status_effects : Array[String] = []
@@ -196,9 +202,9 @@ func _process(delta):
 		heal_effect -= 0.1
 		hp += 0.1
 	if i_frames > 0:
-		i_frames -= 1
+		i_frames -= 1 * 60 * delta
 	if s_frames > 0:
-		s_frames -= 1
+		s_frames -= 1 * 60 * delta
 	
 	dmg_effect = clamp(dmg_effect, 0, 10**10)
 	heal_effect = clamp(heal_effect, 0, 10**10)
@@ -213,24 +219,26 @@ func _process(delta):
 	if score > maxscore:
 		score = maxscore
 	
-	# Death
+	# Loss
 	if hp <= 0:
-		get_tree().reload_current_scene()
+		loss()
+		pass
 		
 	# Timer
 	if escape_time_active:
 		if escape_time == 0:
-			get_tree().reload_current_scene()
+			loss()
 		elif escape_time > 0:
 			escape_time -= 1
-			if $PlayerUI/TextTimer.text != "GG":
+			if $PlayerUI/TextTimer.text != "GG" and $PlayerUI/TextTimer.text != "L":
 				$PlayerUI/TextTimer.text = str(escape_time / 3600) + ":" + str(escape_time % 3600 / 60)
 			$PlayerUI/ImageTimer.visible = true
 			$PlayerUI/ImageTimer.texture.pause = false
  
-	# Restarting
+	# Restarting (currently Pause-only)
 	if Input.is_action_just_pressed("key_restart"):
-		get_tree().reload_current_scene()
+		pass 
+		# get_tree().reload_current_scene()
 		
 	# Cheats
 	if G.enable_cheats:
@@ -260,7 +268,7 @@ func _physics_process(delta):
 	var key_right : bool = Input.is_action_pressed("key_d")
 	var key_jump : bool = Input.is_action_pressed("key_w")
 	var key_autorun : bool = Input.is_action_just_pressed("key_autorun")
-	var key_accelerate : bool = Input.is_action_pressed("key_acceleration") or autorun
+	var key_accelerate : bool = Input.is_action_pressed("key_acceleration") or G.autorun
 	var key_ability : bool = Input.is_action_just_pressed("key_ability")
 	var key_checkpoint : bool = Input.is_action_just_pressed("key_checkpoint")
 	
@@ -275,7 +283,7 @@ func _physics_process(delta):
 			energy += 1
 	
 	if key_autorun:
-		autorun = !autorun
+		G.autorun = !G.autorun
 	
 	if key_parry and i_frames <= 0 and s_frames <= 0:
 		i_frames = 10
@@ -316,7 +324,10 @@ func _physics_process(delta):
 			mach += 0.01
 	elif s_frames == 0:
 		mach = clamp(mach, 0, 2)
-		mach -= 0.2
+		if !(key_left and key_right):
+			mach -= 0.2
+		else:
+			mach -= 0.01
 	mach = clamp(mach, 0, 3)
 	
 	# Gravity and Last Safe Position
@@ -337,9 +348,10 @@ func _physics_process(delta):
 			$PlayerAnim.play("jump")
 		elif is_on_wall() and mach >= 1:
 			var last_coll = get_last_slide_collision().get_collider()
-			if last_coll.is_in_group("WallTileMap") or last_coll.is_in_group("OnOff"):
-				velocity.y = jump_force * 0.9 * delta * 60 * -up_direction.y
-				mach = clamp(mach, 0, 2)
+			if last_coll != null:
+				if last_coll.is_in_group("WallTileMap") or last_coll.is_in_group("OnOff"):
+					velocity.y = jump_force * 0.9 * delta * 60 * -up_direction.y
+					mach = clamp(mach, 0, 2)
 
 	if s_frames == 0:
 		velocity.x = h_sign * walk_spd * (clamp(mach, 0, 3) / 2 + 1) * delta * 60
@@ -352,17 +364,8 @@ func _physics_process(delta):
 	
 	# Void trigger load.
 	if position.y > y_death or key_checkpoint:
-		position = checkpoint_position
-		if !keep_music_position:
-			get_parent().get_node("MusicPlayer").play(checkpoint_music_position)
-		dmg_effect += 5
-		if get_parent().get_node_or_null("Camera") != null:
-			get_parent().get_node_or_null("Camera").position_smoothing_speed = 1000
-			get_parent().get_node_or_null("Camera").position = checkpoint_camera_position
-			get_parent().get_node_or_null("Camera").m_timer = checkpoint_camera_timeline
-			# get_parent().get_node("Camera").zoom = checkpoint_camera_zoom
-			get_parent().get_node_or_null("Camera").apply_stats()
-			
+		checkpoint_load()
+	
 	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
 		var coll = collision.get_collider()
@@ -381,6 +384,10 @@ func _physics_process(delta):
 					if coll.is_in_group("HazardSaw"):
 						velocity.x = -h_sign * walk_spd * 1.6 * delta * 60
 						damage(8)
+		elif coll.is_in_group("Polyhedron"):
+			if coll.hazard:
+				checkpoint_load()
+				# damage(5)
 		elif coll.is_in_group("WallTileMap") and is_on_floor():
 			last_safe_position = position
 		elif coll.is_in_group("Physical"):
@@ -519,6 +526,15 @@ func damage(a : float, is_instant : bool = false):
 		dmg_effect += a
 	else:
 		hp -= a
+	if dmg_effect >= 5:
+		$SoundPlayer.set_stream(load("res://audio/sounds/hurtlarge.wav"))
+		$SoundPlayer.play()
+	elif dmg_effect >= 3:
+		$SoundPlayer.set_stream(load("res://audio/sounds/hurtmedium.wav"))
+		$SoundPlayer.play()
+	elif dmg_effect > 0:
+		$SoundPlayer.set_stream(load("res://audio/sounds/hurtsmall.wav"))
+		$SoundPlayer.play()
 
 func heal(a : float, is_instant : bool = false):
 	if !is_instant:
@@ -526,7 +542,41 @@ func heal(a : float, is_instant : bool = false):
 	else:
 		hp += a
 
-
+func checkpoint_load():
+	position = checkpoint_position
+	dmg_effect += 5
+	if !keep_music_position:
+		get_parent().get_node("MusicPlayer").play(checkpoint_music_position)
+	if get_parent().get_node_or_null("Camera") != null:
+		get_parent().get_node_or_null("Camera").position_smoothing_speed = 1000
+		get_parent().get_node_or_null("Camera").position = checkpoint_camera_position
+		get_parent().get_node_or_null("Camera").m_timer = checkpoint_camera_timeline
+		# get_parent().get_node("Camera").zoom = checkpoint_camera_zoom
+		get_parent().get_node_or_null("Camera").apply_stats()
 func _on_timer_timeout():
 	dps = dps_next
 	dps_next = 0
+	
+func loss():
+	var loss_phrases : Array[String] = ["Womp womp", "That's a loss", "Could've done better",
+	"Bro straight up died", "Wanna try again?", "Well actually, you lost", "Don't die next time",
+	"Tough luck", "GGWP"]
+	i_frames = 100000000
+	escape_time_active = false
+	heal_effect = 9999
+	gravity = 0
+	walk_spd = 0
+	jump_force = 0
+	var total_coins = score / 5
+	G.coins += total_coins
+	$PlayerUI/TextTimer.text = "L"
+	$PlayerUI/LossScreen/TitleLoss.text = loss_phrases.pick_random()
+	$PlayerUI/LossScreen/LossAnim.play("loss")
+	$PlayerUI/LossScreen/TextStats.visible_ratio = 0
+	$PlayerUI/LossScreen/TextStats.text = "Stats:
+	Score coins: {score_coins}
+	Rank coins: 0
+	Extra HP coins: 0
+	Total coins: {total_coins}
+	End Rank: L".format({"score_coins" : total_coins,
+	"total_coins" : total_coins})

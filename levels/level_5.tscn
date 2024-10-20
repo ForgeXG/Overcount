@@ -1,6 +1,5 @@
-[gd_scene load_steps=30 format=3 uid="uid://b2agfd5dj6l8d"]
+[gd_scene load_steps=28 format=3 uid="uid://b2agfd5dj6l8d"]
 
-[ext_resource type="Script" path="res://levels/post_process.gd" id="1_ju01x"]
 [ext_resource type="PackedScene" uid="uid://ei231eyk1t13" path="res://objects/player.tscn" id="2_s6cbf"]
 [ext_resource type="PackedScene" uid="uid://b6cugcod64erq" path="res://objects/special/camera.tscn" id="3_c3wlh"]
 [ext_resource type="Material" uid="uid://bl1tvw6u34bhd" path="res://materials/m_deltille_1.tres" id="4_bfhyp"]
@@ -28,21 +27,10 @@
 [ext_resource type="PackedScene" uid="uid://dkc7jg6bm3c2" path="res://objects/triggers/ui/phrase/t_phrase.tscn" id="27_487mh"]
 [ext_resource type="PackedScene" uid="uid://dkrp8nn8q6w3q" path="res://objects/foreground/checkpoint/checkpoint.tscn" id="27_xnxou"]
 
-[sub_resource type="Environment" id="Environment_xa3lu"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.05
-fog_enabled = true
-adjustment_enabled = true
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bupk6"]
 shader = ExtResource("7_xp1qx")
 
 [node name="Level5" type="Node2D"]
-
-[node name="PostProcess" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_xa3lu")
-script = ExtResource("1_ju01x")
 
 [node name="Player" parent="." instance=ExtResource("2_s6cbf")]
 position = Vector2(-936, -138)

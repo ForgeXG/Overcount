@@ -1,10 +1,11 @@
 ShaderMaterial
+FontVariation
+FontFile
 VisualShader
 WeaponNew
 SpriteFrames
 ImageTexture
 SystemFont
-FontFile
 TileSet
 PackedScene
 Image

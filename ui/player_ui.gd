@@ -7,12 +7,15 @@ preload("res://ui/ui_sprites/ranks/Rank3.png"),
 preload("res://ui/ui_sprites/ranks/Rank4.png"),
 preload("res://ui/ui_sprites/ranks/Rank5.png")]
 
-var player : CharacterBody2D
+var player : Player
 
 func _ready():
 	player = get_parent()
 	$Pause.scale = Vector2.ZERO
 	$WinScreen.scale = Vector2.ZERO
+	$WinScreen.show()
+	$LossScreen.scale = Vector2.ZERO
+	$LossScreen.show()
 	$Pause/ButtonRestart.destination = get_tree().current_scene.scene_file_path
 	$WinScreen/ButtonRestart.destination = get_tree().current_scene.scene_file_path
 	$DialogueBox/TextDialogue.visible_ratio = 0
@@ -28,7 +31,7 @@ func _process(_delta):
 	$TextHealth.text = "%.1f" % player.hp
 	if player.heal_effect > 0:
 		$TextHealth.text = "%.1f" % player.hp + "+" + "%.1f" % player.heal_effect
-	if player.hp / player.maxhp < 0.2:
+	if player.dmg_effect > 0:
 		$TextHealth/FillerRect.material = load("res://materials/player/player_invincible.tres")
 	else:
 		$TextHealth/FillerRect.material = load("res://materials/m_quadrille_o1.tres")
@@ -54,7 +57,7 @@ func _process(_delta):
 	
 	$FillerBox/InfoBox/TextSpeedrunTimer.text = time_to_speedrun(player.speedrun_time)
 	$FillerBox/InfoBox/TextMach.text = "Phase: " + "%.1f" % player.mach
-	$FillerBox/InfoBox/TextAutorun.text = "Auto: " + str(player.autorun)
+	$FillerBox/InfoBox/TextAutorun.text = "Auto: " + str(G.autorun)
 	$FillerBox/InfoBox/TextDPS.text = "DPS: " + str("%.1f" % player.dps)
 	$FillerBox/InfoBox/TextDebug.text = str(player.debug_float)
 	# Dialogue

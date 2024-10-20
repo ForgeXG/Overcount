@@ -1,6 +1,13 @@
-[gd_resource type="SystemFont" format=3 uid="uid://dodgtjgtikpee"]
+[gd_resource type="SystemFont" load_steps=5 format=3 uid="uid://dodgtjgtikpee"]
+
+[ext_resource type="FontFile" uid="uid://c68nv24qkbmvx" path="res://fonts/DejaVuSansMono.ttf" id="1_fcorq"]
+[ext_resource type="FontFile" uid="uid://cu21qars1u3lx" path="res://fonts/DejaVuSansMono-Bold.ttf" id="2_n8va3"]
+[ext_resource type="FontFile" uid="uid://xt7es3smt8qc" path="res://fonts/DejaVuSansMono-Oblique.ttf" id="3_8qcen"]
+[ext_resource type="FontFile" uid="uid://bnc0d3i37f6tj" path="res://fonts/DejaVuSansMono-BoldOblique.ttf" id="4_2e8xv"]
 
 [resource]
-font_names = PackedStringArray("Cambria Math")
+fallbacks = Array[Font]([ExtResource("1_fcorq"), ExtResource("2_n8va3"), ExtResource("3_8qcen"), ExtResource("4_2e8xv")])
+font_names = PackedStringArray("DejaVu Sans")
+generate_mipmaps = true
 msdf_pixel_range = 32
 oversampling = 10.0

@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://613ub5igfmo5" path="res://ui/button/uibutton.png" id="1_h3dgo"]
 [ext_resource type="SystemFont" uid="uid://dodgtjgtikpee" path="res://fonts/cambriamath.tres" id="1_oxpmn"]
-[ext_resource type="Script" path="res://ui/button/button.gd" id="1_uod0s"]
+[ext_resource type="Script" path="res://ui/button/levelbutton.gd" id="2_siwl6"]
 [ext_resource type="Script" path="res://ui/ui_sprites/danger/uniform_scale_c.gd" id="4_f64gr"]
 [ext_resource type="Material" uid="uid://duto572am2w5" path="res://materials/trig/m_trig_1e.tres" id="5_yinwd"]
 [ext_resource type="Texture2D" uid="uid://dlmh4qo4cx1sr" path="res://ui/ui_sprites/s_textbox_l.png" id="6_qdlin"]
@@ -12,13 +12,13 @@
 texture_filter = 1
 offset_right = 64.0
 offset_bottom = 48.0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("1_oxpmn")
 theme_override_font_sizes/font_size = 48
 flat = true
 expand_icon = true
-script = ExtResource("1_uod0s")
-level_title = "<TItle placeholder>"
-level_desc = "<Description placeholder>"
+script = ExtResource("2_siwl6")
+button_type = 1
 
 [node name="Image" type="NinePatchRect" parent="."]
 show_behind_parent = true
@@ -104,7 +104,7 @@ offset_top = 40.0
 offset_right = 944.0
 offset_bottom = 167.0
 theme_override_fonts/normal_font = ExtResource("1_oxpmn")
-theme_override_font_sizes/normal_font_size = 72
+theme_override_font_sizes/normal_font_size = 64
 text = "<Title placeholder>"
 fit_content = true
 
@@ -191,14 +191,16 @@ axis_stretch_vertical = 1
 
 [node name="TeleporterButton" type="Button" parent="ButtonUI/Control"]
 layout_mode = 0
-offset_left = 768.0
+offset_left = 736.0
 offset_top = 448.0
-offset_right = 1088.0
+offset_right = 1056.0
 offset_bottom = 513.0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("1_oxpmn")
 theme_override_font_sizes/font_size = 48
 text = "ENTER!"
 flat = true
+script = ExtResource("2_siwl6")
 
 [node name="Image" type="NinePatchRect" parent="ButtonUI/Control/TeleporterButton"]
 show_behind_parent = true
@@ -222,14 +224,16 @@ metadata/_edit_lock_ = true
 [node name="CancelButton" type="Button" parent="ButtonUI/Control"]
 modulate = Color(1, 0.301961, 0.301961, 1)
 layout_mode = 0
-offset_left = 768.0
+offset_left = 736.0
 offset_top = 576.0
-offset_right = 1088.0
+offset_right = 1056.0
 offset_bottom = 641.0
+mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("1_oxpmn")
 theme_override_font_sizes/font_size = 48
 text = "No thanks💀"
 flat = true
+script = ExtResource("2_siwl6")
 
 [node name="Image" type="NinePatchRect" parent="ButtonUI/Control/CancelButton"]
 show_behind_parent = true

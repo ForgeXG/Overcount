@@ -72,6 +72,7 @@ frame_progress = 0.415061
 [node name="UI" type="Control" parent="."]
 visible = false
 modulate = Color(1, 1, 1, 0.823529)
+z_index = 1
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -156,7 +157,7 @@ offset_right = 68.0
 offset_bottom = 23.0
 theme_override_fonts/normal_font = ExtResource("12_ilc23")
 theme_override_font_sizes/normal_font_size = 6
-text = "Prove you are human. W to deselect."
+text = "Press W to deselect."
 
 [node name="AnswerRect" type="NinePatchRect" parent="UI"]
 self_modulate = Color(0.5, 0.5, 0.5, 1)
@@ -187,6 +188,8 @@ placeholder_text = "Type Here"
 deselect_on_focus_loss_enabled = false
 wrap_mode = 1
 scroll_past_end_of_file = true
+minimap_width = 10
+draw_spaces = true
 
 [node name="TimebarFillerRect" type="ColorRect" parent="UI"]
 material = ExtResource("13_vmywy")

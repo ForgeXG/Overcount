@@ -2,7 +2,9 @@ extends Node2D
 
 # Save data
 var enable_cheats : bool = true
+var autorun : bool = true
 var coins : int = 0
+static var PHI : float = 1.61803399
 
 # This is the script for global data that any scene can refer to.
 

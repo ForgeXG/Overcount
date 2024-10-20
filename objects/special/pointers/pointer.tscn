@@ -1,0 +1,83 @@
+[gd_scene load_steps=6 format=3 uid="uid://b15qofqfdu3cx"]
+
+[ext_resource type="Texture2D" uid="uid://b8v46hktfhye6" path="res://objects/special/pointers/PointerArrow.png" id="1_2mxh7"]
+[ext_resource type="Script" path="res://objects/special/pointers/pointer.gd" id="2_lsc3t"]
+
+[sub_resource type="Animation" id="Animation_wgiv2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_21u60"]
+resource_name = "wiggle"
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-2.63902, 1),
+"update": 0,
+"values": [-0.0872665, 0.0872665]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(0.5, 2, 1),
+"update": 0,
+"values": [Vector2(0.9, 0.9), Vector2(1.1, 1.1), Vector2(0.9, 0.9)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0v6wy"]
+_data = {
+"RESET": SubResource("Animation_wgiv2"),
+"wiggle": SubResource("Animation_21u60")
+}
+
+[node name="Pointer" type="Sprite2D"]
+modulate = Color(1, 1, 0, 0.705882)
+texture = ExtResource("1_2mxh7")
+script = ExtResource("2_lsc3t")
+wiggle_min = 0.0
+wiggle_max = 0.0
+wiggle_speed = 0.0
+
+[node name="ChildPointer" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_2mxh7")
+
+[node name="Anim" type="AnimationPlayer" parent="ChildPointer"]
+libraries = {
+"": SubResource("AnimationLibrary_0v6wy")
+}

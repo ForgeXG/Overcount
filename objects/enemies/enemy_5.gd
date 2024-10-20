@@ -25,7 +25,7 @@ var player_dist = 10**10
 
 @export var score : int = 15
 
-var player
+var player : Player
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -119,7 +119,7 @@ func _physics_process(delta):
 		if collision.get_collider() == player and hp > 0 and player.mach < 3:
 			if player.i_frames == 0:
 				player.i_frames = 60
-				player.dmg_effect += dmg
+				player.damage(dmg)
 				player.s_frames = 30
 				player.velocity.x = -sign(position.x - player.position.x) * player.walk_spd * 0.5
 				player.velocity.y = player.jump_force * 1
